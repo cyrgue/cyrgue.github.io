@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Page | 归档：2017 | cyrgue</title>
+  <title>Page | cyrgue</title>
   <meta name="author" content="cyrgue">
   
   
@@ -43,97 +43,67 @@
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title">2017</h2>
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-10-03T12:23:04.000Z"><a href="/2015/10/03/test/">2015-10-03</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/10/03/test/">Npm configuration</a></h1>
+  
 
+    </header>
+    <div class="entry">
+      
+        <h3 id="Travailler-avec-une-autre-registry-NPM"><a href="#Travailler-avec-une-autre-registry-NPM" class="headerlink" title="Travailler avec une autre registry NPM"></a>Travailler avec une autre registry NPM</h3><ul>
+<li>Configurer une autre registry</li>
+</ul>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span> npm config <span class="keyword">set</span> registry <span class="comment">http:</span>//<span class="comment">server.example.com</span>/registry-name/</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Supprimer la registry</li>
+</ul>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm<span class="built_in"> config </span>delete registry</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Publier sur une autre registry</li>
+</ul>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm publish --<span class="keyword">registry</span> <span class="keyword">registry</span> <span class="keyword">http</span>://server.example.com/<span class="keyword">registry</span>-name/</span><br></pre></td></tr></table></figure>
+<h3 id="Configurer-un-proxy"><a href="#Configurer-un-proxy" class="headerlink" title="Configurer un proxy"></a>Configurer un proxy</h3><ul>
+<li><p>Ajouter un proxy</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span> npm config <span class="keyword">set</span> proxy <span class="comment">http:</span>//<span class="comment">monproxy.example.com:port</span></span><br><span class="line">$ npm <span class="comment">config set https-proxy http:</span>//<span class="comment">username:password@monproxy.example.com:port</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Supprimer les proxy</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm<span class="built_in"> config </span>delete proxy</span><br><span class="line">$ npm<span class="built_in"> config </span>delete https-proxy</span><br></pre></td></tr></table></figure>
+<p>Il est egalement possible d’utiliser les variables d’environnement <strong>HTTP_PROXY, HTTPS_PROXY et NO_PROXY</strong>. npm va se baser sur celles-ci, si elles sont définies</p>
+</li>
+</ul>
 
-  <div class="archive">
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2017-03-01T11:42:28.000Z"><a href="/2017/03/01/javascript-generality/">2017-03-01</a></time>
-            
-              <h1 class="title"><a href="/2017/03/01/javascript-generality/">javascript-generality</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2017-03-01T10:54:08.000Z"><a href="/2017/03/01/javascript-ecmascript-2015/">2017-03-01</a></time>
-            
-              <h1 class="title"><a href="/2017/03/01/javascript-ecmascript-2015/">javascript-ecmascript-2015</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2017-02-25T22:47:36.000Z"><a href="/2017/02/25/angular-dynamic-component/">2017-02-25</a></time>
-            
-              <h1 class="title"><a href="/2017/02/25/angular-dynamic-component/">angular-dynamic-component</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2017-02-23T11:50:56.000Z"><a href="/2017/02/23/javascript-array/">2017-02-23</a></time>
-            
-              <h1 class="title"><a href="/2017/02/23/javascript-array/">javascript-array</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2017-01-24T10:25:55.000Z"><a href="/2017/01/24/angular2-library/">2017-01-24</a></time>
-            
-              <h1 class="title"><a href="/2017/01/24/angular2-library/">angular2-library</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2017-01-24T10:22:54.000Z"><a href="/2017/01/24/angular2-iframe/">2017-01-24</a></time>
-            
-              <h1 class="title"><a href="/2017/01/24/angular2-iframe/">angular2-iframe</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2017-01-07T11:50:20.000Z"><a href="/2017/01/07/Kubernetes/">2017-01-07</a></time>
-            
-              <h1 class="title"><a href="/2017/01/07/Kubernetes/">Kubernetes</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
   </div>
-</div></div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/page/3/" class="alignleft prev">Précédent</a>
+  
+  
+  <div class="clearfix"></div>
+</nav></div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
