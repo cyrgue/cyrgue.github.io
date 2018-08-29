@@ -1,0 +1,262 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>angular2-architecture | cyrgue</title>
+  <meta name="author" content="cyrgue">
+  
+  <meta name="description" content="Strategie
+Utilisation des services comme singleton,
+les proprietes sont des objets du domaine
+
+Pb de loading et de rafraichissementavantages de la sub">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="angular2-architecture"/>
+  <meta property="og:site_name" content="cyrgue"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="cyrgue" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">cyrgue</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-12-16T13:17:02.000Z"><a href="/2016/12/16/angular2-architecture/">2016-12-16</a></time>
+      
+      
+  
+    <h1 class="title">angular2-architecture</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Strategie</p>
+<h2 id="Utilisation-des-services-comme-singleton"><a href="#Utilisation-des-services-comme-singleton" class="headerlink" title="Utilisation des services comme singleton,"></a>Utilisation des services comme singleton,</h2><ul>
+<li>les proprietes sont des objets du domaine</li>
+</ul>
+<p>Pb de loading et de rafraichissement<br>avantages de la subscription, mais parfois undefined….</p>
+<p>Mais peux etre interessant, par exemple pour stocker une donnée qui ne change pas dans l’application<br>Ex : Login et User,</p>
+<h2 id="Utilisation-des-services-avec-des-Observables"><a href="#Utilisation-des-services-avec-des-Observables" class="headerlink" title="Utilisation des services avec des Observables"></a>Utilisation des services avec des Observables</h2><h2 id="Utilisation-de-Redux-et-d’un-Store-Central"><a href="#Utilisation-de-Redux-et-d’un-Store-Central" class="headerlink" title="Utilisation de Redux et d’un Store Central"></a>Utilisation de Redux et d’un Store Central</h2><p>Les services servent alors d’utilitaires pour manipuler les données vennant du store<br>Le composant récupere les données du store, peut demander au service de filter, trier…. avant d’afficher les données ou de passer les données aux composant enfants</p>
+<p> The services are singleton objects that<br>play two roles:</p>
+<ol>
+<li>Provide streams of data that our application can subscribe to</li>
+<li>Provide operations to add or modify data</li>
+</ol>
+<p>• The services maintain streams which emit models (e.g. Messages)<br>• The components subscribe to those streams and render according to the most recent values</p>
+<p>The point of the UserService is to provide a place where our application can learn about the current<br>user and also notify the rest of the application if the current user changes.</p>
+<p>One consequence of streams is that, because messages are published immediately, a new subscriber<br>risks missing the latest value of the stream. BehaviourSubject compensates for this.<br>BehaviourSubject⁷⁴ has a special property in that it stores the last value. Meaning that any<br>subscriber to the stream will receive the latest value. This is great for us because it means that<br>any part of our application can subscribe to the UserService.currentUser stream and immediately<br>know who the current user is.</p>
+<p>MessagesService: 3 “data management” streams and 2 “action” streams.<br>The three data management streams are:<br>• newMessages - emits each new Message only once<br>• messages - emits an array of the current Messages<br>• updates - performs operations on messages</p>
+<p>map<br>filter<br>reduce</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Commentaires</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://cyrgue.github.io/2016/12/16/angular2-architecture/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Rechercher">
+    <input type="hidden" name="q" value="site:cyrgue.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Sports/Baseball/">Baseball</a><small>1</small></li>
+  
+    <li><a href="/categories/Sports/">Sports</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/angular/">angular</a><small>4</small></li>
+  
+    <li><a href="/tags/angular2/">angular2</a><small>2</small></li>
+  
+    <li><a href="/tags/angularjs/">angularjs</a><small>1</small></li>
+  
+    <li><a href="/tags/angularjs2/">angularjs2</a><small>1</small></li>
+  
+    <li><a href="/tags/architecture/">architecture</a><small>1</small></li>
+  
+    <li><a href="/tags/array/">array</a><small>1</small></li>
+  
+    <li><a href="/tags/aws/">aws</a><small>1</small></li>
+  
+    <li><a href="/tags/branch/">branch</a><small>1</small></li>
+  
+    <li><a href="/tags/componant/">componant</a><small>1</small></li>
+  
+    <li><a href="/tags/composant/">composant</a><small>1</small></li>
+  
+    <li><a href="/tags/configuration/">configuration</a><small>2</small></li>
+  
+    <li><a href="/tags/database/">database</a><small>1</small></li>
+  
+    <li><a href="/tags/directive/">directive</a><small>1</small></li>
+  
+    <li><a href="/tags/divertissement/">divertissement</a><small>1</small></li>
+  
+    <li><a href="/tags/docker/">docker</a><small>1</small></li>
+  
+    <li><a href="/tags/ecmascript-2015/">ecmascript 2015</a><small>1</small></li>
+  
+    <li><a href="/tags/eslint/">eslint</a><small>1</small></li>
+  
+    <li><a href="/tags/evaluation/">evaluation</a><small>1</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>2</small></li>
+  
+    <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>13</small></li>
+  
+    <li><a href="/tags/jsbin/">jsbin</a><small>1</small></li>
+  
+    <li><a href="/tags/library/">library</a><small>1</small></li>
+  
+    <li><a href="/tags/ngrx/">ngrx</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>1</small></li>
+  
+    <li><a href="/tags/npm/">npm</a><small>1</small></li>
+  
+    <li><a href="/tags/observable/">observable</a><small>1</small></li>
+  
+    <li><a href="/tags/programmation-fonctionnelle/">programmation fonctionnelle</a><small>1</small></li>
+  
+    <li><a href="/tags/rxjs/">rxjs</a><small>1</small></li>
+  
+    <li><a href="/tags/select/">select</a><small>1</small></li>
+  
+    <li><a href="/tags/serverless/">serverless</a><small>2</small></li>
+  
+    <li><a href="/tags/sport/">sport</a><small>1</small></li>
+  
+    <li><a href="/tags/tests/">tests</a><small>1</small></li>
+  
+    <li><a href="/tags/thread/">thread</a><small>1</small></li>
+  
+    <li><a href="/tags/tools/">tools</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+    <div>test</div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2018 cyrgue
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

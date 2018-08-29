@@ -1,0 +1,625 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page | cyrgue</title>
+  <meta name="author" content="cyrgue">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="cyrgue"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="cyrgue" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">cyrgue</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-03-01T11:42:28.000Z"><a href="/2017/03/01/javascript-generality/">2017-03-01</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/03/01/javascript-generality/">javascript-generality</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><a href="http://geekabyte.blogspot.ca/2014/01/javascript-effect-of-setting-settimeout.html" target="_blank" rel="noopener">http://geekabyte.blogspot.ca/2014/01/javascript-effect-of-setting-settimeout.html</a></p>
+<p>JavaScript being single threaded…When Javascript runs, it runs in a single thread of execution.</p>
+<p>JavaScript being non blocking I/O…<br>I would like to see I/O operations as operations that changes the state of stuff outside the JavaScript environment. So apart from the more common I/O operations like reading/writing to files system/database, reading/writing to network resources etc. I would include DOM Manipulation too as an I/O operation. As the DOM is apart from JavaScript execution but JavaScript can be used write to the DOM and read value from the DOM.</p>
+<p>it should be noted that I/O operations are generally expensive and takes time to completion.<br>So by JavaScript being non blocking I/O, it means that when it performs I/O operations, the single thread of execution does not pause and wait for the ongoing I/O operations to complete before moving on to the next task. This is possible because JavaScript makes use of callbacks for I/O operations. Which are set of instructions that can be predefined to execute whenever an I/O task completes (or in case of an Event, when an event occurs. Or in case of a Timer, when the delay expires).</p>
+<p>When an I/O operation is defined, you always have the option to define its callback. So when the single thread encounters such an I/O instruction, it starts the execution, takes the callback for the task (if defined) and registers it to be pushed into an event queue when done and it moves on to the next task in line.</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"hello"</span><span class="string">.substr</span><span class="params">(1)</span>; <span class="string">//</span> <span class="string">"ello"</span></span><br></pre></td></tr></table></figure>
+<h2 id="charAt"><a href="#charAt" class="headerlink" title="charAt()"></a>charAt()</h2><p>The charAt() method returns the specified character from a string.<br><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"hello"</span><span class="string">.charAt</span><span class="params">(0)</span>; <span class="string">//</span> <span class="string">"h"</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverse</span><span class="params">(s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> s.split(<span class="string">""</span>).<span class="built_in">reverse</span>().join(<span class="string">""</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPalindrom</span><span class="params">(str)</span></span> &#123;</span><br><span class="line">  <span class="keyword">return</span> str == <span class="built_in">reverse</span>(str);</span><br><span class="line">&#125;</span><br><span class="line">console.<span class="built_in">log</span>(isPalindrom(<span class="string">'LAVALe'</span>));</span><br></pre></td></tr></table></figure>
+<p><a href="https://jsbin.com/gigavev/edit?js,console" target="_blank" rel="noopener">https://jsbin.com/gigavev/edit?js,console</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPalindrom</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> isEqual = <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i&lt; str.length /<span class="number">2</span> ;i++) &#123;</span><br><span class="line">    isEqual = (str.charAt(i) === str.charAt(length<span class="number">-1</span>-i));</span><br><span class="line">    <span class="keyword">if</span>(!isEqual) &#123;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> isEqual;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(isPalindrom(<span class="string">'LAVALe'</span>));</span><br></pre></td></tr></table></figure>
+<h2 id="Closures"><a href="#Closures" class="headerlink" title="Closures"></a>Closures</h2><p><a href="http://stackoverflow.com/questions/111102/how-do-javascript-closures-work" target="_blank" rel="noopener">http://stackoverflow.com/questions/111102/how-do-javascript-closures-work</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-03-01T10:54:08.000Z"><a href="/2017/03/01/javascript-ecmascript-2015/">2017-03-01</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/03/01/javascript-ecmascript-2015/">javascript-ecmascript-2015</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="ES6-ECMAScript-2015"><a href="#ES6-ECMAScript-2015" class="headerlink" title="ES6 (ECMAScript 2015)"></a>ES6 (ECMAScript 2015)</h1><h2 id="Arrow-Function-gt"><a href="#Arrow-Function-gt" class="headerlink" title="Arrow Function =&gt;"></a>Arrow Function =&gt;</h2><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> helloMessage = (<span class="keyword">message</span>, <span class="keyword">name</span>) =&gt; <span class="keyword">message</span> + <span class="keyword">name</span></span><br></pre></td></tr></table></figure>
+<p>With one parameter<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> helloMessage = <span class="keyword">name</span> =&gt; <span class="string">'Hello '</span> + <span class="keyword">name</span>;</span><br></pre></td></tr></table></figure></p>
+<p>Rq : <em>this</em> is available in the arrow function - <em>this</em> is no longer referring to the scope inside of the function. It’s referring to the scope that’s outside of the function.</p>
+<h2 id="Let-Keyword"><a href="#Let-Keyword" class="headerlink" title="Let Keyword"></a>Let Keyword</h2><ul>
+<li>var is not scoped. So can be reassigned in a block</li>
+<li>but ES5 does have function scoping, so var can not be reassigned in a function, but in a loop (or a block), it can be reassigned</li>
+<li>now, let in ES6 allow  to use block scoping.</li>
+</ul>
+<h2 id="Default-Values-for-Function-Parameters"><a href="#Default-Values-for-Function-Parameters" class="headerlink" title="Default Values for Function Parameters"></a>Default Values for Function Parameters</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">greeting, name = <span class="string">"John"</span></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(greeting + <span class="string">", "</span> + name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">greet(<span class="string">"Hello"</span>);</span><br></pre></td></tr></table></figure>
+<p>allow you to assign some defaults values or function</p>
+<h2 id="const-declaration"><a href="#const-declaration" class="headerlink" title="const declaration"></a>const declaration</h2><p>a const declaration allows to declare a variable that is read only. (is not actually a constant variable, but a constant reference.)<br>can assign and reassign properties of a const object without breaking my const rules, but can not reassign object const because I have changed the reference of this const declaration.</p>
+<p>Also const declarations adhere to block scope. Block scope can simply be understood as anything between two curly brackets. (same behahvior as let)</p>
+<h2 id="Shortalnd-Properties"><a href="#Shortalnd-Properties" class="headerlink" title="Shortalnd Properties"></a>Shortalnd Properties</h2><h2 id="Object-Enhancements"><a href="#Object-Enhancements" class="headerlink" title="Object Enhancements"></a>Object Enhancements</h2><h2 id="Spread-Operator"><a href="#Spread-Operator" class="headerlink" title="Spread Operator"></a>Spread Operator</h2><p>…</p>
+<h2 id="Template-literals"><a href="#Template-literals" class="headerlink" title="Template literals"></a>Template literals</h2><h2 id="Destructuring-Assignements"><a href="#Destructuring-Assignements" class="headerlink" title="Destructuring Assignements"></a>Destructuring Assignements</h2><h2 id="ES6-Modules"><a href="#ES6-Modules" class="headerlink" title="ES6 Modules"></a>ES6 Modules</h2><h2 id="Array-from"><a href="#Array-from" class="headerlink" title="Array.from"></a>Array.from</h2><h2 id="Promises"><a href="#Promises" class="headerlink" title="Promises"></a>Promises</h2><h2 id="Generators"><a href="#Generators" class="headerlink" title="Generators"></a>Generators</h2><h2 id="Map-and-WeakMaps"><a href="#Map-and-WeakMaps" class="headerlink" title="Map and WeakMaps"></a>Map and WeakMaps</h2><h2 id="Parameter-Object-Destructuring-with-Required-Values"><a href="#Parameter-Object-Destructuring-with-Required-Values" class="headerlink" title="Parameter Object Destructuring with Required Values"></a>Parameter Object Destructuring with Required Values</h2><h2 id="ES6-Rest-Parameters"><a href="#ES6-Rest-Parameters" class="headerlink" title="ES6 Rest Parameters"></a>ES6 Rest Parameters</h2>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-02-25T22:47:36.000Z"><a href="/2017/02/25/angular-dynamic-component/">2017-02-25</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/02/25/angular-dynamic-component/">angular-dynamic-component</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="La-vue"><a href="#La-vue" class="headerlink" title="La vue"></a>La vue</h2><p><a href="http://plnkr.co/edit/t9oLGLnD7iwHBzIXYvnQ?p=preview" target="_blank" rel="noopener">http://plnkr.co/edit/t9oLGLnD7iwHBzIXYvnQ?p=preview</a></p>
+<p>Declarer un tag html qui va accueillir le composant<br><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;div #dynamicTarget&gt;</span><span class="section">&lt;/div&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Le-Composant"><a href="#Le-Composant" class="headerlink" title="Le Composant"></a>Le Composant</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">export <span class="class"><span class="keyword">class</span> <span class="title">ItemComponent</span> <span class="title">implements</span> <span class="title">OnChanges</span>, <span class="type">OnDestroy &#123;</span></span></span><br><span class="line"></span><br><span class="line">   <span class="meta">@ViewChild(<span class="meta-string">'dynamicTarget'</span>, &#123;read: ViewContainerRef&#125;)</span></span><br><span class="line">    <span class="keyword">private</span> dynamicTarget: any;</span><br><span class="line">    <span class="keyword">private</span> componentReference: ComponentRef&lt;any&gt;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(  <span class="keyword">private</span> resolver: ComponentFactoryResolver) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    ngOnChanges(changes: SimpleChanges): void &#123;</span><br><span class="line">                let componentFactory = <span class="keyword">this</span>.resolver.resolveComponentFactory(TestComponent);</span><br><span class="line">                <span class="keyword">this</span>.componentReference = <span class="keyword">this</span>.dynamicTarget.createComponent(componentFactory);</span><br><span class="line">                <span class="keyword">this</span>.componentReference.instance.log();</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ngOnDestroy() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">// If we have a component, make sure we destroy it when we lose our owner</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.componentReference) &#123;</span><br><span class="line">            <span class="keyword">this</span>.componentReference.destroy();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-02-23T11:50:56.000Z"><a href="/2017/02/23/javascript-array/">2017-02-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/02/23/javascript-array/">javascript-array</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="includes-method"><a href="#includes-method" class="headerlink" title="includes method"></a>includes method</h2><h2 id="forEach-method"><a href="#forEach-method" class="headerlink" title="forEach method"></a>forEach method</h2><p>Do do something with each item of the array<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getStockSymbols</span>(<span class="params">stocks</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> symbols = [];</span><br><span class="line"></span><br><span class="line">  stocks.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">stock</span>) </span>&#123;</span><br><span class="line">    symbols.push(stock.symbol);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> symbols;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> symbols = getStockSymbols([</span><br><span class="line">  &#123; <span class="attr">symbol</span>: <span class="string">"XFX"</span>, <span class="attr">price</span>: <span class="number">240.22</span>, <span class="attr">volume</span>: <span class="number">23432</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">symbol</span>: <span class="string">"TNZ"</span>, <span class="attr">price</span>: <span class="number">332.19</span>, <span class="attr">volume</span>: <span class="number">234</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">symbol</span>: <span class="string">"JXJ"</span>, <span class="attr">price</span>: <span class="number">120.22</span>, <span class="attr">volume</span>: <span class="number">5323</span> &#125;,</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(symbols));</span><br></pre></td></tr></table></figure></p>
+<h2 id="map-method"><a href="#map-method" class="headerlink" title="map method"></a>map method</h2><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function getStockSymbols(stocks) &#123;</span><br><span class="line">  <span class="keyword">return</span> stocks.map((stock) =&gt; stock.symbol);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var symbols = getStockSymbols([</span><br><span class="line">  &#123; <span class="string">symbol:</span> <span class="string">"XFX"</span>, <span class="string">price:</span> <span class="number">240.22</span>, <span class="string">volume:</span> <span class="number">23432</span> &#125;,</span><br><span class="line">  &#123; <span class="string">symbol:</span> <span class="string">"TNZ"</span>, <span class="string">price:</span> <span class="number">332.19</span>, <span class="string">volume:</span> <span class="number">234</span> &#125;,</span><br><span class="line">  &#123; <span class="string">symbol:</span> <span class="string">"JXJ"</span>, <span class="string">price:</span> <span class="number">120.22</span>, <span class="string">volume:</span> <span class="number">5323</span> &#125;,</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line">console.log(JSON.stringify(symbols));</span><br></pre></td></tr></table></figure>
+<h2 id="filter-method"><a href="#filter-method" class="headerlink" title="filter method"></a>filter method</h2><p>create a new array containing only those items the passed the test.</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function getStocksOver(stocks, minPrice) &#123;</span><br><span class="line">  <span class="keyword">return</span> stocks.filter((stock)  =&gt; stock.price &gt;= minPrice);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var expensiveStocks = getStocksOver([</span><br><span class="line">  &#123; <span class="string">symbol:</span> <span class="string">"XFX"</span>, <span class="string">price:</span> <span class="number">240.22</span>, <span class="string">volume:</span> <span class="number">23432</span> &#125;,</span><br><span class="line">  &#123; <span class="string">symbol:</span> <span class="string">"TNZ"</span>, <span class="string">price:</span> <span class="number">332.19</span>, <span class="string">volume:</span> <span class="number">234</span> &#125;,</span><br><span class="line">  &#123; <span class="string">symbol:</span> <span class="string">"JXJ"</span>, <span class="string">price:</span> <span class="number">120.22</span>, <span class="string">volume:</span> <span class="number">5323</span> &#125;,</span><br><span class="line">],</span><br><span class="line"><span class="number">150.00</span>);</span><br><span class="line"></span><br><span class="line">console.log(JSON.stringify(expensiveStocks));</span><br></pre></td></tr></table></figure>
+<h2 id="Chaining-the-Array-map-and-filter-methods"><a href="#Chaining-the-Array-map-and-filter-methods" class="headerlink" title="Chaining the Array map and filter methods"></a>Chaining the Array map and filter methods</h2><p>Both map and filter do not modify the array. Instead they return a new array of the results. Because both map and filter return Arrays, we can chain these functions together to build complex array transformations with very little code<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var stocks = [</span><br><span class="line">  &#123; <span class="string">symbol:</span> <span class="string">"XFX"</span>, <span class="string">price:</span> <span class="number">240.22</span>, <span class="string">volume:</span> <span class="number">23432</span> &#125;,</span><br><span class="line">  &#123; <span class="string">symbol:</span> <span class="string">"TNZ"</span>, <span class="string">price:</span> <span class="number">332.19</span>, <span class="string">volume:</span> <span class="number">234</span> &#125;,</span><br><span class="line">  &#123; <span class="string">symbol:</span> <span class="string">"JXJ"</span>, <span class="string">price:</span> <span class="number">120.22</span>, <span class="string">volume:</span> <span class="number">5323</span> &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">var filteredStockSymbols =</span><br><span class="line">  stocks.</span><br><span class="line">    filter(function(stock) &#123;</span><br><span class="line">      <span class="keyword">return</span> stock.price &gt;= <span class="number">150.00</span>;</span><br><span class="line">    &#125;).</span><br><span class="line">    map(function(stock) &#123;</span><br><span class="line">      <span class="keyword">return</span> stock.symbol;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure></p>
+<h2 id="Initialize-an-Array-with-Values"><a href="#Initialize-an-Array-with-Values" class="headerlink" title="Initialize an Array with Values"></a>Initialize an Array with Values</h2><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">var itemArray</span> = new Array(<span class="string">'item 1'</span>, <span class="string">'item 2'</span>, <span class="string">'items 3'</span>);</span><br><span class="line"><span class="attribute">var itamArrayLit</span> = [<span class="string">'item 1'</span>, <span class="string">'item 2'</span>, <span class="string">'item 3'</span>];</span><br></pre></td></tr></table></figure>
+<p>Créer un un tableau de taille précise et le remplir avec des objets<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Array.from(&#123;length: nb&#125;, () =&gt;<span class="built_in"> new </span>StyledContainer()); // Créer une nouvelle<span class="built_in"> instance </span>pour chaque item du tableau</span><br><span class="line">new Array(9).fill(0); // Va remplir le tableau de 9 0, par coutre si c'est un objet, il va remplir le tableau 9 fois avec la même<span class="built_in"> instance </span>de l'objet. (donc si on supprime une<span class="built_in"> instance </span>dans le tableau, le tableau va etre vide)</span><br></pre></td></tr></table></figure></p>
+<p>ex <a href="http://jsbin.com/zusezinutu/1/edit?js,console" target="_blank" rel="noopener">http://jsbin.com/zusezinutu/1/edit?js,console</a></p>
+<h2 id="Convert-an-Array-to-a-String"><a href="#Convert-an-Array-to-a-String" class="headerlink" title="Convert an Array to a String"></a>Convert an Array to a String</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var numberArray = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>];  <span class="comment">// returns [1, 2, 3, 4, 5, 5, 6, 7, 8, 9]</span></span><br><span class="line">console.log( numberArray.toString() ); <span class="comment">//returns 1,2,3,4,5,6,7,8,9</span></span><br><span class="line">console.log( numberArray.join('') );  <span class="comment">//returns 123456789</span></span><br></pre></td></tr></table></figure>
+<h2 id="Add-Items-to-an-Array-Within-a-Range"><a href="#Add-Items-to-an-Array-Within-a-Range" class="headerlink" title="Add Items to an Array Within a Range"></a>Add Items to an Array Within a Range</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var numberArray = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</span><br><span class="line">numberArray.fill(<span class="number">5</span>, <span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">console.log(numberArray); <span class="comment">//result [5, 2, 3, 4]</span></span><br></pre></td></tr></table></figure>
+<p>The Fill Method Will Add a Value Based on the Start and Ending Index Numbers</p>
+<h2 id="Append-an-Array-to-the-End-of-Another-Array"><a href="#Append-an-Array-to-the-End-of-Another-Array" class="headerlink" title="Append an Array to the End of Another Array"></a>Append an Array to the End of Another Array</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var numberArray = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</span><br><span class="line">var numberArray2 = [<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>];</span><br><span class="line">var resultArray = numberArray.concat(numberArray2);</span><br></pre></td></tr></table></figure>
+<h2 id="Reverse-the-Order-of-the-Items-in-an-Array"><a href="#Reverse-the-Order-of-the-Items-in-an-Array" class="headerlink" title="Reverse the Order of the Items in an Array"></a>Reverse the Order of the Items in an Array</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var numberArray = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>];</span><br><span class="line">    numberArray.reverse();</span><br><span class="line">console.log(numberArray);  <span class="comment">//returns [9,8,7,6,5,4,3,2,1]</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-01-24T10:25:55.000Z"><a href="/2017/01/24/angular2-library/">2017-01-24</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/01/24/angular2-library/">angular2-library</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Creation-d’une-lib-javascript"><a href="#Creation-d’une-lib-javascript" class="headerlink" title="Creation d’une lib javascript"></a>Creation d’une lib javascript</h2><p>Ref : <a href="https://shellmonger.com/2016/03/11/creating-javascript-libraries-with-typescript-and-webpack/" target="_blank" rel="noopener">https://shellmonger.com/2016/03/11/creating-javascript-libraries-with-typescript-and-webpack/</a></p>
+<h3 id="Utilisation"><a href="#Utilisation" class="headerlink" title="Utilisation"></a>Utilisation</h3><h4 id="Import"><a href="#Import" class="headerlink" title="Import"></a>Import</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://localhost:8082/MyLib.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="Definition-dans-le-composant"><a href="#Definition-dans-le-composant" class="headerlink" title="Definition dans le composant"></a>Definition dans le composant</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> <span class="keyword">var</span> MyLib: <span class="built_in">any</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">    selector: <span class="string">'preview'</span>,</span><br><span class="line">    templateUrl: <span class="string">'preview.template.html'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> PreviewComponent &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> configService: ConfigService, <span class="keyword">private</span> previewQuestionnaireService: PreviewQuestionnaireService</span>) &#123;</span><br><span class="line">        <span class="keyword">new</span> MyLib.TestClass(<span class="string">'foo'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="Creation-d’une-lib-Angular2"><a href="#Creation-d’une-lib-Angular2" class="headerlink" title="Creation d’une lib Angular2"></a>Creation d’une lib Angular2</h2><h3 id="Yeoman-generator-to-create-a-standalone-Angular-2-library"><a href="#Yeoman-generator-to-create-a-standalone-Angular-2-library" class="headerlink" title="Yeoman generator to create a standalone Angular 2 library"></a>Yeoman generator to create a standalone Angular 2 library</h3><p>Ref : <a href="https://github.com/jvandemo/generator-angular2-library" target="_blank" rel="noopener">https://github.com/jvandemo/generator-angular2-library</a></p>
+<h3 id="Utilisation-1"><a href="#Utilisation-1" class="headerlink" title="Utilisation"></a>Utilisation</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install ng2-book-<span class="class"><span class="keyword">lib</span> (<span class="title">ou</span> <span class="title">npm</span> <span class="title">link</span>/<span class="title">npm</span> <span class="title">install</span>)</span></span><br></pre></td></tr></table></figure>
+<p>Dans vendor.ts, declarer la lib<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"><span class="meta-keyword">import</span> 'ng2-book-lib';</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Import-dans-le-module-principal"><a href="#Import-dans-le-module-principal" class="headerlink" title="Import dans le module principal"></a>Import dans le module principal</h3><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; SampleModule &#125; <span class="keyword">from</span> <span class="string">'ng2-book-lib'</span>;</span><br><span class="line">....</span><br><span class="line">@NgModule(&#123;</span><br><span class="line">    imports: [</span><br><span class="line">        BrowserModule,</span><br><span class="line">        HttpModule,</span><br><span class="line">        ...</span><br><span class="line"></span><br><span class="line">         SampleModule.forRoot(),</span><br><span class="line">         ....</span><br></pre></td></tr></table></figure>
+<p>Ensuite, les composants, services de la lib sont disponibles dans l’application principale</p>
+<h2 id="Autres-link"><a href="#Autres-link" class="headerlink" title="Autres link"></a>Autres link</h2><p>Angular2 Seed avec SystemJS<br><a href="https://github.com/mgechev/angular-seed" target="_blank" rel="noopener">https://github.com/mgechev/angular-seed</a><br><a href="http://stackoverflow.com/questions/36091219/how-to-load-angular2-using-cdn" target="_blank" rel="noopener">http://stackoverflow.com/questions/36091219/how-to-load-angular2-using-cdn</a><br><a href="http://lishman.io/angular-2-configuration" target="_blank" rel="noopener">http://lishman.io/angular-2-configuration</a></p>
+<p>Angular Library<br><a href="https://www.hellohq.io/how-to-set-up-an-angular-2-component-library/" target="_blank" rel="noopener">https://www.hellohq.io/how-to-set-up-an-angular-2-component-library/</a><br><a href="http://blog.angular-university.io/how-to-create-an-angular-2-library-and-how-to-consume-it-jspm-vs-webpack/" target="_blank" rel="noopener">http://blog.angular-university.io/how-to-create-an-angular-2-library-and-how-to-consume-it-jspm-vs-webpack/</a><br><a href="https://github.com/lucasbauche/MyAngularLibrary" target="_blank" rel="noopener">https://github.com/lucasbauche/MyAngularLibrary</a><br><a href="https://github.com/jhades/angular2-library-example" target="_blank" rel="noopener">https://github.com/jhades/angular2-library-example</a><br><a href="https://dzone.com/articles/create-an-angular-2-component-library-and-consume" target="_blank" rel="noopener">https://dzone.com/articles/create-an-angular-2-component-library-and-consume</a><br><a href="https://www.thepolyglotdeveloper.com/2016/01/include-external-javascript-libraries-in-an-angular-2-typescript-project/" target="_blank" rel="noopener">https://www.thepolyglotdeveloper.com/2016/01/include-external-javascript-libraries-in-an-angular-2-typescript-project/</a></p>
+<p>Voir pangiate et translate<br><a href="https://github.com/ocombe/ng2-translate" target="_blank" rel="noopener">https://github.com/ocombe/ng2-translate</a><br><a href="https://unpkg.com/ng2-translate@5.0.0" target="_blank" rel="noopener">https://unpkg.com/ng2-translate@5.0.0</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-01-24T10:22:54.000Z"><a href="/2017/01/24/angular2-iframe/">2017-01-24</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/01/24/angular2-iframe/">angular2-iframe</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Creer-une-iFrame"><a href="#Creer-une-iFrame" class="headerlink" title="Créer une iFrame"></a>Créer une iFrame</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe <span class="attribute">width</span>=<span class="string">"100%"</span> <span class="attribute">height</span>=<span class="string">"400"</span> <span class="attribute">id</span>=<span class="string">"iframe"</span> #iframe <span class="attribute">frameborder</span>=<span class="string">"0"</span>&gt;&lt;/iframe&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="Acceder-a-l’element-iFrame-dans-le-composant"><a href="#Acceder-a-l’element-iFrame-dans-le-composant" class="headerlink" title="Acceder à l’élément iFrame dans le composant"></a>Acceder à l’élément iFrame dans le composant</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Component, ElementRef, Renderer &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ConfigService &#125; <span class="keyword">from</span> <span class="string">'../../system/config.service'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; PreviewQuestionnaireService &#125; <span class="keyword">from</span> <span class="string">'../services/PreviewQuestionnaireService'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ViewChild &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; DomSanitizer &#125; <span class="keyword">from</span> <span class="string">'@angular/platform-browser'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">    selector: <span class="string">'preview'</span>,</span><br><span class="line">    templateUrl: <span class="string">'preview.template.html'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> PreviewComponent &#123;</span><br><span class="line">    previewUrl: <span class="built_in">string</span>;</span><br><span class="line">    <span class="meta">@ViewChild</span>(<span class="string">'iframe'</span>) iframe: ElementRef;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> configService: ConfigService, <span class="keyword">private</span> sanitizer: DomSanitizer, <span class="keyword">private</span> previewQuestionnaireService: PreviewQuestionnaireService, <span class="keyword">private</span> renderer: Renderer</span>) &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ngAfterViewInit(): <span class="built_in">void</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.previewQuestionnaireService.questionnaireId.subscribe(<span class="function">(<span class="params">qId:<span class="built_in">string</span></span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> url = <span class="keyword">this</span>.configService.config.previewUrl + <span class="string">'/#/questionnaires/'</span> + qId;</span><br><span class="line">            <span class="keyword">this</span>.previewQuestionnaireService.getQuestionnaireUrl(url).subscribe(<span class="function"><span class="params">()</span> =&gt;</span>&#123;</span><br><span class="line">                    <span class="keyword">this</span>.previewUrl = url;</span><br><span class="line">            &#125;,<span class="function">(<span class="params">err</span>) =&gt;</span></span><br><span class="line">                <span class="keyword">this</span>.previewUrl = <span class="string">'preview-not-found.html'</span></span><br><span class="line">            ), <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="keyword">this</span>.renderer.setElementProperty(<span class="keyword">this</span>.iframe.nativeElement, <span class="string">'src'</span>,<span class="keyword">this</span>.previewUrl)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-01-07T11:50:20.000Z"><a href="/2017/01/07/Kubernetes/">2017-01-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/01/07/Kubernetes/">Kubernetes</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><a href="http://kubernetes.io/docs/hellonode/" target="_blank" rel="noopener">http://kubernetes.io/docs/hellonode/</a><br>Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications.</p>
+<ul>
+<li><p>Horizontal scaling<br>Google Container Engine (a Google-hosted version of Kubernetes)</p>
+<p>Google Cloud Platform</p>
+</li>
+</ul>
+<p>TODO : Create an app with hapijs<br> <a href="https://github.com/robertschultz/docker-nodejs-hapi/blob/master/app.js" target="_blank" rel="noopener">https://github.com/robertschultz/docker-nodejs-hapi/blob/master/app.js</a></p>
+<h2 id="Create-a-Docker-container-image"><a href="#Create-a-Docker-container-image" class="headerlink" title="Create a Docker container image"></a>Create a Docker container image</h2><pre><code>docker build -t gcr.io/sport-kubernetes-codelab/hello-node:v1 .
+docker run -d -p 8080:8080 --name hello_tutorial gcr.io/sport-kubernetes-codelab/hello-node:v1
+gcloud docker -- push gcr.io/sport-kubernetes-codelab/hello-node:v1
+</code></pre><h2 id="Create-a-Kubernetes-Cluster"><a href="#Create-a-Kubernetes-Cluster" class="headerlink" title="Create a Kubernetes Cluster"></a>Create a Kubernetes Cluster</h2><p>A cluster consists of</p>
+<ul>
+<li>a Master API server</li>
+<li>a set of worker VMs called Nodes.</li>
+</ul>
+<p>1 - First, choose a Google Cloud Project zone to run your service</p>
+<pre><code>gcloud config set compute/zone us-central1-a
+</code></pre><p>2 - Create a Kubernetes  cluster (Kubernetes cluster with three ?? nodes, ready to receive your container image!)</p>
+<pre><code>gcloud container clusters create hello-world
+</code></pre><p>Now deploy your own containerized application to the Kubernetes cluster!</p>
+<h2 id="Create-your-pod"><a href="#Create-your-pod" class="headerlink" title="Create your pod"></a>Create your pod</h2><p>A Kubernetes pod is a group of containers, tied together for the purposes of administration and networking. It can contain a single container or multiple.</p>
+<pre><code>kubectl run hello-node --image=gcr.io/sport-kubernetes-codelab/hello-node:v1 --port=8080
+</code></pre><p>kubectl run created a Deployment object (used to manage creation and scaling of pods) In this example, a new deployment manages a single pod replica running the hello-node:v1 image.</p>
+<p>To view the Deployment  :<br>        kubectl get deployments</p>
+<p>To view the Pod created by the deployment run :</p>
+<pre><code>kubectl get pods
+</code></pre><p>To view the stdout / stderr from a Pod run :</p>
+<pre><code>kubectl logs &lt;POD-NAME&gt;
+</code></pre><p>Allow external traffic<br>                By default, the pod is only accessible by its internal IP within the Kubernetes cluster.<br>                kubectl expose deployment hello-node –type=”LoadBalancer”<br>                The flag used in this command specifies that we’ll be using the load-balancer provided by the underlying infrastructure (in this case the Compute Engine load balancer).</p>
+<pre><code>kubectl get services hello-node
+kubectl logs &lt;POD-NAME&gt;
+</code></pre><p>Scale up<br>                Tell the deployment to manage a new number of replicas for your pod: kubectl scale deployment hello-node –replicas=4<br>                kubectl get pods<br> Se connecter au cluster<br>Configurez l’accès à la ligne de commande kubectl en exécutant la commande suivante :</p>
+<p>gcloud container clusters get-credentials hello-world  –zone us-east1-c –project sport-kubernetes-codelab<br>$<br>Ensuite, démarrez un proxy pour vous connecter au plan de commande Kubernetes :</p>
+<p>kubectl proxy<br>$<br>Ouvrez ensuite l’interface du tableau de bord en accédant à l’emplacement suivant dans votre navigateur :</p>
+<p><a href="http://localhost:8001/ui" target="_blank" rel="noopener">http://localhost:8001/ui</a></p>
+<p> kubectl run hello-node –image=gcr.io/sport-kubernetes-codelab/hello-node:v1 –port=8080<br>Fix on Windows<br><a href="http://stackoverflow.com/questions/39277986/unable-to-push-to-google-container-registry-unable-to-access-the-repository?answertab=votes#tab-top" target="_blank" rel="noopener">http://stackoverflow.com/questions/39277986/unable-to-push-to-google-container-registry-unable-to-access-the-repository?answertab=votes#tab-top</a><br><a href="https://github.com/kubernetes/kubernetes/issues/34395" target="_blank" rel="noopener">https://github.com/kubernetes/kubernetes/issues/34395</a></p>
+<p>kubectl.sh run postgres –image=postgres –replicas=1</p>
+<p>kubectlrun  elasticsearch –image=elasticsearch:5.1.1 –replicas=1<br>kubectl expose deployment elasticsearch –port=9300   –type=ClusterIP</p>
+<p> Cleaning it Up</p>
+<h2 id="Links"><a href="#Links" class="headerlink" title="Links"></a>Links</h2><p><a href="https://developer.ibm.com/recipes/tutorials/kubernetes-how-to-run-a-node-js-application-which-accesses-mongo-database-where-both-are-running-in-containers-in-different-pods/" target="_blank" rel="noopener">https://developer.ibm.com/recipes/tutorials/kubernetes-how-to-run-a-node-js-application-which-accesses-mongo-database-where-both-are-running-in-containers-in-different-pods/</a><br><a href="http://docs.spring.io/spring-cloud-dataflow-server-kubernetes/docs/1.0.1.RELEASE/reference/html/_deploying_streams_on_kubernetes.html" target="_blank" rel="noopener">http://docs.spring.io/spring-cloud-dataflow-server-kubernetes/docs/1.0.1.RELEASE/reference/html/_deploying_streams_on_kubernetes.html</a></p>
+<p><a href="https://www.slalom.com/thinking/packaging-spring-boot-applications-for-deployment-on-kubernetes" target="_blank" rel="noopener">https://www.slalom.com/thinking/packaging-spring-boot-applications-for-deployment-on-kubernetes</a></p>
+<p><a href="http://kubernetes.io/docs/getting-started-guides/meanstack/" target="_blank" rel="noopener">http://kubernetes.io/docs/getting-started-guides/meanstack/</a></p>
+<p><a href="http://kubernetes.io/docs/tutorials/stateful-application/run-stateful-application/" target="_blank" rel="noopener">http://kubernetes.io/docs/tutorials/stateful-application/run-stateful-application/</a><br><a href="http://kubernetes.io/docs/user-guide/pods/single-container/" target="_blank" rel="noopener">http://kubernetes.io/docs/user-guide/pods/single-container/</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-12-16T13:17:02.000Z"><a href="/2016/12/16/angular2-architecture/">2016-12-16</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/12/16/angular2-architecture/">angular2-architecture</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Strategie</p>
+<h2 id="Utilisation-des-services-comme-singleton"><a href="#Utilisation-des-services-comme-singleton" class="headerlink" title="Utilisation des services comme singleton,"></a>Utilisation des services comme singleton,</h2><ul>
+<li>les proprietes sont des objets du domaine</li>
+</ul>
+<p>Pb de loading et de rafraichissement<br>avantages de la subscription, mais parfois undefined….</p>
+<p>Mais peux etre interessant, par exemple pour stocker une donnée qui ne change pas dans l’application<br>Ex : Login et User,</p>
+<h2 id="Utilisation-des-services-avec-des-Observables"><a href="#Utilisation-des-services-avec-des-Observables" class="headerlink" title="Utilisation des services avec des Observables"></a>Utilisation des services avec des Observables</h2><h2 id="Utilisation-de-Redux-et-d’un-Store-Central"><a href="#Utilisation-de-Redux-et-d’un-Store-Central" class="headerlink" title="Utilisation de Redux et d’un Store Central"></a>Utilisation de Redux et d’un Store Central</h2><p>Les services servent alors d’utilitaires pour manipuler les données vennant du store<br>Le composant récupere les données du store, peut demander au service de filter, trier…. avant d’afficher les données ou de passer les données aux composant enfants</p>
+<p> The services are singleton objects that<br>play two roles:</p>
+<ol>
+<li>Provide streams of data that our application can subscribe to</li>
+<li>Provide operations to add or modify data</li>
+</ol>
+<p>• The services maintain streams which emit models (e.g. Messages)<br>• The components subscribe to those streams and render according to the most recent values</p>
+<p>The point of the UserService is to provide a place where our application can learn about the current<br>user and also notify the rest of the application if the current user changes.</p>
+<p>One consequence of streams is that, because messages are published immediately, a new subscriber<br>risks missing the latest value of the stream. BehaviourSubject compensates for this.<br>BehaviourSubject⁷⁴ has a special property in that it stores the last value. Meaning that any<br>subscriber to the stream will receive the latest value. This is great for us because it means that<br>any part of our application can subscribe to the UserService.currentUser stream and immediately<br>know who the current user is.</p>
+<p>MessagesService: 3 “data management” streams and 2 “action” streams.<br>The three data management streams are:<br>• newMessages - emits each new Message only once<br>• messages - emits an array of the current Messages<br>• updates - performs operations on messages</p>
+<p>map<br>filter<br>reduce</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-12-11T15:44:39.000Z"><a href="/2016/12/11/docker/">2016-12-11</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/12/11/docker/">docker</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="Listing-Docker-images"><a href="#Listing-Docker-images" class="headerlink" title="Listing Docker images"></a>Listing Docker images</h3><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker images</span></span><br></pre></td></tr></table></figure>
+<h3 id="Listing-all-containers"><a href="#Listing-all-containers" class="headerlink" title="Listing all containers"></a>Listing all containers</h3><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker ps -a</span></span><br></pre></td></tr></table></figure>
+<h3 id="Deleting-all-containers"><a href="#Deleting-all-containers" class="headerlink" title="Deleting all containers"></a>Deleting all containers</h3><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm -f `docker ps -a -q`</span><br></pre></td></tr></table></figure>
+<h2 id="Creer-une-une-image-de-base"><a href="#Creer-une-une-image-de-base" class="headerlink" title="Créer une une image de base"></a>Créer une une image de base</h2><p>1 - Generer l’image de base nginx FROM nginx:1.11.6<br>2 - Recuperer manuellement le fichier default .com /etc/nginx/conf.d/default.conf<br>sudo docker cddffd678908:/etc/nginx/conf.d/default.conf default.conf<br>3 - Activer le SSO<br>4 - Changer le repertoire par default du web<br>5 - Creer une image de base bi-nginx</p>
+<p>6 - Utiliser cette image de base pour créer les autres images web</p>
+<h3 id="Generer-l’image-de-base"><a href="#Generer-l’image-de-base" class="headerlink" title="Generer l’image de base"></a>Generer l’image de base</h3><p>docker build -t cguerin/bi-nginx</p>
+<p>sudo docker build -t cguerin/bi-admin-ui .</p>
+<p>Demarrer le container</p>
+<p>sudo docker run -d -p 81:80 –name bi-admin-ui cguerin/bi-admin-ui</p>
+<p>sudo docker cp  docker/environment.html 5c436576ddee:/var/www/html/website/environment.html</p>
+<p>sudo docker build -t bfd.repo.explorancedev.com:18444/bi-explorance/bi-nginx:1.0.0 .</p>
+<p>sudo docker login bfd.repo.explorancedev.com:18444<br>sudo docker push bfd.repo.explorancedev.com:18444/bi-explorance/bi-nginx:1.0.0</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-12-06T01:06:15.000Z"><a href="/2016/12/05/angular2-tests/">2016-12-05</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/12/05/angular2-tests/">angular2-tests</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Unit-Tests"><a href="#Unit-Tests" class="headerlink" title="Unit Tests"></a>Unit Tests</h2><h3 id="Simple-Class"><a href="#Simple-Class" class="headerlink" title="Simple Class"></a>Simple Class</h3><figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">import &#123;<span class="type">User</span>&#125; from <span class="string">'./user'</span>;</span><br><span class="line"><span class="keyword">let</span> user: <span class="type">User</span> = &#123;</span><br><span class="line">    id: <span class="symbol">'dtrump'</span>,</span><br><span class="line">    firstName: <span class="symbol">'Jean'</span>,</span><br><span class="line">    lastName: <span class="symbol">'Bambois'</span>,</span><br><span class="line">    university: <span class="symbol">'Univesity</span> <span class="keyword">of</span> <span class="type">Toronto'</span>,</span><br><span class="line">    title: <span class="symbol">'Assistant</span> professor <span class="keyword">of</span> <span class="type">English</span> <span class="type">Literature'</span>,</span><br><span class="line">    avatar:<span class="symbol">'assets</span>/img/a5.jpg',</span><br><span class="line">    lang: <span class="symbol">'en'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">describe(<span class="symbol">'User'</span>, <span class="literal">()</span> =&gt; &#123;</span><br><span class="line">    describe(<span class="symbol">'user</span> constructor', <span class="literal">()</span> =&gt; &#123;</span><br><span class="line">        it(<span class="symbol">'should</span> create user <span class="keyword">with</span> correct fields', <span class="literal">()</span> =&gt; &#123;</span><br><span class="line">            expect(user.id).toBe(<span class="symbol">'dtrump'</span>);</span><br><span class="line">            expect(user.firstName).toBe(<span class="symbol">'Jean'</span>);</span><br><span class="line">            expect(user.lastName).toBe(<span class="symbol">'Bambois'</span>);</span><br><span class="line">            expect(user.university).toBe(<span class="symbol">'Univesity</span> <span class="keyword">of</span> <span class="type">Toronto'</span>);</span><br><span class="line">            expect(user.title).toBe(<span class="symbol">'Assistant</span> professor <span class="keyword">of</span> <span class="type">English</span> <span class="type">Literature'</span>);</span><br><span class="line">            expect(user.avatar).toBe(<span class="symbol">'assets</span>/img/a5.jpg');</span><br><span class="line">            expect(user.lang).toBe(<span class="symbol">'en'</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="Simple-Component"><a href="#Simple-Component" class="headerlink" title="Simple Component"></a>Simple Component</h3><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;TestBed, inject&#125; <span class="keyword">from</span> <span class="string">'@angular/core/testing'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;EvaluationsListComponent&#125; <span class="keyword">from</span> <span class="string">'./evaluations-list.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;Evaluation&#125; <span class="keyword">from</span> <span class="string">'../../evaluation/model/evaluation'</span>;</span><br><span class="line">describe(<span class="string">'EvaluationsListComponent'</span>, <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    beforeEach(<span class="function"><span class="params">()</span> =&gt;</span> TestBed.configureTestingModule(&#123;</span><br><span class="line">        providers: [</span><br><span class="line">            EvaluationsListComponent</span><br><span class="line">        ]</span><br><span class="line">    &#125;));</span><br><span class="line"></span><br><span class="line">    it(<span class="string">'should be initiale correctly'</span>, inject([EvaluationsListComponent], <span class="function"><span class="params">(component: EvaluationsListComponent)</span> =&gt;</span> &#123;</span><br><span class="line">        expect(component.evaluations.length).toBe(<span class="number">0</span>);</span><br><span class="line">        expect(component.selectedEvaluation).toBeUndefined();</span><br><span class="line">    &#125;));</span><br><span class="line"></span><br><span class="line">    describe(<span class="string">'hasEvaluations method'</span>, <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        it(<span class="string">'should return false by default'</span>, inject([EvaluationsListComponent], <span class="function"><span class="params">(component: EvaluationsListComponent)</span> =&gt;</span> &#123;</span><br><span class="line">            expect(component.hasEvaluations()).toBeFalsy();</span><br><span class="line">        &#125;));</span><br><span class="line"></span><br><span class="line">        it(<span class="string">'should return true when evaluations is not empty'</span>, inject([EvaluationsListComponent], <span class="function"><span class="params">(component: EvaluationsListComponent)</span> =&gt;</span> &#123;</span><br><span class="line">            component.evaluations = [<span class="keyword">new</span> Evaluation(&#123;id: <span class="string">'ev1'</span>&#125;)];</span><br><span class="line">            expect(component.hasEvaluations()).toBeTruthy();</span><br><span class="line">        &#125;));</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    describe(<span class="string">'isSelected method'</span>, <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        it(<span class="string">'should return false id evaluation is not selected'</span>, inject([EvaluationsListComponent], <span class="function"><span class="params">(component: EvaluationsListComponent)</span> =&gt;</span> &#123;</span><br><span class="line">            expect(component.isSelected(<span class="keyword">new</span> Evaluation(&#123;id: <span class="string">'ev1'</span>&#125;))).toBeFalsy();</span><br><span class="line">        &#125;));</span><br><span class="line"></span><br><span class="line">        it(<span class="string">'should return true when evaluations is not empty'</span>, inject([EvaluationsListComponent], <span class="function"><span class="params">(component: EvaluationsListComponent)</span> =&gt;</span> &#123;</span><br><span class="line">            let evaluation = <span class="keyword">new</span> Evaluation(&#123;id: <span class="string">'ev1'</span>&#125;);</span><br><span class="line">            component.selectedEvaluation = evaluation;</span><br><span class="line">            expect(component.isSelected(evaluation)).toBeTruthy();</span><br><span class="line">        &#125;));</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/" class="alignleft prev">Précédent</a>
+  
+  
+    <a href="/page/3/" class="alignright next">Suivant</a>
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Rechercher">
+    <input type="hidden" name="q" value="site:cyrgue.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Sports/Baseball/">Baseball</a><small>1</small></li>
+  
+    <li><a href="/categories/Sports/">Sports</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/angular/">angular</a><small>4</small></li>
+  
+    <li><a href="/tags/angular2/">angular2</a><small>2</small></li>
+  
+    <li><a href="/tags/angularjs/">angularjs</a><small>1</small></li>
+  
+    <li><a href="/tags/angularjs2/">angularjs2</a><small>1</small></li>
+  
+    <li><a href="/tags/architecture/">architecture</a><small>1</small></li>
+  
+    <li><a href="/tags/array/">array</a><small>1</small></li>
+  
+    <li><a href="/tags/aws/">aws</a><small>1</small></li>
+  
+    <li><a href="/tags/branch/">branch</a><small>1</small></li>
+  
+    <li><a href="/tags/componant/">componant</a><small>1</small></li>
+  
+    <li><a href="/tags/composant/">composant</a><small>1</small></li>
+  
+    <li><a href="/tags/configuration/">configuration</a><small>2</small></li>
+  
+    <li><a href="/tags/database/">database</a><small>1</small></li>
+  
+    <li><a href="/tags/directive/">directive</a><small>1</small></li>
+  
+    <li><a href="/tags/divertissement/">divertissement</a><small>1</small></li>
+  
+    <li><a href="/tags/docker/">docker</a><small>1</small></li>
+  
+    <li><a href="/tags/ecmascript-2015/">ecmascript 2015</a><small>1</small></li>
+  
+    <li><a href="/tags/eslint/">eslint</a><small>1</small></li>
+  
+    <li><a href="/tags/evaluation/">evaluation</a><small>1</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>2</small></li>
+  
+    <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>13</small></li>
+  
+    <li><a href="/tags/jsbin/">jsbin</a><small>1</small></li>
+  
+    <li><a href="/tags/library/">library</a><small>1</small></li>
+  
+    <li><a href="/tags/ngrx/">ngrx</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>1</small></li>
+  
+    <li><a href="/tags/npm/">npm</a><small>1</small></li>
+  
+    <li><a href="/tags/observable/">observable</a><small>1</small></li>
+  
+    <li><a href="/tags/programmation-fonctionnelle/">programmation fonctionnelle</a><small>1</small></li>
+  
+    <li><a href="/tags/rxjs/">rxjs</a><small>1</small></li>
+  
+    <li><a href="/tags/select/">select</a><small>1</small></li>
+  
+    <li><a href="/tags/serverless/">serverless</a><small>2</small></li>
+  
+    <li><a href="/tags/sport/">sport</a><small>1</small></li>
+  
+    <li><a href="/tags/tests/">tests</a><small>1</small></li>
+  
+    <li><a href="/tags/thread/">thread</a><small>1</small></li>
+  
+    <li><a href="/tags/tools/">tools</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+    <div>test</div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2018 cyrgue
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

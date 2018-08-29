@@ -1,0 +1,253 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Angular2 et Bootstrap | cyrgue</title>
+  <meta name="author" content="cyrgue">
+  
+  <meta name="description" content="Angular2 , Webpack et Bootstrap 31npm install jquery bootstrap font-awesome --save
+Dans le fichier vendor.browser.ts, ajouter:12import &#39;jquery&#39;;import">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Angular2 et Bootstrap"/>
+  <meta property="og:site_name" content="cyrgue"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="cyrgue" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">cyrgue</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-11-29T03:53:53.000Z"><a href="/2016/11/28/angular2-bootstap/">2016-11-28</a></time>
+      
+      
+  
+    <h1 class="title">Angular2 et Bootstrap</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Angular2-Webpack-et-Bootstrap-3"><a href="#Angular2-Webpack-et-Bootstrap-3" class="headerlink" title="Angular2 , Webpack et Bootstrap 3"></a>Angular2 , Webpack et Bootstrap 3</h2><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install </span><span class="keyword">jquery </span><span class="keyword">bootstrap </span>font-awesome --save</span><br></pre></td></tr></table></figure>
+<h3 id="Dans-le-fichier-vendor-browser-ts-ajouter"><a href="#Dans-le-fichier-vendor-browser-ts-ajouter" class="headerlink" title="Dans le fichier vendor.browser.ts, ajouter:"></a>Dans le fichier <strong>vendor.browser.ts</strong>, ajouter:</h3><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"><span class="meta-keyword">import</span> 'jquery';</span></span><br><span class="line"><span class="meta"><span class="meta-keyword">import</span> 'bootstrap/dist/js/bootstrap';</span></span><br></pre></td></tr></table></figure>
+<h3 id="Dans-le-fichier-webpack-common-js"><a href="#Dans-le-fichier-webpack-common-js" class="headerlink" title="Dans le fichier webpack.common.js"></a>Dans le fichier <strong>webpack.common.js</strong></h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">new</span> <span class="selector-tag">webpack</span><span class="selector-class">.ProvidePlugin</span>(&#123;</span><br><span class="line">       <span class="attribute">jQuery</span>: <span class="string">'jquery'</span>,</span><br><span class="line">       $: <span class="string">'jquery'</span>,</span><br><span class="line">       jquery: <span class="string">'jquery'</span></span><br><span class="line">     &#125;),</span><br></pre></td></tr></table></figure>
+<h3 id="Dans-le-fichier-app-css"><a href="#Dans-le-fichier-app-css" class="headerlink" title="Dans le fichier app.css"></a>Dans le fichier <strong>app.css</strong></h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">import</span> <span class="string">"../../node_modules/bootstrap/dist/css/bootstrap.css"</span>;</span><br><span class="line">@<span class="keyword">import</span> <span class="string">"../../node_modules/font-awesome/css/font-awesome.css"</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="Dans-le-fichier-app-component-ts"><a href="#Dans-le-fichier-app-component-ts" class="headerlink" title="Dans le fichier app.component.ts"></a>Dans le fichier <strong>app.component.ts</strong></h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@Component</span>(&#123;</span><br><span class="line">    <span class="attribute">selector</span>: <span class="string">'app'</span>,</span><br><span class="line">    <span class="attribute">templateUrl</span>: <span class="string">'app.html'</span>,</span><br><span class="line">    <span class="attribute">encapsulation</span>: ViewEncapsulation.None,</span><br><span class="line">    <span class="attribute">styleUrls</span>: [<span class="string">'./app.css'</span>],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="Angular2-Webpack-et-Bootstrap-4"><a href="#Angular2-Webpack-et-Bootstrap-4" class="headerlink" title="Angular2 , Webpack et Bootstrap 4"></a>Angular2 , Webpack et Bootstrap 4</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">npm</span> <span class="selector-tag">install</span> <span class="selector-tag">jquery</span> <span class="selector-tag">bootstrap</span>@<span class="keyword">4</span>.<span class="keyword">0</span>.<span class="keyword">0</span>-<span class="keyword">alpha</span>.<span class="keyword">5</span> font-awesome tether --save</span><br><span class="line">npm install --save-dev sass-loader raw-loader file-loader node-sass</span><br></pre></td></tr></table></figure>
+<h3 id="Dans-le-fichier-vendor-browser-ts-ajouter-1"><a href="#Dans-le-fichier-vendor-browser-ts-ajouter-1" class="headerlink" title="Dans le fichier vendor.browser.ts, ajouter:"></a>Dans le fichier <strong>vendor.browser.ts</strong>, ajouter:</h3><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"><span class="meta-keyword">import</span> 'jquery';</span></span><br><span class="line"><span class="meta"><span class="meta-keyword">import</span> 'tether';</span></span><br><span class="line"><span class="meta"><span class="meta-keyword">import</span> 'bootstrap';</span></span><br></pre></td></tr></table></figure>
+<h3 id="Dans-le-fichier-webpack-common-js-1"><a href="#Dans-le-fichier-webpack-common-js-1" class="headerlink" title="Dans le fichier webpack.common.js"></a>Dans le fichier <strong>webpack.common.js</strong></h3><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="string">test:</span> <span class="regexp">/\.scss$/</span>, <span class="string">loaders:</span> [<span class="string">'raw-loader'</span>, <span class="string">'sass-loader'</span>] &#125;,</span><br><span class="line"></span><br><span class="line">       &#123; <span class="string">test:</span> <span class="regexp">/\.(woff2?|ttf|eot|svg)$/</span>, <span class="string">loader:</span> <span class="string">'url?limit=10000&amp;name=[name].[ext]'</span> &#125;,</span><br><span class="line"></span><br><span class="line">       <span class="comment">// Bootstrap 4</span></span><br><span class="line">       &#123; <span class="string">test:</span> <span class="regexp">/bootstrap\/</span>dist\<span class="regexp">/js\/</span>umd\<span class="comment">//, loader: 'imports?jQuery=jquery' &#125;,</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">new</span> <span class="selector-tag">webpack</span><span class="selector-class">.ProvidePlugin</span>(&#123;</span><br><span class="line">      <span class="attribute">jQuery</span>: <span class="string">'jquery'</span>,</span><br><span class="line">      $: <span class="string">'jquery'</span>,</span><br><span class="line">      jquery: <span class="string">'jquery'</span>,</span><br><span class="line">      <span class="string">"window.jQuery"</span>: <span class="string">"jquery"</span>,</span><br><span class="line">      <span class="string">"window.Tether"</span>: <span class="string">'tether'</span></span><br><span class="line">    &#125;),</span><br></pre></td></tr></table></figure>
+<h3 id="Dans-le-fichier-app-scss"><a href="#Dans-le-fichier-app-scss" class="headerlink" title="Dans le fichier app.scss"></a>Dans le fichier <strong>app.scss</strong></h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">import</span> <span class="string">"../../node_modules/bootstrap/scss/bootstrap"</span>;</span><br><span class="line">@<span class="keyword">import</span> <span class="string">"../../node_modules/font-awesome/scss/font-awesome"</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="Dans-le-fichier-app-component-ts-1"><a href="#Dans-le-fichier-app-component-ts-1" class="headerlink" title="Dans le fichier app.component.ts"></a>Dans le fichier <strong>app.component.ts</strong></h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@Component</span>(&#123;</span><br><span class="line">  <span class="attribute">selector</span>: <span class="string">'app'</span>,</span><br><span class="line">  <span class="attribute">encapsulation</span>: ViewEncapsulation.None,</span><br><span class="line">    <span class="attribute">styleUrls</span>: [</span><br><span class="line">        <span class="string">'application.scss'</span></span><br><span class="line">    ],</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Commentaires</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://cyrgue.github.io/2016/11/28/angular2-bootstap/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Rechercher">
+    <input type="hidden" name="q" value="site:cyrgue.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Sports/Baseball/">Baseball</a><small>1</small></li>
+  
+    <li><a href="/categories/Sports/">Sports</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/angular/">angular</a><small>4</small></li>
+  
+    <li><a href="/tags/angular2/">angular2</a><small>2</small></li>
+  
+    <li><a href="/tags/angularjs/">angularjs</a><small>1</small></li>
+  
+    <li><a href="/tags/angularjs2/">angularjs2</a><small>1</small></li>
+  
+    <li><a href="/tags/architecture/">architecture</a><small>1</small></li>
+  
+    <li><a href="/tags/array/">array</a><small>1</small></li>
+  
+    <li><a href="/tags/aws/">aws</a><small>1</small></li>
+  
+    <li><a href="/tags/branch/">branch</a><small>1</small></li>
+  
+    <li><a href="/tags/componant/">componant</a><small>1</small></li>
+  
+    <li><a href="/tags/composant/">composant</a><small>1</small></li>
+  
+    <li><a href="/tags/configuration/">configuration</a><small>2</small></li>
+  
+    <li><a href="/tags/database/">database</a><small>1</small></li>
+  
+    <li><a href="/tags/directive/">directive</a><small>1</small></li>
+  
+    <li><a href="/tags/divertissement/">divertissement</a><small>1</small></li>
+  
+    <li><a href="/tags/docker/">docker</a><small>1</small></li>
+  
+    <li><a href="/tags/ecmascript-2015/">ecmascript 2015</a><small>1</small></li>
+  
+    <li><a href="/tags/eslint/">eslint</a><small>1</small></li>
+  
+    <li><a href="/tags/evaluation/">evaluation</a><small>1</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>2</small></li>
+  
+    <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>13</small></li>
+  
+    <li><a href="/tags/jsbin/">jsbin</a><small>1</small></li>
+  
+    <li><a href="/tags/library/">library</a><small>1</small></li>
+  
+    <li><a href="/tags/ngrx/">ngrx</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>1</small></li>
+  
+    <li><a href="/tags/npm/">npm</a><small>1</small></li>
+  
+    <li><a href="/tags/observable/">observable</a><small>1</small></li>
+  
+    <li><a href="/tags/programmation-fonctionnelle/">programmation fonctionnelle</a><small>1</small></li>
+  
+    <li><a href="/tags/rxjs/">rxjs</a><small>1</small></li>
+  
+    <li><a href="/tags/select/">select</a><small>1</small></li>
+  
+    <li><a href="/tags/serverless/">serverless</a><small>2</small></li>
+  
+    <li><a href="/tags/sport/">sport</a><small>1</small></li>
+  
+    <li><a href="/tags/tests/">tests</a><small>1</small></li>
+  
+    <li><a href="/tags/thread/">thread</a><small>1</small></li>
+  
+    <li><a href="/tags/tools/">tools</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+    <div>test</div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2018 cyrgue
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
