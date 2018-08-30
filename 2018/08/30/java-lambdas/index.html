@@ -3,18 +3,15 @@
 <head>
   <meta charset="utf-8">
   
-  <title>docker | cyrgue</title>
+  <title>java_lambdas | cyrgue</title>
   <meta name="author" content="cyrgue">
   
-  <meta name="description" content="Listing Docker images1docker images
-Listing all containers1docker ps -a
-Deleting all containers1docker rm -f `docker ps -a -q`
-Créer une une image de ">
+  <meta name="description" content="Avant Java 8, il n’existait que deux types de références, des valeurs primitives (char c = ‘C’ ;) et des références vers des objets (String s = new St">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="docker"/>
+  <meta property="og:title" content="java_lambdas"/>
   <meta property="og:site_name" content="cyrgue"/>
 
   
@@ -53,28 +50,20 @@ Créer une une image de ">
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-12-11T15:44:39.000Z"><a href="/2016/12/11/docker/">2016-12-11</a></time>
+        <time datetime="2018-08-30T13:51:14.000Z"><a href="/2018/08/30/java-lambdas/">2018-08-30</a></time>
       
       
   
-    <h1 class="title">docker</h1>
+    <h1 class="title">java_lambdas</h1>
   
 
     </header>
     <div class="entry">
       
-        <h3 id="Listing-Docker-images"><a href="#Listing-Docker-images" class="headerlink" title="Listing Docker images"></a>Listing Docker images</h3><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker images</span></span><br></pre></td></tr></table></figure>
-<h3 id="Listing-all-containers"><a href="#Listing-all-containers" class="headerlink" title="Listing all containers"></a>Listing all containers</h3><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker ps -a</span></span><br></pre></td></tr></table></figure>
-<h3 id="Deleting-all-containers"><a href="#Deleting-all-containers" class="headerlink" title="Deleting all containers"></a>Deleting all containers</h3><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm -f `docker ps -a -q`</span><br></pre></td></tr></table></figure>
-<h2 id="Creer-une-une-image-de-base"><a href="#Creer-une-une-image-de-base" class="headerlink" title="Créer une une image de base"></a>Créer une une image de base</h2><p>1 - Generer l’image de base nginx FROM nginx:1.11.6<br>2 - Recuperer manuellement le fichier default .com /etc/nginx/conf.d/default.conf<br>sudo docker cddffd678908:/etc/nginx/conf.d/default.conf default.conf<br>3 - Activer le SSO<br>4 - Changer le repertoire par default du web<br>5 - Creer une image de base bi-nginx</p>
-<p>6 - Utiliser cette image de base pour créer les autres images web</p>
-<h3 id="Generer-l’image-de-base"><a href="#Generer-l’image-de-base" class="headerlink" title="Generer l’image de base"></a>Generer l’image de base</h3><p>docker build -t cguerin/bi-nginx</p>
-<p>sudo docker build -t cguerin/bi-admin-ui .</p>
-<p>Demarrer le container</p>
-<p>sudo docker run -d -p 81:80 –name bi-admin-ui cguerin/bi-admin-ui</p>
-<p>sudo docker cp  docker/environment.html 5c436576ddee:/var/www/html/website/environment.html</p>
-<p>sudo docker build -t bfd.repo.explorancedev.com:18444/bi-explorance/bi-nginx:1.0.0 .</p>
-<p>sudo docker login bfd.repo.explorancedev.com:18444<br>sudo docker push bfd.repo.explorancedev.com:18444/bi-explorance/bi-nginx:1.0.0</p>
+        <p>Avant Java 8, il n’existait que deux types de références, des valeurs primitives (char c = ‘C’ ;) et des références vers des objets (String s = new String(“Hello”);)<br>Depuis Java 8, il est possible d’avoir des références vers des morceaux de codes anonymes (des closures) : les lambdas</p>
+<p>Une lambda est la redéfinition d’une méthode d’une interface fonctionnelle sans avoir à faire une classe anonyme, donc gain de ligne de code et de visibilité.<br>On utilise le nouvel opérateur  -&gt;<br>lambda permet de redéfinir une méthode abstraite d’une interface fonctionnelle donc, par conséquent, elle doit répondre à la signature de la méthode concernée.</p>
+<p>ex simple:<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="params">()</span> -&gt;</span> <span class="number">137</span>;</span><br></pre></td></tr></table></figure></p>
+<p>ex avec une interface fonctionnelle<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sdz.comportement;</span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Dialoguer</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">parler</span><span class="params">(String question)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Dialoguer d = (s) -&gt; System.out.println(<span class="string">"Tu as dis : "</span> + s);</span><br><span class="line">d.parler(<span class="string">"Bonjour"</span>);</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -84,7 +73,7 @@ Créer une une image de ">
         
   
   <div class="tags">
-    <a href="/tags/docker/">docker</a>
+    <a href="/tags/java/">java</a>, <a href="/tags/java8/">java8</a>, <a href="/tags/lambda/">lambda</a>
   </div>
 
         
@@ -127,7 +116,7 @@ Créer une une image de ">
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div class="fb-comments" data-href="http://cyrgue.github.io/2016/12/11/docker/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+<div class="fb-comments" data-href="http://cyrgue.github.io/2018/08/30/java-lambdas/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
       
   
 </section>

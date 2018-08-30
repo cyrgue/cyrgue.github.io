@@ -49,6 +49,42 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2018-08-30T13:51:14.000Z"><a href="/2018/08/30/java-lambdas/">2018-08-30</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/08/30/java-lambdas/">java_lambdas</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Avant Java 8, il n’existait que deux types de références, des valeurs primitives (char c = ‘C’ ;) et des références vers des objets (String s = new String(“Hello”);)<br>Depuis Java 8, il est possible d’avoir des références vers des morceaux de codes anonymes (des closures) : les lambdas</p>
+<p>Une lambda est la redéfinition d’une méthode d’une interface fonctionnelle sans avoir à faire une classe anonyme, donc gain de ligne de code et de visibilité.<br>On utilise le nouvel opérateur  -&gt;<br>lambda permet de redéfinir une méthode abstraite d’une interface fonctionnelle donc, par conséquent, elle doit répondre à la signature de la méthode concernée.</p>
+<p>ex simple:<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="params">()</span> -&gt;</span> <span class="number">137</span>;</span><br></pre></td></tr></table></figure></p>
+<p>ex avec une interface fonctionnelle<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sdz.comportement;</span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Dialoguer</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">parler</span><span class="params">(String question)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Dialoguer d = (s) -&gt; System.out.println(<span class="string">"Tu as dis : "</span> + s);</span><br><span class="line">d.parler(<span class="string">"Bonjour"</span>);</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2018-08-29T19:03:43.000Z"><a href="/2018/08/29/java-basis-types/">2018-08-29</a></time>
       
       
@@ -520,60 +556,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-08-30T22:17:33.000Z"><a href="/2017/08/30/serveless-time-evaluation/">2017-08-30</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/08/30/serveless-time-evaluation/">serveless-time-evaluation</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <table>
-<thead>
-<tr>
-<th>Sujet</th>
-<th style="text-align:right">Time</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Creation du projet</td>
-<td style="text-align:right">10</td>
-</tr>
-<tr>
-<td>col 2 is</td>
-<td style="text-align:right">centered</td>
-</tr>
-<tr>
-<td>zebra stripes</td>
-<td style="text-align:right">are neat</td>
-</tr>
-</tbody>
-</table>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -648,11 +630,15 @@
   
     <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
   
-    <li><a href="/tags/java/">java</a><small>2</small></li>
+    <li><a href="/tags/java/">java</a><small>3</small></li>
+  
+    <li><a href="/tags/java8/">java8</a><small>1</small></li>
   
     <li><a href="/tags/javascript/">javascript</a><small>13</small></li>
   
     <li><a href="/tags/jsbin/">jsbin</a><small>1</small></li>
+  
+    <li><a href="/tags/lambda/">lambda</a><small>1</small></li>
   
     <li><a href="/tags/library/">library</a><small>1</small></li>
   

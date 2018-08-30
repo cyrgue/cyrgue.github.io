@@ -49,6 +49,60 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-08-30T22:17:33.000Z"><a href="/2017/08/30/serveless-time-evaluation/">2017-08-30</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/08/30/serveless-time-evaluation/">serveless-time-evaluation</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <table>
+<thead>
+<tr>
+<th>Sujet</th>
+<th style="text-align:right">Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Creation du projet</td>
+<td style="text-align:right">10</td>
+</tr>
+<tr>
+<td>col 2 is</td>
+<td style="text-align:right">centered</td>
+</tr>
+<tr>
+<td>zebra stripes</td>
+<td style="text-align:right">are neat</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-08-21T01:35:28.000Z"><a href="/2017/08/20/javascript-tool/">2017-08-20</a></time>
       
       
@@ -454,55 +508,6 @@ kubectl logs &lt;POD-NAME&gt;
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-12-16T13:17:02.000Z"><a href="/2016/12/16/angular2-architecture/">2016-12-16</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/12/16/angular2-architecture/">angular2-architecture</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Strategie</p>
-<h2 id="Utilisation-des-services-comme-singleton"><a href="#Utilisation-des-services-comme-singleton" class="headerlink" title="Utilisation des services comme singleton,"></a>Utilisation des services comme singleton,</h2><ul>
-<li>les proprietes sont des objets du domaine</li>
-</ul>
-<p>Pb de loading et de rafraichissement<br>avantages de la subscription, mais parfois undefined….</p>
-<p>Mais peux etre interessant, par exemple pour stocker une donnée qui ne change pas dans l’application<br>Ex : Login et User,</p>
-<h2 id="Utilisation-des-services-avec-des-Observables"><a href="#Utilisation-des-services-avec-des-Observables" class="headerlink" title="Utilisation des services avec des Observables"></a>Utilisation des services avec des Observables</h2><h2 id="Utilisation-de-Redux-et-d’un-Store-Central"><a href="#Utilisation-de-Redux-et-d’un-Store-Central" class="headerlink" title="Utilisation de Redux et d’un Store Central"></a>Utilisation de Redux et d’un Store Central</h2><p>Les services servent alors d’utilitaires pour manipuler les données vennant du store<br>Le composant récupere les données du store, peut demander au service de filter, trier…. avant d’afficher les données ou de passer les données aux composant enfants</p>
-<p> The services are singleton objects that<br>play two roles:</p>
-<ol>
-<li>Provide streams of data that our application can subscribe to</li>
-<li>Provide operations to add or modify data</li>
-</ol>
-<p>• The services maintain streams which emit models (e.g. Messages)<br>• The components subscribe to those streams and render according to the most recent values</p>
-<p>The point of the UserService is to provide a place where our application can learn about the current<br>user and also notify the rest of the application if the current user changes.</p>
-<p>One consequence of streams is that, because messages are published immediately, a new subscriber<br>risks missing the latest value of the stream. BehaviourSubject compensates for this.<br>BehaviourSubject⁷⁴ has a special property in that it stores the last value. Meaning that any<br>subscriber to the stream will receive the latest value. This is great for us because it means that<br>any part of our application can subscribe to the UserService.currentUser stream and immediately<br>know who the current user is.</p>
-<p>MessagesService: 3 “data management” streams and 2 “action” streams.<br>The three data management streams are:<br>• newMessages - emits each new Message only once<br>• messages - emits an array of the current Messages<br>• updates - performs operations on messages</p>
-<p>map<br>filter<br>reduce</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -579,11 +584,15 @@ kubectl logs &lt;POD-NAME&gt;
   
     <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
   
-    <li><a href="/tags/java/">java</a><small>2</small></li>
+    <li><a href="/tags/java/">java</a><small>3</small></li>
+  
+    <li><a href="/tags/java8/">java8</a><small>1</small></li>
   
     <li><a href="/tags/javascript/">javascript</a><small>13</small></li>
   
     <li><a href="/tags/jsbin/">jsbin</a><small>1</small></li>
+  
+    <li><a href="/tags/lambda/">lambda</a><small>1</small></li>
   
     <li><a href="/tags/library/">library</a><small>1</small></li>
   
