@@ -49,6 +49,81 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-01-07T11:50:20.000Z"><a href="/2017/01/07/Kubernetes/">2017-01-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/01/07/Kubernetes/">Kubernetes</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><a href="http://kubernetes.io/docs/hellonode/" target="_blank" rel="noopener">http://kubernetes.io/docs/hellonode/</a><br>Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications.</p>
+<ul>
+<li><p>Horizontal scaling<br>Google Container Engine (a Google-hosted version of Kubernetes)</p>
+<p>Google Cloud Platform</p>
+</li>
+</ul>
+<p>TODO : Create an app with hapijs<br> <a href="https://github.com/robertschultz/docker-nodejs-hapi/blob/master/app.js" target="_blank" rel="noopener">https://github.com/robertschultz/docker-nodejs-hapi/blob/master/app.js</a></p>
+<h2 id="Create-a-Docker-container-image"><a href="#Create-a-Docker-container-image" class="headerlink" title="Create a Docker container image"></a>Create a Docker container image</h2><pre><code>docker build -t gcr.io/sport-kubernetes-codelab/hello-node:v1 .
+docker run -d -p 8080:8080 --name hello_tutorial gcr.io/sport-kubernetes-codelab/hello-node:v1
+gcloud docker -- push gcr.io/sport-kubernetes-codelab/hello-node:v1
+</code></pre><h2 id="Create-a-Kubernetes-Cluster"><a href="#Create-a-Kubernetes-Cluster" class="headerlink" title="Create a Kubernetes Cluster"></a>Create a Kubernetes Cluster</h2><p>A cluster consists of</p>
+<ul>
+<li>a Master API server</li>
+<li>a set of worker VMs called Nodes.</li>
+</ul>
+<p>1 - First, choose a Google Cloud Project zone to run your service</p>
+<pre><code>gcloud config set compute/zone us-central1-a
+</code></pre><p>2 - Create a Kubernetes  cluster (Kubernetes cluster with three ?? nodes, ready to receive your container image!)</p>
+<pre><code>gcloud container clusters create hello-world
+</code></pre><p>Now deploy your own containerized application to the Kubernetes cluster!</p>
+<h2 id="Create-your-pod"><a href="#Create-your-pod" class="headerlink" title="Create your pod"></a>Create your pod</h2><p>A Kubernetes pod is a group of containers, tied together for the purposes of administration and networking. It can contain a single container or multiple.</p>
+<pre><code>kubectl run hello-node --image=gcr.io/sport-kubernetes-codelab/hello-node:v1 --port=8080
+</code></pre><p>kubectl run created a Deployment object (used to manage creation and scaling of pods) In this example, a new deployment manages a single pod replica running the hello-node:v1 image.</p>
+<p>To view the Deployment  :<br>        kubectl get deployments</p>
+<p>To view the Pod created by the deployment run :</p>
+<pre><code>kubectl get pods
+</code></pre><p>To view the stdout / stderr from a Pod run :</p>
+<pre><code>kubectl logs &lt;POD-NAME&gt;
+</code></pre><p>Allow external traffic<br>                By default, the pod is only accessible by its internal IP within the Kubernetes cluster.<br>                kubectl expose deployment hello-node –type=”LoadBalancer”<br>                The flag used in this command specifies that we’ll be using the load-balancer provided by the underlying infrastructure (in this case the Compute Engine load balancer).</p>
+<pre><code>kubectl get services hello-node
+kubectl logs &lt;POD-NAME&gt;
+</code></pre><p>Scale up<br>                Tell the deployment to manage a new number of replicas for your pod: kubectl scale deployment hello-node –replicas=4<br>                kubectl get pods<br> Se connecter au cluster<br>Configurez l’accès à la ligne de commande kubectl en exécutant la commande suivante :</p>
+<p>gcloud container clusters get-credentials hello-world  –zone us-east1-c –project sport-kubernetes-codelab<br>$<br>Ensuite, démarrez un proxy pour vous connecter au plan de commande Kubernetes :</p>
+<p>kubectl proxy<br>$<br>Ouvrez ensuite l’interface du tableau de bord en accédant à l’emplacement suivant dans votre navigateur :</p>
+<p><a href="http://localhost:8001/ui" target="_blank" rel="noopener">http://localhost:8001/ui</a></p>
+<p> kubectl run hello-node –image=gcr.io/sport-kubernetes-codelab/hello-node:v1 –port=8080<br>Fix on Windows<br><a href="http://stackoverflow.com/questions/39277986/unable-to-push-to-google-container-registry-unable-to-access-the-repository?answertab=votes#tab-top" target="_blank" rel="noopener">http://stackoverflow.com/questions/39277986/unable-to-push-to-google-container-registry-unable-to-access-the-repository?answertab=votes#tab-top</a><br><a href="https://github.com/kubernetes/kubernetes/issues/34395" target="_blank" rel="noopener">https://github.com/kubernetes/kubernetes/issues/34395</a></p>
+<p>kubectl.sh run postgres –image=postgres –replicas=1</p>
+<p>kubectlrun  elasticsearch –image=elasticsearch:5.1.1 –replicas=1<br>kubectl expose deployment elasticsearch –port=9300   –type=ClusterIP</p>
+<p> Cleaning it Up</p>
+<h2 id="Links"><a href="#Links" class="headerlink" title="Links"></a>Links</h2><p><a href="https://developer.ibm.com/recipes/tutorials/kubernetes-how-to-run-a-node-js-application-which-accesses-mongo-database-where-both-are-running-in-containers-in-different-pods/" target="_blank" rel="noopener">https://developer.ibm.com/recipes/tutorials/kubernetes-how-to-run-a-node-js-application-which-accesses-mongo-database-where-both-are-running-in-containers-in-different-pods/</a><br><a href="http://docs.spring.io/spring-cloud-dataflow-server-kubernetes/docs/1.0.1.RELEASE/reference/html/_deploying_streams_on_kubernetes.html" target="_blank" rel="noopener">http://docs.spring.io/spring-cloud-dataflow-server-kubernetes/docs/1.0.1.RELEASE/reference/html/_deploying_streams_on_kubernetes.html</a></p>
+<p><a href="https://www.slalom.com/thinking/packaging-spring-boot-applications-for-deployment-on-kubernetes" target="_blank" rel="noopener">https://www.slalom.com/thinking/packaging-spring-boot-applications-for-deployment-on-kubernetes</a></p>
+<p><a href="http://kubernetes.io/docs/getting-started-guides/meanstack/" target="_blank" rel="noopener">http://kubernetes.io/docs/getting-started-guides/meanstack/</a></p>
+<p><a href="http://kubernetes.io/docs/tutorials/stateful-application/run-stateful-application/" target="_blank" rel="noopener">http://kubernetes.io/docs/tutorials/stateful-application/run-stateful-application/</a><br><a href="http://kubernetes.io/docs/user-guide/pods/single-container/" target="_blank" rel="noopener">http://kubernetes.io/docs/user-guide/pods/single-container/</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-12-16T13:17:02.000Z"><a href="/2016/12/16/angular2-architecture/">2016-12-16</a></time>
       
       
@@ -588,47 +663,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2015-10-07T00:53:07.000Z"><a href="/2015/10/06/git-branch-strategy/">2015-10-06</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2015/10/06/git-branch-strategy/">git-branch-strategy</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Plusieurs articles sur la strategie des branches avec git</p>
-<ul>
-<li><a href="http://scottchacon.com/2011/08/31/github-flow.html" target="_blank" rel="noopener">GitHub Flow</a></li>
-<li><a href="http://nvie.com/posts/a-successful-git-branching-model/" target="_blank" rel="noopener">A successful Git branching model</a></li>
-<li><a href="http://drewfradette.ca/a-simpler-successful-git-branching-model/" target="_blank" rel="noopener">A (Simpler) Successful Git Branching Model</a></li>
-<li><a href="http://blog.endpoint.com/2014/05/git-workflows-that-work.html" target="_blank" rel="noopener">Git Workflows That Work</a></li>
-<li><a href="https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow" target="_blank" rel="noopener">Feature Branch Workflow</a></li>
-<li><a href="http://git-scm.com/book/fr/v2" target="_blank" rel="noopener">ProGit</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -705,7 +739,7 @@
   
     <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
   
-    <li><a href="/tags/java/">java</a><small>3</small></li>
+    <li><a href="/tags/java/">java</a><small>4</small></li>
   
     <li><a href="/tags/java8/">java8</a><small>1</small></li>
   
