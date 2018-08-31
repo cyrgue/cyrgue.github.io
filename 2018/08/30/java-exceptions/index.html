@@ -71,7 +71,22 @@ Some Exception must not arrive (unckecked exception) but other (from external) m
 <li>ClassCastException</li>
 <li>….</li>
 </ul>
-<p>Exercice Q8</p>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html" target="_blank" rel="noopener">API java.lang.Throwable</a><br><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Error.html" target="_blank" rel="noopener">API Class Error</a><br><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Exception.html" target="_blank" rel="noopener">API Class Exception</a><br>Q8)<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">doStuff</span><span class="params">()</span> ____________ </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> FileNotFoundException();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Which are correct in place of <strong>_</strong>?</p>
+<pre><code>A) blank
+B) throws Throwable
+C) throws RuntimeException
+D) throws IOException
+E) throws FileNotFoundException
+</code></pre><p>Responses : B, D, E<br> <strong>FileNotFoundException</strong> is a  <strong>IOException</strong> is a <strong>Throwable</strong></p>
+<p>Q9)<br>  class Base2 {<br>    void doBaseStuff() {<br>      System.out.println(“doBaseStuff”);<br>    }<br>  }<br>  class Sub2 extends Base2 {<br>    void doBaseStuff() {<br>      System.out.println(“doSubStuff”);<br>    }<br>  }</p>
+<p>Which are true?</p>
+<ul>
+<li>A) doBaseStuff in Base2 can be marked throws Exception without causing errors</li>
+<li>B) doBaseStuff in Base2 can be marked throws RuntimeException without causing errors<br>C) doBaseStuff in Sub2 can be marked throws Exception without causing errors</li>
+<li>D) doBaseStuff in Sub2 can be marked throws RuntimeException without causing errors</li>
+<li>E) if doBaseStuff in Base2 were marked throws Exception,<br>  then doBaseStuff in Sub2 can be marked throws IOException without causing errors</li>
+</ul>
 <p>Exercice Q9<br>Reponses: A, B, D as RuntimeException is a base Exception, D</p>
 <p>Etrange a revoir</p>
 
