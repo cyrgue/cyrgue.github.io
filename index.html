@@ -123,6 +123,18 @@ class Y {
 ((Y)x).doStuff2();</code><br>What is the result?<br>    A) Compilation fails<br>    B) Exception at runtime<br>    C) Y.doStuff2 is executed</p>
 <p>Responses : A</p>
 <p><img src="/img/java/oca-javase8/casting2.png?raw=true" alt="Apply Casting" title="Apply Casting"></p>
+<h2 id="When-Casting-is-possible"><a href="#When-Casting-is-possible" class="headerlink" title="When Casting is possible?"></a>When Casting is possible?</h2><p>Le compilateur verifie certaines regles pour auoriser le Casting</p>
+<h3 id="Exercice-1"><a href="#Exercice-1" class="headerlink" title="Exercice"></a>Exercice</h3><p>Given:<br><code>class X {
+  void doStuff() {}
+}
+class Y extends X {
+  void doStuff2() {}
+}</code><br>and:<br><code>X x = new X();
+((Y)x).doStuff2();</code></p>
+<p>What is the result?<br>    A) Compilation fails<br>    B) Exception at runtime<br>    C) Y.doStuff2 is executed<br>    D) Some unpredictable behavior</p>
+<p>Responses : B  //Fails at Runtime : java.lang.ClassCastException</p>
+<p><img src="/img/java/oca-javase8/casting3.png?raw=true" alt="Reject Casting" title="Apply Reject"></p>
+<p><img src="/img/java/oca-javase8/casting4.png?raw=true" alt="Possible Casting" title="Casting"></p>
 
       
     </div>
