@@ -49,6 +49,122 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-10-06T16:52:14.000Z"><a href="/2017/10/06/serverless/">2017-10-06</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/10/06/serverless/">serverless</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Servless-Framework"><a href="#Servless-Framework" class="headerlink" title="Servless Framework"></a>Servless Framework</h1><h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><h3 id="AWS-Credentials"><a href="#AWS-Credentials" class="headerlink" title="AWS - Credentials"></a>AWS - Credentials</h3><ul>
+<li>Create an IAM Group</li>
+</ul>
+<p>Supprimer les accees admin de ce groupe : </p>
+<ul>
+<li>Create an IAM User, then setup<ul>
+<li>Add a username</li>
+<li>Access Type : Programmatic access</li>
+<li>Ajouter le user dans le groupe</li>
+<li>Créer le user</li>
+<li>Copier le keyId et le secretKeyId pour configurer l’environnement locale de developpement</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">serverless<span class="built_in"> config </span>credentials --provider aws --key AKIAIOSFODNN7EXAMPLE --secret wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY</span><br></pre></td></tr></table></figure>
+<p>Le configuation se retrouve dans le fichier ~/.aws/credentials</p>
+<h2 id="Install-Servless-Framework"><a href="#Install-Servless-Framework" class="headerlink" title="Install Servless Framework"></a>Install Servless Framework</h2><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> -g serverless</span><br></pre></td></tr></table></figure>
+<p>Ref: <a href="https://serverless.com" target="_blank" rel="noopener">https://serverless.com</a></p>
+<h2 id="Create-a-new-Project"><a href="#Create-a-new-Project" class="headerlink" title="Create a new Project"></a>Create a new Project</h2><h3 id="Simple-AWS-Lambda"><a href="#Simple-AWS-Lambda" class="headerlink" title="Simple AWS Lambda"></a>Simple AWS Lambda</h3><ul>
+<li><p>Create a new Serverless Service/Project</p>
+<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">serverless</span> <span class="comment">create</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">template</span> <span class="comment">aws</span><span class="literal">-</span><span class="comment">nodejs</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">path</span> <span class="comment">my</span><span class="literal">-</span><span class="comment">service</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Le fichier <strong>serverless.yml</strong> est crée : Contient la configuration du projet</p>
+<ul>
+<li>Ajuster le region aws dans le fichier</li>
+</ul>
+</li>
+<li>Un fichier  <strong>handlerjs</strong> est egalement présent: Contient un exemple de lambda</li>
+</ul>
+<p>Il est alors possible de deployer le projet (voir section deploy)</p>
+<h3 id="Add-Api-Gateay-to-access-to-lambda"><a href="#Add-Api-Gateay-to-access-to-lambda" class="headerlink" title="Add Api Gateay to access to lambda"></a>Add Api Gateay to access to lambda</h3><p>Dans le fichier <strong><em>serverless.yml</em></strong><br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">functions:</span><br><span class="line">  listUsers:</span><br><span class="line">    handler: users/handlers/list.handler</span><br><span class="line">    events:</span><br><span class="line">      - http:</span><br><span class="line">          path: users</span><br><span class="line">          <span class="function"><span class="keyword">method</span>:</span> get</span><br></pre></td></tr></table></figure></p>
+<p>Lors du <strong>deploy</strong>, le endpoint est affiché<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">endpoint<span class="variable">s:</span></span><br><span class="line">  GET - http<span class="variable">s:</span>//ta9skrzmkl.<span class="keyword">execute</span>-api.us-east-<span class="number">1</span>.amazonaws.<span class="keyword">com</span>/dev/users</span><br></pre></td></tr></table></figure></p>
+<h2 id="Manage"><a href="#Manage" class="headerlink" title="Manage"></a>Manage</h2><h3 id="deploy"><a href="#deploy" class="headerlink" title="deploy"></a>deploy</h3><p>To deploy the service for the first time:</p>
+<p><code>sls deploy</code></p>
+<ul>
+<li>Un Bucket S3 est alors crée contenant les sources du projet</li>
+<li>La/Les fonctions déployées sont visibles dans la console, section lambda </li>
+</ul>
+<p>To deploy an updated function:<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sls deploy -f functionName</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Invoke"><a href="#Invoke" class="headerlink" title="Invoke"></a>Invoke</h2><h3 id="deployed-function"><a href="#deployed-function" class="headerlink" title="deployed function"></a>deployed function</h3><p><code>sls invoke -f createArticle -p articles/myEvent.json</code><br><code>sls invoke -f readArticle -p articles/events/read.event.json</code></p>
+<h3 id="Local-function"><a href="#Local-function" class="headerlink" title="Local function"></a>Local function</h3><p><code>sls invoke local -f readArticle -p articles/events/read.event.json</code></p>
+<h2 id="Logs"><a href="#Logs" class="headerlink" title="Logs"></a>Logs</h2><p><code>sls logs -f readArticle</code></p>
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
+<li><a href="https://github.com/markusklems/programming-aws-lambda" target="_blank" rel="noopener">https://github.com/markusklems/programming-aws-lambda</a></li>
+<li><a href="https://github.com/bishbashbosh123/lambda-example" target="_blank" rel="noopener">https://github.com/bishbashbosh123/lambda-example</a></li>
+<li>Video LEARNING PATH: AWS: AWS ENVIRONMENTS WITH AWS LAMBDA</li>
+</ul>
+<h2 id="Generate-Event-when-file-is-uploaded-in-S3-Bucket"><a href="#Generate-Event-when-file-is-uploaded-in-S3-Bucket" class="headerlink" title="Generate Event when file is uploaded in S3 Bucket"></a>Generate Event when file is uploaded in S3 Bucket</h2><ul>
+<li>Open the bucket in the AWS console, select Properties, click Events, and click Add Notification.</li>
+<li>Give your event a name, such as File Upload, and then under Events select ObjectCreate (All).                                       </li>
+<li>Select Lambda Function from the Send To drop-down.</li>
+</ul>
+<h2 id="Use-env-variable"><a href="#Use-env-variable" class="headerlink" title="Use env variable"></a>Use env variable</h2><p>process.env.VARIABL_ENAME</p>
+<h2 id="Authentification-amp-amp-Authorization"><a href="#Authentification-amp-amp-Authorization" class="headerlink" title="Authentification &amp;&amp; Authorization"></a>Authentification &amp;&amp; Authorization</h2><h3 id="Ref-1"><a href="#Ref-1" class="headerlink" title="Ref"></a>Ref</h3><ul>
+<li><a href="http://docs.aws.amazon.com/apigateway/latest/developerguide/use-custom-authorizer.html" target="_blank" rel="noopener">http://docs.aws.amazon.com/apigateway/latest/developerguide/use-custom-authorizer.html</a></li>
+<li><a href="https://yos.io/2017/09/03/serverless-authentication-with-jwt/" target="_blank" rel="noopener">https://yos.io/2017/09/03/serverless-authentication-with-jwt/</a></li>
+</ul>
+<h2 id="Working-with-dynamoDb"><a href="#Working-with-dynamoDb" class="headerlink" title="Working with dynamoDb"></a>Working with dynamoDb</h2><h3 id="Configure-new-table"><a href="#Configure-new-table" class="headerlink" title="Configure new table"></a>Configure new table</h3><p>in <strong>serverless.yml</strong>, in <strong>resources</strong> section</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">resources</span>:</span><br><span class="line">  <span class="attribute">Resources</span>:</span><br><span class="line">    <span class="attribute">usersTable</span>:</span><br><span class="line">      <span class="attribute">Type</span>: <span class="attribute">AWS</span>::<span class="attribute">DynamoDB</span>::Table</span><br><span class="line">      <span class="attribute">Properties</span>:</span><br><span class="line">        <span class="attribute">TableName</span>: users</span><br><span class="line">        <span class="attribute">AttributeDefinitions</span>:</span><br><span class="line">         - <span class="attribute">AttributeName</span>: id</span><br><span class="line">           <span class="attribute">AttributeType</span>: S</span><br><span class="line">        <span class="attribute">KeySchema</span>:</span><br><span class="line">         - <span class="attribute">AttributeName</span>: id</span><br><span class="line">           <span class="attribute">KeyType</span>: HASH</span><br><span class="line">        <span class="attribute">ProvisionedThroughput</span>:</span><br><span class="line">          <span class="attribute">ReadCapacityUnits</span>: <span class="number">1</span></span><br><span class="line">          <span class="attribute">WriteCapacityUnits</span>: <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>Si la table n’existe pas, il est nécessaire de faire un deploy pour que la table soit créée automatiquement</p>
+<h3 id="Works-locally"><a href="#Works-locally" class="headerlink" title="Works locally"></a>Works locally</h3><ul>
+<li>npm install –save serverless-dynamodb-local</li>
+</ul>
+<p>plugins:</p>
+<ul>
+<li><p>serverless-dynamodb-local</p>
+<ul>
+<li><p>Install</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sls dynamodb <span class="keyword">install</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Start</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sls dynamodb <span class="built_in">start</span> <span class="comment">--migrate</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="DynamoDB-JavaScript-Shell"><a href="#DynamoDB-JavaScript-Shell" class="headerlink" title="DynamoDB JavaScript Shell"></a>DynamoDB JavaScript Shell</h3><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">var</span> <span class="keyword">params</span> = &#123;</span><br><span class="line">    TableName: <span class="string">'BlogTable'</span>,</span><br><span class="line">    Limit: <span class="number">3</span>, <span class="comment">// optional (limit the number of items to evaluate)</span></span><br><span class="line">    </span><br><span class="line">&#125;;</span><br><span class="line">dynamodb.scan(<span class="keyword">params</span>, function(err, <span class="built_in">data</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (err) ppJson(err); <span class="comment">// an error occurred</span></span><br><span class="line">    <span class="keyword">else</span> ppJson(<span class="built_in">data</span>); <span class="comment">// successful response</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="Configure"><a href="#Configure" class="headerlink" title="Configure"></a>Configure</h3><h3 id="Ref-2"><a href="#Ref-2" class="headerlink" title="Ref"></a>Ref</h3><ul>
+<li><a href="https://serverless.com/blog/node-rest-api-with-serverless-lambda-and-dynamodb/" target="_blank" rel="noopener">https://serverless.com/blog/node-rest-api-with-serverless-lambda-and-dynamodb/</a></li>
+<li>[serverless-dynamodb-local|<a href="https://www.npmjs.com/package/serverless-dynamodb-local]" target="_blank" rel="noopener">https://www.npmjs.com/package/serverless-dynamodb-local]</a></li>
+<li><a href="https://www.gellock.com/2015/11/25/building-a-user-management-microservice-using-aws-part-2/" target="_blank" rel="noopener">https://www.gellock.com/2015/11/25/building-a-user-management-microservice-using-aws-part-2/</a></li>
+<li><a href="https://www.gellock.com/2015/12/09/building-a-user-management-microservice-using-aws-part-4/" target="_blank" rel="noopener">https://www.gellock.com/2015/12/09/building-a-user-management-microservice-using-aws-part-4/</a></li>
+</ul>
+<h2 id="Variable-d-environnement"><a href="#Variable-d-environnement" class="headerlink" title="Variable d environnement"></a>Variable d environnement</h2><p><a href="https://serverless.com/framework/docs/providers/aws/guide/variables/" target="_blank" rel="noopener">https://serverless.com/framework/docs/providers/aws/guide/variables/</a><br><a href="https://serverless.com/framework/docs/providers/aws/guide/variables/#referencing-s3-objects" target="_blank" rel="noopener">https://serverless.com/framework/docs/providers/aws/guide/variables/#referencing-s3-objects</a><br><a href="https://medium.com/@purplecones/serverless-environment-variables-4ec818f67388" target="_blank" rel="noopener">https://medium.com/@purplecones/serverless-environment-variables-4ec818f67388</a><br><a href="https://github.com/serverless/serverless/issues/493" target="_blank" rel="noopener">https://github.com/serverless/serverless/issues/493</a><br><a href="https://github.com/serverless/examples/issues/25" target="_blank" rel="noopener">https://github.com/serverless/examples/issues/25</a><br><a href="https://www.npmjs.com/package/serverless-env-generator" target="_blank" rel="noopener">https://www.npmjs.com/package/serverless-env-generator</a> </p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-09-20T02:48:31.000Z"><a href="/2017/09/19/javascript-file-upload/">2017-09-19</a></time>
       
       
@@ -428,49 +544,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-01-24T10:25:55.000Z"><a href="/2017/01/24/angular2-library/">2017-01-24</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/01/24/angular2-library/">angular2-library</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="Creation-d’une-lib-javascript"><a href="#Creation-d’une-lib-javascript" class="headerlink" title="Creation d’une lib javascript"></a>Creation d’une lib javascript</h2><p>Ref : <a href="https://shellmonger.com/2016/03/11/creating-javascript-libraries-with-typescript-and-webpack/" target="_blank" rel="noopener">https://shellmonger.com/2016/03/11/creating-javascript-libraries-with-typescript-and-webpack/</a></p>
-<h3 id="Utilisation"><a href="#Utilisation" class="headerlink" title="Utilisation"></a>Utilisation</h3><h4 id="Import"><a href="#Import" class="headerlink" title="Import"></a>Import</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://localhost:8082/MyLib.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="Definition-dans-le-composant"><a href="#Definition-dans-le-composant" class="headerlink" title="Definition dans le composant"></a>Definition dans le composant</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> <span class="keyword">var</span> MyLib: <span class="built_in">any</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">    selector: <span class="string">'preview'</span>,</span><br><span class="line">    templateUrl: <span class="string">'preview.template.html'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> PreviewComponent &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> configService: ConfigService, <span class="keyword">private</span> previewQuestionnaireService: PreviewQuestionnaireService</span>) &#123;</span><br><span class="line">        <span class="keyword">new</span> MyLib.TestClass(<span class="string">'foo'</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="Creation-d’une-lib-Angular2"><a href="#Creation-d’une-lib-Angular2" class="headerlink" title="Creation d’une lib Angular2"></a>Creation d’une lib Angular2</h2><h3 id="Yeoman-generator-to-create-a-standalone-Angular-2-library"><a href="#Yeoman-generator-to-create-a-standalone-Angular-2-library" class="headerlink" title="Yeoman generator to create a standalone Angular 2 library"></a>Yeoman generator to create a standalone Angular 2 library</h3><p>Ref : <a href="https://github.com/jvandemo/generator-angular2-library" target="_blank" rel="noopener">https://github.com/jvandemo/generator-angular2-library</a></p>
-<h3 id="Utilisation-1"><a href="#Utilisation-1" class="headerlink" title="Utilisation"></a>Utilisation</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install ng2-book-<span class="class"><span class="keyword">lib</span> (<span class="title">ou</span> <span class="title">npm</span> <span class="title">link</span>/<span class="title">npm</span> <span class="title">install</span>)</span></span><br></pre></td></tr></table></figure>
-<p>Dans vendor.ts, declarer la lib<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"><span class="meta-keyword">import</span> 'ng2-book-lib';</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="Import-dans-le-module-principal"><a href="#Import-dans-le-module-principal" class="headerlink" title="Import dans le module principal"></a>Import dans le module principal</h3><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; SampleModule &#125; <span class="keyword">from</span> <span class="string">'ng2-book-lib'</span>;</span><br><span class="line">....</span><br><span class="line">@NgModule(&#123;</span><br><span class="line">    imports: [</span><br><span class="line">        BrowserModule,</span><br><span class="line">        HttpModule,</span><br><span class="line">        ...</span><br><span class="line"></span><br><span class="line">         SampleModule.forRoot(),</span><br><span class="line">         ....</span><br></pre></td></tr></table></figure>
-<p>Ensuite, les composants, services de la lib sont disponibles dans l’application principale</p>
-<h2 id="Autres-link"><a href="#Autres-link" class="headerlink" title="Autres link"></a>Autres link</h2><p>Angular2 Seed avec SystemJS<br><a href="https://github.com/mgechev/angular-seed" target="_blank" rel="noopener">https://github.com/mgechev/angular-seed</a><br><a href="http://stackoverflow.com/questions/36091219/how-to-load-angular2-using-cdn" target="_blank" rel="noopener">http://stackoverflow.com/questions/36091219/how-to-load-angular2-using-cdn</a><br><a href="http://lishman.io/angular-2-configuration" target="_blank" rel="noopener">http://lishman.io/angular-2-configuration</a></p>
-<p>Angular Library<br><a href="https://www.hellohq.io/how-to-set-up-an-angular-2-component-library/" target="_blank" rel="noopener">https://www.hellohq.io/how-to-set-up-an-angular-2-component-library/</a><br><a href="http://blog.angular-university.io/how-to-create-an-angular-2-library-and-how-to-consume-it-jspm-vs-webpack/" target="_blank" rel="noopener">http://blog.angular-university.io/how-to-create-an-angular-2-library-and-how-to-consume-it-jspm-vs-webpack/</a><br><a href="https://github.com/lucasbauche/MyAngularLibrary" target="_blank" rel="noopener">https://github.com/lucasbauche/MyAngularLibrary</a><br><a href="https://github.com/jhades/angular2-library-example" target="_blank" rel="noopener">https://github.com/jhades/angular2-library-example</a><br><a href="https://dzone.com/articles/create-an-angular-2-component-library-and-consume" target="_blank" rel="noopener">https://dzone.com/articles/create-an-angular-2-component-library-and-consume</a><br><a href="https://www.thepolyglotdeveloper.com/2016/01/include-external-javascript-libraries-in-an-angular-2-typescript-project/" target="_blank" rel="noopener">https://www.thepolyglotdeveloper.com/2016/01/include-external-javascript-libraries-in-an-angular-2-typescript-project/</a></p>
-<p>Voir pangiate et translate<br><a href="https://github.com/ocombe/ng2-translate" target="_blank" rel="noopener">https://github.com/ocombe/ng2-translate</a><br><a href="https://unpkg.com/ng2-translate@5.0.0" target="_blank" rel="noopener">https://unpkg.com/ng2-translate@5.0.0</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -493,10 +566,6 @@
 <div class="widget tag">
   <h3 class="title">Categories</h3>
   <ul class="entry">
-  
-    <li><a href="/categories/Sports/Baseball/">Baseball</a><small>0</small></li>
-  
-    <li><a href="/categories/Sports/">Sports</a><small>0</small></li>
   
     <li><a href="/categories/java/">java</a><small>1</small></li>
   
@@ -535,8 +604,6 @@
   
     <li><a href="/tags/directive/">directive</a><small>1</small></li>
   
-    <li><a href="/tags/divertissement/">divertissement</a><small>0</small></li>
-  
     <li><a href="/tags/docker/">docker</a><small>1</small></li>
   
     <li><a href="/tags/ecmascript-2015/">ecmascript 2015</a><small>1</small></li>
@@ -545,13 +612,15 @@
   
     <li><a href="/tags/evaluation/">evaluation</a><small>1</small></li>
   
+    <li><a href="/tags/exception/">exception</a><small>1</small></li>
+  
     <li><a href="/tags/git/">git</a><small>2</small></li>
   
     <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
   
-    <li><a href="/tags/java/">java</a><small>5</small></li>
+    <li><a href="/tags/java/">java</a><small>6</small></li>
   
-    <li><a href="/tags/java8/">java8</a><small>3</small></li>
+    <li><a href="/tags/java8/">java8</a><small>4</small></li>
   
     <li><a href="/tags/javascript/">javascript</a><small>13</small></li>
   
@@ -576,8 +645,6 @@
     <li><a href="/tags/select/">select</a><small>1</small></li>
   
     <li><a href="/tags/serverless/">serverless</a><small>2</small></li>
-  
-    <li><a href="/tags/sport/">sport</a><small>0</small></li>
   
     <li><a href="/tags/tests/">tests</a><small>1</small></li>
   

@@ -6,11 +6,9 @@
   <title>OCA Java SE 8 Programmer Certification Crash Course Java Cert - Day2 | cyrgue</title>
   <meta name="author" content="cyrgue">
   
-  <meta name="description" content="##Liskov Substitution##
-if X “is a” Y then X must be a valid (unsurpising) substitution for Y in all situations
-Java Overriding
-
-appropriate return ty">
+  <meta name="description" content="ExceptionsManage Exception
+CastingDetermine when casting is necessary 
+LambdasWrite a simple Lambda expression that consumes a Lambda Predicate expres">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -64,7 +62,13 @@ appropriate return ty">
     </header>
     <div class="entry">
       
-        <p>##Liskov Substitution##</p>
+        <h2 id="Exceptions"><a href="#Exceptions" class="headerlink" title="Exceptions"></a>Exceptions</h2><p><a href="/2018/08/30/java-exceptions">Manage Exception</a></p>
+<h2 id="Casting"><a href="#Casting" class="headerlink" title="Casting"></a>Casting</h2><p><a href="/2018/08/30/java-casting">Determine when casting is necessary</a> </p>
+<h2 id="Lambdas"><a href="#Lambdas" class="headerlink" title="Lambdas"></a>Lambdas</h2><p><a href="/2018/08/30/java-lambdas">Write a simple Lambda expression that consumes a Lambda Predicate expression</a></p>
+<h2 id="Value-and-Reference"><a href="#Value-and-Reference" class="headerlink" title="Value and Reference"></a>Value and Reference</h2><p><a href="/2018/08/30/java-lambdas">Determine the effect upon object references and primitive values when they are passed into methods that change the values</a></p>
+<h2 id="Equality"><a href="#Equality" class="headerlink" title="Equality"></a>Equality</h2><p>[Test equality between Strings and other objects using == and equals ()] ()</p>
+<h2 id="Constructor"><a href="#Constructor" class="headerlink" title="Constructor"></a>Constructor</h2><p><a href="">Create and overload constructors; differentiate between default and user-defined constructors</a><br><a href="">Use super and this to access objects and constructors</a></p>
+<p>##Liskov Substitution##</p>
 <p>if X “is a” Y then X must be a valid (unsurpising) substitution for Y in all situations</p>
 <p>Java Overriding</p>
 <ul>
@@ -72,18 +76,7 @@ appropriate return ty">
 <li>appropriate accessibility (encapsulation)</li>
 <li>appropriate exception behavior </li>
 </ul>
-<h2 id="slide-30"><a href="#slide-30" class="headerlink" title="slide 30 "></a>slide 30 </h2><h2 id="Exception"><a href="#Exception" class="headerlink" title="Exception"></a>Exception</h2><p>Unchecked Exception<br>    Program Bugs<br>    ArrayOutOfBounds<br>    Design says that can’t happem<br>    Should not fix in the program. Rewrite code<br>Java language allows us to ignore it</p>
-<p>Checked Exception<br>    Problem External<br>    Problem can /should try to fix<br>        ex: giving a bad file name<br>    Java language requires either catch block or we declare a throws</p>
-<pre><code>So You must manage the exception
-</code></pre><p>java.lang.Throwable<br>    &lt;- java.lang.Exception<br>        &lt;- java.lang.RuntimeException<br>            &lt;- java.lang.IndexOutOfBoundsException<br>                &lt;- java.lang.ArrayIndexOutOfBoundsException</p>
-<p>Some Exception must not arrive (unckecked exception) but other (from external) must be managed (IOException, FileNotFoundExption)<br>ss<br><img src="img/java/oca-javase8/30.png?raw=true" alt="Exception" title="Title"></p>
-<p>Exercice Q8</p>
-<p>Exercice Q9<br>Reponses: A, B, D as RuntimeException is a base Exception, D</p>
-<p>Etrange a revoir</p>
-<h2 id="Casting"><a href="#Casting" class="headerlink" title="Casting"></a>Casting</h2><p><a href="/2018/08/30/java-casting">Determine when casting is necessary</a> </p>
-<h2 id="Lambdas"><a href="#Lambdas" class="headerlink" title="Lambdas"></a>Lambdas</h2><p><a href="/2018/08/30/java-lambdas">Write a simple Lambda expression that consumes a Lambda Predicate expression</a></p>
-<h2 id="Value-and-Reference"><a href="#Value-and-Reference" class="headerlink" title="Value and Reference"></a>Value and Reference</h2><p><a href="/2018/08/30/java-lambdas">Determine the effect upon object references and primitive values when they are passed into methods that change the values</a></p>
-
+<h2 id="slide-30"><a href="#slide-30" class="headerlink" title="slide 30 "></a>slide 30 </h2>
       
     </div>
     <footer>
@@ -159,10 +152,6 @@ appropriate return ty">
   <h3 class="title">Categories</h3>
   <ul class="entry">
   
-    <li><a href="/categories/Sports/Baseball/">Baseball</a><small>0</small></li>
-  
-    <li><a href="/categories/Sports/">Sports</a><small>0</small></li>
-  
     <li><a href="/categories/java/">java</a><small>1</small></li>
   
   </ul>
@@ -200,8 +189,6 @@ appropriate return ty">
   
     <li><a href="/tags/directive/">directive</a><small>1</small></li>
   
-    <li><a href="/tags/divertissement/">divertissement</a><small>0</small></li>
-  
     <li><a href="/tags/docker/">docker</a><small>1</small></li>
   
     <li><a href="/tags/ecmascript-2015/">ecmascript 2015</a><small>1</small></li>
@@ -210,13 +197,15 @@ appropriate return ty">
   
     <li><a href="/tags/evaluation/">evaluation</a><small>1</small></li>
   
+    <li><a href="/tags/exception/">exception</a><small>1</small></li>
+  
     <li><a href="/tags/git/">git</a><small>2</small></li>
   
     <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
   
-    <li><a href="/tags/java/">java</a><small>5</small></li>
+    <li><a href="/tags/java/">java</a><small>6</small></li>
   
-    <li><a href="/tags/java8/">java8</a><small>3</small></li>
+    <li><a href="/tags/java8/">java8</a><small>4</small></li>
   
     <li><a href="/tags/javascript/">javascript</a><small>13</small></li>
   
@@ -241,8 +230,6 @@ appropriate return ty">
     <li><a href="/tags/select/">select</a><small>1</small></li>
   
     <li><a href="/tags/serverless/">serverless</a><small>2</small></li>
-  
-    <li><a href="/tags/sport/">sport</a><small>0</small></li>
   
     <li><a href="/tags/tests/">tests</a><small>1</small></li>
   
