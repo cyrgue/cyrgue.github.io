@@ -53,23 +53,24 @@
       
       
   
-    <h1 class="title"><a href="/2018/08/30/java-exceptions/">java_exceptions</a></h1>
+    <h1 class="title"><a href="/2018/08/30/java-exceptions/">Java Exception</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h3 id="Exception-handling"><a href="#Exception-handling" class="headerlink" title="Exception handling"></a>Exception handling</h3><h3 id="Checked-exceptions-unchecked-exceptions-Errors"><a href="#Checked-exceptions-unchecked-exceptions-Errors" class="headerlink" title="Checked exceptions, unchecked exceptions, Errors"></a>Checked exceptions, unchecked exceptions, Errors</h3><p><img src="img/java/oca-javase8/exceptions1.png?raw=true" alt="2 Types of Exceptions" title="Title"></p>
+        <h2 id="Exception-handling"><a href="#Exception-handling" class="headerlink" title="Exception handling"></a>Exception handling</h2><h2 id="Checked-exceptions-unchecked-exceptions-Errors"><a href="#Checked-exceptions-unchecked-exceptions-Errors" class="headerlink" title="Checked exceptions, unchecked exceptions, Errors"></a>Checked exceptions, unchecked exceptions, Errors</h2><p><img src="/img/java/oca-javase8/exceptions1.png?raw=true" alt="2 Types of Exceptions" title="Title"></p>
 <p>Some Exception must not arrive (unckecked exception) but other (from external) must be managed (IOException, FileNotFoundExption)</p>
-<p><img src="img/java/oca-javase8/exceptions2.png?raw=true" alt="Common exception classes" title="Title"></p>
-<h3 id="Common-exception-classes"><a href="#Common-exception-classes" class="headerlink" title="Common exception classes"></a>Common exception classes</h3><ul>
+<p><img src="/img/java/oca-javase8/exceptions2.png?raw=true" alt="Common exception classes" title="Title"></p>
+<h2 id="Common-exception-classes"><a href="#Common-exception-classes" class="headerlink" title="Common exception classes"></a>Common exception classes</h2><ul>
 <li>NullPointerException</li>
 <li>ArithmeticException </li>
 <li>ArrayIndexOutOfBoundsException</li>
 <li>ClassCastException</li>
 <li>….</li>
 </ul>
-<p><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html" target="_blank" rel="noopener">API java.lang.Throwable</a><br><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Error.html" target="_blank" rel="noopener">API Class Error</a><br><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Exception.html" target="_blank" rel="noopener">API Class Exception</a><br>Q8)<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">doStuff</span><span class="params">()</span> ____________ </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> FileNotFoundException();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html" target="_blank" rel="noopener">API java.lang.Throwable</a><br><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Error.html" target="_blank" rel="noopener">API Class Error</a><br><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Exception.html" target="_blank" rel="noopener">API Class Exception</a></p>
+<h2 id="Exercice"><a href="#Exercice" class="headerlink" title="Exercice"></a>Exercice</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">doStuff</span><span class="params">()</span> ____________ </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> FileNotFoundException();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Which are correct in place of <strong>_</strong>?</p>
 <pre><code>A) blank
 B) throws Throwable
@@ -77,16 +78,9 @@ C) throws RuntimeException
 D) throws IOException
 E) throws FileNotFoundException
 </code></pre><p>Responses : B, D, E<br> <strong>FileNotFoundException</strong> is a  <strong>IOException</strong> is a <strong>Throwable</strong></p>
-<p>Q9)<br>  class Base2 {<br>    void doBaseStuff() {<br>      System.out.println(“doBaseStuff”);<br>    }<br>  }<br>  class Sub2 extends Base2 {<br>    void doBaseStuff() {<br>      System.out.println(“doSubStuff”);<br>    }<br>  }</p>
-<p>Which are true?</p>
-<ul>
-<li>A) doBaseStuff in Base2 can be marked throws Exception without causing errors</li>
-<li>B) doBaseStuff in Base2 can be marked throws RuntimeException without causing errors<br>C) doBaseStuff in Sub2 can be marked throws Exception without causing errors</li>
-<li>D) doBaseStuff in Sub2 can be marked throws RuntimeException without causing errors</li>
-<li>E) if doBaseStuff in Base2 were marked throws Exception,<br>  then doBaseStuff in Sub2 can be marked throws IOException without causing errors</li>
-</ul>
-<p>Exercice Q9<br>Reponses: A, B, D as RuntimeException is a base Exception, D</p>
-<p>Etrange a revoir</p>
+<h2 id="Exercice-1"><a href="#Exercice-1" class="headerlink" title="Exercice"></a>Exercice</h2><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base2</span> </span>&#123;</span><br><span class="line">    void doBaseStuff() &#123;</span><br><span class="line">        <span class="type">System</span>.out.println(<span class="string">"doBaseStuff"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sub2</span> <span class="keyword">extends</span> <span class="title">Base2</span> </span>&#123;</span><br><span class="line">    void doBaseStuff() &#123;</span><br><span class="line">        <span class="type">System</span>.out.println(<span class="string">"doSubStuff"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Which are true?<br>   A) doBaseStuff in Base2 can be marked throws Exception without causing errors<br>   B) doBaseStuff in Base2 can be marked throws RuntimeException without causing errors<br>   C) doBaseStuff in Sub2 can be marked throws Exception without causing errors<br>   D) doBaseStuff in Sub2 can be marked throws RuntimeException without causing errors<br>   E) if doBaseStuff in Base2 were marked throws Exception,<br>       then doBaseStuff in Sub2 can be marked throws IOException without causing errors</p>
+<p>Reponses: A, B, D as RuntimeException is a base Exception, D<br><strong>Etrange a revoir</strong></p>
 
       
     </div>
