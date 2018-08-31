@@ -239,7 +239,7 @@ E) throws FileNotFoundException
       
       
   
-    <h1 class="title"><a href="/2018/08/30/java-lambdas/">java_lambdas</a></h1>
+    <h1 class="title"><a href="/2018/08/30/java-lambdas/">Java Lambda</a></h1>
   
 
     </header>
@@ -249,7 +249,18 @@ E) throws FileNotFoundException
 <p>Une lambda est la redéfinition d’une méthode d’une interface fonctionnelle sans avoir à faire une classe anonyme, donc gain de ligne de code et de visibilité.<br>On utilise le nouvel opérateur  -&gt;<br>lambda permet de redéfinir une méthode <strong>abstraite</strong> d’une interface fonctionnelle donc, par conséquent, elle doit répondre à la signature de la méthode concernée.</p>
 <p>ex simple:<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="params">()</span> -&gt;</span> <span class="number">137</span>;</span><br></pre></td></tr></table></figure></p>
 <p>ex avec une interface fonctionnelle<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sdz.comportement;</span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Dialoguer</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">parler</span><span class="params">(String question)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Dialoguer d = (s) -&gt; System.out.println(<span class="string">"Tu as dis : "</span> + s);</span><br><span class="line">d.parler(<span class="string">"Bonjour"</span>);</span><br></pre></td></tr></table></figure></p>
-
+<p>Donc pour pouvoir utiliser une lambda, on doit avoir</p>
+<ul>
+<li>une interface avec seulement <strong>une seule méthode abstraite</strong> (peux avoir d’autre méthode)à</li>
+<li>et on veut implementer cette methode</li>
+</ul>
+<p>Il existe </p>
+<ul>
+<li>des expressions lambda<br>‘’’<br>s -&gt; s.getGpa() &gt; 2.7<br>‘’’</li>
+<li>blocked lambda<br>‘’’<br>s -&gt; { return s.getGpa() &gt; 2.7;}<br>‘’’</li>
+</ul>
+<p>return est utilisé seulement dans une blocked lambda (le ; aussi)</p>
+<h2 id="Predicate"><a href="#Predicate" class="headerlink" title="Predicate"></a>Predicate</h2>
       
     </div>
     <footer>
