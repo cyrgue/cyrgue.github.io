@@ -49,6 +49,39 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-10-21T13:38:01.000Z"><a href="/2017/10/21/ngrx/">2017-10-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/10/21/ngrx/">ngrx</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><a href="https://blog.nrwl.io/ngrx-patterns-and-techniques-f46126e2b1e5" target="_blank" rel="noopener">https://blog.nrwl.io/ngrx-patterns-and-techniques-f46126e2b1e5</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-10-15T15:07:20.000Z"><a href="/2017/10/15/generics/">2017-10-15</a></time>
       
       
@@ -520,51 +553,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-03-01T10:54:08.000Z"><a href="/2017/03/01/javascript-ecmascript-2015/">2017-03-01</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/03/01/javascript-ecmascript-2015/">javascript-ecmascript-2015</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="ES6-ECMAScript-2015"><a href="#ES6-ECMAScript-2015" class="headerlink" title="ES6 (ECMAScript 2015)"></a>ES6 (ECMAScript 2015)</h1><h2 id="Arrow-Function-gt"><a href="#Arrow-Function-gt" class="headerlink" title="Arrow Function =&gt;"></a>Arrow Function =&gt;</h2><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> helloMessage = (<span class="keyword">message</span>, <span class="keyword">name</span>) =&gt; <span class="keyword">message</span> + <span class="keyword">name</span></span><br></pre></td></tr></table></figure>
-<p>With one parameter<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> helloMessage = <span class="keyword">name</span> =&gt; <span class="string">'Hello '</span> + <span class="keyword">name</span>;</span><br></pre></td></tr></table></figure></p>
-<p>Rq : <em>this</em> is available in the arrow function - <em>this</em> is no longer referring to the scope inside of the function. It’s referring to the scope that’s outside of the function.</p>
-<h2 id="Let-Keyword"><a href="#Let-Keyword" class="headerlink" title="Let Keyword"></a>Let Keyword</h2><ul>
-<li>var is not scoped. So can be reassigned in a block</li>
-<li>but ES5 does have function scoping, so var can not be reassigned in a function, but in a loop (or a block), it can be reassigned</li>
-<li>now, let in ES6 allow  to use block scoping.</li>
-</ul>
-<h2 id="Default-Values-for-Function-Parameters"><a href="#Default-Values-for-Function-Parameters" class="headerlink" title="Default Values for Function Parameters"></a>Default Values for Function Parameters</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">greeting, name = <span class="string">"John"</span></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(greeting + <span class="string">", "</span> + name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">greet(<span class="string">"Hello"</span>);</span><br></pre></td></tr></table></figure>
-<p>allow you to assign some defaults values or function</p>
-<h2 id="const-declaration"><a href="#const-declaration" class="headerlink" title="const declaration"></a>const declaration</h2><p>a const declaration allows to declare a variable that is read only. (is not actually a constant variable, but a constant reference.)<br>can assign and reassign properties of a const object without breaking my const rules, but can not reassign object const because I have changed the reference of this const declaration.</p>
-<p>Also const declarations adhere to block scope. Block scope can simply be understood as anything between two curly brackets. (same behahvior as let)</p>
-<h2 id="Shortalnd-Properties"><a href="#Shortalnd-Properties" class="headerlink" title="Shortalnd Properties"></a>Shortalnd Properties</h2><h2 id="Object-Enhancements"><a href="#Object-Enhancements" class="headerlink" title="Object Enhancements"></a>Object Enhancements</h2><h2 id="Spread-Operator"><a href="#Spread-Operator" class="headerlink" title="Spread Operator"></a>Spread Operator</h2><p>…</p>
-<h2 id="Template-literals"><a href="#Template-literals" class="headerlink" title="Template literals"></a>Template literals</h2><h2 id="Destructuring-Assignements"><a href="#Destructuring-Assignements" class="headerlink" title="Destructuring Assignements"></a>Destructuring Assignements</h2><h2 id="ES6-Modules"><a href="#ES6-Modules" class="headerlink" title="ES6 Modules"></a>ES6 Modules</h2><h2 id="Array-from"><a href="#Array-from" class="headerlink" title="Array.from"></a>Array.from</h2><h2 id="Promises"><a href="#Promises" class="headerlink" title="Promises"></a>Promises</h2><h2 id="Generators"><a href="#Generators" class="headerlink" title="Generators"></a>Generators</h2><h2 id="Map-and-WeakMaps"><a href="#Map-and-WeakMaps" class="headerlink" title="Map and WeakMaps"></a>Map and WeakMaps</h2><h2 id="Parameter-Object-Destructuring-with-Required-Values"><a href="#Parameter-Object-Destructuring-with-Required-Values" class="headerlink" title="Parameter Object Destructuring with Required Values"></a>Parameter Object Destructuring with Required Values</h2><h2 id="ES6-Rest-Parameters"><a href="#ES6-Rest-Parameters" class="headerlink" title="ES6 Rest Parameters"></a>ES6 Rest Parameters</h2>
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -588,7 +576,9 @@
   <h3 class="title">Categories</h3>
   <ul class="entry">
   
-    <li><a href="/categories/java/">java</a><small>1</small></li>
+    <li><a href="/categories/java/">java</a><small>2</small></li>
+  
+    <li><a href="/categories/java/oca-javase8-1/">oca-javase8-1</a><small>2</small></li>
   
   </ul>
 </div>
@@ -639,9 +629,9 @@
   
     <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
   
-    <li><a href="/tags/java/">java</a><small>6</small></li>
+    <li><a href="/tags/java/">java</a><small>7</small></li>
   
-    <li><a href="/tags/java8/">java8</a><small>4</small></li>
+    <li><a href="/tags/java8/">java8</a><small>5</small></li>
   
     <li><a href="/tags/javascript/">javascript</a><small>13</small></li>
   

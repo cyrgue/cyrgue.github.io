@@ -49,6 +49,51 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-03-01T10:54:08.000Z"><a href="/2017/03/01/javascript-ecmascript-2015/">2017-03-01</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/03/01/javascript-ecmascript-2015/">javascript-ecmascript-2015</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="ES6-ECMAScript-2015"><a href="#ES6-ECMAScript-2015" class="headerlink" title="ES6 (ECMAScript 2015)"></a>ES6 (ECMAScript 2015)</h1><h2 id="Arrow-Function-gt"><a href="#Arrow-Function-gt" class="headerlink" title="Arrow Function =&gt;"></a>Arrow Function =&gt;</h2><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> helloMessage = (<span class="keyword">message</span>, <span class="keyword">name</span>) =&gt; <span class="keyword">message</span> + <span class="keyword">name</span></span><br></pre></td></tr></table></figure>
+<p>With one parameter<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> helloMessage = <span class="keyword">name</span> =&gt; <span class="string">'Hello '</span> + <span class="keyword">name</span>;</span><br></pre></td></tr></table></figure></p>
+<p>Rq : <em>this</em> is available in the arrow function - <em>this</em> is no longer referring to the scope inside of the function. It’s referring to the scope that’s outside of the function.</p>
+<h2 id="Let-Keyword"><a href="#Let-Keyword" class="headerlink" title="Let Keyword"></a>Let Keyword</h2><ul>
+<li>var is not scoped. So can be reassigned in a block</li>
+<li>but ES5 does have function scoping, so var can not be reassigned in a function, but in a loop (or a block), it can be reassigned</li>
+<li>now, let in ES6 allow  to use block scoping.</li>
+</ul>
+<h2 id="Default-Values-for-Function-Parameters"><a href="#Default-Values-for-Function-Parameters" class="headerlink" title="Default Values for Function Parameters"></a>Default Values for Function Parameters</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">greeting, name = <span class="string">"John"</span></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(greeting + <span class="string">", "</span> + name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">greet(<span class="string">"Hello"</span>);</span><br></pre></td></tr></table></figure>
+<p>allow you to assign some defaults values or function</p>
+<h2 id="const-declaration"><a href="#const-declaration" class="headerlink" title="const declaration"></a>const declaration</h2><p>a const declaration allows to declare a variable that is read only. (is not actually a constant variable, but a constant reference.)<br>can assign and reassign properties of a const object without breaking my const rules, but can not reassign object const because I have changed the reference of this const declaration.</p>
+<p>Also const declarations adhere to block scope. Block scope can simply be understood as anything between two curly brackets. (same behahvior as let)</p>
+<h2 id="Shortalnd-Properties"><a href="#Shortalnd-Properties" class="headerlink" title="Shortalnd Properties"></a>Shortalnd Properties</h2><h2 id="Object-Enhancements"><a href="#Object-Enhancements" class="headerlink" title="Object Enhancements"></a>Object Enhancements</h2><h2 id="Spread-Operator"><a href="#Spread-Operator" class="headerlink" title="Spread Operator"></a>Spread Operator</h2><p>…</p>
+<h2 id="Template-literals"><a href="#Template-literals" class="headerlink" title="Template literals"></a>Template literals</h2><h2 id="Destructuring-Assignements"><a href="#Destructuring-Assignements" class="headerlink" title="Destructuring Assignements"></a>Destructuring Assignements</h2><h2 id="ES6-Modules"><a href="#ES6-Modules" class="headerlink" title="ES6 Modules"></a>ES6 Modules</h2><h2 id="Array-from"><a href="#Array-from" class="headerlink" title="Array.from"></a>Array.from</h2><h2 id="Promises"><a href="#Promises" class="headerlink" title="Promises"></a>Promises</h2><h2 id="Generators"><a href="#Generators" class="headerlink" title="Generators"></a>Generators</h2><h2 id="Map-and-WeakMaps"><a href="#Map-and-WeakMaps" class="headerlink" title="Map and WeakMaps"></a>Map and WeakMaps</h2><h2 id="Parameter-Object-Destructuring-with-Required-Values"><a href="#Parameter-Object-Destructuring-with-Required-Values" class="headerlink" title="Parameter Object Destructuring with Required Values"></a>Parameter Object Destructuring with Required Values</h2><h2 id="ES6-Rest-Parameters"><a href="#ES6-Rest-Parameters" class="headerlink" title="ES6 Rest Parameters"></a>ES6 Rest Parameters</h2>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-02-25T22:47:36.000Z"><a href="/2017/02/25/angular-dynamic-component/">2017-02-25</a></time>
       
       
@@ -442,62 +487,6 @@ kubectl logs &lt;POD-NAME&gt;
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-11-27T16:55:00.000Z"><a href="/2016/11/27/rabbitMq/">2016-11-27</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/11/27/rabbitMq/">RabbitMq</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="Presentation"><a href="#Presentation" class="headerlink" title="Presentation"></a>Presentation</h1><p>RabbitMQ is an open source messaging broker. It’s often referred to as a message-oriented middleware that implements the Advanced Message Queuing Protocol (AMQP).</p>
-<p>AMQP makes it easy to decouple applications.<br>RabbitMQ provides a common platform for sending and receiving messages, where it guarantee the safety of messages until they are received.<br>RabbitMQ guarantees data delivery, provides non-blocking operations, and sends push notifications.<br>RabbitMQ provides a variety of features, including the tuning of application performance, clustering, flexible routing, federation, and so on.<br>RabbitMQ is one of the most powerful open source message broker software that is widely used in the tech companies such as Mozilla, VMware, Google, AT&amp;T, and so on</p>
-<h2 id="Message-brokers"><a href="#Message-brokers" class="headerlink" title="Message brokers"></a>Message brokers</h2><p>A Message Broker is an architectural pattern that can receive messages from multiple destinations, determine the correct destination, and route the message along the correct route,<br>Message Brokers are centralized, in the architectural sense, to control and manage all messages. Therefore, all of the incoming and outgoing messages are sent through Message Brokers, which analyze and deliver the messages to their correct destination.</p>
-<h2 id="Message-Queues"><a href="#Message-Queues" class="headerlink" title="Message Queues"></a>Message Queues</h2><p>Message Queues provide concurrent and asynchronous operations to scale applications</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">channel.queueDeclare(queueName,</span> <span class="literal">true</span><span class="string">,</span> <span class="literal">false</span><span class="string">,</span> <span class="literal">false</span><span class="string">,</span> <span class="literal">null</span><span class="string">);</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>durable: This specifies whether the queue will survive server restarts. Note that it is required for a queue to be declared as durable if you want persistent messages to survive a server restart.</li>
-<li>exclusive: This specifies whether the queue is restricted to only this connection.</li>
-<li>autoDelete: This specifies whether the queue will be automatically deleted by the RabbitMQ broker as soon as it is not in use.</li>
-</ul>
-<p><a href="http://www.rabbitmq.com/releases/rabbitmq-java-client/current-javadoc/com/rabbitmq/client/Channel.html#queueDeclare--" target="_blank" rel="noopener">JavaDoc</a></p>
-<p>RabbitMq and EC2<br>we can easily install our RabbitMQ to the AWS EC2 instance and can save images of the RabbitMQ installed operating system</p>
-<h2 id="Virtual-hosts"><a href="#Virtual-hosts" class="headerlink" title="Virtual hosts"></a>Virtual hosts</h2><p>Virtual hosts are administrative containers; they allow to configure many logically independent brokers hosts within one single RabbitMQ instance, to let many different independent applications share the same RabbitMQ server. Each virtual host can be configured with its independent set of permissions, exchanges, and queues and will work in a logically separated environment.</p>
-<h1 id="Delayed-Message-Exchange"><a href="#Delayed-Message-Exchange" class="headerlink" title="Delayed Message Exchange"></a>Delayed Message Exchange</h1><p>1 - Ajouter le plugin (attention sur docker + ubuntu mettre le fichier 777)</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo docker cp rabbitmq_delayed_message_exchange-<span class="number">0.0</span>.<span class="number">1</span>.ez  <span class="number">88</span><span class="symbol">da72966ec8:</span>/usr/<span class="class"><span class="keyword">lib</span>/<span class="title">rabbitmq</span>/<span class="title">lib</span>/<span class="title">rabbitmq_server</span>-3.6.5/<span class="title">plugins</span>/<span class="title">rabbitmq_delayed_message_exchange</span>-0.0.1.<span class="title">ez</span></span></span><br><span class="line">sudo docker -it <span class="number">88</span>da72966ec8 bash</span><br></pre></td></tr></table></figure>
-<p>2 - Declarer un Exchange avec delay</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableRabbit</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">static</span> String queueName = <span class="string">"spring-boot2"</span>;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">static</span> String topicName = <span class="string">"spring-boot-exchange2"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function">Queue <span class="title">queue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Queue(queueName, <span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function">TopicExchange <span class="title">exchange</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        TopicExchange topic = <span class="keyword">new</span> TopicExchange(topicName);</span><br><span class="line">        topic.setDelayed(<span class="keyword">true</span>);</span><br><span class="line">        <span class="keyword">return</span> topic;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function">Binding <span class="title">binding</span><span class="params">(Queue queue, TopicExchange exchange)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> BindingBuilder.bind(queue).to(exchange).with(queueName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        SpringApplication.run(Application.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>3 - Lors de la reception, renvoyer le message avec un delai</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Receiver</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> RabbitTemplate rabbitTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Receiver</span><span class="params">(<span class="keyword">final</span> RabbitTemplate rabbitTemplate)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.rabbitTemplate = rabbitTemplate;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RabbitListener</span>(queues = Application.queueName)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">receiveMessage</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Received &lt;"</span> + message + <span class="string">"&gt;"</span>);</span><br><span class="line"></span><br><span class="line">        rabbitTemplate.convertAndSend(Application.topicName, Application.queueName, message, <span class="keyword">new</span> MessagePostProcessor() &#123;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Message <span class="title">postProcessMessage</span><span class="params">(Message message)</span> <span class="keyword">throws</span> AmqpException </span>&#123;</span><br><span class="line">                message.getMessageProperties().setDelay(<span class="number">15000</span>);</span><br><span class="line">                <span class="keyword">return</span> message;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
-<li><a href="http://docs.spring.io/spring-amqp/reference/html/_reference.html#delayed-message-exchange" target="_blank" rel="noopener">Spring AMQP</a></li>
-<li><a href="https://github.com/rabbitmq/rabbitmq-delayed-message-exchange" target="_blank" rel="noopener">RabbitMQ Delayed Message Plugin</a></li>
-<li><a href="http://stackoverflow.com/questions/17014584/how-to-create-a-delayed-queue-in-rabbitmq" target="_blank" rel="noopener">How to create a delayed queue in RabbitMQ?</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -521,7 +510,9 @@ kubectl logs &lt;POD-NAME&gt;
   <h3 class="title">Categories</h3>
   <ul class="entry">
   
-    <li><a href="/categories/java/">java</a><small>1</small></li>
+    <li><a href="/categories/java/">java</a><small>2</small></li>
+  
+    <li><a href="/categories/java/oca-javase8-1/">oca-javase8-1</a><small>2</small></li>
   
   </ul>
 </div>
@@ -572,9 +563,9 @@ kubectl logs &lt;POD-NAME&gt;
   
     <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
   
-    <li><a href="/tags/java/">java</a><small>6</small></li>
+    <li><a href="/tags/java/">java</a><small>7</small></li>
   
-    <li><a href="/tags/java8/">java8</a><small>4</small></li>
+    <li><a href="/tags/java8/">java8</a><small>5</small></li>
   
     <li><a href="/tags/javascript/">javascript</a><small>13</small></li>
   
