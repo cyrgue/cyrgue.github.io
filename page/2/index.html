@@ -49,6 +49,40 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-10-24T00:53:58.000Z"><a href="/2017/10/23/angular-select/">2017-10-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/10/23/angular-select/">angular-select</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Plusieurs façon d’utiliser un select avec ngModel</p>
+<p><a href="https://plnkr.co/edit/eX4XqgioBd9x8Uwat68n?p=preview" target="_blank" rel="noopener">https://plnkr.co/edit/eX4XqgioBd9x8Uwat68n?p=preview</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-10-21T13:38:01.000Z"><a href="/2017/10/21/ngrx/">2017-10-21</a></time>
       
       
@@ -510,49 +544,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-03-01T11:42:28.000Z"><a href="/2017/03/01/javascript-generality/">2017-03-01</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/03/01/javascript-generality/">javascript-generality</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p><a href="http://geekabyte.blogspot.ca/2014/01/javascript-effect-of-setting-settimeout.html" target="_blank" rel="noopener">http://geekabyte.blogspot.ca/2014/01/javascript-effect-of-setting-settimeout.html</a></p>
-<p>JavaScript being single threaded…When Javascript runs, it runs in a single thread of execution.</p>
-<p>JavaScript being non blocking I/O…<br>I would like to see I/O operations as operations that changes the state of stuff outside the JavaScript environment. So apart from the more common I/O operations like reading/writing to files system/database, reading/writing to network resources etc. I would include DOM Manipulation too as an I/O operation. As the DOM is apart from JavaScript execution but JavaScript can be used write to the DOM and read value from the DOM.</p>
-<p>it should be noted that I/O operations are generally expensive and takes time to completion.<br>So by JavaScript being non blocking I/O, it means that when it performs I/O operations, the single thread of execution does not pause and wait for the ongoing I/O operations to complete before moving on to the next task. This is possible because JavaScript makes use of callbacks for I/O operations. Which are set of instructions that can be predefined to execute whenever an I/O task completes (or in case of an Event, when an event occurs. Or in case of a Timer, when the delay expires).</p>
-<p>When an I/O operation is defined, you always have the option to define its callback. So when the single thread encounters such an I/O instruction, it starts the execution, takes the callback for the task (if defined) and registers it to be pushed into an event queue when done and it moves on to the next task in line.</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"hello"</span><span class="string">.substr</span><span class="params">(1)</span>; <span class="string">//</span> <span class="string">"ello"</span></span><br></pre></td></tr></table></figure>
-<h2 id="charAt"><a href="#charAt" class="headerlink" title="charAt()"></a>charAt()</h2><p>The charAt() method returns the specified character from a string.<br><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"hello"</span><span class="string">.charAt</span><span class="params">(0)</span>; <span class="string">//</span> <span class="string">"h"</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverse</span><span class="params">(s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> s.split(<span class="string">""</span>).<span class="built_in">reverse</span>().join(<span class="string">""</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPalindrom</span><span class="params">(str)</span></span> &#123;</span><br><span class="line">  <span class="keyword">return</span> str == <span class="built_in">reverse</span>(str);</span><br><span class="line">&#125;</span><br><span class="line">console.<span class="built_in">log</span>(isPalindrom(<span class="string">'LAVALe'</span>));</span><br></pre></td></tr></table></figure>
-<p><a href="https://jsbin.com/gigavev/edit?js,console" target="_blank" rel="noopener">https://jsbin.com/gigavev/edit?js,console</a></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPalindrom</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> isEqual = <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i&lt; str.length /<span class="number">2</span> ;i++) &#123;</span><br><span class="line">    isEqual = (str.charAt(i) === str.charAt(length<span class="number">-1</span>-i));</span><br><span class="line">    <span class="keyword">if</span>(!isEqual) &#123;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> isEqual;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(isPalindrom(<span class="string">'LAVALe'</span>));</span><br></pre></td></tr></table></figure>
-<h2 id="Closures"><a href="#Closures" class="headerlink" title="Closures"></a>Closures</h2><p><a href="http://stackoverflow.com/questions/111102/how-do-javascript-closures-work" target="_blank" rel="noopener">http://stackoverflow.com/questions/111102/how-do-javascript-closures-work</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -607,6 +598,8 @@
   
     <li><a href="/tags/branch/">branch</a><small>1</small></li>
   
+    <li><a href="/tags/collections/">collections</a><small>1</small></li>
+  
     <li><a href="/tags/componant/">componant</a><small>1</small></li>
   
     <li><a href="/tags/composant/">composant</a><small>1</small></li>
@@ -631,7 +624,7 @@
   
     <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
   
-    <li><a href="/tags/java/">java</a><small>7</small></li>
+    <li><a href="/tags/java/">java</a><small>8</small></li>
   
     <li><a href="/tags/java8/">java8</a><small>5</small></li>
   

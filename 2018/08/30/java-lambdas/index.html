@@ -91,6 +91,28 @@ B) Predicate&lt;Student&gt; ps = s -&gt; return s.getGpa() &gt;3;
 C) Predicate&lt;Student&gt; ps = s -&gt; { s.getGpa() &gt;3 }
 D) none of the above
 </code></pre><p>Response : D<br>    A : NO CONTEXT<br>    B : Error : no return in expression lambda<br>    C : Error : missing return in blocked lambda</p>
+<p>Anonymous Inner Classes<br>: Reason to use it : One time inner code<br>    Inner classes have a full access to all methods and instance variables of surrounding class, including private ones</p>
+<p> Separate Class</p>
+<ul>
+<li>Advantages : <pre><code>- Flexible : Can pass arguments to constructor
+- More reusable : loosely coupled
+</code></pre></li>
+<li>Desadvantage : <pre><code>- Need extra step to call methods in main app         
+</code></pre></li>
+</ul>
+<p>Lambdas</p>
+<ul>
+<li>Full access to code from surrounding class</li>
+<li>No confusion about meaning of “this”    </li>
+<li>Much more concise, succinct and readable</li>
+<li><p>Encourage a functional programming style</p>
+<p>No instance variables</p>
+</li>
+</ul>
+<h2 id="Review-of-Building-Genericized-Methods-and-Classes"><a href="#Review-of-Building-Genericized-Methods-and-Classes" class="headerlink" title="Review of Building Genericized Methods and Classes"></a>Review of Building Genericized Methods and Classes</h2><h2 id="Motivation-and-Overview"><a href="#Motivation-and-Overview" class="headerlink" title="Motivation and Overview"></a>Motivation and Overview</h2><h3 id="Advantages"><a href="#Advantages" class="headerlink" title="Advantages"></a>Advantages</h3><ul>
+<li>Concise and Expressive (/ a inner class) </li>
+<li>Encourage functional programming</li>
+</ul>
 
       
     </div>
@@ -193,6 +215,8 @@ D) none of the above
   
     <li><a href="/tags/branch/">branch</a><small>1</small></li>
   
+    <li><a href="/tags/collections/">collections</a><small>1</small></li>
+  
     <li><a href="/tags/componant/">componant</a><small>1</small></li>
   
     <li><a href="/tags/composant/">composant</a><small>1</small></li>
@@ -217,7 +241,7 @@ D) none of the above
   
     <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
   
-    <li><a href="/tags/java/">java</a><small>7</small></li>
+    <li><a href="/tags/java/">java</a><small>8</small></li>
   
     <li><a href="/tags/java8/">java8</a><small>5</small></li>
   
