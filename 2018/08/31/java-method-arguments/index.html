@@ -71,18 +71,92 @@ Primitive : Value is “The Va">
 <li>Primitive : Value is “The Value”</li>
 <li>Object/Reference : Value is the Pointer (the reference) Adresse Memoire qui pointe vers l’objet</li>
 </ul>
+<p>Q??<br>Q?? </p>
+<p>Q16</p>
+<p>Q17</p>
+<h2 id="Classes-Wrapper"><a href="#Classes-Wrapper" class="headerlink" title="Classes Wrapper"></a>Classes Wrapper</h2><p>Ex: </p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Ex</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>&#123;</span><br><span class="line">        Integer x = <span class="number">99</span>;</span><br><span class="line">        Ex.<span class="keyword">add</span>(x); <span class="comment">//copy de la valeur de l'adresse memoire</span></span><br><span class="line">        System.<span class="keyword">out</span>.println(<span class="string">"Valeur de x "</span> + x); -&gt; <span class="number">99</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">add</span>(<span class="params">Integer y</span>) </span>&#123;</span><br><span class="line">        y = y + <span class="number">1</span>; <span class="comment">// y est converti en int pour effectuer le +, puis autobxing en Integer en créant un nouvel objet</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Remarques"><a href="#Remarques" class="headerlink" title="Remarques"></a>Remarques</h2><ul>
 <li>String est IMMUTABLE</li>
 <li>StringBuffer n’est pas IMMUTABLE</li>
 <li>Les classes Wrappers des primitives sont IMMUTABLES </li>
 </ul>
+<h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><pre><code>package cyrgue.methodArguments;
 
+public class Ex {
+
+    public static void main(String[] args) {
+        int x = 99;
+        Ex.add(x); //copy de la valeur
+        System.out.println(&quot;Valeur de x &quot; + x);
+
+        // Wrapper de primitives
+        Integer a = 99;
+        add(a);
+        System.out.println(&quot;Valeur de a : &quot; + a);
+
+        int [] arr = {99};
+        Ex.add(arr); //copy de l&apos;adresse memoire
+        System.out.println(&quot;Valeur de arr[0] &quot; + arr[0] );
+
+
+        StringBuilder sb = new StringBuilder(&quot;Hello&quot;);
+        Ex.add(sb); //copy de l&apos;adresse memoire
+        System.out.println(&quot;Valeur de sb &quot; + sb );
+
+
+        Ex.appender(sb); //copy de l&apos;adresse memoire
+        System.out.println(&quot;Valeur de sb &quot; + sb );
+
+
+
+        String str = &quot;Bonjour&quot;;
+        Ex.changeStr(str);
+        System.out.println(&quot;Valeur de str &quot; + str);
+
+
+    }
+
+    private static void changeStr(String str) {
+        str += &quot; Les amis&quot;;  // autre object créé avec nouvelle adresse mémoire
+    }
+
+    private static void add(StringBuilder sb) {
+        sb = new StringBuilder(&quot;GoodBye&quot;); // autre object créé avec nouvelle adresse mémoire
+    }
+
+    private static void appender(StringBuilder sb) {
+        sb.append(&quot; World&quot;); // on travaille sur le meme object
+    }
+
+
+    public static void add(int y) {
+        y = y + 1;
+    }
+
+    public static void add(Integer y) {
+        y = y + 1; // y est converti en int pour effectuer le +, puis autobxing en Integer en créant un nouvel objet
+    }
+
+    public static void add(int[] y) {
+        y[0] = y[0] + 1; //
+    }
+
+
+
+}
+</code></pre>
       
     </div>
     <footer>
       
         
         
+  
+  <div class="tags">
+    <a href="/tags/java/">java</a>
+  </div>
+
         
   <div class="addthis addthis_toolbox addthis_default_style">
     
@@ -199,7 +273,9 @@ Primitive : Value is “The Va">
   
     <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
   
-    <li><a href="/tags/java/">java</a><small>8</small></li>
+    <li><a href="/tags/java/">java</a><small>9</small></li>
+  
+    <li><a href="/tags/java-java9/">java java9</a><small>1</small></li>
   
     <li><a href="/tags/java8/">java8</a><small>5</small></li>
   

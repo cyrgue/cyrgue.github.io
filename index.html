@@ -49,6 +49,44 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2018-09-28T12:19:00.000Z"><a href="/2018/09/28/java-9/">2018-09-28</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/09/28/java-9/">java_9</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Online-Training-What’s-New-In-Java"><a href="#Online-Training-What’s-New-In-Java" class="headerlink" title="Online Training : What’s New In Java"></a>Online Training : What’s New In Java</h1><ul>
+<li>Training Page : [Modern Java Recipes|<a href="https://www.safaribooksonline.com/live-training/courses/whats-new-in-java/0636920219484/]" target="_blank" rel="noopener">https://www.safaribooksonline.com/live-training/courses/whats-new-in-java/0636920219484/]</a></li>
+<li>Document : [|<a href="https://docs.google.com/document/d/1RDclyK0UmQBuxWxU1d-vM0mtZo76QyKYRFBBxHz6GcA/edit]" target="_blank" rel="noopener">https://docs.google.com/document/d/1RDclyK0UmQBuxWxU1d-vM0mtZo76QyKYRFBBxHz6GcA/edit]</a></li>
+<li>Livre : [Modern Java Recipes|<a href="https://www.safaribooksonline.com/library/view/modern-java-recipes/9781491973165/]" target="_blank" rel="noopener">https://www.safaribooksonline.com/library/view/modern-java-recipes/9781491973165/]</a></li>
+<li>[Java 8 and 9 Fundamentals: Modern Java Development with Lambdas, Streams, and Introducing Java 9’s JShell and the Java Platform Module System (JPMS) | <a href="https://www.safaribooksonline.com/videos/java-8-and/9780133489354]" target="_blank" rel="noopener">https://www.safaribooksonline.com/videos/java-8-and/9780133489354]</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2018-09-03T08:19:03.000Z"><a href="/2018/09/03/java-collections/">2018-09-03</a></time>
       
       
@@ -137,12 +175,81 @@
 <li>Primitive : Value is “The Value”</li>
 <li>Object/Reference : Value is the Pointer (the reference) Adresse Memoire qui pointe vers l’objet</li>
 </ul>
+<p>Q??<br>Q?? </p>
+<p>Q16</p>
+<p>Q17</p>
+<h2 id="Classes-Wrapper"><a href="#Classes-Wrapper" class="headerlink" title="Classes Wrapper"></a>Classes Wrapper</h2><p>Ex: </p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Ex</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>&#123;</span><br><span class="line">        Integer x = <span class="number">99</span>;</span><br><span class="line">        Ex.<span class="keyword">add</span>(x); <span class="comment">//copy de la valeur de l'adresse memoire</span></span><br><span class="line">        System.<span class="keyword">out</span>.println(<span class="string">"Valeur de x "</span> + x); -&gt; <span class="number">99</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">add</span>(<span class="params">Integer y</span>) </span>&#123;</span><br><span class="line">        y = y + <span class="number">1</span>; <span class="comment">// y est converti en int pour effectuer le +, puis autobxing en Integer en créant un nouvel objet</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Remarques"><a href="#Remarques" class="headerlink" title="Remarques"></a>Remarques</h2><ul>
 <li>String est IMMUTABLE</li>
 <li>StringBuffer n’est pas IMMUTABLE</li>
 <li>Les classes Wrappers des primitives sont IMMUTABLES </li>
 </ul>
+<h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><pre><code>package cyrgue.methodArguments;
 
+public class Ex {
+
+    public static void main(String[] args) {
+        int x = 99;
+        Ex.add(x); //copy de la valeur
+        System.out.println(&quot;Valeur de x &quot; + x);
+
+        // Wrapper de primitives
+        Integer a = 99;
+        add(a);
+        System.out.println(&quot;Valeur de a : &quot; + a);
+
+        int [] arr = {99};
+        Ex.add(arr); //copy de l&apos;adresse memoire
+        System.out.println(&quot;Valeur de arr[0] &quot; + arr[0] );
+
+
+        StringBuilder sb = new StringBuilder(&quot;Hello&quot;);
+        Ex.add(sb); //copy de l&apos;adresse memoire
+        System.out.println(&quot;Valeur de sb &quot; + sb );
+
+
+        Ex.appender(sb); //copy de l&apos;adresse memoire
+        System.out.println(&quot;Valeur de sb &quot; + sb );
+
+
+
+        String str = &quot;Bonjour&quot;;
+        Ex.changeStr(str);
+        System.out.println(&quot;Valeur de str &quot; + str);
+
+
+    }
+
+    private static void changeStr(String str) {
+        str += &quot; Les amis&quot;;  // autre object créé avec nouvelle adresse mémoire
+    }
+
+    private static void add(StringBuilder sb) {
+        sb = new StringBuilder(&quot;GoodBye&quot;); // autre object créé avec nouvelle adresse mémoire
+    }
+
+    private static void appender(StringBuilder sb) {
+        sb.append(&quot; World&quot;); // on travaille sur le meme object
+    }
+
+
+    public static void add(int y) {
+        y = y + 1;
+    }
+
+    public static void add(Integer y) {
+        y = y + 1; // y est converti en int pour effectuer le +, puis autobxing en Integer en créant un nouvel objet
+    }
+
+    public static void add(int[] y) {
+        y[0] = y[0] + 1; //
+    }
+
+
+
+}
+</code></pre>
       
     </div>
     <footer>
@@ -317,18 +424,14 @@ E) throws FileNotFoundException
         <h2 id="Exceptions"><a href="#Exceptions" class="headerlink" title="Exceptions"></a>Exceptions</h2><p><a href="/2018/08/30/java-exceptions">Manage Exception</a></p>
 <h2 id="Casting"><a href="#Casting" class="headerlink" title="Casting"></a>Casting</h2><p><a href="/2018/08/30/java-casting">Determine when casting is necessary</a> </p>
 <h2 id="Lambdas"><a href="#Lambdas" class="headerlink" title="Lambdas"></a>Lambdas</h2><p><a href="/2018/08/30/java-lambdas">Write a simple Lambda expression that consumes a Lambda Predicate expression</a></p>
-<h2 id="Value-and-Reference"><a href="#Value-and-Reference" class="headerlink" title="Value and Reference"></a>Value and Reference</h2><p><a href="/2018/08/30/java-lambdas">Determine the effect upon object references and primitive values when they are passed into methods that change the values</a></p>
+<p>T:150mn -&gt; </p>
+<h2 id="Value-and-Reference"><a href="#Value-and-Reference" class="headerlink" title="Value and Reference"></a>Value and Reference</h2><p><a href="/2018/08/31/java-method-arguments">Determine the effect upon object references and primitive values when they are passed into methods that change the values</a></p>
+<p>T:275mn -&gt; 320mn</p>
 <h2 id="Equality"><a href="#Equality" class="headerlink" title="Equality"></a>Equality</h2><p>[Test equality between Strings and other objects using == and equals ()] ()</p>
+<p>T:320mn -&gt; 360mn</p>
 <h2 id="Constructor"><a href="#Constructor" class="headerlink" title="Constructor"></a>Constructor</h2><p><a href="">Create and overload constructors; differentiate between default and user-defined constructors</a><br><a href="">Use super and this to access objects and constructors</a></p>
-<p>##Liskov Substitution##</p>
-<p>if X “is a” Y then X must be a valid (unsurpising) substitution for Y in all situations</p>
-<p>Java Overriding</p>
-<ul>
-<li>appropriate return type</li>
-<li>appropriate accessibility (encapsulation)</li>
-<li>appropriate exception behavior </li>
-</ul>
-<h2 id="slide-30"><a href="#slide-30" class="headerlink" title="slide 30 "></a>slide 30 </h2>
+<p>T:372mn -&gt; end (422mn)</p>
+
       
     </div>
     <footer>
@@ -361,9 +464,9 @@ E) throws FileNotFoundException
     <div class="entry">
       
         <p>Avant Java 8, il n’existait que deux types de références, des valeurs primitives (char c = ‘C’ ;) et des références vers des objets (String s = new String(“Hello”);)<br>Depuis Java 8, il est possible d’avoir des références vers des morceaux de codes anonymes (des closures) : les lambdas</p>
-<p>Une lambda est la redéfinition d’une méthode d’une interface fonctionnelle sans avoir à faire une classe anonyme, donc gain de ligne de code et de visibilité.<br>On utilise le nouvel opérateur  -&gt;<br>lambda permet de redéfinir une méthode <strong>abstraite</strong> d’une interface fonctionnelle donc, par conséquent, elle doit répondre à la signature de la méthode concernée.</p>
+<p>Une lambda est la redéfinition d’une méthode méthode <strong>abstraite</strong> d’une interface fonctionnelle (elle doit répondre à la signature de la méthode concernée) sans avoir à faire une classe anonyme, donc gain de ligne de code et de visibilité.<br>On utilise le nouvel opérateur  -&gt;</p>
 <p>ex simple:<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="params">()</span> -&gt;</span> <span class="number">137</span>;</span><br></pre></td></tr></table></figure></p>
-<p>ex avec une interface fonctionnelle<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sdz.comportement;</span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Dialoguer</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">parler</span><span class="params">(String question)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Dialoguer d = (s) -&gt; System.out.println(<span class="string">"Tu as dis : "</span> + s);</span><br><span class="line">d.parler(<span class="string">"Bonjour"</span>);</span><br></pre></td></tr></table></figure></p>
+<p>ex avec une interface fonctionnelle<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cyrgue.lambdas;</span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">StudentCriterion</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(Student student)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">StudentCriterion criteria = (s) -&gt; s.getGpa() &gt; <span class="number">3.0</span></span><br></pre></td></tr></table></figure></p>
 <p>Donc pour pouvoir utiliser une lambda, on doit avoir</p>
 <ul>
 <li>une interface avec seulement <strong>une seule méthode abstraite</strong> (peux avoir d’autre méthode)à</li>
@@ -371,8 +474,12 @@ E) throws FileNotFoundException
 </ul>
 <p>Il existe </p>
 <ul>
-<li>des expressions lambda<br>‘’’<br>s -&gt; s.getGpa() &gt; 2.7<br>‘’’</li>
-<li>blocked lambda<br>‘’’<br>s -&gt; { return s.getGpa() &gt; 2.7;}<br>‘’’</li>
+<li><p>des expressions lambda</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">s</span> <span class="selector-tag">-</span>&gt; <span class="selector-tag">s</span><span class="selector-class">.getGpa</span>() &gt; 2<span class="selector-class">.7</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>blocked lambda  </p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s -&gt; &#123; <span class="keyword">return</span> s.getGpa() &gt; <span class="number">2.7</span>;&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 <p>return est utilisé seulement dans une blocked lambda (le ; aussi)</p>
 <h2 id="Predicate"><a href="#Predicate" class="headerlink" title="Predicate"></a>Predicate</h2><p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html" target="_blank" rel="noopener">Api Interface Predicate</a></p>
@@ -412,7 +519,51 @@ D) none of the above
 <h2 id="Review-of-Building-Genericized-Methods-and-Classes"><a href="#Review-of-Building-Genericized-Methods-and-Classes" class="headerlink" title="Review of Building Genericized Methods and Classes"></a>Review of Building Genericized Methods and Classes</h2><h2 id="Motivation-and-Overview"><a href="#Motivation-and-Overview" class="headerlink" title="Motivation and Overview"></a>Motivation and Overview</h2><h3 id="Advantages"><a href="#Advantages" class="headerlink" title="Advantages"></a>Advantages</h3><ul>
 <li>Concise and Expressive (/ a inner class) </li>
 <li>Encourage functional programming</li>
+<li>Support Streams (streams are wrappers around data sources(arrays, collections…) (map/reduce/filter), use lazy evaluation and can be made parrallel automatically by compiler </li>
 </ul>
+<h2 id="Type-inferencing"><a href="#Type-inferencing" class="headerlink" title="Type inferencing"></a>Type inferencing</h2><p>Types in argument list can <strong>usually</strong> be omitted. Java checks at compile time the type in interface (not at runtime), so not slower</p>
+<h2 id="Omitting-parens"><a href="#Omitting-parens" class="headerlink" title="Omitting parens ()"></a>Omitting parens ()</h2><p>If method takes a single argument, then the parens () in the argument list are optional</p>
+<h2 id="The-FunctionalInterface-Annotation"><a href="#The-FunctionalInterface-Annotation" class="headerlink" title="The @FunctionalInterface Annotation"></a>The @FunctionalInterface Annotation</h2><p>-&gt; Catches errors at compile time (to specify the interface must have only one abstract method)<br>-&gt; Expresses design intent<br>-&gt; But not technically required </p>
+<h2 id="Method-references"><a href="#Method-references" class="headerlink" title="Method references"></a>Method references</h2><p>ClassName::staticMethodName<br>variable:instanceMethod<br>Class:instanceMethod<br>ClassOrType::new (constructor)</p>
+<p>The type is defined by the Context</p>
+<p>Supplier<br>Constructor Reference<br>Array Constructor Reference</p>
+<h2 id="Lambda-Variable-Scoping-in-Lambdas"><a href="#Lambda-Variable-Scoping-in-Lambdas" class="headerlink" title="Lambda Variable Scoping in Lambdas"></a>Lambda Variable Scoping in Lambdas</h2><ul>
+<li>this variable refers to the outer class, not to the anonymous inner class that the lambda is turned into</li>
+<li></li>
+</ul>
+<h2 id="4-Lambda-Building-Blocks-in-java-util-function"><a href="#4-Lambda-Building-Blocks-in-java-util-function" class="headerlink" title="4 - Lambda Building Blocks in java.util.function"></a>4 - Lambda Building Blocks in java.util.function</h2><h3 id="4-1-Lambda-Building-Blocks"><a href="#4-1-Lambda-Building-Blocks" class="headerlink" title="4.1 - Lambda Building Blocks"></a>4.1 - Lambda Building Blocks</h3><h3 id="4-2-Simply-Typed-Building-Blocks"><a href="#4-2-Simply-Typed-Building-Blocks" class="headerlink" title="4.2 - Simply-Typed Building Blocks"></a>4.2 - Simply-Typed Building Blocks</h3><ul>
+<li>java.util.function : many reusable interfaces<ul>
+<li>Simply typed interfaces : IntPredicate, LongUnaryOperator</li>
+<li>Generically typed Interfaces : Predicate, Function, Consumer, Supplier, BinaryOperator</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-3-Predicate"><a href="#4-3-Predicate" class="headerlink" title="4.3 - Predicate"></a>4.3 - Predicate</h3><p>  boolean test (T t)</p>
+<p>  Used to filter list, to have a subset of the list (or use the built-in filter method in Stream)       </p>
+<h3 id="4-4-Function"><a href="#4-4-Function" class="headerlink" title="4.4 - Function"></a>4.4 - Function</h3><p>  R apply(T t)</p>
+<p>  Transform a value or collection of values</p>
+<h3 id="4-5-Other-Generic-Building-Blocks"><a href="#4-5-Other-Generic-Building-Blocks" class="headerlink" title="4.5 - Other Generic Building Blocks"></a>4.5 - Other Generic Building Blocks</h3><ul>
+<li>BinaryOperator : T apply (T t1, T t2)</li>
+<li>Consumer : void accept(T t)</li>
+<li>Supplier : T get()</li>
+</ul>
+<hr>
+<h1 id="Programming-with-Java-8-Lambdas-and-Streams-LIVE-ONLINE-TRAINING"><a href="#Programming-with-Java-8-Lambdas-and-Streams-LIVE-ONLINE-TRAINING" class="headerlink" title="Programming with Java 8 Lambdas and Streams -  LIVE ONLINE TRAINING"></a>Programming with Java 8 Lambdas and Streams -  LIVE ONLINE TRAINING</h1><p>Difference between OOP () and functional Programing<br>Java 8 combined :  </p>
+<ul>
+<li>Object-oriented Programing (imperative paradigm, sequential code), hierarchical data abstraction, state is encapsulated by methods thats perform itertive statements</li>
+<li>functinal programming is a declarative paradigm<pre><code>(focus on what instead of how)
+Pure function
+Function composition : the output serves as imput for next one
+Changing State &amp; mutable data ARE DISCOURAGED
+Focus on Immutable objects 
+</code></pre></li>
+</ul>
+<h2 id="Overview-of-Lambda-Expressions"><a href="#Overview-of-Lambda-Expressions" class="headerlink" title="Overview of Lambda Expressions"></a>Overview of Lambda Expressions</h2><p>A Lambda expression is an unnamed block of code (with optional parameters) that ca be stored , passed around and executed later (in another context, another thread…)</p>
+<p>Values of private fieds can be updated but not params</p>
+<p>Make the code more generable </p>
+<h2 id="Method-References"><a href="#Method-References" class="headerlink" title="Method References"></a>Method References</h2><pre><code>:: 
+</code></pre><h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><p><a href="https://github.com/douglascraigschmidt/LiveLessons" target="_blank" rel="noopener">https://github.com/douglascraigschmidt/LiveLessons</a> </p>
+<p>update</p>
 
       
     </div>
@@ -522,65 +673,6 @@ D) none of the above
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2018-08-29T18:43:27.000Z"><a href="/2018/08/29/java-polymorphism/">2018-08-29</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2018/08/29/java-polymorphism/">java_polymorphism</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="Polymorphism"><a href="#Polymorphism" class="headerlink" title="Polymorphism"></a>Polymorphism</h1><p>le polymorphisme est relatif aux méthodes des objets.<br>Le polymorphisme veut dire que le même service (opération ou méthode), peut avoir un comportement différent selon les situations.<br>Le polymorphisme permet alors d’appeler la bonne méthode selon le type d’objet</p>
-<p>On distingue généralement trois types de polymorphisme :</p>
-<p>Le <strong>polymorphisme ad hoc</strong> (également surcharge ou en anglais <strong>overloading</strong>)<br>Le <strong>polymorphisme paramétrique</strong> (également généricité ou en anglais <strong>template</strong>)<br>Le <strong>polymorphisme d’héritage</strong> (également redéfinition, spécialisation ou en anglais <strong>overriding</strong>)</p>
-<h2 id="Le-polymorphisme-ad-hoc"><a href="#Le-polymorphisme-ad-hoc" class="headerlink" title="Le polymorphisme ad hoc"></a>Le polymorphisme ad hoc</h2><p>Le polymorphisme ad hoc permet d’avoir des fonctions de même nom, avec des<br>fonctionnalités similaires, dans des classes sans aucun rapport entre elles (si ce n’est bien sûr d’être des filles de la classe objet). Par exemple, la classe complexe, la classe image et la classe lien peuvent avoir chacune une fonction “afficher”. Cela permettra de ne pas avoir à se soucier du type de l’objet que l’on a si on souhaite l’afficher à l’écran. </p>
-<h2 id="Polymorphisme-parametrable"><a href="#Polymorphisme-parametrable" class="headerlink" title="Polymorphisme paramétrable"></a>Polymorphisme paramétrable</h2><p>Le polymorphisme paramétrique, appelé généricité, représente la possibilité de définir plusieurs fonctions de même nom mais possédant des paramètres différents (en nombre et/ou en type). Le polymorphisme paramétrique rend ainsi possible le choix automatique de la bonne méthode à adopter en fonction du type de donnée passée en paramètre. </p>
-<p>Ainsi, on peut par exemple définir plusieurs méthodes homonymes addition() effectuant une somme de valeurs.</p>
-<h2 id="Polymorphisme-d’heritage"><a href="#Polymorphisme-d’heritage" class="headerlink" title="Polymorphisme d’héritage"></a>Polymorphisme d’héritage</h2><p>La possibilité de redéfinir une méthode dans des classes héritant d’une classe de base s’appelle la spécialisation. Il est alors possible d’appeler la méthode d’un objet sans se soucier de son type intrinsèque : il s’agit du polymorphisme d’héritage.</p>
-<h2 id="Resume"><a href="#Resume" class="headerlink" title="Resume"></a>Resume</h2><ul>
-<li>**The behavior you get depends on the type of the object you send the message not on the type of the variable (reference)</li>
-<li><strong>RETURN TYPE IS NOT CONSIDERED</strong></li>
-<li><strong>IDENTITY IS THE NAME AND THE ARG TYPES</strong></li>
-</ul>
-<p><img src="/img/java/oca-javase8/polymophism1.png?raw=true" alt="Polymorphisme" title="Polymorphisme"><br><img src="/img/java/oca-javase8/polymophism2.png?raw=true" alt="Polymorphisme" title="Polymorphisme"><br><img src="/img/java/oca-javase8/polymophism3.png?raw=true" alt="Polymorphisme" title="Polymorphisme">    </p>
-<p>The type of the varialbe defines what you could do<br>The type of the object define the behavior you get</p>
-<p>You can mix overloading and overriding</p>
-<p><strong>overriding must not cause surprises</strong></p>
-<p>You can add @Override Annotation to validate that you want to do an Override in child class<br>not mandatory but will validate that you don’t have done a typo or missing arguments</p>
-<p><img src="/img/java/oca-javase8/polymophism5.png?raw=true" alt="Polymorphisme" title="Polymorphisme"></p>
-<h2 id="Exemple"><a href="#Exemple" class="headerlink" title="Exemple"></a>Exemple</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> polymorph;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">showMe</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"I'm a Parent!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">showMe</span><span class="params">()</span> </span>&#123; <span class="comment">// Name and arg types are identical</span></span><br><span class="line">        System.out.println(<span class="string">"I'm a Child!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example1</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Parent p = <span class="keyword">new</span> Parent();</span><br><span class="line">        <span class="comment">//  Parent p = new Child();</span></span><br><span class="line">        p.showMe();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Exercice"><a href="#Exercice" class="headerlink" title="Exercice"></a>Exercice</h2><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span> </span>&#123; </span><br><span class="line">    void doStuff() &#123; </span><br><span class="line">        sout(<span class="string">"I'm an X"</span>); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Y</span> <span class="keyword">extends</span> <span class="title">X</span> </span>&#123; </span><br><span class="line">    void doStuff2() &#123; </span><br><span class="line">        sout(<span class="string">"I'm a Y"</span>); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>given:<br><figure class="highlight pony"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">X</span> x = <span class="function"><span class="keyword">new</span> <span class="title">X</span>();</span></span><br><span class="line"><span class="function"><span class="title">x</span>.<span class="title">doStuff2</span>();</span></span><br></pre></td></tr></table></figure></p>
-<p>What happens?<br>    A) I’m an X<br>    B) I’m a Y<br>    C) Fails.</p>
-<p>Response : C<br>    X does not have a method doStuff2()</p>
-<p><img src="/img/java/oca-javase8/polymophism4.png?raw=true" alt="Polymorphisme" title="Polymorphisme"></p>
-<p>given<br><figure class="highlight pony"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">X</span> x = <span class="function"><span class="keyword">new</span> <span class="title">Y</span>();</span></span><br><span class="line"><span class="function"><span class="title">x</span>.<span class="title">doStuff2</span>();</span></span><br></pre></td></tr></table></figure></p>
-<p>What happens?<br>    A) I’m an X<br>    B) I’m a Y<br>    C) Fails.</p>
-<p>Response : C<br>    X does not have a method doStuff2()    </p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -659,7 +751,9 @@ D) none of the above
   
     <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
   
-    <li><a href="/tags/java/">java</a><small>8</small></li>
+    <li><a href="/tags/java/">java</a><small>9</small></li>
+  
+    <li><a href="/tags/java-java9/">java java9</a><small>1</small></li>
   
     <li><a href="/tags/java8/">java8</a><small>5</small></li>
   

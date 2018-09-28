@@ -61,9 +61,9 @@
     <div class="entry">
       
         <p>Avant Java 8, il n’existait que deux types de références, des valeurs primitives (char c = ‘C’ ;) et des références vers des objets (String s = new String(“Hello”);)<br>Depuis Java 8, il est possible d’avoir des références vers des morceaux de codes anonymes (des closures) : les lambdas</p>
-<p>Une lambda est la redéfinition d’une méthode d’une interface fonctionnelle sans avoir à faire une classe anonyme, donc gain de ligne de code et de visibilité.<br>On utilise le nouvel opérateur  -&gt;<br>lambda permet de redéfinir une méthode <strong>abstraite</strong> d’une interface fonctionnelle donc, par conséquent, elle doit répondre à la signature de la méthode concernée.</p>
+<p>Une lambda est la redéfinition d’une méthode méthode <strong>abstraite</strong> d’une interface fonctionnelle (elle doit répondre à la signature de la méthode concernée) sans avoir à faire une classe anonyme, donc gain de ligne de code et de visibilité.<br>On utilise le nouvel opérateur  -&gt;</p>
 <p>ex simple:<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="params">()</span> -&gt;</span> <span class="number">137</span>;</span><br></pre></td></tr></table></figure></p>
-<p>ex avec une interface fonctionnelle<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sdz.comportement;</span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Dialoguer</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">parler</span><span class="params">(String question)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Dialoguer d = (s) -&gt; System.out.println(<span class="string">"Tu as dis : "</span> + s);</span><br><span class="line">d.parler(<span class="string">"Bonjour"</span>);</span><br></pre></td></tr></table></figure></p>
+<p>ex avec une interface fonctionnelle<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cyrgue.lambdas;</span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">StudentCriterion</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(Student student)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">StudentCriterion criteria = (s) -&gt; s.getGpa() &gt; <span class="number">3.0</span></span><br></pre></td></tr></table></figure></p>
 <p>Donc pour pouvoir utiliser une lambda, on doit avoir</p>
 <ul>
 <li>une interface avec seulement <strong>une seule méthode abstraite</strong> (peux avoir d’autre méthode)à</li>
@@ -71,8 +71,12 @@
 </ul>
 <p>Il existe </p>
 <ul>
-<li>des expressions lambda<br>‘’’<br>s -&gt; s.getGpa() &gt; 2.7<br>‘’’</li>
-<li>blocked lambda<br>‘’’<br>s -&gt; { return s.getGpa() &gt; 2.7;}<br>‘’’</li>
+<li><p>des expressions lambda</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">s</span> <span class="selector-tag">-</span>&gt; <span class="selector-tag">s</span><span class="selector-class">.getGpa</span>() &gt; 2<span class="selector-class">.7</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>blocked lambda  </p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s -&gt; &#123; <span class="keyword">return</span> s.getGpa() &gt; <span class="number">2.7</span>;&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 <p>return est utilisé seulement dans une blocked lambda (le ; aussi)</p>
 <h2 id="Predicate"><a href="#Predicate" class="headerlink" title="Predicate"></a>Predicate</h2><p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html" target="_blank" rel="noopener">Api Interface Predicate</a></p>
@@ -112,7 +116,51 @@ D) none of the above
 <h2 id="Review-of-Building-Genericized-Methods-and-Classes"><a href="#Review-of-Building-Genericized-Methods-and-Classes" class="headerlink" title="Review of Building Genericized Methods and Classes"></a>Review of Building Genericized Methods and Classes</h2><h2 id="Motivation-and-Overview"><a href="#Motivation-and-Overview" class="headerlink" title="Motivation and Overview"></a>Motivation and Overview</h2><h3 id="Advantages"><a href="#Advantages" class="headerlink" title="Advantages"></a>Advantages</h3><ul>
 <li>Concise and Expressive (/ a inner class) </li>
 <li>Encourage functional programming</li>
+<li>Support Streams (streams are wrappers around data sources(arrays, collections…) (map/reduce/filter), use lazy evaluation and can be made parrallel automatically by compiler </li>
 </ul>
+<h2 id="Type-inferencing"><a href="#Type-inferencing" class="headerlink" title="Type inferencing"></a>Type inferencing</h2><p>Types in argument list can <strong>usually</strong> be omitted. Java checks at compile time the type in interface (not at runtime), so not slower</p>
+<h2 id="Omitting-parens"><a href="#Omitting-parens" class="headerlink" title="Omitting parens ()"></a>Omitting parens ()</h2><p>If method takes a single argument, then the parens () in the argument list are optional</p>
+<h2 id="The-FunctionalInterface-Annotation"><a href="#The-FunctionalInterface-Annotation" class="headerlink" title="The @FunctionalInterface Annotation"></a>The @FunctionalInterface Annotation</h2><p>-&gt; Catches errors at compile time (to specify the interface must have only one abstract method)<br>-&gt; Expresses design intent<br>-&gt; But not technically required </p>
+<h2 id="Method-references"><a href="#Method-references" class="headerlink" title="Method references"></a>Method references</h2><p>ClassName::staticMethodName<br>variable:instanceMethod<br>Class:instanceMethod<br>ClassOrType::new (constructor)</p>
+<p>The type is defined by the Context</p>
+<p>Supplier<br>Constructor Reference<br>Array Constructor Reference</p>
+<h2 id="Lambda-Variable-Scoping-in-Lambdas"><a href="#Lambda-Variable-Scoping-in-Lambdas" class="headerlink" title="Lambda Variable Scoping in Lambdas"></a>Lambda Variable Scoping in Lambdas</h2><ul>
+<li>this variable refers to the outer class, not to the anonymous inner class that the lambda is turned into</li>
+<li></li>
+</ul>
+<h2 id="4-Lambda-Building-Blocks-in-java-util-function"><a href="#4-Lambda-Building-Blocks-in-java-util-function" class="headerlink" title="4 - Lambda Building Blocks in java.util.function"></a>4 - Lambda Building Blocks in java.util.function</h2><h3 id="4-1-Lambda-Building-Blocks"><a href="#4-1-Lambda-Building-Blocks" class="headerlink" title="4.1 - Lambda Building Blocks"></a>4.1 - Lambda Building Blocks</h3><h3 id="4-2-Simply-Typed-Building-Blocks"><a href="#4-2-Simply-Typed-Building-Blocks" class="headerlink" title="4.2 - Simply-Typed Building Blocks"></a>4.2 - Simply-Typed Building Blocks</h3><ul>
+<li>java.util.function : many reusable interfaces<ul>
+<li>Simply typed interfaces : IntPredicate, LongUnaryOperator</li>
+<li>Generically typed Interfaces : Predicate, Function, Consumer, Supplier, BinaryOperator</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-3-Predicate"><a href="#4-3-Predicate" class="headerlink" title="4.3 - Predicate"></a>4.3 - Predicate</h3><p>  boolean test (T t)</p>
+<p>  Used to filter list, to have a subset of the list (or use the built-in filter method in Stream)       </p>
+<h3 id="4-4-Function"><a href="#4-4-Function" class="headerlink" title="4.4 - Function"></a>4.4 - Function</h3><p>  R apply(T t)</p>
+<p>  Transform a value or collection of values</p>
+<h3 id="4-5-Other-Generic-Building-Blocks"><a href="#4-5-Other-Generic-Building-Blocks" class="headerlink" title="4.5 - Other Generic Building Blocks"></a>4.5 - Other Generic Building Blocks</h3><ul>
+<li>BinaryOperator : T apply (T t1, T t2)</li>
+<li>Consumer : void accept(T t)</li>
+<li>Supplier : T get()</li>
+</ul>
+<hr>
+<h1 id="Programming-with-Java-8-Lambdas-and-Streams-LIVE-ONLINE-TRAINING"><a href="#Programming-with-Java-8-Lambdas-and-Streams-LIVE-ONLINE-TRAINING" class="headerlink" title="Programming with Java 8 Lambdas and Streams -  LIVE ONLINE TRAINING"></a>Programming with Java 8 Lambdas and Streams -  LIVE ONLINE TRAINING</h1><p>Difference between OOP () and functional Programing<br>Java 8 combined :  </p>
+<ul>
+<li>Object-oriented Programing (imperative paradigm, sequential code), hierarchical data abstraction, state is encapsulated by methods thats perform itertive statements</li>
+<li>functinal programming is a declarative paradigm<pre><code>(focus on what instead of how)
+Pure function
+Function composition : the output serves as imput for next one
+Changing State &amp; mutable data ARE DISCOURAGED
+Focus on Immutable objects 
+</code></pre></li>
+</ul>
+<h2 id="Overview-of-Lambda-Expressions"><a href="#Overview-of-Lambda-Expressions" class="headerlink" title="Overview of Lambda Expressions"></a>Overview of Lambda Expressions</h2><p>A Lambda expression is an unnamed block of code (with optional parameters) that ca be stored , passed around and executed later (in another context, another thread…)</p>
+<p>Values of private fieds can be updated but not params</p>
+<p>Make the code more generable </p>
+<h2 id="Method-References"><a href="#Method-References" class="headerlink" title="Method References"></a>Method References</h2><pre><code>:: 
+</code></pre><h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><p><a href="https://github.com/douglascraigschmidt/LiveLessons" target="_blank" rel="noopener">https://github.com/douglascraigschmidt/LiveLessons</a> </p>
+<p>update</p>
 
       
     </div>
@@ -241,7 +289,9 @@ D) none of the above
   
     <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
   
-    <li><a href="/tags/java/">java</a><small>8</small></li>
+    <li><a href="/tags/java/">java</a><small>9</small></li>
+  
+    <li><a href="/tags/java-java9/">java java9</a><small>1</small></li>
   
     <li><a href="/tags/java8/">java8</a><small>5</small></li>
   
