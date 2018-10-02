@@ -59,14 +59,18 @@
     </header>
     <div class="entry">
       
-        <h1 id="Online-Training"><a href="#Online-Training" class="headerlink" title="Online Training :"></a>Online Training :</h1><ul>
+        <h1 id="Online-Training-References"><a href="#Online-Training-References" class="headerlink" title="Online Training References"></a>Online Training References</h1><ul>
 <li><a href="https://www.safaribooksonline.com/live-training/courses/whats-new-in-java/0636920219484/" target="_blank" rel="noopener">Training Page</a></li>
 <li><a href="https://docs.google.com/document/d/1RDclyK0UmQBuxWxU1d-vM0mtZo76QyKYRFBBxHz6GcA/edit" target="_blank" rel="noopener">Reference</a></li>
 <li>Livre : <a href="https://www.safaribooksonline.com/library/view/modern-java-recipes/9781491973165/" target="_blank" rel="noopener">Modern Java Recipes</a></li>
 <li>Blog  : <a href="https://kousenit.org/" target="_blank" rel="noopener">https://kousenit.org/</a></li>
 <li>Video : <a href="https://www.safaribooksonline.com/videos/java-8-and/9780133489354" target="_blank" rel="noopener">Java 8 and 9 Fundamentals: Modern Java Development with Lambdas, Streams, and Introducing Java 9’s JShell and the Java Platform Module System (JPMS)</a></li>
 <li>Video : <a href="https://www.safaribooksonline.com/videos/advanced-java-development/9781491960400" target="_blank" rel="noopener">Advanced Java Development </a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/11/" target="_blank" rel="noopener">Java Doc 11</a> </li>
 </ul>
+<p>Java 8 is a major version but 9, 10, and 11 are not<br>Java 11 is a Long Term Support (LTS) release for the Java standard edition, meaning bug fixes and security patches will be available for at least the next three years (see the extensive Java Is Still Free post at for details about the future licensing arrangements)</p>
+<h1 id="Collection-factory-methods"><a href="#Collection-factory-methods" class="headerlink" title="Collection factory methods"></a>Collection factory methods</h1><p>List.of(a, b, b, c, …)<br>Set.of(a, b, b, c, …)<br>Map.of(k1, v1, k2, v2, k3, v3, …)<br> Map.ofEntries(<br>Map.entry(k1, v1),<br>Map.entry(k2, v2),<br>Map.entry(k3, v3), …)</p>
+<h1 id="Private-Methods-in-Interfaces"><a href="#Private-Methods-in-Interfaces" class="headerlink" title="Private Methods in Interfaces"></a>Private Methods in Interfaces</h1><p>Both <strong>default</strong> and <strong>static</strong> methods in interfaces can call <strong>private</strong> methods</p>
 
       
     </div>
@@ -170,7 +174,7 @@
     </header>
     <div class="entry">
       
-        <p>Method Argument are passed “by value” “by copy”<br>    Correct but incomplete</p>
+        <p><strong>Method Argument are passed “by value” “by copy”</strong><br>    Correct but incomplete</p>
 <p><img src="/img/java/oca-javase8/method_arguments1.png?raw=true" alt="Reject Casting" title="Apply Reject"><br><img src="/img/java/oca-javase8/method_arguments2.png?raw=true" alt="Reject Casting" title="Apply Reject"><br><img src="/img/java/oca-javase8/method_arguments3.png?raw=true" alt="Reject Casting" title="Apply Reject">    </p>
 <p>2 Types d’expressions dans une seule JVM </p>
 <ul>
@@ -187,71 +191,8 @@
 <li>StringBuffer n’est pas IMMUTABLE</li>
 <li>Les classes Wrappers des primitives sont IMMUTABLES </li>
 </ul>
-<h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><pre><code>package cyrgue.methodArguments;
+<h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> class Ex &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">        <span class="built_in">int</span> x = <span class="number">99</span>;</span><br><span class="line">        Ex.<span class="built_in">add</span>(x); <span class="comment">//copy de la valeur</span></span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"Valeur de x "</span> + x);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Wrapper de primitives</span></span><br><span class="line">        Integer a = <span class="number">99</span>;</span><br><span class="line">        <span class="built_in">add</span>(a);</span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"Valeur de a : "</span> + a);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">int</span> [] arr = &#123;<span class="number">99</span>&#125;;</span><br><span class="line">        Ex.<span class="built_in">add</span>(arr); <span class="comment">//copy de l'adresse memoire</span></span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"Valeur de arr[0] "</span> + arr[<span class="number">0</span>] );</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder(<span class="string">"Hello"</span>);</span><br><span class="line">        Ex.<span class="built_in">add</span>(sb); <span class="comment">//copy de l'adresse memoire</span></span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"Valeur de sb "</span> + sb );</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Ex.appender(sb); <span class="comment">//copy de l'adresse memoire</span></span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"Valeur de sb "</span> + sb );</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">String</span> <span class="built_in">str</span> = <span class="string">"Bonjour"</span>;</span><br><span class="line">        Ex.changeStr(<span class="built_in">str</span>);</span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"Valeur de str "</span> + <span class="built_in">str</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> changeStr(<span class="keyword">String</span> <span class="built_in">str</span>) &#123;</span><br><span class="line">        <span class="built_in">str</span> += <span class="string">" Les amis"</span>;  <span class="comment">// autre object créé avec nouvelle adresse mémoire</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="built_in">add</span>(StringBuilder sb) &#123;</span><br><span class="line">        sb = <span class="keyword">new</span> StringBuilder(<span class="string">"GoodBye"</span>); <span class="comment">// autre object créé avec nouvelle adresse mémoire</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> appender(StringBuilder sb) &#123;</span><br><span class="line">        sb.<span class="built_in">append</span>(<span class="string">" World"</span>); <span class="comment">// on travaille sur le meme object</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="built_in">add</span>(<span class="built_in">int</span> y) &#123;</span><br><span class="line">        y = y + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="built_in">add</span>(Integer y) &#123;</span><br><span class="line">        y = y + <span class="number">1</span>; <span class="comment">// y est converti en int pour effectuer le +, puis autobxing en Integer en créant un nouvel objet</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="built_in">add</span>(<span class="built_in">int</span>[] y) &#123;</span><br><span class="line">        y[<span class="number">0</span>] = y[<span class="number">0</span>] + <span class="number">1</span>; <span class="comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-public class Ex {
-
-    public static void main(String[] args) {
-        int x = 99;
-        Ex.add(x); //copy de la valeur
-        System.out.println(&quot;Valeur de x &quot; + x);
-
-        // Wrapper de primitives
-        Integer a = 99;
-        add(a);
-        System.out.println(&quot;Valeur de a : &quot; + a);
-
-        int [] arr = {99};
-        Ex.add(arr); //copy de l&apos;adresse memoire
-        System.out.println(&quot;Valeur de arr[0] &quot; + arr[0] );
-
-
-        StringBuilder sb = new StringBuilder(&quot;Hello&quot;);
-        Ex.add(sb); //copy de l&apos;adresse memoire
-        System.out.println(&quot;Valeur de sb &quot; + sb );
-
-
-        Ex.appender(sb); //copy de l&apos;adresse memoire
-        System.out.println(&quot;Valeur de sb &quot; + sb );
-
-
-
-        String str = &quot;Bonjour&quot;;
-        Ex.changeStr(str);
-        System.out.println(&quot;Valeur de str &quot; + str);
-
-
-    }
-
-    private static void changeStr(String str) {
-        str += &quot; Les amis&quot;;  // autre object créé avec nouvelle adresse mémoire
-    }
-
-    private static void add(StringBuilder sb) {
-        sb = new StringBuilder(&quot;GoodBye&quot;); // autre object créé avec nouvelle adresse mémoire
-    }
-
-    private static void appender(StringBuilder sb) {
-        sb.append(&quot; World&quot;); // on travaille sur le meme object
-    }
-
-
-    public static void add(int y) {
-        y = y + 1;
-    }
-
-    public static void add(Integer y) {
-        y = y + 1; // y est converti en int pour effectuer le +, puis autobxing en Integer en créant un nouvel objet
-    }
-
-    public static void add(int[] y) {
-        y[0] = y[0] + 1; //
-    }
-
-
-
-}
-</code></pre>
       
     </div>
     <footer>
