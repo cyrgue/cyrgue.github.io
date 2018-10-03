@@ -81,11 +81,12 @@
 <li>Use Pure Function</li>
 </ul>
 <ul>
-<li><strong>Consumer</strong> -&gt; single arg, no result (not a Pure function) <figure class="highlight plain"><figcaption><span>accept(T t)``` </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">   </span><br><span class="line">* **Predicate** -&gt; returns boolean</span><br><span class="line">   ```boolean test(T t)</span><br></pre></td></tr></table></figure>
+<li><p><strong>Consumer</strong> -&gt; single arg, no result (not a Pure function)<br> <code>void accept(T t)</code> </p>
 </li>
-</ul>
-<ul>
-<li><strong>Supplier</strong> -&gt; no arg, returns single result <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T <span class="builtin-name">get</span>()</span><br></pre></td></tr></table></figure>
+<li><p><strong>Predicate</strong> -&gt; returns boolean<br> <code>boolean test(T t)</code></p>
+</li>
+<li><p><strong>Supplier</strong> -&gt; no arg, returns single result</p>
+ <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T <span class="builtin-name">get</span>()</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <ul>
