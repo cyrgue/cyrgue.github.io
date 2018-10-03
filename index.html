@@ -75,26 +75,46 @@
 <li>Parameter types inferred from context </li>
 <li>Method Reference</li>
 </ul>
-<h1 id="Functional-Interface"><a href="#Functional-Interface" class="headerlink" title="Functional Interface"></a>Functional Interface</h1><ul>
+<h1 id="Functional-Interface"><a href="#Functional-Interface" class="headerlink" title="Functional Interface"></a>Functional Interface</h1><p><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/function/package-summary.html" target="_blank" rel="noopener">JavaDoc</a></p>
+<ul>
 <li>see java.util.function package</li>
 <li>Functional Interfaces (Not Required but useful)</li>
 <li>Use Pure Function</li>
-<li><p><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/function/package-summary.html" target="_blank" rel="noopener">JavaDoc</a> </p>
-</li>
-<li><p><strong>Consumer</strong> -&gt; single arg, no result (not a Pure function)<br> <code>void accept(T t)</code><br> Ex : print or log</p>
- <figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.function.Consumer;</span><br><span class="line"><span class="keyword">import</span> java.util.logging.Logger;</span><br><span class="line"><span class="keyword">import</span> java.util.stream.<span class="built_in">Stream</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class ConsumerCompositionDemo &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">        Consumer&lt;<span class="keyword">String</span>&gt; cPrinter = System.out::<span class="built_in">println</span>;</span><br><span class="line">        Logger logger = Logger.getLogger(ConsumerCompositionDemo.class.getName());</span><br><span class="line"></span><br><span class="line">        Consumer&lt;<span class="keyword">String</span>&gt; cLogger = logger::info;</span><br><span class="line"></span><br><span class="line">        Consumer&lt;<span class="keyword">String</span>&gt; composed = cPrinter.andThen(cLogger);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">Stream</span>.of(<span class="string">"This"</span>, <span class="string">"is"</span>, <span class="string">"a"</span>, <span class="string">"string"</span>).forEach(composed);</span><br><span class="line"></span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
 </ul>
-<pre><code>Also IntConsumer, LongConsumer, BiConsumer&lt;T, U&gt;
-</code></pre><ul>
+<ul>
+<li><p><strong>Consumer</strong> -&gt; single arg, no result (not a Pure function)<br> <code>void accept(T t)</code><br> Ex : print or log<br> Also IntConsumer, LongConsumer, BiConsumer&lt;T, U&gt;</p>
+<pre><code>import java.util.function.Consumer;
+import java.util.logging.Logger;
+import java.util.stream.Stream;
+
+public class ConsumerCompositionDemo {
+    public static void main(String[] args) {
+        Consumer&lt;String&gt; cPrinter = System.out::println;
+        Logger logger = Logger.getLogger(ConsumerCompositionDemo.class.getName());
+
+        Consumer&lt;String&gt; cLogger = logger::info;
+
+        Consumer&lt;String&gt; composed = cPrinter.andThen(cLogger);
+
+        Stream.of(&quot;This&quot;, &quot;is&quot;, &quot;a&quot;, &quot;string&quot;).forEach(composed);
+
+    }    
+}
+</code></pre></li>
 <li><p><strong>Predicate</strong> -&gt; returns boolean<br> <code>boolean test(T t)</code></p>
 </li>
 <li><p><strong>Supplier</strong> -&gt; no arg, returns single result<br> <code>T get()</code></p>
+<p> Also BooleanSupplier…</p>
 </li>
 <li><p><strong>Function</strong> -&gt; single arg, returns result<br> <code>R apply(T t)</code></p>
-</li>
+<p>Also IntFunction, LongFunction, ToDoubleFunction, ToDoubleBiFunction&lt;T,​U&gt;, ToDoubleFunction<t>, ToIntBiFunction&lt;T,​U&gt;, Represents a function that accepts two arguments and produces an int-valued result., </t></p>
+<pre><code>ToIntFunction&lt;T&gt;    
+Represents a function that produces an int-valued result.
+ToLongBiFunction&lt;T,​U&gt;    
+Represents a function that accepts two arguments and produces a long-valued result.
+ToLongFunction&lt;T&gt;... 
+</code></pre></li>
 </ul>
-<p>A voir : Functional ‘composition’(like Consumer .andThen(Consumer after))    </p>
 
       
     </div>
@@ -138,7 +158,15 @@
 <li><a href="https://docs.oracle.com/en/java/javase/11/" target="_blank" rel="noopener">Java Doc 11</a> </li>
 </ul>
 <p>Java 8 is a major version but 9, 10, and 11 are not<br>Java 11 is a Long Term Support (LTS) release for the Java standard edition, meaning bug fixes and security patches will be available for at least the next three years (see the extensive Java Is Still Free post at for details about the future licensing arrangements)</p>
-<h1 id="Collection-factory-methods"><a href="#Collection-factory-methods" class="headerlink" title="Collection factory methods"></a>Collection factory methods</h1><p>List.of(a, b, b, c, …)<br>Set.of(a, b, b, c, …)<br>Map.of(k1, v1, k2, v2, k3, v3, …)<br> Map.ofEntries(<br>Map.entry(k1, v1),<br>Map.entry(k2, v2),<br>Map.entry(k3, v3), …)</p>
+<h1 id="Collection-factory-methods"><a href="#Collection-factory-methods" class="headerlink" title="Collection factory methods"></a>Collection factory methods</h1><ul>
+<li>List.of(a, b, b, c, …)</li>
+<li>Set.of(a, b, b, c, …)</li>
+<li>Map.of(k1, v1, k2, v2, k3, v3, …)</li>
+<li>Map.ofEntries(</li>
+<li>Map.entry(k1, v1),</li>
+<li>Map.entry(k2, v2),</li>
+<li>Map.entry(k3, v3), …)</li>
+</ul>
 <h1 id="Private-Methods-in-Interfaces"><a href="#Private-Methods-in-Interfaces" class="headerlink" title="Private Methods in Interfaces"></a>Private Methods in Interfaces</h1><p>Both <strong>default</strong> and <strong>static</strong> methods in interfaces can call <strong>private</strong> methods</p>
 
       
