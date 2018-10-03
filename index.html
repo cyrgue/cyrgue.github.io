@@ -70,6 +70,22 @@
 <li>Video : <a href="https://www.safaribooksonline.com/videos/advanced-java-development/9781491960400" target="_blank" rel="noopener">Advanced Java Development </a></li>
 <li><a href="https://docs.oracle.com/en/java/javase/11/" target="_blank" rel="noopener">Java Doc 11</a> </li>
 </ul>
+<h1 id="Lambda-Expression"><a href="#Lambda-Expression" class="headerlink" title="Lambda Expression"></a>Lambda Expression</h1><ul>
+<li>Assigned to Single Abstract Method (SAM) interface (functional interface) (ex: Runnable, file)</li>
+<li>Parameter types inferred from context </li>
+<li>Method Reference</li>
+</ul>
+<h1 id="Functional-Interface"><a href="#Functional-Interface" class="headerlink" title="Functional Interface"></a>Functional Interface</h1><ul>
+<li>see java.util.function package</li>
+<li>@Functional Interfaces</li>
+<li><p>Use Pure Function</p>
+</li>
+<li><p>Consumer -&gt; single arg, no result (not a Pure function)</p>
+ <figure class="highlight plain"><figcaption><span>accept(T t) ``` </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* Predicate -&gt; returns boolean</span><br><span class="line"> ``` boolean test(T t)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Supplier -&gt; no arg, returns single result</p>
+<figure class="highlight plain"><figcaption><span>get()```       </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* Function -&gt; single arg, returns result</span><br><span class="line">   ```R apply(T t)</span><br></pre></td></tr></table></figure></li>
+</ul>
 
       
     </div>
