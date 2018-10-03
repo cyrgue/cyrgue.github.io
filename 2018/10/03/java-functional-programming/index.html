@@ -90,74 +90,68 @@ Livre : Mod">
 <ul>
 <li><strong>Consumer</strong> -&gt; single arg, no result (not a Pure function)<br> <code>void accept(T t)</code><br> Ex : print or log<br> Also IntConsumer, LongConsumer, BiConsumer&lt;T, U&gt;</li>
 </ul>
-<p>Ex :<br><code>`</code>import java.util.function.Consumer;<br>import java.util.logging.Logger;<br>import java.util.stream.Stream;</p>
-<p>public class ConsumerCompositionDemo {<br>    public static void main(String[] args) {<br>        Consumer<string> cPrinter = System.out::println;<br>        Logger logger = Logger.getLogger(ConsumerCompositionDemo.class.getName());</string></p>
-<pre><code>    Consumer&lt;String&gt; cLogger = logger::info;
+<p>Ex :      </p>
+<pre><code class="java"><span class="keyword">import</span> java.util.function.Consumer;
+<span class="keyword">import</span> java.util.logging.Logger;
+<span class="keyword">import</span> java.util.stream.Stream;
 
-    Consumer&lt;String&gt; composed = cPrinter.andThen(cLogger);
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConsumerCompositionDemo</span> </span>{
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
+        Consumer&lt;String&gt; cPrinter = System.out::println;
+        Logger logger = Logger.getLogger(ConsumerCompositionDemo.class.getName());
 
-    Stream.of(&quot;This&quot;, &quot;is&quot;, &quot;a&quot;, &quot;string&quot;).forEach(composed);
+        Consumer&lt;String&gt; cLogger = logger::info;
 
-}    
-</code></pre><p>}</p>
-<pre><code>
+        Consumer&lt;String&gt; composed = cPrinter.andThen(cLogger);
 
- * **Predicate** -&gt; returns boolean
-    ``boolean test(T t)``
+        Stream.of(<span class="string">"This"</span>, <span class="string">"is"</span>, <span class="string">"a"</span>, <span class="string">"string"</span>).forEach(composed);
 
- * **Supplier** -&gt; no arg, returns single result
-    ``T get()``
+    }    
+}
+</code></pre>
+<ul>
+<li><p><strong>Predicate</strong> -&gt; returns boolean<br> <code>boolean test(T t)</code></p>
+</li>
+<li><p><strong>Supplier</strong> -&gt; no arg, returns single result<br> <code>T get()</code></p>
+<p> Also BooleanSupplier…</p>
+</li>
+<li><p><strong>Function</strong> -&gt; single arg, returns result<br> <code>R apply(T t)</code></p>
+</li>
+</ul>
+<p>Also IntFunction, LongFunction, ToDoubleFunction, ToDoubleBiFunction&lt;T,​U&gt;, ToDoubleFunction<t>, ToIntBiFunction&lt;T,​U&gt;, ToIntFunction<t>, ToLongBiFunction&lt;T,​U&gt;                                  Represents a function that accepts two arguments and produces a long-valued result.<br>                                                   ToLongFunction<t>… </t></t></t></p>
+<h1 id="Method-Reference"><a href="#Method-Reference" class="headerlink" title="Method Reference"></a>Method Reference</h1><p>Method references uses <strong>::</strong> notation</p>
+<p><code>System.out::println</code> equivalent to <code>x -&gt; System.out.println(x)</code><br><code>Math::max</code> equivalent to <code>(x, y) -&gt; Math.max(x, y)</code><br><code>String::compareToIgnoreCase</code> equivalent to <code>(x, y) -&gt; x.compareToIgnoreCase(y)</code></p>
+<h1 id="Constructor-Reference"><a href="#Constructor-Reference" class="headerlink" title="Constructor Reference"></a>Constructor Reference</h1><p>Constructor references uses <strong>::</strong> notation</p>
+<p>Ex: </p>
+<pre><code class="java"><span class="keyword">import</span> java.util.Arrays;
+<span class="keyword">import</span> java.util.List;
+<span class="keyword">import</span> java.util.stream.Collectors;
 
-    Also BooleanSupplier...
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UsePerson</span> </span>{
+    <span class="meta">@SuppressWarnings</span>({<span class="string">"UnusedAssignment"</span>, <span class="string">"Convert2MethodRef"</span>})
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
+        List&lt;String&gt; names = Arrays.asList(<span class="string">"John"</span>, <span class="string">"Paul"</span>, <span class="string">"George"</span>, <span class="string">"Ringo"</span>);
 
- * **Function** -&gt; single arg, returns result
-    ``R apply(T t)``
-
-Also IntFunction, LongFunction, ToDoubleFunction, ToDoubleBiFunction&lt;T,​U&gt;, ToDoubleFunction&lt;T&gt;, ToIntBiFunction&lt;T,​U&gt;, ToIntFunction&lt;T&gt;, ToLongBiFunction&lt;T,​U&gt;                                  Represents a function that accepts two arguments and produces a long-valued result.
-                                                   ToLongFunction&lt;T&gt;... 
-
-# Method Reference
-
-Method references uses **::** notation
-
-``System.out::println`` equivalent to ``x -&gt; System.out.println(x)``
-``Math::max`` equivalent to ``(x, y) -&gt; Math.max(x, y)``
-``String::compareToIgnoreCase`` equivalent to ``(x, y) -&gt; x.compareToIgnoreCase(y)``
-
-# Constructor Reference     
-
-Constructor references uses **::** notation
-
-Ex: 
-
-```import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
-public class UsePerson {
-    @SuppressWarnings({&quot;UnusedAssignment&quot;, &quot;Convert2MethodRef&quot;})
-    public static void main(String[] args) {
-        List&lt;String&gt; names = Arrays.asList(&quot;John&quot;, &quot;Paul&quot;, &quot;George&quot;, &quot;Ringo&quot;);
-
-        List&lt;Person&gt; people = names.stream()    // Stream&lt;String&gt;
-                .map(name -&gt; new Person(name))  // Stream&lt;Person&gt;
-                .collect(Collectors.toList());  // Converts Stream&lt;Person&gt; to List&lt;Person&gt;
+        List&lt;Person&gt; people = names.stream()    <span class="comment">// Stream&lt;String&gt;</span>
+                .map(name -&gt; <span class="keyword">new</span> Person(name))  <span class="comment">// Stream&lt;Person&gt;</span>
+                .collect(Collectors.toList());  <span class="comment">// Converts Stream&lt;Person&gt; to List&lt;Person&gt;</span>
 
 
         people = names.stream()
-                .map(Person::new)
+                .map(Person::<span class="keyword">new</span>)
                 .collect(Collectors.toList());
 
         System.out.println(people);
 
         Person[] peopleArray = names.stream()
-                .map(Person::new)
-                .toArray(Person[]::new);
+                .map(Person::<span class="keyword">new</span>)
+                .toArray(Person[]::<span class="keyword">new</span>);
 
         System.out.println(Arrays.toString(peopleArray));
     }
 }
 </code></pre>
+
       
     </div>
     <footer>
