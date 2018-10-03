@@ -87,11 +87,15 @@ Livre : Mod">
 <li>Use Pure Function</li>
 </ul>
 <ul>
-<li><strong>Consumer</strong> -&gt; single arg, no result (not a Pure function) <figure class="highlight plain"><figcaption><span>accept(T t) ``` </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">   </span><br><span class="line">* **Predicate** -&gt; returns boolean</span><br><span class="line">   ``` boolean test(T t)</span><br></pre></td></tr></table></figure>
+<li><strong>Consumer</strong> -&gt; single arg, no result (not a Pure function) <figure class="highlight plain"><figcaption><span>accept(T t)``` </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">   </span><br><span class="line">* **Predicate** -&gt; returns boolean</span><br><span class="line">   ```boolean test(T t)</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <ul>
-<li><strong>Supplier</strong> -&gt; no arg, returns single result <figure class="highlight plain"><figcaption><span>get() ```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">          </span><br><span class="line">* **Function** -&gt; single arg, returns result</span><br><span class="line">   ``` R apply(T t)</span><br></pre></td></tr></table></figure></li>
+<li><strong>Supplier</strong> -&gt; no arg, returns single result <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T <span class="builtin-name">get</span>()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><strong>Function</strong> -&gt; single arg, returns result<br> <code>R apply(T t)</code></li>
 </ul>
 
       
