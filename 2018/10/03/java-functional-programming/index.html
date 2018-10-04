@@ -116,6 +116,25 @@ Course Documents">
 <li>Must call <strong>InterfaceName.super.method</strong></li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Pegasus</span> <span class="keyword">implements</span> <span class="title">Horse</span>, <span class="title">Bird</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">speak</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Horse.<span class="keyword">super</span>.speak() + <span class="string">" "</span> + Bird.<span class="keyword">super</span>.speak();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Streams"><a href="#Streams" class="headerlink" title="Streams"></a>Streams</h1><p>A sequence of elements</p>
+<ul>
+<li>Does not store the elements</li>
+<li>Does not change the source</li>
+<li>Operations are lazy when possible</li>
+<li>Closed when terminal expression reached</li>
+</ul>
+<p>A stream carries values</p>
+<ul>
+<li>from a source</li>
+<li>through a pipeline </li>
+</ul>
+<h1 id="Pipeline"><a href="#Pipeline" class="headerlink" title="Pipeline"></a>Pipeline</h1><p>A pipeline is</p>
+<ul>
+<li>a source</li>
+<li>zero or more intermediate operations</li>
+<li>a terminal operation</li>
+</ul>
+<h1 id="Reduction-Operations"><a href="#Reduction-Operations" class="headerlink" title="Reduction Operations"></a>Reduction Operations</h1><p>Terminal operation that produce one value for a stream<br>Ex: <code>average, sum, max, min, count, ....</code></p>
 <h1 id="The-java-time-Package"><a href="#The-java-time-Package" class="headerlink" title="The java.time Package"></a>The java.time Package</h1>
       
     </div>
