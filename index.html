@@ -97,6 +97,10 @@
 </ul>
 <p>ex : <code>LocalDate parsedDate = LocalDate.parse(text, formatter);</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LocalDate today = LocalDate.now();</span><br><span class="line">DateTimeFormatter fmt = DateTimeFormatter.ofPattern(<span class="string">"d MM yy"</span>);</span><br><span class="line">System.out.println(fmt.format(today));</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Cannot interact whith “Temporal Units” that are not supported by the “thing” you give it (LocalDate etc…)</li>
+<li>Number of chars in a format specify String changes the results representation</li>
+</ul>
 
       
     </div>
@@ -386,7 +390,7 @@
 <h1 id="Time-API"><a href="#Time-API" class="headerlink" title="Time API"></a>Time API</h1><ul>
 <li><a href="/2018/10/07/java-time-api">Time API</a></li>
 </ul>
-<p>TV1:38mn -&gt; </p>
+<p>TV1:38mn -&gt; 118mn</p>
 <h2 id="static-keyword"><a href="#static-keyword" class="headerlink" title="static keyword"></a>static keyword</h2><h2 id="Polymorphism"><a href="#Polymorphism" class="headerlink" title="Polymorphism"></a>Polymorphism</h2><p><a href="/2018/08/29/java-polymorphism">Polymorphism; develop code that overrides methods; differentiate between the type of a reference and the type of an object</a></p>
 
       

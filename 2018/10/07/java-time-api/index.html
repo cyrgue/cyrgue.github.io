@@ -104,6 +104,10 @@ java.time.format.DateTimeFor">
 </ul>
 <p>ex : <code>LocalDate parsedDate = LocalDate.parse(text, formatter);</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LocalDate today = LocalDate.now();</span><br><span class="line">DateTimeFormatter fmt = DateTimeFormatter.ofPattern(<span class="string">"d MM yy"</span>);</span><br><span class="line">System.out.println(fmt.format(today));</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Cannot interact whith “Temporal Units” that are not supported by the “thing” you give it (LocalDate etc…)</li>
+<li>Number of chars in a format specify String changes the results representation</li>
+</ul>
 
       
     </div>
