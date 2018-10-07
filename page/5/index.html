@@ -49,6 +49,88 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2015-10-21T12:01:40.000Z"><a href="/2015/10/21/Angularjs-directive/">2015-10-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/10/21/Angularjs-directive/">Angularjs directive</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="Directive"><a href="#Directive" class="headerlink" title="Directive"></a>Directive</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line">angular.module(<span class="string">'myModule'</span>).directive(<span class="string">'formGroup'</span>,  <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    restrict: <span class="string">'E'</span>,</span><br><span class="line">    transclude: <span class="literal">true</span>,</span><br><span class="line">    templateUrl: <span class="string">'core/views/directives/form-group.html'</span>,</span><br><span class="line">    replace: <span class="literal">true</span>,</span><br><span class="line">    scope: &#123;</span><br><span class="line">      label: <span class="string">'@'</span>,</span><br><span class="line">      <span class="keyword">for</span>: <span class="string">'@'</span>,</span><br><span class="line">      labelClass: <span class="string">'@'</span>,</span><br><span class="line">      inputClass: <span class="string">'@'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    controller: [<span class="string">'$scope'</span>, <span class="string">'$element'</span>, <span class="string">'$attrs'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+<h3 id="Template"><a href="#Template" class="headerlink" title="Template"></a>Template</h3><pre><code>&lt;div class=&quot;form-group&quot;&gt;
+    &lt;label ng-if=&quot;label&quot; for=&quot;{{for}}&quot; class=&quot;control-label {{ labelClass }}&quot;&gt;{{ label }}&lt;/label&gt;
+
+    &lt;div ng-transclude=&quot;ng-transclude&quot; class=&quot;ef-control {{ inputClass }}&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre><h3 id="Utilisation"><a href="#Utilisation" class="headerlink" title="Utilisation"></a>Utilisation</h3><pre><code>&lt;form-group for=&quot;name&quot; label=&quot;{{ 'medias.form.name'}}&quot; label-class=&quot;col-md-2&quot; input-class=&quot;col-md-10&quot;&gt;
+    &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; data-ng-model=&quot;media.name&quot; id=&quot;name&quot; required ng-maxlength=&quot;50&quot;&gt;
+&lt;/form-group&gt;
+</code></pre>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-10-07T00:53:07.000Z"><a href="/2015/10/06/git-branch-strategy/">2015-10-06</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/10/06/git-branch-strategy/">git-branch-strategy</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Plusieurs articles sur la strategie des branches avec git</p>
+<ul>
+<li><a href="http://scottchacon.com/2011/08/31/github-flow.html" target="_blank" rel="noopener">GitHub Flow</a></li>
+<li><a href="http://nvie.com/posts/a-successful-git-branching-model/" target="_blank" rel="noopener">A successful Git branching model</a></li>
+<li><a href="http://drewfradette.ca/a-simpler-successful-git-branching-model/" target="_blank" rel="noopener">A (Simpler) Successful Git Branching Model</a></li>
+<li><a href="http://blog.endpoint.com/2014/05/git-workflows-that-work.html" target="_blank" rel="noopener">Git Workflows That Work</a></li>
+<li><a href="https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow" target="_blank" rel="noopener">Feature Branch Workflow</a></li>
+<li><a href="http://git-scm.com/book/fr/v2" target="_blank" rel="noopener">ProGit</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2015-10-07T00:48:05.000Z"><a href="/2015/10/06/eslint-hareable-configs/">2015-10-06</a></time>
       
       

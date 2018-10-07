@@ -49,6 +49,82 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-01-24T10:25:55.000Z"><a href="/2017/01/24/angular2-library/">2017-01-24</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/01/24/angular2-library/">angular2-library</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Creation-d’une-lib-javascript"><a href="#Creation-d’une-lib-javascript" class="headerlink" title="Creation d’une lib javascript"></a>Creation d’une lib javascript</h2><p>Ref : <a href="https://shellmonger.com/2016/03/11/creating-javascript-libraries-with-typescript-and-webpack/" target="_blank" rel="noopener">https://shellmonger.com/2016/03/11/creating-javascript-libraries-with-typescript-and-webpack/</a></p>
+<h3 id="Utilisation"><a href="#Utilisation" class="headerlink" title="Utilisation"></a>Utilisation</h3><h4 id="Import"><a href="#Import" class="headerlink" title="Import"></a>Import</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://localhost:8082/MyLib.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="Definition-dans-le-composant"><a href="#Definition-dans-le-composant" class="headerlink" title="Definition dans le composant"></a>Definition dans le composant</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> <span class="keyword">var</span> MyLib: <span class="built_in">any</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">    selector: <span class="string">'preview'</span>,</span><br><span class="line">    templateUrl: <span class="string">'preview.template.html'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> PreviewComponent &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> configService: ConfigService, <span class="keyword">private</span> previewQuestionnaireService: PreviewQuestionnaireService</span>) &#123;</span><br><span class="line">        <span class="keyword">new</span> MyLib.TestClass(<span class="string">'foo'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="Creation-d’une-lib-Angular2"><a href="#Creation-d’une-lib-Angular2" class="headerlink" title="Creation d’une lib Angular2"></a>Creation d’une lib Angular2</h2><h3 id="Yeoman-generator-to-create-a-standalone-Angular-2-library"><a href="#Yeoman-generator-to-create-a-standalone-Angular-2-library" class="headerlink" title="Yeoman generator to create a standalone Angular 2 library"></a>Yeoman generator to create a standalone Angular 2 library</h3><p>Ref : <a href="https://github.com/jvandemo/generator-angular2-library" target="_blank" rel="noopener">https://github.com/jvandemo/generator-angular2-library</a></p>
+<h3 id="Utilisation-1"><a href="#Utilisation-1" class="headerlink" title="Utilisation"></a>Utilisation</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install ng2-book-<span class="class"><span class="keyword">lib</span> (<span class="title">ou</span> <span class="title">npm</span> <span class="title">link</span>/<span class="title">npm</span> <span class="title">install</span>)</span></span><br></pre></td></tr></table></figure>
+<p>Dans vendor.ts, declarer la lib<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"><span class="meta-keyword">import</span> 'ng2-book-lib';</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Import-dans-le-module-principal"><a href="#Import-dans-le-module-principal" class="headerlink" title="Import dans le module principal"></a>Import dans le module principal</h3><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; SampleModule &#125; <span class="keyword">from</span> <span class="string">'ng2-book-lib'</span>;</span><br><span class="line">....</span><br><span class="line">@NgModule(&#123;</span><br><span class="line">    imports: [</span><br><span class="line">        BrowserModule,</span><br><span class="line">        HttpModule,</span><br><span class="line">        ...</span><br><span class="line"></span><br><span class="line">         SampleModule.forRoot(),</span><br><span class="line">         ....</span><br></pre></td></tr></table></figure>
+<p>Ensuite, les composants, services de la lib sont disponibles dans l’application principale</p>
+<h2 id="Autres-link"><a href="#Autres-link" class="headerlink" title="Autres link"></a>Autres link</h2><p>Angular2 Seed avec SystemJS<br><a href="https://github.com/mgechev/angular-seed" target="_blank" rel="noopener">https://github.com/mgechev/angular-seed</a><br><a href="http://stackoverflow.com/questions/36091219/how-to-load-angular2-using-cdn" target="_blank" rel="noopener">http://stackoverflow.com/questions/36091219/how-to-load-angular2-using-cdn</a><br><a href="http://lishman.io/angular-2-configuration" target="_blank" rel="noopener">http://lishman.io/angular-2-configuration</a></p>
+<p>Angular Library<br><a href="https://www.hellohq.io/how-to-set-up-an-angular-2-component-library/" target="_blank" rel="noopener">https://www.hellohq.io/how-to-set-up-an-angular-2-component-library/</a><br><a href="http://blog.angular-university.io/how-to-create-an-angular-2-library-and-how-to-consume-it-jspm-vs-webpack/" target="_blank" rel="noopener">http://blog.angular-university.io/how-to-create-an-angular-2-library-and-how-to-consume-it-jspm-vs-webpack/</a><br><a href="https://github.com/lucasbauche/MyAngularLibrary" target="_blank" rel="noopener">https://github.com/lucasbauche/MyAngularLibrary</a><br><a href="https://github.com/jhades/angular2-library-example" target="_blank" rel="noopener">https://github.com/jhades/angular2-library-example</a><br><a href="https://dzone.com/articles/create-an-angular-2-component-library-and-consume" target="_blank" rel="noopener">https://dzone.com/articles/create-an-angular-2-component-library-and-consume</a><br><a href="https://www.thepolyglotdeveloper.com/2016/01/include-external-javascript-libraries-in-an-angular-2-typescript-project/" target="_blank" rel="noopener">https://www.thepolyglotdeveloper.com/2016/01/include-external-javascript-libraries-in-an-angular-2-typescript-project/</a></p>
+<p>Voir pangiate et translate<br><a href="https://github.com/ocombe/ng2-translate" target="_blank" rel="noopener">https://github.com/ocombe/ng2-translate</a><br><a href="https://unpkg.com/ng2-translate@5.0.0" target="_blank" rel="noopener">https://unpkg.com/ng2-translate@5.0.0</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-01-24T10:22:54.000Z"><a href="/2017/01/24/angular2-iframe/">2017-01-24</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/01/24/angular2-iframe/">angular2-iframe</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Creer-une-iFrame"><a href="#Creer-une-iFrame" class="headerlink" title="Créer une iFrame"></a>Créer une iFrame</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe <span class="attribute">width</span>=<span class="string">"100%"</span> <span class="attribute">height</span>=<span class="string">"400"</span> <span class="attribute">id</span>=<span class="string">"iframe"</span> #iframe <span class="attribute">frameborder</span>=<span class="string">"0"</span>&gt;&lt;/iframe&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="Acceder-a-l’element-iFrame-dans-le-composant"><a href="#Acceder-a-l’element-iFrame-dans-le-composant" class="headerlink" title="Acceder à l’élément iFrame dans le composant"></a>Acceder à l’élément iFrame dans le composant</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Component, ElementRef, Renderer &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ConfigService &#125; <span class="keyword">from</span> <span class="string">'../../system/config.service'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; PreviewQuestionnaireService &#125; <span class="keyword">from</span> <span class="string">'../services/PreviewQuestionnaireService'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ViewChild &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; DomSanitizer &#125; <span class="keyword">from</span> <span class="string">'@angular/platform-browser'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">    selector: <span class="string">'preview'</span>,</span><br><span class="line">    templateUrl: <span class="string">'preview.template.html'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> PreviewComponent &#123;</span><br><span class="line">    previewUrl: <span class="built_in">string</span>;</span><br><span class="line">    <span class="meta">@ViewChild</span>(<span class="string">'iframe'</span>) iframe: ElementRef;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> configService: ConfigService, <span class="keyword">private</span> sanitizer: DomSanitizer, <span class="keyword">private</span> previewQuestionnaireService: PreviewQuestionnaireService, <span class="keyword">private</span> renderer: Renderer</span>) &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ngAfterViewInit(): <span class="built_in">void</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.previewQuestionnaireService.questionnaireId.subscribe(<span class="function">(<span class="params">qId:<span class="built_in">string</span></span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> url = <span class="keyword">this</span>.configService.config.previewUrl + <span class="string">'/#/questionnaires/'</span> + qId;</span><br><span class="line">            <span class="keyword">this</span>.previewQuestionnaireService.getQuestionnaireUrl(url).subscribe(<span class="function"><span class="params">()</span> =&gt;</span>&#123;</span><br><span class="line">                    <span class="keyword">this</span>.previewUrl = url;</span><br><span class="line">            &#125;,<span class="function">(<span class="params">err</span>) =&gt;</span></span><br><span class="line">                <span class="keyword">this</span>.previewUrl = <span class="string">'preview-not-found.html'</span></span><br><span class="line">            ), <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="keyword">this</span>.renderer.setElementProperty(<span class="keyword">this</span>.iframe.nativeElement, <span class="string">'src'</span>,<span class="keyword">this</span>.previewUrl)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-01-07T11:50:20.000Z"><a href="/2017/01/07/Kubernetes/">2017-01-07</a></time>
       
       
@@ -465,88 +541,6 @@ kubectl logs &lt;POD-NAME&gt;
 <p>A voir : </p>
 <ul>
 <li>Form, ngFormControl, Control from angular2/common</li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2015-10-21T12:01:40.000Z"><a href="/2015/10/21/Angularjs-directive/">2015-10-21</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2015/10/21/Angularjs-directive/">Angularjs directive</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h3 id="Directive"><a href="#Directive" class="headerlink" title="Directive"></a>Directive</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line">angular.module(<span class="string">'myModule'</span>).directive(<span class="string">'formGroup'</span>,  <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    restrict: <span class="string">'E'</span>,</span><br><span class="line">    transclude: <span class="literal">true</span>,</span><br><span class="line">    templateUrl: <span class="string">'core/views/directives/form-group.html'</span>,</span><br><span class="line">    replace: <span class="literal">true</span>,</span><br><span class="line">    scope: &#123;</span><br><span class="line">      label: <span class="string">'@'</span>,</span><br><span class="line">      <span class="keyword">for</span>: <span class="string">'@'</span>,</span><br><span class="line">      labelClass: <span class="string">'@'</span>,</span><br><span class="line">      inputClass: <span class="string">'@'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    controller: [<span class="string">'$scope'</span>, <span class="string">'$element'</span>, <span class="string">'$attrs'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
-<h3 id="Template"><a href="#Template" class="headerlink" title="Template"></a>Template</h3><pre><code>&lt;div class=&quot;form-group&quot;&gt;
-    &lt;label ng-if=&quot;label&quot; for=&quot;{{for}}&quot; class=&quot;control-label {{ labelClass }}&quot;&gt;{{ label }}&lt;/label&gt;
-
-    &lt;div ng-transclude=&quot;ng-transclude&quot; class=&quot;ef-control {{ inputClass }}&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;
-</code></pre><h3 id="Utilisation"><a href="#Utilisation" class="headerlink" title="Utilisation"></a>Utilisation</h3><pre><code>&lt;form-group for=&quot;name&quot; label=&quot;{{ 'medias.form.name'}}&quot; label-class=&quot;col-md-2&quot; input-class=&quot;col-md-10&quot;&gt;
-    &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; data-ng-model=&quot;media.name&quot; id=&quot;name&quot; required ng-maxlength=&quot;50&quot;&gt;
-&lt;/form-group&gt;
-</code></pre>
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2015-10-07T00:53:07.000Z"><a href="/2015/10/06/git-branch-strategy/">2015-10-06</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2015/10/06/git-branch-strategy/">git-branch-strategy</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Plusieurs articles sur la strategie des branches avec git</p>
-<ul>
-<li><a href="http://scottchacon.com/2011/08/31/github-flow.html" target="_blank" rel="noopener">GitHub Flow</a></li>
-<li><a href="http://nvie.com/posts/a-successful-git-branching-model/" target="_blank" rel="noopener">A successful Git branching model</a></li>
-<li><a href="http://drewfradette.ca/a-simpler-successful-git-branching-model/" target="_blank" rel="noopener">A (Simpler) Successful Git Branching Model</a></li>
-<li><a href="http://blog.endpoint.com/2014/05/git-workflows-that-work.html" target="_blank" rel="noopener">Git Workflows That Work</a></li>
-<li><a href="https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow" target="_blank" rel="noopener">Feature Branch Workflow</a></li>
-<li><a href="http://git-scm.com/book/fr/v2" target="_blank" rel="noopener">ProGit</a></li>
 </ul>
 
       

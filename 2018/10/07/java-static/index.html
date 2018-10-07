@@ -3,13 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Page | 归档 | cyrgue</title>
+  <title>java-static | cyrgue</title>
   <meta name="author" content="cyrgue">
+  
+  <meta name="description" content="Static field: Field is shared in all the object of the class
+Inner Class Could not have static field
+In Java8, Static field has to be declared in Inte">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="java-static"/>
   <meta property="og:site_name" content="cyrgue"/>
 
   
@@ -42,133 +46,80 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title">归档</h2>
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-10-07T13:08:20.000Z"><a href="/2018/10/07/java-static/">2018-10-07</a></time>
+      
+      
+  
+    <h1 class="title">java-static</h1>
+  
 
+    </header>
+    <div class="entry">
+      
+        <p>Static field: Field is shared in all the object of the class</p>
+<p>Inner Class Could not have static field</p>
+<p>In Java8, Static field has to be declared in Interface</p>
+<p>Exercice :<br>Q1)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cyrgue.staticKeyword;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> MAX_VAL = <span class="number">100</span>;</span><br><span class="line">    <span class="keyword">int</span> value = <span class="number">99</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setValue</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (x &lt;= MAX_VAL) &#123;</span><br><span class="line">            value = x;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticPrg</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        X a = <span class="keyword">new</span> X();</span><br><span class="line">        X b = <span class="keyword">new</span> X();</span><br><span class="line"></span><br><span class="line">        a.setValue(<span class="number">120</span>);</span><br><span class="line">        System.out.print(a.value + <span class="string">","</span>);</span><br><span class="line"></span><br><span class="line">        b.MAX_VAL = <span class="number">150</span>; <span class="comment">// better is X.MAX_VAL = 150</span></span><br><span class="line">        a.setValue(<span class="number">140</span>);</span><br><span class="line">        System.out.println(a.value);;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>What happens?<br>    A) I’m an X<br>    B)<br>    C) 99, 140<br>    D) </p>
+<p>Response : C<br>    X does not have a method doStuff2()</p>
 
-  <div class="archive">
+      
+    </div>
+    <footer>
+      
+        
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2017-01-24T10:25:55.000Z"><a href="/2017/01/24/angular2-library/">2017-01-24</a></time>
-            
-              <h1 class="title"><a href="/2017/01/24/angular2-library/">angular2-library</a></h1>
-            
-          </header>
-        </div>
-      </article>
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2017-01-24T10:22:54.000Z"><a href="/2017/01/24/angular2-iframe/">2017-01-24</a></time>
-            
-              <h1 class="title"><a href="/2017/01/24/angular2-iframe/">angular2-iframe</a></h1>
-            
-          </header>
-        </div>
-      </article>
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2017-01-07T11:50:20.000Z"><a href="/2017/01/07/Kubernetes/">2017-01-07</a></time>
-            
-              <h1 class="title"><a href="/2017/01/07/Kubernetes/">Kubernetes</a></h1>
-            
-          </header>
-        </div>
-      </article>
+      <a class="addthis_button_tweet"></a>
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-12-16T13:17:02.000Z"><a href="/2016/12/16/angular2-architecture/">2016-12-16</a></time>
-            
-              <h1 class="title"><a href="/2016/12/16/angular2-architecture/">angular2-architecture</a></h1>
-            
-          </header>
-        </div>
-      </article>
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-12-11T15:44:39.000Z"><a href="/2016/12/11/docker/">2016-12-11</a></time>
-            
-              <h1 class="title"><a href="/2016/12/11/docker/">docker</a></h1>
-            
-          </header>
-        </div>
-      </article>
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-12-06T01:06:15.000Z"><a href="/2016/12/05/angular2-tests/">2016-12-05</a></time>
-            
-              <h1 class="title"><a href="/2016/12/05/angular2-tests/">angular2-tests</a></h1>
-            
-          </header>
-        </div>
-      </article>
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-11-29T03:53:53.000Z"><a href="/2016/11/28/angular2-bootstap/">2016-11-28</a></time>
-            
-              <h1 class="title"><a href="/2016/11/28/angular2-bootstap/">Angular2 et Bootstrap</a></h1>
-            
-          </header>
-        </div>
-      </article>
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-11-27T16:55:00.000Z"><a href="/2016/11/27/rabbitMq/">2016-11-27</a></time>
-            
-              <h1 class="title"><a href="/2016/11/27/rabbitMq/">RabbitMq</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-02-09T03:29:52.000Z"><a href="/2016/02/08/Programmation-Reactive/">2016-02-08</a></time>
-            
-              <h1 class="title"><a href="/2016/02/08/Programmation-Reactive/">Programmation Reactive</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-01-16T23:35:21.000Z"><a href="/2016/01/16/Angularjs-2/">2016-01-16</a></time>
-            
-              <h1 class="title"><a href="/2016/01/16/Angularjs-2/">Angularjs 2</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
+    <a class="addthis_counter addthis_pill_style"></a>
   </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Commentaires</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://cyrgue.github.io/2018/10/07/java-static/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
