@@ -73,8 +73,9 @@ In Java8, Static field has to be declared in Inte">
 <p>Response :<br>B : </p>
 <p>Y y = new Z();</p>
 <p>y.sayHi2() is an INSTANCE METHOD<br>so means send a message from the OBJECT (instance)(of type Z) - NOT the type of the POINTER</p>
-<p>static method is treated differently<br>the compiler replaces the y.sayHi() with Y.sayHi() as it’s static so this is the POINTER TYPE</p>
+<p><strong>static method is treated differently</strong><br>the compiler replaces the y.sayHi() with Y.sayHi() as it’s static so this is the POINTER TYPE</p>
 <p>If you invoke static method, the behavior is determined statically by the compiler, so it uses the type of the variable (the POINTER) so Y<br>For instance method, dynamic method invocation(object (not pointer)of y, send a message), </p>
+<p><strong>Type of referee (Z) must be “assignment compatible” with type of reference (Y)</strong></p>
 
       
     </div>
