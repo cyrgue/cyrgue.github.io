@@ -49,6 +49,76 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2018-10-07T12:05:31.000Z"><a href="/2018/10/07/java-time-api/">2018-10-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/10/07/java-time-api/">Java Time API</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><ul>
+<li>java.time Package</li>
+<li>java.time.LocalDate (*), </li>
+<li>java.time.LocalTime (*)</li>
+<li>java.time.LocalDateTime (*),</li>
+<li>java.time.Period(*),</li>
+<li>java.time.format.DateTimeFormatter (*), </li>
+<li><p>java.time.Duration, </p>
+<p>(*) subject for exams<br><a href="https://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html" target="_blank" rel="noopener">Java Time API</a></p>
+</li>
+</ul>
+<h1 id="Create"><a href="#Create" class="headerlink" title="Create"></a>Create</h1><p>No Constructors (only private), but factory method : LocalDate.of…</p>
+<p><strong>DateTime API is IMMUTABLE</strong></p>
+<p>Methods : </p>
+<ul>
+<li><code>aLocalDate.plusDays(2);</code></li>
+<li><code>aLocalDate.minusDays(10);</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">LocalDate today = LocalDate.now(); <span class="comment">// No public constructor BUT factory methods</span></span><br><span class="line">System.out.println(today);</span><br><span class="line">LocalDate anoherDate = today.plusDays(<span class="number">2</span>); <span class="comment">// Does not change the current instance;</span></span><br><span class="line">System.out.println(<span class="string">"----------------------------"</span>);</span><br><span class="line">System.out.println(today);  <span class="comment">// Time API is IMMUTABLE</span></span><br><span class="line">System.out.println(anoherDate);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">today = today.minusDays(<span class="number">10</span>);</span><br><span class="line">System.out.println(today);</span><br><span class="line"></span><br><span class="line">LocalDate aDate = LocalDate.of(<span class="number">2018</span>, <span class="number">6</span>, <span class="number">15</span>);</span><br><span class="line">System.out.println(aDate);</span><br></pre></td></tr></table></figure>
+<h1 id="Duration-vs-Period"><a href="#Duration-vs-Period" class="headerlink" title="Duration vs Period"></a>Duration vs Period</h1><ul>
+<li>Period : Only interest in Year, Month, Day (more restriction)<br>  Human Calendar Period (1 month, 3 days or 2 years, 4 days..)</li>
+<li>Duration : interest in Year, Month, Day, hour, minutes, seconds : <em>nanoseconds</em><br>  Physical Duration in nanoseconds</li>
+</ul>
+<p>Period has a specific print format : P1Y5M10D for a Period of 1 year, 5 month, 10 days    </p>
+<p>Normalized can change month to year but not days to month or year</p>
+<ul>
+<li><code>aLocalDate.plus(aPeriod);</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">LocalDate today = LocalDate.now();</span><br><span class="line">Period p = Period.of(<span class="number">1</span>, <span class="number">5</span>, <span class="number">10</span>);</span><br><span class="line">System.out.println(p); <span class="comment">// Specific Format</span></span><br><span class="line">Period normalized = p.normalized();</span><br><span class="line">System.out.println(normalized);</span><br><span class="line"></span><br><span class="line">Period p2 = Period.of(<span class="number">1</span>, <span class="number">25</span>, <span class="number">10</span>);</span><br><span class="line">System.out.println(p2); <span class="comment">// Specific Format</span></span><br><span class="line">Period normalized2 = p2.normalized();</span><br><span class="line">System.out.println(normalized2);</span><br></pre></td></tr></table></figure>
+<h1 id="Temporal-Units"><a href="#Temporal-Units" class="headerlink" title="Temporal Units"></a>Temporal Units</h1><p><img src="/img/java/oca-javase8/local-time1.png?raw=true" alt="Temporal Units" title="Temporal Units">  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LocalTime nineThirtheen = LocalTime.of(<span class="number">9</span>, <span class="number">13</span>);</span><br><span class="line">System.out.println(nineThirtheen);</span><br><span class="line"><span class="comment">//LocalTime muchLater = nineThirtheen.plus(period); // java.time.temporal.UnsupportedTemporalTypeException: Unsupported unit: Months</span></span><br></pre></td></tr></table></figure>
+<p>BE CAREFULL : Of adding period (y/m/d) to Time (LocalTime) : Error !!!! </p>
+<h1 id="Time-Formatter"><a href="#Time-Formatter" class="headerlink" title="Time Formatter"></a>Time Formatter</h1><p>java.time.format</p>
+<ul>
+<li>DateTimeFormatter</li>
+</ul>
+<p>ex : <code>LocalDate parsedDate = LocalDate.parse(text, formatter);</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LocalDate today = LocalDate.now();</span><br><span class="line">DateTimeFormatter fmt = DateTimeFormatter.ofPattern(<span class="string">"d MM yy"</span>);</span><br><span class="line">System.out.println(fmt.format(today));</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2018-10-07T11:21:09.000Z"><a href="/2018/10/07/java-table-of-contents/">2018-10-07</a></time>
       
       
@@ -313,44 +383,9 @@
         <h1 id="Online-Training-References"><a href="#Online-Training-References" class="headerlink" title="Online Training References"></a>Online Training References</h1><ul>
 <li><a href="https://www.safaribooksonline.com/live-training/courses/oca-java-se-8-programmer-certification-crash-course-java-cert/0636920200321/" target="_blank" rel="noopener">Course description</a></li>
 </ul>
-<h1 id="Java-Time-API"><a href="#Java-Time-API" class="headerlink" title="Java Time API"></a>Java Time API</h1><ul>
-<li>java.time Package</li>
-<li>java.time.LocalDate (*), </li>
-<li>java.time.LocalTime (*)</li>
-<li>java.time.LocalDateTime (*),</li>
-<li>java.time.Period(*),</li>
-<li>java.time.format.DateTimeFormatter (*), </li>
-<li><p>java.time.Duration, </p>
-<p>(*) subject for exams<br><a href="https://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html" target="_blank" rel="noopener">Java Time API</a></p>
-</li>
+<h1 id="Time-API"><a href="#Time-API" class="headerlink" title="Time API"></a>Time API</h1><ul>
+<li><a href="/2018/10/07/java-time-api">Time API</a></li>
 </ul>
-<h2 id="Details"><a href="#Details" class="headerlink" title="Details"></a>Details</h2><p>No Constructors (only private), but factory method : LocalDate.of…</p>
-<p><strong>DateTime API is IMMUTABLE</strong></p>
-<p>Methods : </p>
-<ul>
-<li><code>aLocalDate.plusDays(2);</code></li>
-<li><code>aLocalDate.minusDays(10);</code></li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">LocalDate today = LocalDate.now(); <span class="comment">// No public constructor BUT factory methods</span></span><br><span class="line">System.out.println(today);</span><br><span class="line">LocalDate anoherDate = today.plusDays(<span class="number">2</span>); <span class="comment">// Does not change the current instance;</span></span><br><span class="line">System.out.println(<span class="string">"----------------------------"</span>);</span><br><span class="line">System.out.println(today);  <span class="comment">// Time API is IMMUTABLE</span></span><br><span class="line">System.out.println(anoherDate);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">today = today.minusDays(<span class="number">10</span>);</span><br><span class="line">System.out.println(today);</span><br><span class="line"></span><br><span class="line">LocalDate aDate = LocalDate.of(<span class="number">2018</span>, <span class="number">6</span>, <span class="number">15</span>);</span><br><span class="line">System.out.println(aDate);</span><br></pre></td></tr></table></figure>
-<h2 id="Duration-vs-Period"><a href="#Duration-vs-Period" class="headerlink" title="Duration vs Period"></a>Duration vs Period</h2><ul>
-<li>Period : Only interest in Year, Month, Day (more restriction)<br>  Human Calendar Period (1 month, 3 days or 2 years, 4 days..)</li>
-<li>Duration : interest in Year, Month, Day, hour, minutes, seconds : <em>nanoseconds</em><br>  Physical Duration in nanoseconds</li>
-</ul>
-<p>Period has a specific print format : P1Y5M10D for a Period of 1 year, 5 month, 10 days    </p>
-<p>Normalized can change month to year but not days to month or year</p>
-<ul>
-<li><code>aLocalDate.plus(aPeriod);</code></li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">LocalDate today = LocalDate.now();</span><br><span class="line">Period p = Period.of(<span class="number">1</span>, <span class="number">5</span>, <span class="number">10</span>);</span><br><span class="line">System.out.println(p); <span class="comment">// Specific Format</span></span><br><span class="line">Period normalized = p.normalized();</span><br><span class="line">System.out.println(normalized);</span><br><span class="line"></span><br><span class="line">Period p2 = Period.of(<span class="number">1</span>, <span class="number">25</span>, <span class="number">10</span>);</span><br><span class="line">System.out.println(p2); <span class="comment">// Specific Format</span></span><br><span class="line">Period normalized2 = p2.normalized();</span><br><span class="line">System.out.println(normalized2);</span><br></pre></td></tr></table></figure>
-<h2 id="Temporal-Units"><a href="#Temporal-Units" class="headerlink" title="Temporal Units"></a>Temporal Units</h2><p><img src="/img/java/oca-javase8/local-time1.png?raw=true" alt="Temporal Units" title="Temporal Units">  </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LocalTime nineThirtheen = LocalTime.of(<span class="number">9</span>, <span class="number">13</span>);</span><br><span class="line">System.out.println(nineThirtheen);</span><br><span class="line"><span class="comment">//LocalTime muchLater = nineThirtheen.plus(period); // java.time.temporal.UnsupportedTemporalTypeException: Unsupported unit: Months</span></span><br></pre></td></tr></table></figure>
-<p>BE CAREFULL : Of adding period (y/m/d) to Time (LocalTime) : Error !!!! </p>
-<h2 id="Time-Formatter"><a href="#Time-Formatter" class="headerlink" title="Time Formatter"></a>Time Formatter</h2><p>java.time.format</p>
-<ul>
-<li>DateTimeFormatter</li>
-</ul>
-<p>ex : <code>LocalDate parsedDate = LocalDate.parse(text, formatter);</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LocalDate today = LocalDate.now();</span><br><span class="line">DateTimeFormatter fmt = DateTimeFormatter.ofPattern(<span class="string">"d MM yy"</span>);</span><br><span class="line">System.out.println(fmt.format(today));</span><br></pre></td></tr></table></figure>
 <p>TV1:38mn -&gt; </p>
 <h2 id="static-keyword"><a href="#static-keyword" class="headerlink" title="static keyword"></a>static keyword</h2><h2 id="Polymorphism"><a href="#Polymorphism" class="headerlink" title="Polymorphism"></a>Polymorphism</h2><p><a href="/2018/08/29/java-polymorphism">Polymorphism; develop code that overrides methods; differentiate between the type of a reference and the type of an object</a></p>
 
@@ -559,48 +594,6 @@ E) throws FileNotFoundException
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2018-08-30T14:14:16.000Z"><a href="/2018/08/30/java-oca-javase8-2/">2018-08-30</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2018/08/30/java-oca-javase8-2/">OCA Java SE 8 Programmer Certification Crash Course Java Cert - Day 2</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="Exceptions"><a href="#Exceptions" class="headerlink" title="Exceptions"></a>Exceptions</h2><p><a href="/2018/08/30/java-exceptions">Manage Exception</a></p>
-<h2 id="Casting"><a href="#Casting" class="headerlink" title="Casting"></a>Casting</h2><p><a href="/2018/08/30/java-casting">Determine when casting is necessary</a> </p>
-<h2 id="Lambdas"><a href="#Lambdas" class="headerlink" title="Lambdas"></a>Lambdas</h2><p><a href="/2018/08/30/java-lambdas">Write a simple Lambda expression that consumes a Lambda Predicate expression</a></p>
-<p>T:150mn -&gt; </p>
-<h2 id="Value-and-Reference"><a href="#Value-and-Reference" class="headerlink" title="Value and Reference"></a>Value and Reference</h2><p><a href="/2018/08/31/java-method-arguments">Determine the effect upon object references and primitive values when they are passed into methods that change the values</a></p>
-<p>T:275mn -&gt; 320mn</p>
-<h2 id="Equality"><a href="#Equality" class="headerlink" title="Equality"></a>Equality</h2><p>[Test equality between Strings and other objects using == and equals ()] ()</p>
-<p>T:320mn -&gt; 360mn</p>
-<h2 id="Constructor"><a href="#Constructor" class="headerlink" title="Constructor"></a>Constructor</h2><p><a href="">Create and overload constructors; differentiate between default and user-defined constructors</a><br><a href="">Use super and this to access objects and constructors</a></p>
-<p>T:372mn -&gt; end (422mn)</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -687,7 +680,7 @@ E) throws FileNotFoundException
   
     <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
   
-    <li><a href="/tags/java/">java</a><small>11</small></li>
+    <li><a href="/tags/java/">java</a><small>12</small></li>
   
     <li><a href="/tags/java-index/">java index</a><small>1</small></li>
   
@@ -726,6 +719,8 @@ E) throws FileNotFoundException
     <li><a href="/tags/tests/">tests</a><small>1</small></li>
   
     <li><a href="/tags/thread/">thread</a><small>1</small></li>
+  
+    <li><a href="/tags/time/">time</a><small>1</small></li>
   
     <li><a href="/tags/tools/">tools</a><small>1</small></li>
   
