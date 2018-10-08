@@ -9,7 +9,7 @@
   <meta name="description" content="Try/catch blocks
 finally blocks
 Multi-catch : using | (also consider catching a parent type)
-1234567String input = getSomeString();int num;try &amp;#123; ">
+  1234567String input = getSomeString();int num;try &amp;#123">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -66,15 +66,21 @@ Multi-catch : using | (also consider catching a parent type)
         <h1 id="Try-catch-blocks"><a href="#Try-catch-blocks" class="headerlink" title="Try/catch blocks"></a>Try/catch blocks</h1><ul>
 <li>finally blocks</li>
 <li><p>Multi-catch : using | (also consider catching a parent type)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String input = getSomeString();</span><br><span class="line"><span class="keyword">int</span> num;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">   num = Integer.parseInt(input)</span><br><span class="line">&#125; <span class="keyword">catch</span> (NumberFormatException | NullPointerException e) &#123;</span><br><span class="line">   num = defaultValue;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String input = getSomeString();</span><br><span class="line"><span class="keyword">int</span> num;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">   num = Integer.parseInt(input)</span><br><span class="line">&#125; <span class="keyword">catch</span> (NumberFormatException | NullPointerException e) &#123;</span><br><span class="line">   num = defaultValue;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>try-with-resources (Java7) : Can declare variables that implements AutoCloseable in parents after try</p>
 <ul>
 <li>Scope of variable is scope of try/catch block</li>
 <li>The close method of each variable is called at the end (like a finally block)</li>
-<li>Can declare multiple variables, separated by semicolon<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (BufferedReader reader = ....)&#123;</span><br><span class="line">   </span><br><span class="line">&#125; <span class="keyword">catch</span> (SomeExceptionType e) &#123;</span><br><span class="line">   ...</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
+<li>Can declare multiple variables, separated by semicolon<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (BufferedReader reader = ....)&#123;</span><br><span class="line">   </span><br><span class="line">&#125; <span class="keyword">catch</span> (SomeExceptionType e) &#123;</span><br><span class="line">   ...</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 </li>
+</ul>
+<h1 id="Path"><a href="#Path" class="headerlink" title="Path"></a>Path</h1><ul>
+<li>Path is a simpler and more flexibable replacement for File class </li>
+<li>Get a Path with <strong>Paths.get</strong></li>
+<li>Paths have convenients methods : toAbsoluteParth, startWith, getParent…</li>
 </ul>
 
       
