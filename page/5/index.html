@@ -49,6 +49,97 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2016-01-16T23:35:21.000Z"><a href="/2016/01/16/Angularjs-2/">2016-01-16</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/01/16/Angularjs-2/">Angularjs 2</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="References"><a href="#References" class="headerlink" title="Références :"></a>Références :</h2><h3 id="Base"><a href="#Base" class="headerlink" title="Base"></a>Base</h3><ul>
+<li><a href="https://angular.io/" target="_blank" rel="noopener">Angular Io</a></li>
+<li><a href="http://blog.ng-book.com/the-ultimate-guide-to-forms-in-angular-2/" target="_blank" rel="noopener">ng-book</a></li>
+<li><p><a href="http://blog.thoughtram.io/categories/angular-2/" target="_blank" rel="noopener">Blog</a></p>
+</li>
+<li><p><a href="http://victorsavkin.com/post/118372404541/the-core-concepts-of-angular-2" target="_blank" rel="noopener">http://victorsavkin.com/post/118372404541/the-core-concepts-of-angular-2</a></p>
+</li>
+<li><a href="https://github.com/angular/angular/tree/master/modules/playground/src" target="_blank" rel="noopener">https://github.com/angular/angular/tree/master/modules/playground/src</a></li>
+</ul>
+<h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h3><ul>
+<li><a href="https://auth0.com/blog/2015/10/15/angular-2-series-part-3-using-http/" target="_blank" rel="noopener">Using HTTP</a></li>
+<li><a href="http://chariotsolutions.com/blog/post/angular2-observables-http-separating-services-components/" target="_blank" rel="noopener">Observables et Http</a></li>
+</ul>
+<h3 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h3><ul>
+<li><a href="http://blog.jhades.org/angular-2-application-architecture-building-flux-like-apps-using-redux-and-immutable-js-js/" target="_blank" rel="noopener">Building Flux Apps with Redux and Immutable.js</a></li>
+<li><a href="https://angularclass.github.io/angular2-webpack-starter/" target="_blank" rel="noopener">Angular 2 Starter</a></li>
+</ul>
+<h3 id="Observable"><a href="#Observable" class="headerlink" title="Observable"></a>Observable</h3><ul>
+<li><a href="http://victorsavkin.com/post/110170125256/change-detection-in-angular-2" target="_blank" rel="noopener">Angular 2 change detection system</a></li>
+<li><a href="https://medium.com/google-developer-experts/angular-introduction-to-reactive-extensions-rxjs-a86a7430a61f#.iibmtk80f" target="_blank" rel="noopener">Introduction to Reactive Extensions (RxJS)</a></li>
+<li><a href="http://blog.thoughtram.io/angular/2016/01/06/taking-advantage-of-observables-in-angular2.html" target="_blank" rel="noopener">Taking advantage of Observables in Angular 2</a></li>
+</ul>
+<h3 id="Routing"><a href="#Routing" class="headerlink" title="Routing"></a>Routing</h3><ul>
+<li><a href="https://angular.io/docs/ts/latest/guide/router.html" target="_blank" rel="noopener">ROUTING &amp; NAVIGATION</a></li>
+<li><a href="http://yakovfain.com/2015/11/02/angular-2-router-high-level-overview/" target="_blank" rel="noopener">Angular 2 Router: High-Level Overview</a></li>
+</ul>
+<hr>
+<p> Notes</p>
+<p>Angularjs 2 </p>
+<p>An Angular 2 application consists of nested components. So an Angular 2 application will always have a component tree. Let’s say for this app it looks as follows:</p>
+<p><a href="https://angular.io/docs/ts/latest/quickstart.html" target="_blank" rel="noopener">https://angular.io/docs/ts/latest/quickstart.html</a></p>
+<p>TypeScript<br> Composant<br> Class<br> Interface</p>
+<p>ngIf and ngFor are called “structural directives” because they can change the structure of portions of the DOM. In other words, they give structure to the way Angular displays content in the DOM</p>
+<ul>
+<li><p>The ngIf directive removes/puts the HTML from/into the DOM.</p>
+<p>Structural Directives<br> A Structural directive changes the DOM layout by adding and removing DOM elements. </p>
+ <p *ngif="condition">
+
+</p><p> Angular removes the element from DOM, stops change detection for the associated component, detaches it from DOM events (the attachments that it made) and destroys the component. The component can be garbage-collected (we hope) and free up memory.<br> Components often have child components which themselves have children. All of them are destroyed when ngIf destroys the common ancestor. This cleanup effort is usually a good thing.</p>
+</li>
+</ul>
+<p> Template Syntax </p>
+<p>return this.jsonp<br>              .get(‘<a href="http://en.wikipedia.org/w/api.php?callback=JSONP_CALLBACK&#39;" target="_blank" rel="noopener">http://en.wikipedia.org/w/api.php?callback=JSONP_CALLBACK&#39;</a>, { search })<br>              .map((response) =&gt; response.json()[1]);</p>
+<p>this.items = this.term.valueChanges<br>                 .debounceTime(400)<br>                 .distinctUntilChanged()<br>                 .switchMap(term =&gt; this.wikipediaService.search(term));</p>
+<p>The map operator expects a function that takes a value T and returns a value U<br>you get from an Observable<t> to an Observable<u>.</u></t></p>
+<p>to avoid Observable&lt;Observable&lt;Array<string>&gt; : The flatMap operator on the other hand expects a function that takes a T and returns an Observable<u> and produces an Observable<u> for us.<br>The switchMap operator is comparable to flatMap in a way. Both operators automatically subscribe to the Observable that the function produces and flatten the result for us. The difference is that the switchMap operator automatically unsubscribes from previous subscriptions as soon as the outer Observable emits new values.</u></u></string></p>
+<hr>
+<p>Reactive Extensions for JavaScript (RxJS) </p>
+<ul>
+<li><p>reactive streams library that allows you to work with asynchronous data streams. RxJS can be used both in the browser or in the server-side using Node.js.</p>
+<p>In RxJS, you represent asynchronous data streams using observable sequences or also just called observables. </p>
+</li>
+</ul>
+<p>Observable<br> An Observable is a collection that arrives over time. Observables can be used to model events, asynchronous requests, and animations. Observables can also be transformed, combined, and consumed using the Array methods<br> Observables = Promises + Events (in a way!)</p>
+<p> <a href="https://egghead.io/lessons/javascript-introducing-the-observable" target="_blank" rel="noopener">https://egghead.io/lessons/javascript-introducing-the-observable</a></p>
+<p>A voir : </p>
+<ul>
+<li>Form, ngFormControl, Control from angular2/common</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2015-10-21T12:01:40.000Z"><a href="/2015/10/21/Angularjs-directive/">2015-10-21</a></time>
       
       
@@ -294,13 +385,15 @@
   
     <li><a href="/tags/exception/">exception</a><small>1</small></li>
   
+    <li><a href="/tags/file-I-O/">file I/O</a><small>1</small></li>
+  
     <li><a href="/tags/functional-programming/">functional programming</a><small>1</small></li>
   
     <li><a href="/tags/git/">git</a><small>2</small></li>
   
     <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
   
-    <li><a href="/tags/java/">java</a><small>13</small></li>
+    <li><a href="/tags/java/">java</a><small>14</small></li>
   
     <li><a href="/tags/java-definition/">java definition</a><small>1</small></li>
   
@@ -337,6 +430,8 @@
     <li><a href="/tags/serverless/">serverless</a><small>2</small></li>
   
     <li><a href="/tags/stream/">stream</a><small>1</small></li>
+  
+    <li><a href="/tags/strean/">strean</a><small>1</small></li>
   
     <li><a href="/tags/tests/">tests</a><small>1</small></li>
   

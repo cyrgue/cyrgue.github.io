@@ -3,13 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>aws | cyrgue</title>
+  <title>Stream and File I/O | cyrgue</title>
   <meta name="author" content="cyrgue">
+  
+  <meta name="description" content="Try/catch blocks
+finally blocks
+Multi-catch : using | (also consider catching a parent type)
+1234567String input = getSomeString();int num;try &amp;#123; ">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="Stream and File I/O"/>
   <meta property="og:site_name" content="cyrgue"/>
 
   
@@ -42,25 +47,92 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title tag">aws</h2>
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-10-08T12:02:08.000Z"><a href="/2018/10/08/java-stream-file-io/">2018-10-08</a></time>
+      
+      
+  
+    <h1 class="title">Stream and File I/O</h1>
+  
 
+    </header>
+    <div class="entry">
+      
+        <h1 id="Try-catch-blocks"><a href="#Try-catch-blocks" class="headerlink" title="Try/catch blocks"></a>Try/catch blocks</h1><ul>
+<li>finally blocks</li>
+<li><p>Multi-catch : using | (also consider catching a parent type)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String input = getSomeString();</span><br><span class="line"><span class="keyword">int</span> num;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">   num = Integer.parseInt(input)</span><br><span class="line">&#125; <span class="keyword">catch</span> (NumberFormatException | NullPointerException e) &#123;</span><br><span class="line">   num = defaultValue;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>try-with-resources (Java7) : Can declare variables that implements AutoCloseable in parents after try</p>
+<ul>
+<li>Scope of variable is scope of try/catch block</li>
+<li>The close method of each variable is called at the end (like a finally block)</li>
+<li>Can declare multiple variables, separated by semicolon<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (BufferedReader reader = ....)&#123;</span><br><span class="line">   </span><br><span class="line">&#125; <span class="keyword">catch</span> (SomeExceptionType e) &#123;</span><br><span class="line">   ...</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
 
-  <div class="archive">
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2017-10-08T13:16:34.000Z"><a href="/2017/10/08/dynamodb/">2017-10-08</a></time>
-            
-              <h1 class="title"><a href="/2017/10/08/dynamodb/">DynamoDb</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/java/">java</a>, <a href="/tags/strean/">strean</a>, <a href="/tags/file-I-O/">file I/O</a>
   </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Commentaires</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://cyrgue.github.io/2018/10/08/java-stream-file-io/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">

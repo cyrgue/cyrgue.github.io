@@ -49,6 +49,51 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2018-10-08T12:02:08.000Z"><a href="/2018/10/08/java-stream-file-io/">2018-10-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/10/08/java-stream-file-io/">Stream and File I/O</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Try-catch-blocks"><a href="#Try-catch-blocks" class="headerlink" title="Try/catch blocks"></a>Try/catch blocks</h1><ul>
+<li>finally blocks</li>
+<li><p>Multi-catch : using | (also consider catching a parent type)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String input = getSomeString();</span><br><span class="line"><span class="keyword">int</span> num;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">   num = Integer.parseInt(input)</span><br><span class="line">&#125; <span class="keyword">catch</span> (NumberFormatException | NullPointerException e) &#123;</span><br><span class="line">   num = defaultValue;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>try-with-resources (Java7) : Can declare variables that implements AutoCloseable in parents after try</p>
+<ul>
+<li>Scope of variable is scope of try/catch block</li>
+<li>The close method of each variable is called at the end (like a finally block)</li>
+<li>Can declare multiple variables, separated by semicolon<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (BufferedReader reader = ....)&#123;</span><br><span class="line">   </span><br><span class="line">&#125; <span class="keyword">catch</span> (SomeExceptionType e) &#123;</span><br><span class="line">   ...</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2018-10-07T13:12:51.000Z"><a href="/2018/10/07/java-inner-class/">2018-10-07</a></time>
       
       
@@ -542,39 +587,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2018-08-31T02:53:51.000Z"><a href="/2018/08/30/java-intellij/">2018-08-30</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2018/08/30/java-intellij/">java_intellij</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Alt+Insert : New Class<br>Ctrl+Alt+Insert </p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -655,13 +667,15 @@
   
     <li><a href="/tags/exception/">exception</a><small>1</small></li>
   
+    <li><a href="/tags/file-I-O/">file I/O</a><small>1</small></li>
+  
     <li><a href="/tags/functional-programming/">functional programming</a><small>1</small></li>
   
     <li><a href="/tags/git/">git</a><small>2</small></li>
   
     <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
   
-    <li><a href="/tags/java/">java</a><small>13</small></li>
+    <li><a href="/tags/java/">java</a><small>14</small></li>
   
     <li><a href="/tags/java-definition/">java definition</a><small>1</small></li>
   
@@ -698,6 +712,8 @@
     <li><a href="/tags/serverless/">serverless</a><small>2</small></li>
   
     <li><a href="/tags/stream/">stream</a><small>1</small></li>
+  
+    <li><a href="/tags/strean/">strean</a><small>1</small></li>
   
     <li><a href="/tags/tests/">tests</a><small>1</small></li>
   
