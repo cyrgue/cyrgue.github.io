@@ -65,23 +65,33 @@ Multi-catch : using | (also consider catching a parent type)
       
         <h1 id="Try-catch-blocks"><a href="#Try-catch-blocks" class="headerlink" title="Try/catch blocks"></a>Try/catch blocks</h1><ul>
 <li>finally blocks</li>
-<li><p>Multi-catch : using | (also consider catching a parent type)</p>
+<li><p><strong>Multi-catch</strong> : using | (also consider catching a parent type)</p>
   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String input = getSomeString();</span><br><span class="line"><span class="keyword">int</span> num;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">   num = Integer.parseInt(input)</span><br><span class="line">&#125; <span class="keyword">catch</span> (NumberFormatException | NullPointerException e) &#123;</span><br><span class="line">   num = defaultValue;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>try-with-resources (Java7) : Can declare variables that implements AutoCloseable in parents after try</p>
+<li><p><strong>try-with-resources</strong> (Java7) : Can declare variables that <strong>implements AutoCloseable</strong> in parents after try</p>
 <ul>
 <li>Scope of variable is scope of try/catch block</li>
 <li>The close method of each variable is called at the end (like a finally block)</li>
-<li>Can declare multiple variables, separated by semicolon<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (BufferedReader reader = ....)&#123;</span><br><span class="line">   </span><br><span class="line">&#125; <span class="keyword">catch</span> (SomeExceptionType e) &#123;</span><br><span class="line">   ...</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>Can declare multiple variables, separated by semicolon</li>
 </ul>
 </li>
 </ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (BufferedReader reader = ....)&#123;</span><br><span class="line">   </span><br><span class="line">&#125; <span class="keyword">catch</span> (SomeExceptionType e) &#123;</span><br><span class="line">   ...</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 <h1 id="Path"><a href="#Path" class="headerlink" title="Path"></a>Path</h1><ul>
-<li>Path is a simpler and more flexibable replacement for File class </li>
+<li><strong>Path</strong> is a simpler and more flexibable replacement for File class </li>
 <li>Get a Path with <strong>Paths.get</strong></li>
 <li>Paths have convenients methods : toAbsoluteParth, startWith, getParent…</li>
 </ul>
+<h1 id="File-Reading"><a href="#File-Reading" class="headerlink" title="File Reading"></a>File Reading</h1><p>Read lines<br> <code>Stream&lt;String&gt; lines = Files.lines(somePath)</code></p>
+<ul>
+<li>Charset Option : Default is UTF-8, but you can uses Files.lines(path, someCharset)</li>
+<li>Throws IOException : use a try/catch block or throw and exception</li>
+<li>Stream should be closed </li>
+<li>Stream implements AutoCloseable</li>
+</ul>
+<h1 id="File-writing"><a href="#File-writing" class="headerlink" title="File writing"></a>File writing</h1><p>Write all entries of a List into a file in one method call</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cyrgue.fileio;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.Charset;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Files;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Path;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Paths;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileWrintingPrg</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        Charset charset = Charset.defaultCharset();</span><br><span class="line">        Path path = Paths.get(<span class="string">"output-file-1.txt"</span>);</span><br><span class="line">        List&lt;String&gt; lines = Arrays.asList(<span class="string">"Line One"</span>, <span class="string">"Line Two"</span>);</span><br><span class="line"></span><br><span class="line">        Files.write(path, lines, charset);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>OpenOption<br><code>Files.write(somePath, lines, someCharset, someOption)</code><br>used to create, override a file…</p>
 
       
     </div>
