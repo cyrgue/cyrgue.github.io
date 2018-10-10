@@ -49,6 +49,54 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2016-02-09T03:29:52.000Z"><a href="/2016/02/08/Programmation-Reactive/">2016-02-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/02/08/Programmation-Reactive/">Programmation Reactive</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Programmation Réactive Fonctionnelle (PRF)<br>Programmation réactive = programmation avec des flux de données asynchrones.<br>Un flux est une séquence d’événements en cours de production et ordonnés dans le temps.<br>Rien de nouveau : Les bus d’événements et les événements type clics de souris sont simplement des flux d’événements asynchrones que l’on peut observer pour y réagir.<br>La PR, c’est la même idée mais survitaminée. Il devient possible de créer des flux à partir de tout et n’importe quoi, pas seulement de clics. Ces flux sont légers et présents de partout. Tout peut alors être un flux : les variables, les entrées utilisateurs, les propriétés, les caches, les structures de données, etc.<br>est alors possible d’écouter/observer ce flux et réagir aux changements.</p>
+<p>En plus de ça, il y a à votre disposition des boîtes à outils puissantes pour combiner, créer, filtrer tous ces flux. C’est là que la partie « fonctionnelle » se combine bien avec la PR. Un flux peut être utilisé comme entrée d’un autre. Plusieurs flux peuvent aussi être combinés pour en produire un nouveau. Deux flux peuvent être fusionnés. Un flux peut être filtré pour produire un nouveau flux avec uniquement les événements qui vous intéressent. Vous pouvez transformer chaque événement d’un flux pour en produire un nouveau.<br>C’est là que la partie « fonctionnelle » se combine bien avec la PR. Un flux peut être utilisé comme entrée d’un autre. Plusieurs flux peuvent aussi être combinés pour en produire un nouveau. Deux flux peuvent être fusionnés. Un flux peut être filtré pour produire un nouveau flux avec uniquement les événements qui vous intéressent. Vous pouvez transformer chaque événement d’un flux pour en produire un nouveau.</p>
+<p>L’idée est de traiter ces événements de manière asynchrone, en définissant une fonction à exécuter pour chaque valeur émise, une autre fonction à exécuter en cas d’erreur et une dernière pour le cas du signal de « fin ».<br>Dans certains cas particuliers, les deux dernières sont inutiles et il est suffisant de se concentrer sur la fonction qui traite les valeurs. Écouter un flux (listening), se dit aussi « souscrire au flux » (subscribing). En fait les fonction que l’on définit sont des observateurs et le sujet (objet observé) est le flux. C’est exactement le patron de conception observateur.</p>
+<p>Dans les bibliothèque de programmation réactive fonctionnelle, il existe plein de fonctions pour manipuler les flux. Quand on appelle une de ces fonctions, cela renvoie un nouveau flux qui découle du premier. Le flux d’origine n’est pas modifié du tout. Cette propriété de non-modification est appelée « immutabilité » et est une des bases de la programmation fonctionnelle. Comme un nouveau flux est créé, il est possible de chaîner les appels, </p>
+<p>La PR fonctionnelle élève le niveau d’abstraction de votre code et, au lieu de se battre avec des détails d’implantation, vous pouvez vous concentrer sur les interdépendances entre les événements de votre logique métier. Un code de PR fonctionnelle est très souvent plus concis, ce qui peut avoir certains avantages.</p>
+<p>Ref : <a href="http://home.heeere.com/tech-intro-programmation-reactive.html" target="_blank" rel="noopener">http://home.heeere.com/tech-intro-programmation-reactive.html</a></p>
+<p>cela renvoie un nouveau flux qui découle du premier. Le flux d’origine n’est pas modifié du tout. Cette propriété de non-modification est appelée « immutabilité » et est une des bases de la programmation fonctionnelle. Comme un nouveau flux est créé, il est possible de chaîner les appels, par</p>
+<p>La fonction Rx.Observable.create() crée un flux qui informera chaque observateur de chaque nouvel événement (onNext()) et des erreurs (onError()).</p>
+<p>Operations:<br>map (pour transformer chaque valeur),<br>filter (pour filtrer certaines valeurs),<br>scan (pour appliquer successivement une opération),<br>stream.throttle(250ms)</p>
+<ul>
+<li>Language (Thread, reference value)<br><a href="http://stackoverflow.com/questions/2734025/is-javascript-guaranteed-to-be-single-threaded" target="_blank" rel="noopener">http://stackoverflow.com/questions/2734025/is-javascript-guaranteed-to-be-single-threaded</a></li>
+</ul>
+<p>JavaScript (in browsers) doesn’t run concurrently2. At most one of the setTimeout callbacks can execute at a time - as there is one JavaScript execution context or “thread”.</p>
+<p>Passage par valeur ou par référence ?<br>Variables are passed by value, objects by reference. Arrays in JavaScript are objects<br>Les objets simples comme String, Boolean, Number sont aussi passés par valeur.</p>
+<p>Pour mémoire, un argument passé par valeur est copié, et c’est la copie qui est refilée à la fonction. Toute modification de cette copie n’entraîne donc aucun changement dans la donnée d’origine. En revanche, un argument passé par référence est refilé directement : la fonction travaille sur l’original.</p>
+<p>Mais en Javascript, ce n’est pas vous qui choisissez le mode de passage ; ça fonctionne un peu comme en Java[1] : si c’est un type natif (Number, String, etc.) c’est passé par valeur, tandis que si c’est un objet d’une classe à vous, c’est passé par référence.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-01-16T23:35:21.000Z"><a href="/2016/01/16/Angularjs-2/">2016-01-16</a></time>
       
       

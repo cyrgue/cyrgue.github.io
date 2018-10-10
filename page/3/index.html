@@ -49,6 +49,41 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-10-15T15:07:20.000Z"><a href="/2017/10/15/generics/">2017-10-15</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/10/15/generics/">generics</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Generics in Java</p>
+<p>Generics was added in Java 5 to provide compile-time type checking and removing risk of ClassCastException</p>
+<p> Le principe de la généricité est de faire des classes qui n’acceptent qu’un certain type d’objets ou de données de façon dynamique !</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-10-08T13:16:34.000Z"><a href="/2017/10/08/dynamodb/">2017-10-08</a></time>
       
       
@@ -515,40 +550,6 @@
 <p>Also const declarations adhere to block scope. Block scope can simply be understood as anything between two curly brackets. (same behahvior as let)</p>
 <h2 id="Shortalnd-Properties"><a href="#Shortalnd-Properties" class="headerlink" title="Shortalnd Properties"></a>Shortalnd Properties</h2><h2 id="Object-Enhancements"><a href="#Object-Enhancements" class="headerlink" title="Object Enhancements"></a>Object Enhancements</h2><h2 id="Spread-Operator"><a href="#Spread-Operator" class="headerlink" title="Spread Operator"></a>Spread Operator</h2><p>…</p>
 <h2 id="Template-literals"><a href="#Template-literals" class="headerlink" title="Template literals"></a>Template literals</h2><h2 id="Destructuring-Assignements"><a href="#Destructuring-Assignements" class="headerlink" title="Destructuring Assignements"></a>Destructuring Assignements</h2><h2 id="ES6-Modules"><a href="#ES6-Modules" class="headerlink" title="ES6 Modules"></a>ES6 Modules</h2><h2 id="Array-from"><a href="#Array-from" class="headerlink" title="Array.from"></a>Array.from</h2><h2 id="Promises"><a href="#Promises" class="headerlink" title="Promises"></a>Promises</h2><h2 id="Generators"><a href="#Generators" class="headerlink" title="Generators"></a>Generators</h2><h2 id="Map-and-WeakMaps"><a href="#Map-and-WeakMaps" class="headerlink" title="Map and WeakMaps"></a>Map and WeakMaps</h2><h2 id="Parameter-Object-Destructuring-with-Required-Values"><a href="#Parameter-Object-Destructuring-with-Required-Values" class="headerlink" title="Parameter Object Destructuring with Required Values"></a>Parameter Object Destructuring with Required Values</h2><h2 id="ES6-Rest-Parameters"><a href="#ES6-Rest-Parameters" class="headerlink" title="ES6 Rest Parameters"></a>ES6 Rest Parameters</h2>
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-02-25T22:47:36.000Z"><a href="/2017/02/25/angular-dynamic-component/">2017-02-25</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/02/25/angular-dynamic-component/">angular-dynamic-component</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="La-vue"><a href="#La-vue" class="headerlink" title="La vue"></a>La vue</h2><p><a href="http://plnkr.co/edit/t9oLGLnD7iwHBzIXYvnQ?p=preview" target="_blank" rel="noopener">http://plnkr.co/edit/t9oLGLnD7iwHBzIXYvnQ?p=preview</a></p>
-<p>Declarer un tag html qui va accueillir le composant<br><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;div #dynamicTarget&gt;</span><span class="section">&lt;/div&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="Le-Composant"><a href="#Le-Composant" class="headerlink" title="Le Composant"></a>Le Composant</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">export <span class="class"><span class="keyword">class</span> <span class="title">ItemComponent</span> <span class="title">implements</span> <span class="title">OnChanges</span>, <span class="type">OnDestroy &#123;</span></span></span><br><span class="line"></span><br><span class="line">   <span class="meta">@ViewChild(<span class="meta-string">'dynamicTarget'</span>, &#123;read: ViewContainerRef&#125;)</span></span><br><span class="line">    <span class="keyword">private</span> dynamicTarget: any;</span><br><span class="line">    <span class="keyword">private</span> componentReference: ComponentRef&lt;any&gt;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(  <span class="keyword">private</span> resolver: ComponentFactoryResolver) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    ngOnChanges(changes: SimpleChanges): void &#123;</span><br><span class="line">                let componentFactory = <span class="keyword">this</span>.resolver.resolveComponentFactory(TestComponent);</span><br><span class="line">                <span class="keyword">this</span>.componentReference = <span class="keyword">this</span>.dynamicTarget.createComponent(componentFactory);</span><br><span class="line">                <span class="keyword">this</span>.componentReference.instance.log();</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ngOnDestroy() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">// If we have a component, make sure we destroy it when we lose our owner</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.componentReference) &#123;</span><br><span class="line">            <span class="keyword">this</span>.componentReference.destroy();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer>
