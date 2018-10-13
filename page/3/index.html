@@ -49,6 +49,67 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2018-08-29T18:43:27.000Z"><a href="/2018/08/29/java-polymorphism/">2018-08-29</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/08/29/java-polymorphism/">Polymorphisme</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Polymorphism"><a href="#Polymorphism" class="headerlink" title="Polymorphism"></a>Polymorphism</h1><p>le polymorphisme est relatif aux méthodes des objets.<br>Le polymorphisme veut dire que le même service (opération ou méthode), peut avoir un comportement différent selon les situations.<br>Le polymorphisme permet alors d’appeler la bonne méthode selon le type d’objet</p>
+<p>On distingue généralement trois types de polymorphisme :</p>
+<p>Le <strong>polymorphisme ad hoc</strong> (également surcharge ou en anglais <strong>overloading</strong>) compile time polymorphism<br>Le <strong>polymorphisme paramétrique</strong> (également généricité ou en anglais <strong>template</strong>)<br>Le <strong>polymorphisme d’héritage</strong> (également redéfinition, spécialisation ou en anglais <strong>overriding</strong>)</p>
+<p>** “one interface, many implementations”. Polymorphism is a characteristic of being able to assign a different meaning or usage to something in different contexts – specifically, to allow an entity such as a variable, a function, or an object to have more than one form. There are two types of polymorphism:</p>
+<p>Compile time polymorphism<br>Run time polymorphism</p>
+<h2 id="Le-polymorphisme-ad-hoc"><a href="#Le-polymorphisme-ad-hoc" class="headerlink" title="Le polymorphisme ad hoc"></a>Le polymorphisme ad hoc</h2><p>Le polymorphisme ad hoc permet d’avoir des fonctions de même nom, avec des<br>fonctionnalités similaires, dans des classes sans aucun rapport entre elles (si ce n’est bien sûr d’être des filles de la classe objet). Par exemple, la classe complexe, la classe image et la classe lien peuvent avoir chacune une fonction “afficher”. Cela permettra de ne pas avoir à se soucier du type de l’objet que l’on a si on souhaite l’afficher à l’écran. </p>
+<h2 id="Polymorphisme-parametrable"><a href="#Polymorphisme-parametrable" class="headerlink" title="Polymorphisme paramétrable"></a>Polymorphisme paramétrable</h2><p>Le polymorphisme paramétrique, appelé généricité, représente la possibilité de définir plusieurs fonctions de même nom mais possédant des paramètres différents (en nombre et/ou en type). Le polymorphisme paramétrique rend ainsi possible le choix automatique de la bonne méthode à adopter en fonction du type de donnée passée en paramètre. </p>
+<p>Ainsi, on peut par exemple définir plusieurs méthodes homonymes addition() effectuant une somme de valeurs.</p>
+<h2 id="Polymorphisme-d’heritage"><a href="#Polymorphisme-d’heritage" class="headerlink" title="Polymorphisme d’héritage"></a>Polymorphisme d’héritage</h2><p>La possibilité de redéfinir une méthode dans des classes héritant d’une classe de base s’appelle la spécialisation. Il est alors possible d’appeler la méthode d’un objet sans se soucier de son type intrinsèque : il s’agit du polymorphisme d’héritage.</p>
+<h2 id="Resume"><a href="#Resume" class="headerlink" title="Resume"></a>Resume</h2><ul>
+<li><strong>The behavior you get depends on the type of the object you send the message not on the type of the variable (reference)</strong></li>
+<li><strong>RETURN TYPE IS NOT CONSIDERED</strong></li>
+<li><strong>IDENTITY IS THE NAME AND THE ARG TYPES</strong></li>
+</ul>
+<p><img src="/img/java/oca-javase8/polymophism1.png?raw=true" alt="Polymorphisme" title="Polymorphisme"><br><img src="/img/java/oca-javase8/polymophism2.png?raw=true" alt="Polymorphisme" title="Polymorphisme"><br><img src="/img/java/oca-javase8/polymophism3.png?raw=true" alt="Polymorphisme" title="Polymorphisme">    </p>
+<p>The type of the varialbe defines what you could do<br>The type of the object define the behavior you get</p>
+<p>You can mix overloading and overriding</p>
+<p><strong>overriding must not cause surprises</strong></p>
+<p>You can add @Override Annotation to validate that you want to do an Override in child class<br>not mandatory but will validate that you don’t have done a typo or missing arguments</p>
+<p><img src="/img/java/oca-javase8/polymophism5.png?raw=true" alt="Polymorphisme" title="Polymorphisme"></p>
+<h2 id="Exemple"><a href="#Exemple" class="headerlink" title="Exemple"></a>Exemple</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> polymorph;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">showMe</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"I'm a Parent!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">showMe</span><span class="params">()</span> </span>&#123; <span class="comment">// Name and arg types are identical</span></span><br><span class="line">        System.out.println(<span class="string">"I'm a Child!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example1</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Parent p = <span class="keyword">new</span> Parent();</span><br><span class="line">        <span class="comment">//  Parent p = new Child();</span></span><br><span class="line">        p.showMe();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Exercice"><a href="#Exercice" class="headerlink" title="Exercice"></a>Exercice</h2><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span> </span>&#123; </span><br><span class="line">    void doStuff() &#123; </span><br><span class="line">        sout(<span class="string">"I'm an X"</span>); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Y</span> <span class="keyword">extends</span> <span class="title">X</span> </span>&#123; </span><br><span class="line">    void doStuff2() &#123; </span><br><span class="line">        sout(<span class="string">"I'm a Y"</span>); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>given:<br><figure class="highlight pony"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">X</span> x = <span class="function"><span class="keyword">new</span> <span class="title">X</span>();</span></span><br><span class="line"><span class="function"><span class="title">x</span>.<span class="title">doStuff2</span>();</span></span><br></pre></td></tr></table></figure></p>
+<p>What happens?<br>    A) I’m an X<br>    B) I’m a Y<br>    C) Fails.</p>
+<p>Response : C<br>    X does not have a method doStuff2()</p>
+<p><img src="/img/java/oca-javase8/polymophism4.png?raw=true" alt="Polymorphisme" title="Polymorphisme"></p>
+<p>given<br><figure class="highlight pony"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">X</span> x = <span class="function"><span class="keyword">new</span> <span class="title">Y</span>();</span></span><br><span class="line"><span class="function"><span class="title">x</span>.<span class="title">doStuff2</span>();</span></span><br></pre></td></tr></table></figure></p>
+<p>What happens?<br>    A) I’m an X<br>    B) I’m a Y<br>    C) Fails.</p>
+<p>Response : C<br>    X does not have a method doStuff2()    </p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-10-24T00:53:58.000Z"><a href="/2017/10/23/angular-select/">2017-10-23</a></time>
       
       
@@ -485,65 +546,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-03-17T00:50:36.000Z"><a href="/2017/03/16/rxjs/">2017-03-16</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/03/16/rxjs/">rxjs</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h2><p>Un Observable est un producteur de données qui peut être Observer.<br>on l’observe avec la méthode subscribe et cette observation sera exécutée par un Observer.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> observable = Rx.Observable.create(<span class="function"><span class="keyword">function</span>(<span class="params">observer</span>)  </span>&#123;</span><br><span class="line">    observer.next(<span class="string">"one result"</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> observer = observable.subscribe(<span class="function"><span class="params">e</span> =&gt;</span> <span class="built_in">console</span>.log(e));</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Rx.Observable.create(function(observer) &#123;</span><br><span class="line">   observer.next(<span class="string">"vue"</span>);</span><br><span class="line">   observer.next(<span class="string">"vuue"</span>);</span><br><span class="line">   observer.complete(<span class="string">"inutile"</span>);</span><br><span class="line">   observer.next(<span class="string">"pas vue"</span>);</span><br><span class="line">&#125;).subscribe(</span><br><span class="line">   (e) =&gt; <span class="built_in">console</span>.log(<span class="string">"next: "</span> + e)</span><br><span class="line"> , <span class="function"><span class="params">(e)</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">"error: "</span> + e)</span><br><span class="line"> , <span class="function"><span class="params">(e)</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">"complete"</span>)</span><br><span class="line"> );</span><br></pre></td></tr></table></figure>
-<h2 id="Differences-avec-une-promesse"><a href="#Differences-avec-une-promesse" class="headerlink" title="Différences avec une promesse"></a>Différences avec une promesse</h2><p>un observable est ‘lazy’. Tant que vous n’appelez pas subscribe() sur un observable que vous avez créé, le code que contient cet observable ne s’exécute pas<br>on peut annuler un observable<br>un observable peut être répété. S’il a précédemmement échoué (en raison d’une erreur réseau par exemple), il peut réussir lors d’une nouvelle exécution future (à l’aide de retry()) plus tard. Tandis qu’une promise conserve en cache le résultat de sa première exécution.</p>
-<p>Les Observables peuvent gérer une infinité de valeurs de retour.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Rx.Observable.create(<span class="function"><span class="keyword">function</span>(<span class="params">observer</span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> observer.next(<span class="string">"valeur A"</span>), <span class="number">700</span>);</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> observer.next(<span class="string">"valeur B"</span>), <span class="number">400</span>);</span><br><span class="line">&#125;)</span><br><span class="line"> .subscribe(<span class="function"><span class="params">e</span> =&gt;</span> <span class="built_in">console</span>.log(e));</span><br></pre></td></tr></table></figure></p>
-<p>Ceci est possible parce que les Observables nous fournissent des streams.</p>
-<h2 id="Avantages"><a href="#Avantages" class="headerlink" title="Avantages"></a>Avantages</h2><p>Il est possible de  :</p>
-<ul>
-<li>merger des Observables, ce qui permet d’écouter plusieurs Observables avec un même subscriber.</li>
-<li>écouter un même Observable avec plusieurs subscribers par l’intermédiaire des Subjects.<br>RxJS met à notre disposition tout l’arsenal de la programmation fonctionnelle.</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Rx.Observable.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)</span><br><span class="line">  .filter(<span class="function"><span class="params">e</span> =&gt;</span> e % <span class="number">2</span> == <span class="number">0</span> )</span><br><span class="line">  .do(<span class="function">(<span class="params">e</span>) =&gt;</span> <span class="built_in">console</span>.log(<span class="string">"filtred value: "</span> + e)) <span class="comment">//très utile pour débugger.</span></span><br><span class="line">  .map(<span class="function"><span class="params">e</span> =&gt;</span> e*<span class="number">3</span>)</span><br><span class="line">  .subscribe(<span class="function"><span class="params">e</span> =&gt;</span> <span class="built_in">console</span>.log(e));</span><br></pre></td></tr></table></figure>
-<h3 id="Creation"><a href="#Creation" class="headerlink" title="Creation"></a>Creation</h3><ul>
-<li>Observable.create</li>
-<li>Observable.of</li>
-<li>Observable.fromEvent</li>
-</ul>
-<h3 id="Subject"><a href="#Subject" class="headerlink" title="Subject"></a>Subject</h3><ul>
-<li><p>est à la fois un Observable et un Observer, c’est à dire que l’on va à la fois pouvoir .subscribe() et appeler la méthode .next() dessus.</p>
-<ul>
-<li>permet d’avoir plusieurs subscribers sur un observable</li>
-</ul>
-<p>le Subject a un etat et une liste d’Observers</p>
-</li>
-</ul>
-<p>Ref : <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/gettingstarted/subjects.md" target="_blank" rel="noopener">https://github.com/Reactive-Extensions/RxJS/blob/master/doc/gettingstarted/subjects.md</a></p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var button = <span class="built_in">document</span>.querySelector(<span class="string">'button'</span>);</span><br><span class="line">Rx.Observable.fromEvent(button, <span class="string">'click'</span>)</span><br><span class="line">  .subscribe(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">"Bonjour!"</span>));</span><br></pre></td></tr></table></figure>
-<h3 id="Take"><a href="#Take" class="headerlink" title="Take"></a>Take</h3><p>.take(n) permet de ne prendre que lesn premières valeurs renvoyées par l’Observable.</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -598,7 +600,7 @@
   
     <li><a href="/tags/angularjs2/">angularjs2</a><small>1</small></li>
   
-    <li><a href="/tags/architecture/">architecture</a><small>1</small></li>
+    <li><a href="/tags/architecture/">architecture</a><small>2</small></li>
   
     <li><a href="/tags/array/">array</a><small>1</small></li>
   
@@ -622,6 +624,8 @@
   
     <li><a href="/tags/ecmascript-2015/">ecmascript 2015</a><small>1</small></li>
   
+    <li><a href="/tags/environment/">environment</a><small>1</small></li>
+  
     <li><a href="/tags/eslint/">eslint</a><small>1</small></li>
   
     <li><a href="/tags/evaluation/">evaluation</a><small>1</small></li>
@@ -643,8 +647,6 @@
     <li><a href="/tags/java-index/">java index</a><small>1</small></li>
   
     <li><a href="/tags/java-lambda/">java lambda</a><small>1</small></li>
-  
-    <li><a href="/tags/java-spring/">java spring</a><small>0</small></li>
   
     <li><a href="/tags/java8/">java8</a><small>5</small></li>
   
@@ -687,6 +689,8 @@
     <li><a href="/tags/time/">time</a><small>1</small></li>
   
     <li><a href="/tags/tools/">tools</a><small>1</small></li>
+  
+    <li><a href="/tags/web/">web</a><small>1</small></li>
   
   </ul>
 </div>

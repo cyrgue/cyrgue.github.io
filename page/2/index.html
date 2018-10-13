@@ -49,6 +49,59 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2018-09-28T12:19:00.000Z"><a href="/2018/09/28/java-9/">2018-09-28</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/09/28/java-9/">What&#39;s New In Java (9, 10, 11)</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Online-Training-References"><a href="#Online-Training-References" class="headerlink" title="Online Training References"></a>Online Training References</h1><ul>
+<li><a href="https://www.safaribooksonline.com/live-training/courses/whats-new-in-java/0636920219484/" target="_blank" rel="noopener">Training Page</a></li>
+<li><a href="https://docs.google.com/document/d/1RDclyK0UmQBuxWxU1d-vM0mtZo76QyKYRFBBxHz6GcA/edit" target="_blank" rel="noopener">Reference</a></li>
+<li><a href="http://click.e.safaribooksonline.com/?qs=9458e9b104bfaaaca3bb83c84f80a38548833b7b656021738bed5366b143ae245b868d370b2bdfa4fa5a86544f319b96566c761865a3ee0b71bbaf2d2754acfd" target="_blank" rel="noopener">Course Video</a></li>
+<li>Livre : <a href="https://www.safaribooksonline.com/library/view/modern-java-recipes/9781491973165/" target="_blank" rel="noopener">Modern Java Recipes</a></li>
+<li>Blog  : <a href="https://kousenit.org/" target="_blank" rel="noopener">https://kousenit.org/</a></li>
+<li>Video : <a href="https://www.safaribooksonline.com/videos/java-8-and/9780133489354" target="_blank" rel="noopener">Java 8 and 9 Fundamentals: Modern Java Development with Lambdas, Streams, and Introducing Java 9’s JShell and the Java Platform Module System (JPMS)</a></li>
+<li>Video : <a href="https://www.safaribooksonline.com/videos/advanced-java-development/9781491960400" target="_blank" rel="noopener">Advanced Java Development </a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/11/" target="_blank" rel="noopener">Java Doc 11</a> </li>
+</ul>
+<p>Java 8 is a major version but 9, 10, and 11 are not. Not a big jump to move from 8 to 11<br>Java 11 is a Long Term Support (LTS) release for the Java standard edition, meaning bug fixes and security patches will be available for at least the next three years (see the extensive Java Is Still Free post at for details about the future licensing arrangements)</p>
+<h1 id="Collection-factory-methods"><a href="#Collection-factory-methods" class="headerlink" title="Collection factory methods"></a>Collection factory methods</h1><ul>
+<li>List.of(a, b, b, c, …)</li>
+<li>Set.of(a, b, b, c, …)</li>
+<li>Map.of(k1, v1, k2, v2, k3, v3, …)</li>
+<li>Map.ofEntries(</li>
+<li>Map.entry(k1, v1),</li>
+<li>Map.entry(k2, v2),</li>
+<li>Map.entry(k3, v3), …)</li>
+</ul>
+<h1 id="Private-Methods-in-Interfaces"><a href="#Private-Methods-in-Interfaces" class="headerlink" title="Private Methods in Interfaces"></a>Private Methods in Interfaces</h1><p>Both <strong>default</strong> and <strong>static</strong> methods in interfaces can call <strong>private</strong> methods</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2018-09-03T08:19:03.000Z"><a href="/2018/09/03/java-collections/">2018-09-03</a></time>
       
       
@@ -586,67 +639,6 @@ Focus on Immutable objects
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2018-08-29T18:43:27.000Z"><a href="/2018/08/29/java-polymorphism/">2018-08-29</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2018/08/29/java-polymorphism/">Polymorphisme</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="Polymorphism"><a href="#Polymorphism" class="headerlink" title="Polymorphism"></a>Polymorphism</h1><p>le polymorphisme est relatif aux méthodes des objets.<br>Le polymorphisme veut dire que le même service (opération ou méthode), peut avoir un comportement différent selon les situations.<br>Le polymorphisme permet alors d’appeler la bonne méthode selon le type d’objet</p>
-<p>On distingue généralement trois types de polymorphisme :</p>
-<p>Le <strong>polymorphisme ad hoc</strong> (également surcharge ou en anglais <strong>overloading</strong>) compile time polymorphism<br>Le <strong>polymorphisme paramétrique</strong> (également généricité ou en anglais <strong>template</strong>)<br>Le <strong>polymorphisme d’héritage</strong> (également redéfinition, spécialisation ou en anglais <strong>overriding</strong>)</p>
-<p>** “one interface, many implementations”. Polymorphism is a characteristic of being able to assign a different meaning or usage to something in different contexts – specifically, to allow an entity such as a variable, a function, or an object to have more than one form. There are two types of polymorphism:</p>
-<p>Compile time polymorphism<br>Run time polymorphism</p>
-<h2 id="Le-polymorphisme-ad-hoc"><a href="#Le-polymorphisme-ad-hoc" class="headerlink" title="Le polymorphisme ad hoc"></a>Le polymorphisme ad hoc</h2><p>Le polymorphisme ad hoc permet d’avoir des fonctions de même nom, avec des<br>fonctionnalités similaires, dans des classes sans aucun rapport entre elles (si ce n’est bien sûr d’être des filles de la classe objet). Par exemple, la classe complexe, la classe image et la classe lien peuvent avoir chacune une fonction “afficher”. Cela permettra de ne pas avoir à se soucier du type de l’objet que l’on a si on souhaite l’afficher à l’écran. </p>
-<h2 id="Polymorphisme-parametrable"><a href="#Polymorphisme-parametrable" class="headerlink" title="Polymorphisme paramétrable"></a>Polymorphisme paramétrable</h2><p>Le polymorphisme paramétrique, appelé généricité, représente la possibilité de définir plusieurs fonctions de même nom mais possédant des paramètres différents (en nombre et/ou en type). Le polymorphisme paramétrique rend ainsi possible le choix automatique de la bonne méthode à adopter en fonction du type de donnée passée en paramètre. </p>
-<p>Ainsi, on peut par exemple définir plusieurs méthodes homonymes addition() effectuant une somme de valeurs.</p>
-<h2 id="Polymorphisme-d’heritage"><a href="#Polymorphisme-d’heritage" class="headerlink" title="Polymorphisme d’héritage"></a>Polymorphisme d’héritage</h2><p>La possibilité de redéfinir une méthode dans des classes héritant d’une classe de base s’appelle la spécialisation. Il est alors possible d’appeler la méthode d’un objet sans se soucier de son type intrinsèque : il s’agit du polymorphisme d’héritage.</p>
-<h2 id="Resume"><a href="#Resume" class="headerlink" title="Resume"></a>Resume</h2><ul>
-<li><strong>The behavior you get depends on the type of the object you send the message not on the type of the variable (reference)</strong></li>
-<li><strong>RETURN TYPE IS NOT CONSIDERED</strong></li>
-<li><strong>IDENTITY IS THE NAME AND THE ARG TYPES</strong></li>
-</ul>
-<p><img src="/img/java/oca-javase8/polymophism1.png?raw=true" alt="Polymorphisme" title="Polymorphisme"><br><img src="/img/java/oca-javase8/polymophism2.png?raw=true" alt="Polymorphisme" title="Polymorphisme"><br><img src="/img/java/oca-javase8/polymophism3.png?raw=true" alt="Polymorphisme" title="Polymorphisme">    </p>
-<p>The type of the varialbe defines what you could do<br>The type of the object define the behavior you get</p>
-<p>You can mix overloading and overriding</p>
-<p><strong>overriding must not cause surprises</strong></p>
-<p>You can add @Override Annotation to validate that you want to do an Override in child class<br>not mandatory but will validate that you don’t have done a typo or missing arguments</p>
-<p><img src="/img/java/oca-javase8/polymophism5.png?raw=true" alt="Polymorphisme" title="Polymorphisme"></p>
-<h2 id="Exemple"><a href="#Exemple" class="headerlink" title="Exemple"></a>Exemple</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> polymorph;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">showMe</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"I'm a Parent!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">showMe</span><span class="params">()</span> </span>&#123; <span class="comment">// Name and arg types are identical</span></span><br><span class="line">        System.out.println(<span class="string">"I'm a Child!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example1</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Parent p = <span class="keyword">new</span> Parent();</span><br><span class="line">        <span class="comment">//  Parent p = new Child();</span></span><br><span class="line">        p.showMe();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Exercice"><a href="#Exercice" class="headerlink" title="Exercice"></a>Exercice</h2><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span> </span>&#123; </span><br><span class="line">    void doStuff() &#123; </span><br><span class="line">        sout(<span class="string">"I'm an X"</span>); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Y</span> <span class="keyword">extends</span> <span class="title">X</span> </span>&#123; </span><br><span class="line">    void doStuff2() &#123; </span><br><span class="line">        sout(<span class="string">"I'm a Y"</span>); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>given:<br><figure class="highlight pony"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">X</span> x = <span class="function"><span class="keyword">new</span> <span class="title">X</span>();</span></span><br><span class="line"><span class="function"><span class="title">x</span>.<span class="title">doStuff2</span>();</span></span><br></pre></td></tr></table></figure></p>
-<p>What happens?<br>    A) I’m an X<br>    B) I’m a Y<br>    C) Fails.</p>
-<p>Response : C<br>    X does not have a method doStuff2()</p>
-<p><img src="/img/java/oca-javase8/polymophism4.png?raw=true" alt="Polymorphisme" title="Polymorphisme"></p>
-<p>given<br><figure class="highlight pony"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">X</span> x = <span class="function"><span class="keyword">new</span> <span class="title">Y</span>();</span></span><br><span class="line"><span class="function"><span class="title">x</span>.<span class="title">doStuff2</span>();</span></span><br></pre></td></tr></table></figure></p>
-<p>What happens?<br>    A) I’m an X<br>    B) I’m a Y<br>    C) Fails.</p>
-<p>Response : C<br>    X does not have a method doStuff2()    </p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -701,7 +693,7 @@ Focus on Immutable objects
   
     <li><a href="/tags/angularjs2/">angularjs2</a><small>1</small></li>
   
-    <li><a href="/tags/architecture/">architecture</a><small>1</small></li>
+    <li><a href="/tags/architecture/">architecture</a><small>2</small></li>
   
     <li><a href="/tags/array/">array</a><small>1</small></li>
   
@@ -725,6 +717,8 @@ Focus on Immutable objects
   
     <li><a href="/tags/ecmascript-2015/">ecmascript 2015</a><small>1</small></li>
   
+    <li><a href="/tags/environment/">environment</a><small>1</small></li>
+  
     <li><a href="/tags/eslint/">eslint</a><small>1</small></li>
   
     <li><a href="/tags/evaluation/">evaluation</a><small>1</small></li>
@@ -746,8 +740,6 @@ Focus on Immutable objects
     <li><a href="/tags/java-index/">java index</a><small>1</small></li>
   
     <li><a href="/tags/java-lambda/">java lambda</a><small>1</small></li>
-  
-    <li><a href="/tags/java-spring/">java spring</a><small>0</small></li>
   
     <li><a href="/tags/java8/">java8</a><small>5</small></li>
   
@@ -790,6 +782,8 @@ Focus on Immutable objects
     <li><a href="/tags/time/">time</a><small>1</small></li>
   
     <li><a href="/tags/tools/">tools</a><small>1</small></li>
+  
+    <li><a href="/tags/web/">web</a><small>1</small></li>
   
   </ul>
 </div>
