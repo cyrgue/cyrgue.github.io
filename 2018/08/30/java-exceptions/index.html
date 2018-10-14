@@ -83,6 +83,29 @@ E) throws FileNotFoundException
 <h2 id="Exercice-1"><a href="#Exercice-1" class="headerlink" title="Exercice"></a>Exercice</h2><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base2</span> </span>&#123;</span><br><span class="line">    void doBaseStuff() &#123;</span><br><span class="line">        <span class="type">System</span>.out.println(<span class="string">"doBaseStuff"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sub2</span> <span class="keyword">extends</span> <span class="title">Base2</span> </span>&#123;</span><br><span class="line">    void doBaseStuff() &#123;</span><br><span class="line">        <span class="type">System</span>.out.println(<span class="string">"doSubStuff"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Which are true?<br>   A) doBaseStuff in Base2 can be marked throws Exception without causing errors<br>   B) doBaseStuff in Base2 can be marked throws RuntimeException without causing errors<br>   C) doBaseStuff in Sub2 can be marked throws Exception without causing errors<br>   D) doBaseStuff in Sub2 can be marked throws RuntimeException without causing errors<br>   E) if doBaseStuff in Base2 were marked throws Exception,<br>       then doBaseStuff in Sub2 can be marked throws IOException without causing errors</p>
 <p>Reponses: A, B, D as RuntimeException is a base Exception, D<br><strong>Etrange a revoir</strong></p>
+<hr>
+<h1 id="Course"><a href="#Course" class="headerlink" title="Course"></a>Course</h1><ul>
+<li><a href="https://github.com/SimonHGR/safari-exceptions" target="_blank" rel="noopener">Git</a></li>
+</ul>
+<p>  Methods must manage restult but also possible failure are <strong>their level</strong> </p>
+<p>Multi Catch Exception from Java 7 </p>
+<h2 id="Checked-Exceptions"><a href="#Checked-Exceptions" class="headerlink" title="Checked Exceptions"></a>Checked Exceptions</h2><ul>
+<li>“I dont’ know what to do”</li>
+<li>“I can’t fix that”</li>
+<li><p>“It’s fatal anyway”</p>
+<p> So it’s waste of typing   </p>
+</li>
+</ul>
+<p>Good desing =&gt; Limit consequences of change</p>
+<p>When implementation changes, the client is affected =&gt; Wrong Design<br>Encapsulation   </p>
+<p>What type of failure are acceptable ?</p>
+<ul>
+<li>Depends on the model /abstraction<ul>
+<li>Payment Method : Failure can be : No Money, Card Stolen , …  or Infrastructure failure</li>
+</ul>
+</li>
+</ul>
+<p>So try to Create New Exception to specify what is the error in design/model point of view (absraction) and regroup exceptions not associated to design   </p>
 
       
     </div>
@@ -199,7 +222,7 @@ E) throws FileNotFoundException
   
     <li><a href="/tags/composant/">composant</a><small>1</small></li>
   
-    <li><a href="/tags/configuration/">configuration</a><small>2</small></li>
+    <li><a href="/tags/configuration/">configuration</a><small>3</small></li>
   
     <li><a href="/tags/database/">database</a><small>1</small></li>
   
@@ -225,7 +248,7 @@ E) throws FileNotFoundException
   
     <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
   
-    <li><a href="/tags/java/">java</a><small>15</small></li>
+    <li><a href="/tags/java/">java</a><small>16</small></li>
   
     <li><a href="/tags/java-definition/">java definition</a><small>1</small></li>
   
@@ -244,6 +267,8 @@ E) throws FileNotFoundException
     <li><a href="/tags/lambda/">lambda</a><small>1</small></li>
   
     <li><a href="/tags/library/">library</a><small>1</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>1</small></li>
   
     <li><a href="/tags/ngrx/">ngrx</a><small>1</small></li>
   
