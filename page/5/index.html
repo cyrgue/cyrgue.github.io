@@ -49,6 +49,130 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-01-07T11:50:20.000Z"><a href="/2017/01/07/Kubernetes/">2017-01-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/01/07/Kubernetes/">Kubernetes</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><a href="http://kubernetes.io/docs/hellonode/" target="_blank" rel="noopener">http://kubernetes.io/docs/hellonode/</a><br>Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications.</p>
+<ul>
+<li><p>Horizontal scaling<br>Google Container Engine (a Google-hosted version of Kubernetes)</p>
+<p>Google Cloud Platform</p>
+</li>
+</ul>
+<p>TODO : Create an app with hapijs<br> <a href="https://github.com/robertschultz/docker-nodejs-hapi/blob/master/app.js" target="_blank" rel="noopener">https://github.com/robertschultz/docker-nodejs-hapi/blob/master/app.js</a></p>
+<h2 id="Create-a-Docker-container-image"><a href="#Create-a-Docker-container-image" class="headerlink" title="Create a Docker container image"></a>Create a Docker container image</h2><pre><code>docker build -t gcr.io/sport-kubernetes-codelab/hello-node:v1 .
+docker run -d -p 8080:8080 --name hello_tutorial gcr.io/sport-kubernetes-codelab/hello-node:v1
+gcloud docker -- push gcr.io/sport-kubernetes-codelab/hello-node:v1
+</code></pre><h2 id="Create-a-Kubernetes-Cluster"><a href="#Create-a-Kubernetes-Cluster" class="headerlink" title="Create a Kubernetes Cluster"></a>Create a Kubernetes Cluster</h2><p>A cluster consists of</p>
+<ul>
+<li>a Master API server</li>
+<li>a set of worker VMs called Nodes.</li>
+</ul>
+<p>1 - First, choose a Google Cloud Project zone to run your service</p>
+<pre><code>gcloud config set compute/zone us-central1-a
+</code></pre><p>2 - Create a Kubernetes  cluster (Kubernetes cluster with three ?? nodes, ready to receive your container image!)</p>
+<pre><code>gcloud container clusters create hello-world
+</code></pre><p>Now deploy your own containerized application to the Kubernetes cluster!</p>
+<h2 id="Create-your-pod"><a href="#Create-your-pod" class="headerlink" title="Create your pod"></a>Create your pod</h2><p>A Kubernetes pod is a group of containers, tied together for the purposes of administration and networking. It can contain a single container or multiple.</p>
+<pre><code>kubectl run hello-node --image=gcr.io/sport-kubernetes-codelab/hello-node:v1 --port=8080
+</code></pre><p>kubectl run created a Deployment object (used to manage creation and scaling of pods) In this example, a new deployment manages a single pod replica running the hello-node:v1 image.</p>
+<p>To view the Deployment  :<br>        kubectl get deployments</p>
+<p>To view the Pod created by the deployment run :</p>
+<pre><code>kubectl get pods
+</code></pre><p>To view the stdout / stderr from a Pod run :</p>
+<pre><code>kubectl logs &lt;POD-NAME&gt;
+</code></pre><p>Allow external traffic<br>                By default, the pod is only accessible by its internal IP within the Kubernetes cluster.<br>                kubectl expose deployment hello-node –type=”LoadBalancer”<br>                The flag used in this command specifies that we’ll be using the load-balancer provided by the underlying infrastructure (in this case the Compute Engine load balancer).</p>
+<pre><code>kubectl get services hello-node
+kubectl logs &lt;POD-NAME&gt;
+</code></pre><p>Scale up<br>                Tell the deployment to manage a new number of replicas for your pod: kubectl scale deployment hello-node –replicas=4<br>                kubectl get pods<br> Se connecter au cluster<br>Configurez l’accès à la ligne de commande kubectl en exécutant la commande suivante :</p>
+<p>gcloud container clusters get-credentials hello-world  –zone us-east1-c –project sport-kubernetes-codelab<br>$<br>Ensuite, démarrez un proxy pour vous connecter au plan de commande Kubernetes :</p>
+<p>kubectl proxy<br>$<br>Ouvrez ensuite l’interface du tableau de bord en accédant à l’emplacement suivant dans votre navigateur :</p>
+<p><a href="http://localhost:8001/ui" target="_blank" rel="noopener">http://localhost:8001/ui</a></p>
+<p> kubectl run hello-node –image=gcr.io/sport-kubernetes-codelab/hello-node:v1 –port=8080<br>Fix on Windows<br><a href="http://stackoverflow.com/questions/39277986/unable-to-push-to-google-container-registry-unable-to-access-the-repository?answertab=votes#tab-top" target="_blank" rel="noopener">http://stackoverflow.com/questions/39277986/unable-to-push-to-google-container-registry-unable-to-access-the-repository?answertab=votes#tab-top</a><br><a href="https://github.com/kubernetes/kubernetes/issues/34395" target="_blank" rel="noopener">https://github.com/kubernetes/kubernetes/issues/34395</a></p>
+<p>kubectl.sh run postgres –image=postgres –replicas=1</p>
+<p>kubectlrun  elasticsearch –image=elasticsearch:5.1.1 –replicas=1<br>kubectl expose deployment elasticsearch –port=9300   –type=ClusterIP</p>
+<p> Cleaning it Up</p>
+<h2 id="Links"><a href="#Links" class="headerlink" title="Links"></a>Links</h2><p><a href="https://developer.ibm.com/recipes/tutorials/kubernetes-how-to-run-a-node-js-application-which-accesses-mongo-database-where-both-are-running-in-containers-in-different-pods/" target="_blank" rel="noopener">https://developer.ibm.com/recipes/tutorials/kubernetes-how-to-run-a-node-js-application-which-accesses-mongo-database-where-both-are-running-in-containers-in-different-pods/</a><br><a href="http://docs.spring.io/spring-cloud-dataflow-server-kubernetes/docs/1.0.1.RELEASE/reference/html/_deploying_streams_on_kubernetes.html" target="_blank" rel="noopener">http://docs.spring.io/spring-cloud-dataflow-server-kubernetes/docs/1.0.1.RELEASE/reference/html/_deploying_streams_on_kubernetes.html</a></p>
+<p><a href="https://www.slalom.com/thinking/packaging-spring-boot-applications-for-deployment-on-kubernetes" target="_blank" rel="noopener">https://www.slalom.com/thinking/packaging-spring-boot-applications-for-deployment-on-kubernetes</a></p>
+<p><a href="http://kubernetes.io/docs/getting-started-guides/meanstack/" target="_blank" rel="noopener">http://kubernetes.io/docs/getting-started-guides/meanstack/</a></p>
+<p><a href="http://kubernetes.io/docs/tutorials/stateful-application/run-stateful-application/" target="_blank" rel="noopener">http://kubernetes.io/docs/tutorials/stateful-application/run-stateful-application/</a><br><a href="http://kubernetes.io/docs/user-guide/pods/single-container/" target="_blank" rel="noopener">http://kubernetes.io/docs/user-guide/pods/single-container/</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-12-16T13:17:02.000Z"><a href="/2016/12/16/angular2-architecture/">2016-12-16</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/12/16/angular2-architecture/">angular2-architecture</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Strategie</p>
+<h2 id="Utilisation-des-services-comme-singleton"><a href="#Utilisation-des-services-comme-singleton" class="headerlink" title="Utilisation des services comme singleton,"></a>Utilisation des services comme singleton,</h2><ul>
+<li>les proprietes sont des objets du domaine</li>
+</ul>
+<p>Pb de loading et de rafraichissement<br>avantages de la subscription, mais parfois undefined….</p>
+<p>Mais peux etre interessant, par exemple pour stocker une donnée qui ne change pas dans l’application<br>Ex : Login et User,</p>
+<h2 id="Utilisation-des-services-avec-des-Observables"><a href="#Utilisation-des-services-avec-des-Observables" class="headerlink" title="Utilisation des services avec des Observables"></a>Utilisation des services avec des Observables</h2><h2 id="Utilisation-de-Redux-et-d’un-Store-Central"><a href="#Utilisation-de-Redux-et-d’un-Store-Central" class="headerlink" title="Utilisation de Redux et d’un Store Central"></a>Utilisation de Redux et d’un Store Central</h2><p>Les services servent alors d’utilitaires pour manipuler les données vennant du store<br>Le composant récupere les données du store, peut demander au service de filter, trier…. avant d’afficher les données ou de passer les données aux composant enfants</p>
+<p> The services are singleton objects that<br>play two roles:</p>
+<ol>
+<li>Provide streams of data that our application can subscribe to</li>
+<li>Provide operations to add or modify data</li>
+</ol>
+<p>• The services maintain streams which emit models (e.g. Messages)<br>• The components subscribe to those streams and render according to the most recent values</p>
+<p>The point of the UserService is to provide a place where our application can learn about the current<br>user and also notify the rest of the application if the current user changes.</p>
+<p>One consequence of streams is that, because messages are published immediately, a new subscriber<br>risks missing the latest value of the stream. BehaviourSubject compensates for this.<br>BehaviourSubject⁷⁴ has a special property in that it stores the last value. Meaning that any<br>subscriber to the stream will receive the latest value. This is great for us because it means that<br>any part of our application can subscribe to the UserService.currentUser stream and immediately<br>know who the current user is.</p>
+<p>MessagesService: 3 “data management” streams and 2 “action” streams.<br>The three data management streams are:<br>• newMessages - emits each new Message only once<br>• messages - emits an array of the current Messages<br>• updates - performs operations on messages</p>
+<p>map<br>filter<br>reduce</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-12-11T15:44:39.000Z"><a href="/2016/12/11/docker/">2016-12-11</a></time>
       
       
@@ -440,100 +564,13 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2015-10-07T00:48:05.000Z"><a href="/2015/10/06/eslint-hareable-configs/">2015-10-06</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2015/10/06/eslint-hareable-configs/">Eslint Shareable Configs</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p> Il est possible de partager la configuration eslint dans plusieurs projets :</p>
-<ul>
-<li><a href="http://eslint.org/docs/developer-guide/shareable-configs.html" target="_blank" rel="noopener">Shareable Configs</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2015-10-03T12:23:04.000Z"><a href="/2015/10/03/test/">2015-10-03</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2015/10/03/test/">Npm configuration</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h3 id="Travailler-avec-une-autre-registry-NPM"><a href="#Travailler-avec-une-autre-registry-NPM" class="headerlink" title="Travailler avec une autre registry NPM"></a>Travailler avec une autre registry NPM</h3><ul>
-<li>Configurer une autre registry</li>
-</ul>
-<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span> npm config <span class="keyword">set</span> registry <span class="comment">http:</span>//<span class="comment">server.example.com</span>/registry-name/</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Supprimer la registry</li>
-</ul>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm<span class="built_in"> config </span>delete registry</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Publier sur une autre registry</li>
-</ul>
-<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm publish --<span class="keyword">registry</span> <span class="keyword">registry</span> <span class="keyword">http</span>://server.example.com/<span class="keyword">registry</span>-name/</span><br></pre></td></tr></table></figure>
-<h3 id="Configurer-un-proxy"><a href="#Configurer-un-proxy" class="headerlink" title="Configurer un proxy"></a>Configurer un proxy</h3><ul>
-<li><p>Ajouter un proxy</p>
-<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span> npm config <span class="keyword">set</span> proxy <span class="comment">http:</span>//<span class="comment">monproxy.example.com:port</span></span><br><span class="line">$ npm <span class="comment">config set https-proxy http:</span>//<span class="comment">username:password@monproxy.example.com:port</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Supprimer les proxy</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm<span class="built_in"> config </span>delete proxy</span><br><span class="line">$ npm<span class="built_in"> config </span>delete https-proxy</span><br></pre></td></tr></table></figure>
-<p>Il est egalement possible d’utiliser les variables d’environnement <strong>HTTP_PROXY, HTTPS_PROXY et NO_PROXY</strong>. npm va se baser sur celles-ci, si elles sont définies</p>
-</li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
     <a href="/page/4/" class="alignleft prev">Précédent</a>
   
+  
+    <a href="/page/6/" class="alignright next">Suivant</a>
   
   <div class="clearfix"></div>
 </nav></div></div>
@@ -581,7 +618,7 @@
   
     <li><a href="/tags/angularjs2/">angularjs2</a><small>1</small></li>
   
-    <li><a href="/tags/architecture/">architecture</a><small>2</small></li>
+    <li><a href="/tags/architecture/">architecture</a><small>3</small></li>
   
     <li><a href="/tags/array/">array</a><small>1</small></li>
   
@@ -598,6 +635,8 @@
     <li><a href="/tags/configuration/">configuration</a><small>3</small></li>
   
     <li><a href="/tags/database/">database</a><small>1</small></li>
+  
+    <li><a href="/tags/design-patterns/">design patterns</a><small>1</small></li>
   
     <li><a href="/tags/directive/">directive</a><small>1</small></li>
   
