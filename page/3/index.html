@@ -136,17 +136,15 @@ B) Predicate&lt;Student&gt; ps = s -&gt; return s.getGpa() &gt;3;
 C) Predicate&lt;Student&gt; ps = s -&gt; { s.getGpa() &gt;3 }
 D) none of the above
 </code></pre><p>Response : D<br>    A : NO CONTEXT<br>    B : Error : no return in expression lambda<br>    C : Error : missing return in blocked lambda</p>
-<p>Anonymous Inner Classes<br>: Reason to use it : One time inner code<br>    Inner classes have a full access to all methods and instance variables of surrounding class, including private ones</p>
-<p> Separate Class</p>
-<ul>
+<h2 id="Anonymous-Inner-Classes"><a href="#Anonymous-Inner-Classes" class="headerlink" title="Anonymous Inner Classes"></a>Anonymous Inner Classes</h2><p>Reason to use it : One time inner code<br>Inner classes have a full access to all methods and instance variables of surrounding class, including private ones</p>
+<h2 id="Separate-Class"><a href="#Separate-Class" class="headerlink" title="Separate Class"></a>Separate Class</h2><ul>
 <li>Advantages : <pre><code>- Flexible : Can pass arguments to constructor
 - More reusable : loosely coupled
 </code></pre></li>
-<li>Desadvantage : <pre><code>- Need extra step to call methods in main app         
+<li>Disadvantage : <pre><code>- Need extra step to call methods in main app         
 </code></pre></li>
 </ul>
-<p>Lambdas</p>
-<ul>
+<h2 id="Lambdas"><a href="#Lambdas" class="headerlink" title="Lambdas"></a>Lambdas</h2><ul>
 <li>Full access to code from surrounding class</li>
 <li>No confusion about meaning of “this”    </li>
 <li>Much more concise, succinct and readable</li>
@@ -201,7 +199,7 @@ Focus on Immutable objects
 <p>Make the code more generable </p>
 <h2 id="Method-References"><a href="#Method-References" class="headerlink" title="Method References"></a>Method References</h2><pre><code>:: 
 </code></pre><h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><p><a href="https://github.com/douglascraigschmidt/LiveLessons" target="_blank" rel="noopener">https://github.com/douglascraigschmidt/LiveLessons</a> </p>
-<p>update</p>
+<h2 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h2><p><a href="/2018/10/03/java-functional-programming/">Functional Programming</a></p>
 
       
     </div>
@@ -793,8 +791,6 @@ Focus on Immutable objects
   
     <li><a href="/tags/java-index/">java index</a><small>1</small></li>
   
-    <li><a href="/tags/java-lambda/">java lambda</a><small>1</small></li>
-  
     <li><a href="/tags/java8/">java8</a><small>5</small></li>
   
     <li><a href="/tags/java9/">java9</a><small>1</small></li>
@@ -803,7 +799,7 @@ Focus on Immutable objects
   
     <li><a href="/tags/jsbin/">jsbin</a><small>1</small></li>
   
-    <li><a href="/tags/lambda/">lambda</a><small>1</small></li>
+    <li><a href="/tags/lambda/">lambda</a><small>2</small></li>
   
     <li><a href="/tags/library/">library</a><small>1</small></li>
   
