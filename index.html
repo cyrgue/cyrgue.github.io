@@ -49,6 +49,53 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2018-10-17T14:17:14.000Z"><a href="/2018/10/17/java-equals/">2018-10-17</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/10/17/java-equals/">Equals et Hashcode</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Equality"><a href="#Equality" class="headerlink" title="Equality"></a>Equality</h1><ul>
+<li>== : Compare the <strong>value</strong> of 2 expressions</li>
+<li>equals : Can be overwritten</li>
+</ul>
+<p>Method equals()</p>
+<ul>
+<li>Defined in java.lang.Object Class<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span> == obj;</span><br><span class="line">   &#125;</span><br><span class="line">  </span><br><span class="line">  ``</span><br><span class="line">* héritée par tous les objects</span><br><span class="line"></span><br><span class="line">```puml</span><br><span class="line">A -&gt; B</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Il est nécessaire de redefinir la méthode equals dans les objets pour valider le comportement d’égalité de l’objet</p>
+<p>Dans la classe String, <strong>equals</strong> a déjà été redefini, dans StringBuilder non, mais String et StringBuilder sont différents en tant qu’Objet</p>
+<p><strong> La majorité des classes java ne redéfinisse pas la méthode equals()</strong><br>Seuls les types immuables redéfinissent la méthode equals() (String, Wrapper de primitive…)</p>
+<p>Attention en Java8</p>
+<pre><code class="java">
+</code></pre>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2018-10-16T12:45:16.000Z"><a href="/2018/10/16/mongodb/">2018-10-16</a></time>
       
       
@@ -455,52 +502,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2018-10-07T13:08:20.000Z"><a href="/2018/10/07/java-static/">2018-10-07</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2018/10/07/java-static/">java-static</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Static field: Field is shared in all the object of the class</p>
-<p>Inner Class Could not have static field</p>
-<p>In Java8, Static field has to be declared in Interface</p>
-<p>Exercice :<br>Q1)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cyrgue.staticKeyword;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> MAX_VAL = <span class="number">100</span>;</span><br><span class="line">    <span class="keyword">int</span> value = <span class="number">99</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setValue</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (x &lt;= MAX_VAL) &#123;</span><br><span class="line">            value = x;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticPrg</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        X a = <span class="keyword">new</span> X();</span><br><span class="line">        X b = <span class="keyword">new</span> X();</span><br><span class="line"></span><br><span class="line">        a.setValue(<span class="number">120</span>);</span><br><span class="line">        System.out.print(a.value + <span class="string">","</span>);</span><br><span class="line"></span><br><span class="line">        b.MAX_VAL = <span class="number">150</span>; <span class="comment">// better is X.MAX_VAL = 150</span></span><br><span class="line">        a.setValue(<span class="number">140</span>);</span><br><span class="line">        System.out.println(a.value);;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>What happens?<br>    A) I’m an X<br>    B)<br>    C) 99, 140<br>    D) </p>
-<p>Response : C<br>    X does not have a method doStuff2()</p>
-<h2 id="Static-Methods-and-heritance"><a href="#Static-Methods-and-heritance" class="headerlink" title="Static Methods and heritance"></a>Static Methods and heritance</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cyrgue.staticKeyword;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Y</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> String <span class="title">sayHi</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Y - Hello"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">sayHi2</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Y - Hello2"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Z</span> <span class="keyword">extends</span> <span class="title">Y</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> String <span class="title">sayHi</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Z - Hello"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">sayHi2</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Z - Hello2"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticMethodPrg</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Y y = <span class="keyword">new</span> Z();</span><br><span class="line">        System.out.println(y.sayHi() + <span class="string">", "</span> + y.sayHi2());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>What is the result?<br>A) Y-Hello, Y-Hello2<br>B) Y-Hello, Z-Hello2<br>C) Z-Hello, Z-Hello2<br>D) Y-Hello, Y-Hello2<br>E) Compilation Fails</p>
-<p>Response :<br>B : </p>
-<p>Y y = new Z();</p>
-<p>y.sayHi2() is an INSTANCE METHOD<br>so means send a message from the OBJECT (instance)(of type Z) - NOT the type of the POINTER</p>
-<p><strong>static method is treated differently</strong><br>the compiler replaces the y.sayHi() with Y.sayHi() as it’s static so this is the POINTER TYPE</p>
-<p>If you invoke static method, the behavior is determined statically by the compiler, so it uses the type of the variable (the POINTER) so Y<br>For instance method, dynamic method invocation(object (not pointer)of y, send a message), </p>
-<p><strong>Type of referee (Z) must be “assignment compatible” with type of reference (Y)</strong></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -595,7 +596,7 @@
   
     <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
   
-    <li><a href="/tags/java/">java</a><small>16</small></li>
+    <li><a href="/tags/java/">java</a><small>17</small></li>
   
     <li><a href="/tags/java-definition/">java definition</a><small>1</small></li>
   

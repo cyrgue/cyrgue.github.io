@@ -49,6 +49,52 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2018-10-07T13:08:20.000Z"><a href="/2018/10/07/java-static/">2018-10-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/10/07/java-static/">java-static</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Static field: Field is shared in all the object of the class</p>
+<p>Inner Class Could not have static field</p>
+<p>In Java8, Static field has to be declared in Interface</p>
+<p>Exercice :<br>Q1)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cyrgue.staticKeyword;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> MAX_VAL = <span class="number">100</span>;</span><br><span class="line">    <span class="keyword">int</span> value = <span class="number">99</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setValue</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (x &lt;= MAX_VAL) &#123;</span><br><span class="line">            value = x;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticPrg</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        X a = <span class="keyword">new</span> X();</span><br><span class="line">        X b = <span class="keyword">new</span> X();</span><br><span class="line"></span><br><span class="line">        a.setValue(<span class="number">120</span>);</span><br><span class="line">        System.out.print(a.value + <span class="string">","</span>);</span><br><span class="line"></span><br><span class="line">        b.MAX_VAL = <span class="number">150</span>; <span class="comment">// better is X.MAX_VAL = 150</span></span><br><span class="line">        a.setValue(<span class="number">140</span>);</span><br><span class="line">        System.out.println(a.value);;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>What happens?<br>    A) I’m an X<br>    B)<br>    C) 99, 140<br>    D) </p>
+<p>Response : C<br>    X does not have a method doStuff2()</p>
+<h2 id="Static-Methods-and-heritance"><a href="#Static-Methods-and-heritance" class="headerlink" title="Static Methods and heritance"></a>Static Methods and heritance</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cyrgue.staticKeyword;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Y</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> String <span class="title">sayHi</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Y - Hello"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">sayHi2</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Y - Hello2"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Z</span> <span class="keyword">extends</span> <span class="title">Y</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> String <span class="title">sayHi</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Z - Hello"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">sayHi2</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Z - Hello2"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticMethodPrg</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Y y = <span class="keyword">new</span> Z();</span><br><span class="line">        System.out.println(y.sayHi() + <span class="string">", "</span> + y.sayHi2());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>What is the result?<br>A) Y-Hello, Y-Hello2<br>B) Y-Hello, Z-Hello2<br>C) Z-Hello, Z-Hello2<br>D) Y-Hello, Y-Hello2<br>E) Compilation Fails</p>
+<p>Response :<br>B : </p>
+<p>Y y = new Z();</p>
+<p>y.sayHi2() is an INSTANCE METHOD<br>so means send a message from the OBJECT (instance)(of type Z) - NOT the type of the POINTER</p>
+<p><strong>static method is treated differently</strong><br>the compiler replaces the y.sayHi() with Y.sayHi() as it’s static so this is the POINTER TYPE</p>
+<p>If you invoke static method, the behavior is determined statically by the compiler, so it uses the type of the variable (the POINTER) so Y<br>For instance method, dynamic method invocation(object (not pointer)of y, send a message), </p>
+<p><strong>Type of referee (Z) must be “assignment compatible” with type of reference (Y)</strong></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2018-10-07T12:05:31.000Z"><a href="/2018/10/07/java-time-api/">2018-10-07</a></time>
       
       
@@ -146,7 +192,7 @@
 <li>JVM</li>
 <li>String Manipulation</li>
 <li>Exceptions</li>
-<li>Equals/Hashcode</li>
+<li><a href="">Equals/Hashcode</a></li>
 <li>Constructor</li>
 <li>Collections</li>
 <li>Sort/Compare</li>
@@ -155,7 +201,7 @@
 <li>Serialization</li>
 <li>Synchronized</li>
 <li>final</li>
-<li><a href="/2018/08/30/java-lambdas/">Lambdas</a> <a href="2018/10/03/java-functional-programming/">Functional Programming</a></li>
+<li><a href="/2018/08/30/java-lambdas/">Lambdas</a> - <a href="2018/10/03/java-functional-programming/">Functional Programming</a></li>
 <li>Stream</li>
 <li>Inner Class</li>
 </ul>
@@ -584,59 +630,6 @@ E) throws FileNotFoundException
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2018-08-30T15:13:06.000Z"><a href="/2018/08/30/java-casting/">2018-08-30</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2018/08/30/java-casting/">Java Casting</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="Casting"><a href="#Casting" class="headerlink" title="Casting"></a>Casting</h2><p><img src="/img/java/oca-javase8/casting1.png?raw=true" alt="Expressions" title="Expressions"></p>
-<h3 id="Exercice"><a href="#Exercice" class="headerlink" title="Exercice"></a>Exercice</h3><p>Given:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span> &#123;</span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">doStuff</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Y</span> &#123;</span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">doStuff2</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>and:<br><figure class="highlight pony"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">X</span> x = <span class="function"><span class="keyword">new</span> <span class="title">Y</span>();</span></span><br><span class="line"><span class="function">((<span class="type">Y</span>)<span class="title">x</span>).<span class="title">doStuff2</span>();</span></span><br></pre></td></tr></table></figure></p>
-<p>What is the result?<br>    A) Compilation fails<br>    B) Exception at runtime<br>    C) Y.doStuff2 is executed</p>
-<p>Responses : A</p>
-<p><img src="/img/java/oca-javase8/casting2.png?raw=true" alt="Apply Casting" title="Apply Casting"></p>
-<h2 id="When-Casting-is-possible"><a href="#When-Casting-is-possible" class="headerlink" title="When Casting is possible?"></a>When Casting is possible?</h2><p>Le compilateur verifie certaines regles pour auoriser le Casting</p>
-<h3 id="Exercice-1"><a href="#Exercice-1" class="headerlink" title="Exercice"></a>Exercice</h3><p>Given:<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span> </span>&#123;</span><br><span class="line">  void doStuff() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Y</span> <span class="keyword">extends</span> <span class="title">X</span> </span>&#123;</span><br><span class="line">  void doStuff2() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>and:<br><figure class="highlight pony"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">X</span> x = <span class="function"><span class="keyword">new</span> <span class="title">X</span>();</span></span><br><span class="line"><span class="function">((<span class="type">Y</span>)<span class="title">x</span>).<span class="title">doStuff2</span>();</span></span><br></pre></td></tr></table></figure></p>
-<p>What is the result?<br>    A) Compilation fails<br>    B) Exception at runtime<br>    C) Y.doStuff2 is executed<br>    D) Some unpredictable behavior</p>
-<p>Responses : B  //Fails at Runtime : java.lang.ClassCastException</p>
-<p><img src="/img/java/oca-javase8/casting3.png?raw=true" alt="Reject Casting" title="Apply Reject"></p>
-<p><img src="/img/java/oca-javase8/casting4.png?raw=true" alt="Possible Casting" title="Casting"></p>
-<p><img src="/img/java/oca-javase8/casting5.png?raw=true" alt="Possible Casting" title="Casting"></p>
-<p>A voir <strong>Autoboxing</strong><br>    Rappel : Le boxing permet de transformer automatiquement une variable de type primitif en un objet de type Wrapper correspondant<br>    L’unboxing est l’operation inverse</p>
-<p><a href="https://docs.oracle.com/javase/tutorial/java/data/autoboxing.html" target="_blank" rel="noopener">Autoboxing</a></p>
-<h2 id="Remarques"><a href="#Remarques" class="headerlink" title="Remarques"></a>Remarques</h2><ul>
-<li>Le Casting peut-être un signe de mauvais design</li>
-<li>Voir pour une class final</li>
-<li>Casting avec une interface</li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -733,7 +726,7 @@ E) throws FileNotFoundException
   
     <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
   
-    <li><a href="/tags/java/">java</a><small>16</small></li>
+    <li><a href="/tags/java/">java</a><small>17</small></li>
   
     <li><a href="/tags/java-definition/">java definition</a><small>1</small></li>
   

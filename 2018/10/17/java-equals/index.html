@@ -3,16 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>maven | cyrgue</title>
+  <title>Equals et Hashcode | cyrgue</title>
   <meta name="author" content="cyrgue">
   
-  <meta name="description" content="Configuration des tests unitaires et d’integrationPar défaut les tests sont activésmvn compile -DskipTests=true
-With IDEAWith MavenPAr défaut les">
+  <meta name="description" content="Equality
+== : Compare the value of 2 expressions
+equals : Can be overwritten
+
+Method equals()
+
+Defined in java.lang.Object Class123456789   public boo">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="maven"/>
+  <meta property="og:title" content="Equals et Hashcode"/>
   <meta property="og:site_name" content="cyrgue"/>
 
   
@@ -51,18 +56,31 @@ With IDEAWith MavenPAr défaut les">
     <header>
       
         <div class="icon"></div>
-        <time datetime="2018-10-13T15:08:35.000Z"><a href="/2018/10/13/maven/">2018-10-13</a></time>
+        <time datetime="2018-10-17T14:17:14.000Z"><a href="/2018/10/17/java-equals/">2018-10-17</a></time>
       
       
   
-    <h1 class="title">maven</h1>
+    <h1 class="title">Equals et Hashcode</h1>
   
 
     </header>
     <div class="entry">
       
-        <h1 id="Configuration-des-tests-unitaires-et-d’integration"><a href="#Configuration-des-tests-unitaires-et-d’integration" class="headerlink" title="Configuration des tests unitaires et d’integration"></a>Configuration des tests unitaires et d’integration</h1><p>Par défaut les tests sont activés<br><code>mvn compile -DskipTests=true</code></p>
-<h2 id="With-IDEA"><a href="#With-IDEA" class="headerlink" title="With IDEA"></a>With IDEA</h2><h2 id="With-Maven"><a href="#With-Maven" class="headerlink" title="With Maven"></a>With Maven</h2><p>PAr défaut les     </p>
+        <h1 id="Equality"><a href="#Equality" class="headerlink" title="Equality"></a>Equality</h1><ul>
+<li>== : Compare the <strong>value</strong> of 2 expressions</li>
+<li>equals : Can be overwritten</li>
+</ul>
+<p>Method equals()</p>
+<ul>
+<li>Defined in java.lang.Object Class<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span> == obj;</span><br><span class="line">   &#125;</span><br><span class="line">  </span><br><span class="line">  ``</span><br><span class="line">* héritée par tous les objects</span><br><span class="line"></span><br><span class="line">```puml</span><br><span class="line">A -&gt; B</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Il est nécessaire de redefinir la méthode equals dans les objets pour valider le comportement d’égalité de l’objet</p>
+<p>Dans la classe String, <strong>equals</strong> a déjà été redefini, dans StringBuilder non, mais String et StringBuilder sont différents en tant qu’Objet</p>
+<p><strong> La majorité des classes java ne redéfinisse pas la méthode equals()</strong><br>Seuls les types immuables redéfinissent la méthode equals() (String, Wrapper de primitive…)</p>
+<p>Attention en Java8</p>
+<pre><code class="java">
+</code></pre>
 
       
     </div>
@@ -72,7 +90,7 @@ With IDEAWith MavenPAr défaut les">
         
   
   <div class="tags">
-    <a href="/tags/configuration/">configuration</a>, <a href="/tags/java/">java</a>, <a href="/tags/maven/">maven</a>
+    <a href="/tags/java/">java</a>
   </div>
 
         
@@ -115,7 +133,7 @@ With IDEAWith MavenPAr défaut les">
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div class="fb-comments" data-href="http://cyrgue.github.io/2018/10/13/maven/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+<div class="fb-comments" data-href="http://cyrgue.github.io/2018/10/17/java-equals/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
       
   
 </section>
