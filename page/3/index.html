@@ -49,6 +49,95 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2018-08-31T13:20:17.000Z"><a href="/2018/08/31/java-method-arguments/">2018-08-31</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/08/31/java-method-arguments/">Java Method Arguments</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><strong>Method Argument are passed “by value” “by copy”</strong><br>    Correct but incomplete</p>
+<p><img src="/img/java/oca-javase8/method_arguments1.png?raw=true" alt="Reject Casting" title="Apply Reject"><br><img src="/img/java/oca-javase8/method_arguments2.png?raw=true" alt="Reject Casting" title="Apply Reject"><br><img src="/img/java/oca-javase8/method_arguments3.png?raw=true" alt="Reject Casting" title="Apply Reject">    </p>
+<p>2 Types d’expressions dans une seule JVM </p>
+<ul>
+<li>Primitive : Value is “The Value”</li>
+<li>Object/Reference : Value is the Pointer (the reference) Adresse Memoire qui pointe vers l’objet</li>
+</ul>
+<p>Q??<br>Q?? </p>
+<p>Q16</p>
+<p>Q17</p>
+<h2 id="Classes-Wrapper"><a href="#Classes-Wrapper" class="headerlink" title="Classes Wrapper"></a>Classes Wrapper</h2><p>Ex: </p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Ex</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>&#123;</span><br><span class="line">        Integer x = <span class="number">99</span>;</span><br><span class="line">        Ex.<span class="keyword">add</span>(x); <span class="comment">//copy de la valeur de l'adresse memoire</span></span><br><span class="line">        System.<span class="keyword">out</span>.println(<span class="string">"Valeur de x "</span> + x); -&gt; <span class="number">99</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">add</span>(<span class="params">Integer y</span>) </span>&#123;</span><br><span class="line">        y = y + <span class="number">1</span>; <span class="comment">// y est converti en int pour effectuer le +, puis autobxing en Integer en créant un nouvel objet</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Remarques"><a href="#Remarques" class="headerlink" title="Remarques"></a>Remarques</h2><ul>
+<li>String est IMMUTABLE</li>
+<li>StringBuffer n’est pas IMMUTABLE</li>
+<li>Les classes Wrappers des primitives sont IMMUTABLES </li>
+</ul>
+<h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> class Ex &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">        <span class="built_in">int</span> x = <span class="number">99</span>;</span><br><span class="line">        Ex.<span class="built_in">add</span>(x); <span class="comment">//copy de la valeur</span></span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"Valeur de x "</span> + x);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Wrapper de primitives</span></span><br><span class="line">        Integer a = <span class="number">99</span>;</span><br><span class="line">        <span class="built_in">add</span>(a);</span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"Valeur de a : "</span> + a);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">int</span> [] arr = &#123;<span class="number">99</span>&#125;;</span><br><span class="line">        Ex.<span class="built_in">add</span>(arr); <span class="comment">//copy de l'adresse memoire</span></span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"Valeur de arr[0] "</span> + arr[<span class="number">0</span>] );</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder(<span class="string">"Hello"</span>);</span><br><span class="line">        Ex.<span class="built_in">add</span>(sb); <span class="comment">//copy de l'adresse memoire</span></span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"Valeur de sb "</span> + sb );</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Ex.appender(sb); <span class="comment">//copy de l'adresse memoire</span></span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"Valeur de sb "</span> + sb );</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">String</span> <span class="built_in">str</span> = <span class="string">"Bonjour"</span>;</span><br><span class="line">        Ex.changeStr(<span class="built_in">str</span>);</span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"Valeur de str "</span> + <span class="built_in">str</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> changeStr(<span class="keyword">String</span> <span class="built_in">str</span>) &#123;</span><br><span class="line">        <span class="built_in">str</span> += <span class="string">" Les amis"</span>;  <span class="comment">// autre object créé avec nouvelle adresse mémoire</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="built_in">add</span>(StringBuilder sb) &#123;</span><br><span class="line">        sb = <span class="keyword">new</span> StringBuilder(<span class="string">"GoodBye"</span>); <span class="comment">// autre object créé avec nouvelle adresse mémoire</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> appender(StringBuilder sb) &#123;</span><br><span class="line">        sb.<span class="built_in">append</span>(<span class="string">" World"</span>); <span class="comment">// on travaille sur le meme object</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="built_in">add</span>(<span class="built_in">int</span> y) &#123;</span><br><span class="line">        y = y + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="built_in">add</span>(Integer y) &#123;</span><br><span class="line">        y = y + <span class="number">1</span>; <span class="comment">// y est converti en int pour effectuer le +, puis autobxing en Integer en créant un nouvel objet</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="built_in">add</span>(<span class="built_in">int</span>[] y) &#123;</span><br><span class="line">        y[<span class="number">0</span>] = y[<span class="number">0</span>] + <span class="number">1</span>; <span class="comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-08-31T02:53:51.000Z"><a href="/2018/08/30/java-intellij/">2018-08-30</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/08/30/java-intellij/">java_intellij</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Alt+Insert : New Class<br>Ctrl+Alt+Insert</p>
+<ul>
+<li>Create a test : Ctrl + Shift + T</li>
+<li>View documentation : Press Ctrl+Q.</li>
+<li>surround a code block with if, while, for and other statements :  Ctrl + Alt + T</li>
+<li>add a try catch block : <code>Files.write(path, lines, charset);.try</code><br> <a href="https://blog.jetbrains.com/idea/2014/03/postfix-completion/#sthash.mI1AHa17.dpuf" target="_blank" rel="noopener">Postfix Code Completion in IntelliJ IDEA </a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2018-08-31T01:07:15.000Z"><a href="/2018/08/30/java-exceptions/">2018-08-30</a></time>
       
       
@@ -567,106 +656,6 @@ Focus on Immutable objects
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-10-15T15:07:20.000Z"><a href="/2017/10/15/generics/">2017-10-15</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/10/15/generics/">generics</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Generics in Java</p>
-<p>Generics was added in Java 5 to provide compile-time type checking and removing risk of ClassCastException</p>
-<p> Le principe de la généricité est de faire des classes qui n’acceptent qu’un certain type d’objets ou de données de façon dynamique !</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-10-08T13:16:34.000Z"><a href="/2017/10/08/dynamodb/">2017-10-08</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/10/08/dynamodb/">DynamoDb</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="Presentation"><a href="#Presentation" class="headerlink" title="Presentation"></a>Presentation</h1><p> Amazon DynamoDB is a fully managed, cloud-hosted, NoSQL database.<br> It provides fast and predictable performance with the ability to scale seamlessly.<br> It allows you to store and retrieve any amount of data, serving any level of network traffic without having any operational burden. DynamoDB gives numerous other advantages like consistent and predictable performance, flexible data modeling, and durability.    </p>
-<p> DynamoDB uses Solid State Disks (SSD) to store the data </p>
-<p> It also automatically replicates the data across other AWS Availability Zones, which provides built-in high availability and reliability</p>
-<p> Document Store: MongoDB, CouchDB, MarkLogic<br> Column Store: Hbase, Cassandra<br> Key Value Store: DynamoDB, Azure, Redis<br> Graph Databases: Neo4J, DEX</p>
-<h1 id="Tables-Items-and-Attributes"><a href="#Tables-Items-and-Attributes" class="headerlink" title="Tables, Items, and Attributes."></a>Tables, Items, and Attributes.</h1><p> It needs only the fixed primary key, its data type, and a secondary index if needed</p>
-<h1 id="Operations"><a href="#Operations" class="headerlink" title="Operations"></a>Operations</h1><p> The Query and Scan operations are used to retrieve information from tables. The Query operation allows us to query the given table with provided hash key and range key. We can also query tables for secondary indexes. </p>
-<p> The Scan operation reads all items from a given table. </p>
-<h1 id="Primary-key"><a href="#Primary-key" class="headerlink" title="Primary key"></a>Primary key</h1><p> DynamoDB, being a key-value pair database, does not index on all given attributes for a given item;<br> it only indexes on the primary key, which is a mandatory attribute for each item of the table.</p>
-<p> having emp_id as the hash key and email as the range key, Mandatory<br> s the primary key, which needs to be unique for each attribute.<br> DynamoDB supports two types of primary keys:</p>
-<ul>
-<li>Hash primary key : Each DynamoDB table must have a hash primary key that is unique for each item.DynamoDB builds an unordered hash index on this key that allows us to uniquely identify any given item for a given table. So choose an attribute that would have a unique value for each attribute.</li>
-<li>Hash and range primary key : Along with the hash key, DynamoDB also supports another primary key called range key, which can be used in combination with the hash key  In this case, DynamoDB created an unordered hash index on the hash key and sorted the range key index on a range key attribute Range key should be selected in such a manner that it will evenly distribute the data load across partitions A good example to choose a hash and range type primary key for the Person table would be choosing birth years as the hash key and SSN as the range key. Here, we can narrow down our search with the birth year and then search in a specific birth year range partition for a specific SSN</li>
-</ul>
-<h1 id="Secondary-indexes"><a href="#Secondary-indexes" class="headerlink" title="Secondary indexes"></a>Secondary indexes</h1><p> sometimes there might be a need to search and access items from attributes that are not part of the primary key. For all such needs, DynamoDB supports secondary indexes that can be created on attributes other than the primary key and can be accessed and searched in a manner similar to the primary key.<br> We can create multiple secondary indexes for a given table. If we don’t create secondary indexes, the only option to get the item for a certain non-primary key attribute is to scan the complete table, which is a very expensive operation.</p>
-<p> DynamoDB supports two types of secondary indexes:</p>
-<ul>
-<li>Local secondary index</li>
-<li><p>Global secondary index</p>
-<p>Basically, local secondary indexes give you more range query options other than your table range key attribute. So to define the local secondary index, we can say that it is an index which has the same hash key as a table but a different range key.</p>
-<p>aws dynamodb delete-table –table-name messages</p>
-<p>findById<br>Forgot password =&gt; findByEmail<br>Login =&gt; findByEmail<br>Authenticate =&gt; findById</p>
-<p>Ex</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">usersTable</span>:</span><br><span class="line">  <span class="attribute">Type</span>: <span class="attribute">AWS</span>::<span class="attribute">DynamoDB</span>::Table</span><br><span class="line">  <span class="attribute">Properties</span>:</span><br><span class="line">    <span class="attribute">TableName</span>: Users</span><br><span class="line">    <span class="attribute">AttributeDefinitions</span>:</span><br><span class="line">      - <span class="attribute">AttributeName</span>: id</span><br><span class="line">        <span class="attribute">AttributeType</span>: S</span><br><span class="line">      - <span class="attribute">AttributeName</span>: email</span><br><span class="line">        <span class="attribute">AttributeType</span>: S</span><br><span class="line">      - <span class="attribute">AttributeName</span>: password</span><br><span class="line">        <span class="attribute">AttributeType</span>: S</span><br><span class="line">      - <span class="attribute">AttributeName</span>: salt</span><br><span class="line">        <span class="attribute">AttributeType</span>: S</span><br><span class="line">    <span class="attribute">KeySchema</span>:</span><br><span class="line">      - <span class="attribute">AttributeName</span>: id</span><br><span class="line">        <span class="attribute">KeyType</span>: HASH</span><br><span class="line">    <span class="attribute">ProvisionedThroughput</span>:</span><br><span class="line">      <span class="attribute">ReadCapacityUnits</span>: <span class="number">1</span></span><br><span class="line">      <span class="attribute">WriteCapacityUnits</span>: <span class="number">1</span></span><br><span class="line">    <span class="attribute">GlobalSecondaryIndexes</span>:</span><br><span class="line">      - <span class="attribute">IndexName</span>: UserAuthIndex</span><br><span class="line">        <span class="attribute">KeySchema</span>:</span><br><span class="line">          - <span class="attribute">AttributeName</span>: email</span><br><span class="line">            <span class="attribute">KeyType</span>: HASH</span><br><span class="line">        <span class="attribute">Projection</span>:</span><br><span class="line">          <span class="attribute">NonKeyAttributes</span>:</span><br><span class="line">            - user_id</span><br><span class="line">            - user_organization_id</span><br><span class="line">          <span class="attribute">ProjectionType</span>: INCLUDE</span><br><span class="line">        <span class="attribute">ProvisionedThroughput</span>:</span><br><span class="line">          <span class="attribute">ReadCapacityUnits</span>: <span class="number">1</span></span><br><span class="line">          <span class="attribute">WriteCapacityUnits</span>: <span class="number">1</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">var params = &#123;</span><br><span class="line">    TableName: <span class="symbol">'articles</span>',</span><br><span class="line">    KeySchema: [ // The <span class="keyword">type</span> <span class="type">of </span><span class="keyword">of</span> schema.  Must start <span class="keyword">with</span> a HASH <span class="keyword">type</span>, <span class="keyword">with</span> an optional second <span class="keyword">RANGE</span>.</span><br><span class="line">        &#123; // Required HASH <span class="keyword">type</span> <span class="type">attribute</span></span><br><span class="line"><span class="type">            </span>AttributeName: <span class="symbol">'id</span>',</span><br><span class="line">            KeyType: <span class="symbol">'HASH</span>',</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123; // Optional <span class="keyword">RANGE</span> key <span class="keyword">type</span> <span class="type">for </span>HASH + <span class="keyword">RANGE</span> tables</span><br><span class="line">            AttributeName: <span class="symbol">'event_date_year</span>', </span><br><span class="line">            KeyType: <span class="symbol">'RANGE</span>', </span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    AttributeDefinitions: [ // The names <span class="keyword">and</span> types <span class="keyword">of</span> <span class="keyword">all</span> primary <span class="keyword">and</span> index key attributes only</span><br><span class="line">        &#123;</span><br><span class="line">            AttributeName: <span class="symbol">'id</span>',</span><br><span class="line">            AttributeType: <span class="string">'S'</span>, // (S | N | B) <span class="keyword">for</span> string, number, binary</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            AttributeName: <span class="symbol">'event_date_year</span>',</span><br><span class="line">            AttributeType: <span class="string">'N'</span>, // (S | N | B) <span class="keyword">for</span> string, number, binary</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    ProvisionedThroughput: &#123; // required provisioned throughput <span class="keyword">for</span> the table</span><br><span class="line">        ReadCapacityUnits: <span class="number">1</span>, </span><br><span class="line">        WriteCapacityUnits: <span class="number">1</span>, </span><br><span class="line">    &#125;,</span><br><span class="line">  </span><br><span class="line">&#125;;</span><br><span class="line">dynamodb.createTable(params, <span class="keyword">function</span>(err, data) &#123;</span><br><span class="line">    <span class="keyword">if</span> (err) ppJson(err); // an error occurred</span><br><span class="line">    <span class="keyword">else</span> ppJson(data); // successful response</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">var</span> <span class="keyword">params</span> = &#123;</span><br><span class="line">    TableName: <span class="string">'articles'</span></span><br><span class="line">    &#125;;</span><br><span class="line">dynamodb.scan(<span class="keyword">params</span>, function(err, <span class="built_in">data</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (err) ppJson(err); <span class="comment">// an error occurred</span></span><br><span class="line">    <span class="keyword">else</span> ppJson(<span class="built_in">data</span>); <span class="comment">// successful response</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h1 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h1><ul>
-<li><a href="http://www.markomedia.com.au/dynamodb-for-javascript-cheatsheet/" target="_blank" rel="noopener">http://www.markomedia.com.au/dynamodb-for-javascript-cheatsheet/</a> </li>
-<li><a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.NodeJs.03.html" target="_blank" rel="noopener">http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.NodeJs.03.html</a></li>
-<li><a href="https://egkatzioura.com/2016/06/23/create-dynamodb-tables-with-node-js/" target="_blank" rel="noopener">https://egkatzioura.com/2016/06/23/create-dynamodb-tables-with-node-js/</a></li>
-<li><a href="https://egkatzioura.com/2016/07/02/query-dynamodb-items-with-node-js/" target="_blank" rel="noopener">https://egkatzioura.com/2016/07/02/query-dynamodb-items-with-node-js/</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -721,7 +710,7 @@ Focus on Immutable objects
   
     <li><a href="/tags/angularjs2/">angularjs2</a><small>1</small></li>
   
-    <li><a href="/tags/architecture/">architecture</a><small>3</small></li>
+    <li><a href="/tags/architecture/">architecture</a><small>4</small></li>
   
     <li><a href="/tags/array/">array</a><small>1</small></li>
   
@@ -744,6 +733,8 @@ Focus on Immutable objects
     <li><a href="/tags/directive/">directive</a><small>1</small></li>
   
     <li><a href="/tags/docker/">docker</a><small>1</small></li>
+  
+    <li><a href="/tags/domain-driven-design/">domain driven design</a><small>1</small></li>
   
     <li><a href="/tags/ecmascript-2015/">ecmascript 2015</a><small>1</small></li>
   
@@ -782,6 +773,8 @@ Focus on Immutable objects
     <li><a href="/tags/library/">library</a><small>1</small></li>
   
     <li><a href="/tags/maven/">maven</a><small>1</small></li>
+  
+    <li><a href="/tags/microservices/">microservices</a><small>1</small></li>
   
     <li><a href="/tags/ngrx/">ngrx</a><small>1</small></li>
   

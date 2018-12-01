@@ -49,6 +49,124 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2018-10-10T10:57:31.000Z"><a href="/2018/10/10/spring-reactive/">2018-10-10</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/10/10/spring-reactive/">Spring</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Presentation"><a href="#Presentation" class="headerlink" title="Presentation"></a>Presentation</h1><p>Le nouveau module WebFlux ajoute la simplicité d’utilisation de Spring et la facilité de configuration de Spring Boot à la conception et au développement d’applications réactives, tandis que Reactive Streams permet aux applications d’utiliser plus efficacement des ressources limitées en ajoutant des fonctionnalités non bloquantes.</p>
+<h1 id="Training-Course"><a href="#Training-Course" class="headerlink" title="Training Course"></a>Training Course</h1><ul>
+<li><a href="https://www.safaribooksonline.com/live-training/courses/reactive-spring-and-spring-boot/0636920212584/" target="_blank" rel="noopener">Course Presentation</a></li>
+<li><a href="https://github.com/kousen/reactive-spring/wiki" target="_blank" rel="noopener">Wiki</a></li>
+<li><a href="http://www.kousenit.com/reactivespring/" target="_blank" rel="noopener">Exercices</a></li>
+<li><a href="https://www.safaribooksonline.com/videos/reactive-spring/9781492025733" target="_blank" rel="noopener">Video</a></li>
+<li>[Spring Framework Documentation] (<a href="https://docs.spring.io/spring/docs/5.1.0.RELEASE/spring-framework-reference/" target="_blank" rel="noopener">https://docs.spring.io/spring/docs/5.1.0.RELEASE/spring-framework-reference/</a>)</li>
+</ul>
+<h1 id="Composants"><a href="#Composants" class="headerlink" title="Composants"></a>Composants</h1><p>Reactor (used internaly in spring)<br>Reactive Streams Adapters (to convert other libraries (RxJs, Akka) into reactor format )</p>
+<p>The webflux module in Spring 5 allows you to use the Project Reactor types Flux and Mono.Methods that work synchronously can be converted to asynchronous by changing the return type to one of those types. The WebClient class then knows how produce those types, and is now the preferred asynchronous rest client (the class AsyncRestTemplate is now deprecated).</p>
+<p>[Reactive, non-blocking WebClient for HTTP requests] (<a href="https://docs.spring.io/spring/docs/5.1.0.RELEASE/spring-framework-reference/web-reactive.html#webflux-client" target="_blank" rel="noopener">https://docs.spring.io/spring/docs/5.1.0.RELEASE/spring-framework-reference/web-reactive.html#webflux-client</a>)</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-10-08T12:02:08.000Z"><a href="/2018/10/08/java-stream-file-io/">2018-10-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/10/08/java-stream-file-io/">Stream and File I/O</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Try-catch-blocks"><a href="#Try-catch-blocks" class="headerlink" title="Try/catch blocks"></a>Try/catch blocks</h1><ul>
+<li>finally blocks</li>
+<li><p><strong>Multi-catch</strong> : using | (also consider catching a parent type)</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String input = getSomeString();</span><br><span class="line"><span class="keyword">int</span> num;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">   num = Integer.parseInt(input)</span><br><span class="line">&#125; <span class="keyword">catch</span> (NumberFormatException | NullPointerException e) &#123;</span><br><span class="line">   num = defaultValue;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>try-with-resources</strong> (Java7) : Can declare variables that <strong>implements AutoCloseable</strong> in parents after try</p>
+<ul>
+<li>Scope of variable is scope of try/catch block</li>
+<li>The close method of each variable is called at the end (like a finally block)</li>
+<li>Can declare multiple variables, separated by semicolon</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (BufferedReader reader = ....)&#123;</span><br><span class="line">   </span><br><span class="line">&#125; <span class="keyword">catch</span> (SomeExceptionType e) &#123;</span><br><span class="line">   ...</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Path"><a href="#Path" class="headerlink" title="Path"></a>Path</h1><ul>
+<li><strong>Path</strong> is a simpler and more flexibable replacement for File class </li>
+<li>Get a Path with <strong>Paths.get</strong></li>
+<li>Paths have convenients methods : toAbsoluteParth, startWith, getParent…</li>
+</ul>
+<h1 id="File-Reading"><a href="#File-Reading" class="headerlink" title="File Reading"></a>File Reading</h1><p>Read lines<br> <code>Stream&lt;String&gt; lines = Files.lines(somePath)</code></p>
+<ul>
+<li>Charset Option : Default is UTF-8, but you can uses Files.lines(path, someCharset)</li>
+<li>Throws IOException : use a try/catch block or throw and exception</li>
+<li>Stream should be closed </li>
+<li>Stream implements AutoCloseable</li>
+</ul>
+<h1 id="File-writing"><a href="#File-writing" class="headerlink" title="File writing"></a>File writing</h1><h2 id="Base-version"><a href="#Base-version" class="headerlink" title="Base version"></a>Base version</h2><p>Write all entries of a List into a file in one method call</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cyrgue.fileio;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.Charset;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Files;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Path;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Paths;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileWrintingPrg</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        Charset charset = Charset.defaultCharset();</span><br><span class="line">        Path path = Paths.get(<span class="string">"output-file-1.txt"</span>);</span><br><span class="line">        List&lt;String&gt; lines = Arrays.asList(<span class="string">"Line One"</span>, <span class="string">"Line Two"</span>);</span><br><span class="line"></span><br><span class="line">        Files.write(path, lines, charset);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>OpenOption<br><code>Files.write(somePath, lines, someCharset, someOption)</code><br>used to create, override a file…</p>
+<p><code>Files.write</code> is not flexible, not very efficient</p>
+<h2 id="Faster-and-more-flexible-File-Writing"><a href="#Faster-and-more-flexible-File-Writing" class="headerlink" title="Faster and more flexible File Writing"></a>Faster and more flexible File Writing</h2><ul>
+<li>to be able to format String as you insert them into the file</li>
+<li>to be able not to store everything in memory</li>
+<li><p>to be able to buffered writing in blocks (faster for very large files)</p>
+<p>Use <code>Files.newBufferedWriter(path, charset)</code> and <code>PrintWriter out = new PrintWriter(Files.newBufferedWriter(path, charset))</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cyrgue.fileio;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.PrintWriter;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.Charset;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Files;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Path;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Paths;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BetterFileWritingPrg</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        Charset charset = Charset.defaultCharset();</span><br><span class="line">        <span class="keyword">int</span> numLines = <span class="number">10</span>;</span><br><span class="line">        Path path = Paths.get(<span class="string">"output-file-2.txt"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> (PrintWriter out = <span class="keyword">new</span> PrintWriter(Files.newBufferedWriter(path, charset))) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numLines; i++) &#123;</span><br><span class="line">                out.printf(<span class="string">"Number is %5.2f%n"</span>, <span class="number">100</span>*Math.random());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException ex) &#123;</span><br><span class="line">            System.err.printf(<span class="string">"IOException %s%n"</span>, ex);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="Exploring-Folders"><a href="#Exploring-Folders" class="headerlink" title="Exploring Folders"></a>Exploring Folders</h1><ul>
+<li>Get all files in a folder <code>Files.list</code></li>
+<li>Get all files in and below a folder <code>Files.walk</code></li>
+<li>GEt matching files in and below a folder <code>Files.find</code> (with a BiPredicate (Path and BasicFileAttributes)) </li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2018-10-07T13:12:51.000Z"><a href="/2018/10/07/java-inner-class/">2018-10-07</a></time>
       
       
@@ -497,95 +615,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2018-08-31T13:20:17.000Z"><a href="/2018/08/31/java-method-arguments/">2018-08-31</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2018/08/31/java-method-arguments/">Java Method Arguments</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p><strong>Method Argument are passed “by value” “by copy”</strong><br>    Correct but incomplete</p>
-<p><img src="/img/java/oca-javase8/method_arguments1.png?raw=true" alt="Reject Casting" title="Apply Reject"><br><img src="/img/java/oca-javase8/method_arguments2.png?raw=true" alt="Reject Casting" title="Apply Reject"><br><img src="/img/java/oca-javase8/method_arguments3.png?raw=true" alt="Reject Casting" title="Apply Reject">    </p>
-<p>2 Types d’expressions dans une seule JVM </p>
-<ul>
-<li>Primitive : Value is “The Value”</li>
-<li>Object/Reference : Value is the Pointer (the reference) Adresse Memoire qui pointe vers l’objet</li>
-</ul>
-<p>Q??<br>Q?? </p>
-<p>Q16</p>
-<p>Q17</p>
-<h2 id="Classes-Wrapper"><a href="#Classes-Wrapper" class="headerlink" title="Classes Wrapper"></a>Classes Wrapper</h2><p>Ex: </p>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Ex</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>&#123;</span><br><span class="line">        Integer x = <span class="number">99</span>;</span><br><span class="line">        Ex.<span class="keyword">add</span>(x); <span class="comment">//copy de la valeur de l'adresse memoire</span></span><br><span class="line">        System.<span class="keyword">out</span>.println(<span class="string">"Valeur de x "</span> + x); -&gt; <span class="number">99</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">add</span>(<span class="params">Integer y</span>) </span>&#123;</span><br><span class="line">        y = y + <span class="number">1</span>; <span class="comment">// y est converti en int pour effectuer le +, puis autobxing en Integer en créant un nouvel objet</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Remarques"><a href="#Remarques" class="headerlink" title="Remarques"></a>Remarques</h2><ul>
-<li>String est IMMUTABLE</li>
-<li>StringBuffer n’est pas IMMUTABLE</li>
-<li>Les classes Wrappers des primitives sont IMMUTABLES </li>
-</ul>
-<h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> class Ex &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">        <span class="built_in">int</span> x = <span class="number">99</span>;</span><br><span class="line">        Ex.<span class="built_in">add</span>(x); <span class="comment">//copy de la valeur</span></span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"Valeur de x "</span> + x);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Wrapper de primitives</span></span><br><span class="line">        Integer a = <span class="number">99</span>;</span><br><span class="line">        <span class="built_in">add</span>(a);</span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"Valeur de a : "</span> + a);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">int</span> [] arr = &#123;<span class="number">99</span>&#125;;</span><br><span class="line">        Ex.<span class="built_in">add</span>(arr); <span class="comment">//copy de l'adresse memoire</span></span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"Valeur de arr[0] "</span> + arr[<span class="number">0</span>] );</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder(<span class="string">"Hello"</span>);</span><br><span class="line">        Ex.<span class="built_in">add</span>(sb); <span class="comment">//copy de l'adresse memoire</span></span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"Valeur de sb "</span> + sb );</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Ex.appender(sb); <span class="comment">//copy de l'adresse memoire</span></span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"Valeur de sb "</span> + sb );</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">String</span> <span class="built_in">str</span> = <span class="string">"Bonjour"</span>;</span><br><span class="line">        Ex.changeStr(<span class="built_in">str</span>);</span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"Valeur de str "</span> + <span class="built_in">str</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> changeStr(<span class="keyword">String</span> <span class="built_in">str</span>) &#123;</span><br><span class="line">        <span class="built_in">str</span> += <span class="string">" Les amis"</span>;  <span class="comment">// autre object créé avec nouvelle adresse mémoire</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="built_in">add</span>(StringBuilder sb) &#123;</span><br><span class="line">        sb = <span class="keyword">new</span> StringBuilder(<span class="string">"GoodBye"</span>); <span class="comment">// autre object créé avec nouvelle adresse mémoire</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> appender(StringBuilder sb) &#123;</span><br><span class="line">        sb.<span class="built_in">append</span>(<span class="string">" World"</span>); <span class="comment">// on travaille sur le meme object</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="built_in">add</span>(<span class="built_in">int</span> y) &#123;</span><br><span class="line">        y = y + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="built_in">add</span>(Integer y) &#123;</span><br><span class="line">        y = y + <span class="number">1</span>; <span class="comment">// y est converti en int pour effectuer le +, puis autobxing en Integer en créant un nouvel objet</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="built_in">add</span>(<span class="built_in">int</span>[] y) &#123;</span><br><span class="line">        y[<span class="number">0</span>] = y[<span class="number">0</span>] + <span class="number">1</span>; <span class="comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2018-08-31T02:53:51.000Z"><a href="/2018/08/30/java-intellij/">2018-08-30</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2018/08/30/java-intellij/">java_intellij</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Alt+Insert : New Class<br>Ctrl+Alt+Insert</p>
-<ul>
-<li>Create a test : Ctrl + Shift + T</li>
-<li>View documentation : Press Ctrl+Q.</li>
-<li>surround a code block with if, while, for and other statements :  Ctrl + Alt + T</li>
-<li>add a try catch block : <code>Files.write(path, lines, charset);.try</code><br> <a href="https://blog.jetbrains.com/idea/2014/03/postfix-completion/#sthash.mI1AHa17.dpuf" target="_blank" rel="noopener">Postfix Code Completion in IntelliJ IDEA </a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -640,7 +669,7 @@
   
     <li><a href="/tags/angularjs2/">angularjs2</a><small>1</small></li>
   
-    <li><a href="/tags/architecture/">architecture</a><small>3</small></li>
+    <li><a href="/tags/architecture/">architecture</a><small>4</small></li>
   
     <li><a href="/tags/array/">array</a><small>1</small></li>
   
@@ -663,6 +692,8 @@
     <li><a href="/tags/directive/">directive</a><small>1</small></li>
   
     <li><a href="/tags/docker/">docker</a><small>1</small></li>
+  
+    <li><a href="/tags/domain-driven-design/">domain driven design</a><small>1</small></li>
   
     <li><a href="/tags/ecmascript-2015/">ecmascript 2015</a><small>1</small></li>
   
@@ -701,6 +732,8 @@
     <li><a href="/tags/library/">library</a><small>1</small></li>
   
     <li><a href="/tags/maven/">maven</a><small>1</small></li>
+  
+    <li><a href="/tags/microservices/">microservices</a><small>1</small></li>
   
     <li><a href="/tags/ngrx/">ngrx</a><small>1</small></li>
   

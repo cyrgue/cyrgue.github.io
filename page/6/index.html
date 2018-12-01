@@ -49,6 +49,145 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2016-02-09T03:29:52.000Z"><a href="/2016/02/08/Programmation-Reactive/">2016-02-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/02/08/Programmation-Reactive/">Programmation Reactive</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Programmation Réactive Fonctionnelle (PRF)<br>Programmation réactive = programmation avec des flux de données asynchrones.<br>Un flux est une séquence d’événements en cours de production et ordonnés dans le temps.<br>Rien de nouveau : Les bus d’événements et les événements type clics de souris sont simplement des flux d’événements asynchrones que l’on peut observer pour y réagir.<br>La PR, c’est la même idée mais survitaminée. Il devient possible de créer des flux à partir de tout et n’importe quoi, pas seulement de clics. Ces flux sont légers et présents de partout. Tout peut alors être un flux : les variables, les entrées utilisateurs, les propriétés, les caches, les structures de données, etc.<br>est alors possible d’écouter/observer ce flux et réagir aux changements.</p>
+<p>En plus de ça, il y a à votre disposition des boîtes à outils puissantes pour combiner, créer, filtrer tous ces flux. C’est là que la partie « fonctionnelle » se combine bien avec la PR. Un flux peut être utilisé comme entrée d’un autre. Plusieurs flux peuvent aussi être combinés pour en produire un nouveau. Deux flux peuvent être fusionnés. Un flux peut être filtré pour produire un nouveau flux avec uniquement les événements qui vous intéressent. Vous pouvez transformer chaque événement d’un flux pour en produire un nouveau.<br>C’est là que la partie « fonctionnelle » se combine bien avec la PR. Un flux peut être utilisé comme entrée d’un autre. Plusieurs flux peuvent aussi être combinés pour en produire un nouveau. Deux flux peuvent être fusionnés. Un flux peut être filtré pour produire un nouveau flux avec uniquement les événements qui vous intéressent. Vous pouvez transformer chaque événement d’un flux pour en produire un nouveau.</p>
+<p>L’idée est de traiter ces événements de manière asynchrone, en définissant une fonction à exécuter pour chaque valeur émise, une autre fonction à exécuter en cas d’erreur et une dernière pour le cas du signal de « fin ».<br>Dans certains cas particuliers, les deux dernières sont inutiles et il est suffisant de se concentrer sur la fonction qui traite les valeurs. Écouter un flux (listening), se dit aussi « souscrire au flux » (subscribing). En fait les fonction que l’on définit sont des observateurs et le sujet (objet observé) est le flux. C’est exactement le patron de conception observateur.</p>
+<p>Dans les bibliothèque de programmation réactive fonctionnelle, il existe plein de fonctions pour manipuler les flux. Quand on appelle une de ces fonctions, cela renvoie un nouveau flux qui découle du premier. Le flux d’origine n’est pas modifié du tout. Cette propriété de non-modification est appelée « immutabilité » et est une des bases de la programmation fonctionnelle. Comme un nouveau flux est créé, il est possible de chaîner les appels, </p>
+<p>La PR fonctionnelle élève le niveau d’abstraction de votre code et, au lieu de se battre avec des détails d’implantation, vous pouvez vous concentrer sur les interdépendances entre les événements de votre logique métier. Un code de PR fonctionnelle est très souvent plus concis, ce qui peut avoir certains avantages.</p>
+<p>Ref : <a href="http://home.heeere.com/tech-intro-programmation-reactive.html" target="_blank" rel="noopener">http://home.heeere.com/tech-intro-programmation-reactive.html</a></p>
+<p>cela renvoie un nouveau flux qui découle du premier. Le flux d’origine n’est pas modifié du tout. Cette propriété de non-modification est appelée « immutabilité » et est une des bases de la programmation fonctionnelle. Comme un nouveau flux est créé, il est possible de chaîner les appels, par</p>
+<p>La fonction Rx.Observable.create() crée un flux qui informera chaque observateur de chaque nouvel événement (onNext()) et des erreurs (onError()).</p>
+<p>Operations:<br>map (pour transformer chaque valeur),<br>filter (pour filtrer certaines valeurs),<br>scan (pour appliquer successivement une opération),<br>stream.throttle(250ms)</p>
+<ul>
+<li>Language (Thread, reference value)<br><a href="http://stackoverflow.com/questions/2734025/is-javascript-guaranteed-to-be-single-threaded" target="_blank" rel="noopener">http://stackoverflow.com/questions/2734025/is-javascript-guaranteed-to-be-single-threaded</a></li>
+</ul>
+<p>JavaScript (in browsers) doesn’t run concurrently2. At most one of the setTimeout callbacks can execute at a time - as there is one JavaScript execution context or “thread”.</p>
+<p>Passage par valeur ou par référence ?<br>Variables are passed by value, objects by reference. Arrays in JavaScript are objects<br>Les objets simples comme String, Boolean, Number sont aussi passés par valeur.</p>
+<p>Pour mémoire, un argument passé par valeur est copié, et c’est la copie qui est refilée à la fonction. Toute modification de cette copie n’entraîne donc aucun changement dans la donnée d’origine. En revanche, un argument passé par référence est refilé directement : la fonction travaille sur l’original.</p>
+<p>Mais en Javascript, ce n’est pas vous qui choisissez le mode de passage ; ça fonctionne un peu comme en Java[1] : si c’est un type natif (Number, String, etc.) c’est passé par valeur, tandis que si c’est un objet d’une classe à vous, c’est passé par référence.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-01-16T23:35:21.000Z"><a href="/2016/01/16/Angularjs-2/">2016-01-16</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/01/16/Angularjs-2/">Angularjs 2</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="References"><a href="#References" class="headerlink" title="Références :"></a>Références :</h2><h3 id="Base"><a href="#Base" class="headerlink" title="Base"></a>Base</h3><ul>
+<li><a href="https://angular.io/" target="_blank" rel="noopener">Angular Io</a></li>
+<li><a href="http://blog.ng-book.com/the-ultimate-guide-to-forms-in-angular-2/" target="_blank" rel="noopener">ng-book</a></li>
+<li><p><a href="http://blog.thoughtram.io/categories/angular-2/" target="_blank" rel="noopener">Blog</a></p>
+</li>
+<li><p><a href="http://victorsavkin.com/post/118372404541/the-core-concepts-of-angular-2" target="_blank" rel="noopener">http://victorsavkin.com/post/118372404541/the-core-concepts-of-angular-2</a></p>
+</li>
+<li><a href="https://github.com/angular/angular/tree/master/modules/playground/src" target="_blank" rel="noopener">https://github.com/angular/angular/tree/master/modules/playground/src</a></li>
+</ul>
+<h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h3><ul>
+<li><a href="https://auth0.com/blog/2015/10/15/angular-2-series-part-3-using-http/" target="_blank" rel="noopener">Using HTTP</a></li>
+<li><a href="http://chariotsolutions.com/blog/post/angular2-observables-http-separating-services-components/" target="_blank" rel="noopener">Observables et Http</a></li>
+</ul>
+<h3 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h3><ul>
+<li><a href="http://blog.jhades.org/angular-2-application-architecture-building-flux-like-apps-using-redux-and-immutable-js-js/" target="_blank" rel="noopener">Building Flux Apps with Redux and Immutable.js</a></li>
+<li><a href="https://angularclass.github.io/angular2-webpack-starter/" target="_blank" rel="noopener">Angular 2 Starter</a></li>
+</ul>
+<h3 id="Observable"><a href="#Observable" class="headerlink" title="Observable"></a>Observable</h3><ul>
+<li><a href="http://victorsavkin.com/post/110170125256/change-detection-in-angular-2" target="_blank" rel="noopener">Angular 2 change detection system</a></li>
+<li><a href="https://medium.com/google-developer-experts/angular-introduction-to-reactive-extensions-rxjs-a86a7430a61f#.iibmtk80f" target="_blank" rel="noopener">Introduction to Reactive Extensions (RxJS)</a></li>
+<li><a href="http://blog.thoughtram.io/angular/2016/01/06/taking-advantage-of-observables-in-angular2.html" target="_blank" rel="noopener">Taking advantage of Observables in Angular 2</a></li>
+</ul>
+<h3 id="Routing"><a href="#Routing" class="headerlink" title="Routing"></a>Routing</h3><ul>
+<li><a href="https://angular.io/docs/ts/latest/guide/router.html" target="_blank" rel="noopener">ROUTING &amp; NAVIGATION</a></li>
+<li><a href="http://yakovfain.com/2015/11/02/angular-2-router-high-level-overview/" target="_blank" rel="noopener">Angular 2 Router: High-Level Overview</a></li>
+</ul>
+<hr>
+<p> Notes</p>
+<p>Angularjs 2 </p>
+<p>An Angular 2 application consists of nested components. So an Angular 2 application will always have a component tree. Let’s say for this app it looks as follows:</p>
+<p><a href="https://angular.io/docs/ts/latest/quickstart.html" target="_blank" rel="noopener">https://angular.io/docs/ts/latest/quickstart.html</a></p>
+<p>TypeScript<br> Composant<br> Class<br> Interface</p>
+<p>ngIf and ngFor are called “structural directives” because they can change the structure of portions of the DOM. In other words, they give structure to the way Angular displays content in the DOM</p>
+<ul>
+<li><p>The ngIf directive removes/puts the HTML from/into the DOM.</p>
+<p>Structural Directives<br> A Structural directive changes the DOM layout by adding and removing DOM elements. </p>
+ <p *ngif="condition">
+
+</p><p> Angular removes the element from DOM, stops change detection for the associated component, detaches it from DOM events (the attachments that it made) and destroys the component. The component can be garbage-collected (we hope) and free up memory.<br> Components often have child components which themselves have children. All of them are destroyed when ngIf destroys the common ancestor. This cleanup effort is usually a good thing.</p>
+</li>
+</ul>
+<p> Template Syntax </p>
+<p>return this.jsonp<br>              .get(‘<a href="http://en.wikipedia.org/w/api.php?callback=JSONP_CALLBACK&#39;" target="_blank" rel="noopener">http://en.wikipedia.org/w/api.php?callback=JSONP_CALLBACK&#39;</a>, { search })<br>              .map((response) =&gt; response.json()[1]);</p>
+<p>this.items = this.term.valueChanges<br>                 .debounceTime(400)<br>                 .distinctUntilChanged()<br>                 .switchMap(term =&gt; this.wikipediaService.search(term));</p>
+<p>The map operator expects a function that takes a value T and returns a value U<br>you get from an Observable<t> to an Observable<u>.</u></t></p>
+<p>to avoid Observable&lt;Observable&lt;Array<string>&gt; : The flatMap operator on the other hand expects a function that takes a T and returns an Observable<u> and produces an Observable<u> for us.<br>The switchMap operator is comparable to flatMap in a way. Both operators automatically subscribe to the Observable that the function produces and flatten the result for us. The difference is that the switchMap operator automatically unsubscribes from previous subscriptions as soon as the outer Observable emits new values.</u></u></string></p>
+<hr>
+<p>Reactive Extensions for JavaScript (RxJS) </p>
+<ul>
+<li><p>reactive streams library that allows you to work with asynchronous data streams. RxJS can be used both in the browser or in the server-side using Node.js.</p>
+<p>In RxJS, you represent asynchronous data streams using observable sequences or also just called observables. </p>
+</li>
+</ul>
+<p>Observable<br> An Observable is a collection that arrives over time. Observables can be used to model events, asynchronous requests, and animations. Observables can also be transformed, combined, and consumed using the Array methods<br> Observables = Promises + Events (in a way!)</p>
+<p> <a href="https://egghead.io/lessons/javascript-introducing-the-observable" target="_blank" rel="noopener">https://egghead.io/lessons/javascript-introducing-the-observable</a></p>
+<p>A voir : </p>
+<ul>
+<li>Form, ngFormControl, Control from angular2/common</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2015-10-21T12:01:40.000Z"><a href="/2015/10/21/Angularjs-directive/">2015-10-21</a></time>
       
       
@@ -266,7 +405,7 @@
   
     <li><a href="/tags/angularjs2/">angularjs2</a><small>1</small></li>
   
-    <li><a href="/tags/architecture/">architecture</a><small>3</small></li>
+    <li><a href="/tags/architecture/">architecture</a><small>4</small></li>
   
     <li><a href="/tags/array/">array</a><small>1</small></li>
   
@@ -289,6 +428,8 @@
     <li><a href="/tags/directive/">directive</a><small>1</small></li>
   
     <li><a href="/tags/docker/">docker</a><small>1</small></li>
+  
+    <li><a href="/tags/domain-driven-design/">domain driven design</a><small>1</small></li>
   
     <li><a href="/tags/ecmascript-2015/">ecmascript 2015</a><small>1</small></li>
   
@@ -327,6 +468,8 @@
     <li><a href="/tags/library/">library</a><small>1</small></li>
   
     <li><a href="/tags/maven/">maven</a><small>1</small></li>
+  
+    <li><a href="/tags/microservices/">microservices</a><small>1</small></li>
   
     <li><a href="/tags/ngrx/">ngrx</a><small>1</small></li>
   
