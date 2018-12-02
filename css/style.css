@@ -1140,6 +1140,7 @@ table tr:nth-child(2n) {
 table td {
   padding: 5px 10px;
   border: 1px solid #d8e2eb;
+  vertical-align: top;
 }
 table td code {
   margin: 0 5px;
