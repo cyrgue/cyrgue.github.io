@@ -60,8 +60,14 @@
     <div class="entry">
       
         <h1 id="Project"><a href="#Project" class="headerlink" title="Project"></a>Project</h1><p><a href="http://robotframework.org/" target="_blank" rel="noopener">robotframework.org</a></p>
-<h2 id="Selenium"><a href="#Selenium" class="headerlink" title="Selenium"></a>Selenium</h2><p>SeleniumLibrary is a web testing library for Robot Framework.<br><a href="http://robotframework.org/SeleniumLibrary/SeleniumLibrary.html" target="_blank" rel="noopener">Latest Doc</a></p>
-<h3 id="Locating-elements"><a href="#Locating-elements" class="headerlink" title="Locating elements"></a>Locating elements</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$&#123;response&#125;</span>    <span class="builtin-name">Get</span> Text    <span class="attribute">xpath</span>=/html/body/div/tr[2]/td/strong</span><br><span class="line">Should Be Equal As Strings    <span class="variable">$&#123;response&#125;</span>    Payment was successful</span><br></pre></td></tr></table></figure>
+<h2 id="Selenium"><a href="#Selenium" class="headerlink" title="Selenium"></a>Selenium</h2><p><a href="http://robotframework.org/SeleniumLibrary/SeleniumLibrary.html" target="_blank" rel="noopener">SeleniumLibrary</a> is a web testing library for Robot Framework.</p>
+<h3 id="Locating-elements"><a href="#Locating-elements" class="headerlink" title="Locating elements"></a>Locating elements</h3><ul>
+<li><p>Name</p>
+ <figure class="highlight plain"><figcaption><span>Element	name:foo```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* Implicit XPath strategy</span><br><span class="line">   If the locator starts with // ex: //div is equivalent to using explicit xpath://div.</span><br></pre></td></tr></table></figure>
+<p> Click Element    //div[@id=”foo”]//h1<br> Click Element    (//div)[2]<br> Click Element   xpath: //*[contains(text(), “example”)]<br>Examples:</p>
+</li>
+</ul>
+<h3 id="Get-Text-in-HTML"><a href="#Get-Text-in-HTML" class="headerlink" title="Get Text in HTML"></a>Get Text in HTML</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$&#123;response&#125;</span>    <span class="builtin-name">Get</span> Text    <span class="attribute">xpath</span>=/html/body/div/tr[2]/td/strong</span><br><span class="line">Should Be Equal As Strings    <span class="variable">$&#123;response&#125;</span>    Payment was successful</span><br></pre></td></tr></table></figure>
 <h2 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h2><ul>
 <li><a href="https://github.com/asyrjasalo/RESTinstance/blob/master/README.rst" target="_blank" rel="noopener">Library RESTinstance</a></li>
 <li><a href="http://laurent.bristiel.com/robot-framework-rest-and-json-with-restinstance/" target="_blank" rel="noopener">Example with RESTinstance</a></li>
