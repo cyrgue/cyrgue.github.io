@@ -32,14 +32,11 @@
 <tr>
 <td>xpath</td>
 <td>XPath expression</td>
-<td><code>xpath://div[@id=&quot;example&quot;]</code></td>
+<td>xpath://div[@id=&quot;example&quot;]</td>
 </tr>
 </tbody>
 </table>
-<pre><code>``//div[@id=&quot;foo&quot;]//h1`` 
-``(//div)[2]`` 
-`` //*[contains(text(), &quot;example&quot;)]`^                      |
-</code></pre>
+
 <h2 id="Get-Text-in-HTML"><a href="#Get-Text-in-HTML" class="headerlink" title="Get Text in HTML"></a>Get Text in HTML</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$&#123;response&#125;</span>    <span class="builtin-name">Get</span> Text    <span class="attribute">xpath</span>=/html/body/div/tr[2]/td/strong</span><br><span class="line">Should Be Equal As Strings    <span class="variable">$&#123;response&#125;</span>    Payment was successful</span><br></pre></td></tr></table></figure>
 <h1 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h1><ul>
 <li><a href="https://github.com/asyrjasalo/RESTinstance/blob/master/README.rst" target="_blank" rel="noopener">Library RESTinstance</a></li>
