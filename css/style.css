@@ -1141,6 +1141,14 @@ table td {
   padding: 5px 10px;
   border: 1px solid #d8e2eb;
 }
+table td code {
+  margin: 0 5px;
+  padding: 0 5px;
+  font-family: Source Code Pro, Monaco, Menlo, Consolas, monospace;
+  color: #4d4d4c;
+  background: #eee;
+  font-size: 0.95em;
+}
 @media print, screen and (max-width: 56.25em) {
   .body_container {
     padding: 0 30px;
