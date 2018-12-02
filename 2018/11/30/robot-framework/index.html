@@ -91,15 +91,16 @@ Example
 <td>name attribute</td>
 <td>name:example or identifier:example</td>
 </tr>
+<tr>
+<td>class</td>
+<td>Element class.</td>
+<td>class:example</td>
+</tr>
 </tbody>
 </table>
 
-<ul>
-<li><p>Implicit XPath strategy<br> If the locator starts with // ex: //div is equivalent to using explicit xpath://div.</p>
- <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">    Click Element	<span class="regexp">//</span>div[@id=<span class="string">"foo"</span>]<span class="regexp">//</span>h1</span><br><span class="line">    Click Element	(<span class="regexp">//</span>div)[<span class="number">2</span>]</span><br><span class="line">    Click Element   xpath: <span class="regexp">//</span>*[contains(text(), <span class="string">"example"</span>)]</span><br><span class="line">Examples:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">### Get Text in HTML</span></span><br></pre></td></tr></table></figure>
-<p>${response}    Get Text    xpath=/html/body/div/tr[2]/td/strong<br>Should Be Equal As Strings    ${response}    Payment was successful<br><code>`</code></p>
-</li>
-</ul>
+<p>Implicit XPath strategy<br>    If the locator starts with // ex: //div is equivalent to using explicit xpath://div.<br>    <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">    Click Element	<span class="regexp">//</span>div[@id=<span class="string">"foo"</span>]<span class="regexp">//</span>h1</span><br><span class="line">    Click Element	(<span class="regexp">//</span>div)[<span class="number">2</span>]</span><br><span class="line">    Click Element   xpath: <span class="regexp">//</span>*[contains(text(), <span class="string">"example"</span>)]</span><br><span class="line">Examples:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">### Get Text in HTML</span></span><br></pre></td></tr></table></figure></p>
+<p> ${response}    Get Text    xpath=/html/body/div/tr[2]/td/strong<br> Should Be Equal As Strings    ${response}    Payment was successful<br><code>`</code></p>
 <h2 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h2><ul>
 <li><a href="https://github.com/asyrjasalo/RESTinstance/blob/master/README.rst" target="_blank" rel="noopener">Library RESTinstance</a></li>
 <li><a href="http://laurent.bristiel.com/robot-framework-rest-and-json-with-restinstance/" target="_blank" rel="noopener">Example with RESTinstance</a></li>
