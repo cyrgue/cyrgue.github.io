@@ -61,7 +61,7 @@
       
         <h1 id="Project"><a href="#Project" class="headerlink" title="Project"></a>Project</h1><p><a href="http://robotframework.org/" target="_blank" rel="noopener">robotframework.org</a></p>
 <h2 id="Selenium"><a href="#Selenium" class="headerlink" title="Selenium"></a>Selenium</h2><p><a href="http://robotframework.org/SeleniumLibrary/SeleniumLibrary.html" target="_blank" rel="noopener">SeleniumLibrary</a> is a web testing library for Robot Framework.</p>
-<h3 id="Locating-elements"><a href="#Locating-elements" class="headerlink" title="Locating elements"></a>Locating elements</h3><table>
+<h3 id="Locating-elements"><a href="#Locating-elements" class="headerlink" title="Locating elements"></a>Locating elements</h3><table class="table table-striped">
 <thead>
 <tr>
 <th>Strategy</th>
@@ -82,6 +82,7 @@
 </tr>
 </tbody>
 </table>
+
 <ul>
 <li><p>Implicit XPath strategy<br> If the locator starts with // ex: //div is equivalent to using explicit xpath://div.</p>
  <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">    Click Element	<span class="regexp">//</span>div[@id=<span class="string">"foo"</span>]<span class="regexp">//</span>h1</span><br><span class="line">    Click Element	(<span class="regexp">//</span>div)[<span class="number">2</span>]</span><br><span class="line">    Click Element   xpath: <span class="regexp">//</span>*[contains(text(), <span class="string">"example"</span>)]</span><br><span class="line">Examples:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">### Get Text in HTML</span></span><br></pre></td></tr></table></figure>
