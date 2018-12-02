@@ -1,0 +1,535 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page | cyrgue</title>
+  <meta name="author" content="cyrgue">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="cyrgue"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="cyrgue" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">cyrgue</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-02-09T03:29:52.000Z"><a href="/2016/02/08/Programmation-Reactive/">2016-02-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/02/08/Programmation-Reactive/">Programmation Reactive</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Programmation Réactive Fonctionnelle (PRF)<br>Programmation réactive = programmation avec des flux de données asynchrones.<br>Un flux est une séquence d’événements en cours de production et ordonnés dans le temps.<br>Rien de nouveau : Les bus d’événements et les événements type clics de souris sont simplement des flux d’événements asynchrones que l’on peut observer pour y réagir.<br>La PR, c’est la même idée mais survitaminée. Il devient possible de créer des flux à partir de tout et n’importe quoi, pas seulement de clics. Ces flux sont légers et présents de partout. Tout peut alors être un flux : les variables, les entrées utilisateurs, les propriétés, les caches, les structures de données, etc.<br>est alors possible d’écouter/observer ce flux et réagir aux changements.</p>
+<p>En plus de ça, il y a à votre disposition des boîtes à outils puissantes pour combiner, créer, filtrer tous ces flux. C’est là que la partie « fonctionnelle » se combine bien avec la PR. Un flux peut être utilisé comme entrée d’un autre. Plusieurs flux peuvent aussi être combinés pour en produire un nouveau. Deux flux peuvent être fusionnés. Un flux peut être filtré pour produire un nouveau flux avec uniquement les événements qui vous intéressent. Vous pouvez transformer chaque événement d’un flux pour en produire un nouveau.<br>C’est là que la partie « fonctionnelle » se combine bien avec la PR. Un flux peut être utilisé comme entrée d’un autre. Plusieurs flux peuvent aussi être combinés pour en produire un nouveau. Deux flux peuvent être fusionnés. Un flux peut être filtré pour produire un nouveau flux avec uniquement les événements qui vous intéressent. Vous pouvez transformer chaque événement d’un flux pour en produire un nouveau.</p>
+<p>L’idée est de traiter ces événements de manière asynchrone, en définissant une fonction à exécuter pour chaque valeur émise, une autre fonction à exécuter en cas d’erreur et une dernière pour le cas du signal de « fin ».<br>Dans certains cas particuliers, les deux dernières sont inutiles et il est suffisant de se concentrer sur la fonction qui traite les valeurs. Écouter un flux (listening), se dit aussi « souscrire au flux » (subscribing). En fait les fonction que l’on définit sont des observateurs et le sujet (objet observé) est le flux. C’est exactement le patron de conception observateur.</p>
+<p>Dans les bibliothèque de programmation réactive fonctionnelle, il existe plein de fonctions pour manipuler les flux. Quand on appelle une de ces fonctions, cela renvoie un nouveau flux qui découle du premier. Le flux d’origine n’est pas modifié du tout. Cette propriété de non-modification est appelée « immutabilité » et est une des bases de la programmation fonctionnelle. Comme un nouveau flux est créé, il est possible de chaîner les appels, </p>
+<p>La PR fonctionnelle élève le niveau d’abstraction de votre code et, au lieu de se battre avec des détails d’implantation, vous pouvez vous concentrer sur les interdépendances entre les événements de votre logique métier. Un code de PR fonctionnelle est très souvent plus concis, ce qui peut avoir certains avantages.</p>
+<p>Ref : <a href="http://home.heeere.com/tech-intro-programmation-reactive.html" target="_blank" rel="noopener">http://home.heeere.com/tech-intro-programmation-reactive.html</a></p>
+<p>cela renvoie un nouveau flux qui découle du premier. Le flux d’origine n’est pas modifié du tout. Cette propriété de non-modification est appelée « immutabilité » et est une des bases de la programmation fonctionnelle. Comme un nouveau flux est créé, il est possible de chaîner les appels, par</p>
+<p>La fonction Rx.Observable.create() crée un flux qui informera chaque observateur de chaque nouvel événement (onNext()) et des erreurs (onError()).</p>
+<p>Operations:<br>map (pour transformer chaque valeur),<br>filter (pour filtrer certaines valeurs),<br>scan (pour appliquer successivement une opération),<br>stream.throttle(250ms)</p>
+<ul>
+<li>Language (Thread, reference value)<br><a href="http://stackoverflow.com/questions/2734025/is-javascript-guaranteed-to-be-single-threaded" target="_blank" rel="noopener">http://stackoverflow.com/questions/2734025/is-javascript-guaranteed-to-be-single-threaded</a></li>
+</ul>
+<p>JavaScript (in browsers) doesn’t run concurrently2. At most one of the setTimeout callbacks can execute at a time - as there is one JavaScript execution context or “thread”.</p>
+<p>Passage par valeur ou par référence ?<br>Variables are passed by value, objects by reference. Arrays in JavaScript are objects<br>Les objets simples comme String, Boolean, Number sont aussi passés par valeur.</p>
+<p>Pour mémoire, un argument passé par valeur est copié, et c’est la copie qui est refilée à la fonction. Toute modification de cette copie n’entraîne donc aucun changement dans la donnée d’origine. En revanche, un argument passé par référence est refilé directement : la fonction travaille sur l’original.</p>
+<p>Mais en Javascript, ce n’est pas vous qui choisissez le mode de passage ; ça fonctionne un peu comme en Java[1] : si c’est un type natif (Number, String, etc.) c’est passé par valeur, tandis que si c’est un objet d’une classe à vous, c’est passé par référence.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-01-16T23:35:21.000Z"><a href="/2016/01/16/Angularjs-2/">2016-01-16</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/01/16/Angularjs-2/">Angularjs 2</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="References"><a href="#References" class="headerlink" title="Références :"></a>Références :</h2><h3 id="Base"><a href="#Base" class="headerlink" title="Base"></a>Base</h3><ul>
+<li><a href="https://angular.io/" target="_blank" rel="noopener">Angular Io</a></li>
+<li><a href="http://blog.ng-book.com/the-ultimate-guide-to-forms-in-angular-2/" target="_blank" rel="noopener">ng-book</a></li>
+<li><p><a href="http://blog.thoughtram.io/categories/angular-2/" target="_blank" rel="noopener">Blog</a></p>
+</li>
+<li><p><a href="http://victorsavkin.com/post/118372404541/the-core-concepts-of-angular-2" target="_blank" rel="noopener">http://victorsavkin.com/post/118372404541/the-core-concepts-of-angular-2</a></p>
+</li>
+<li><a href="https://github.com/angular/angular/tree/master/modules/playground/src" target="_blank" rel="noopener">https://github.com/angular/angular/tree/master/modules/playground/src</a></li>
+</ul>
+<h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h3><ul>
+<li><a href="https://auth0.com/blog/2015/10/15/angular-2-series-part-3-using-http/" target="_blank" rel="noopener">Using HTTP</a></li>
+<li><a href="http://chariotsolutions.com/blog/post/angular2-observables-http-separating-services-components/" target="_blank" rel="noopener">Observables et Http</a></li>
+</ul>
+<h3 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h3><ul>
+<li><a href="http://blog.jhades.org/angular-2-application-architecture-building-flux-like-apps-using-redux-and-immutable-js-js/" target="_blank" rel="noopener">Building Flux Apps with Redux and Immutable.js</a></li>
+<li><a href="https://angularclass.github.io/angular2-webpack-starter/" target="_blank" rel="noopener">Angular 2 Starter</a></li>
+</ul>
+<h3 id="Observable"><a href="#Observable" class="headerlink" title="Observable"></a>Observable</h3><ul>
+<li><a href="http://victorsavkin.com/post/110170125256/change-detection-in-angular-2" target="_blank" rel="noopener">Angular 2 change detection system</a></li>
+<li><a href="https://medium.com/google-developer-experts/angular-introduction-to-reactive-extensions-rxjs-a86a7430a61f#.iibmtk80f" target="_blank" rel="noopener">Introduction to Reactive Extensions (RxJS)</a></li>
+<li><a href="http://blog.thoughtram.io/angular/2016/01/06/taking-advantage-of-observables-in-angular2.html" target="_blank" rel="noopener">Taking advantage of Observables in Angular 2</a></li>
+</ul>
+<h3 id="Routing"><a href="#Routing" class="headerlink" title="Routing"></a>Routing</h3><ul>
+<li><a href="https://angular.io/docs/ts/latest/guide/router.html" target="_blank" rel="noopener">ROUTING &amp; NAVIGATION</a></li>
+<li><a href="http://yakovfain.com/2015/11/02/angular-2-router-high-level-overview/" target="_blank" rel="noopener">Angular 2 Router: High-Level Overview</a></li>
+</ul>
+<hr>
+<p> Notes</p>
+<p>Angularjs 2 </p>
+<p>An Angular 2 application consists of nested components. So an Angular 2 application will always have a component tree. Let’s say for this app it looks as follows:</p>
+<p><a href="https://angular.io/docs/ts/latest/quickstart.html" target="_blank" rel="noopener">https://angular.io/docs/ts/latest/quickstart.html</a></p>
+<p>TypeScript<br> Composant<br> Class<br> Interface</p>
+<p>ngIf and ngFor are called “structural directives” because they can change the structure of portions of the DOM. In other words, they give structure to the way Angular displays content in the DOM</p>
+<ul>
+<li><p>The ngIf directive removes/puts the HTML from/into the DOM.</p>
+<p>Structural Directives<br> A Structural directive changes the DOM layout by adding and removing DOM elements. </p>
+ <p *ngif="condition">
+
+</p><p> Angular removes the element from DOM, stops change detection for the associated component, detaches it from DOM events (the attachments that it made) and destroys the component. The component can be garbage-collected (we hope) and free up memory.<br> Components often have child components which themselves have children. All of them are destroyed when ngIf destroys the common ancestor. This cleanup effort is usually a good thing.</p>
+</li>
+</ul>
+<p> Template Syntax </p>
+<p>return this.jsonp<br>              .get(‘<a href="http://en.wikipedia.org/w/api.php?callback=JSONP_CALLBACK&#39;" target="_blank" rel="noopener">http://en.wikipedia.org/w/api.php?callback=JSONP_CALLBACK&#39;</a>, { search })<br>              .map((response) =&gt; response.json()[1]);</p>
+<p>this.items = this.term.valueChanges<br>                 .debounceTime(400)<br>                 .distinctUntilChanged()<br>                 .switchMap(term =&gt; this.wikipediaService.search(term));</p>
+<p>The map operator expects a function that takes a value T and returns a value U<br>you get from an Observable<t> to an Observable<u>.</u></t></p>
+<p>to avoid Observable&lt;Observable&lt;Array<string>&gt; : The flatMap operator on the other hand expects a function that takes a T and returns an Observable<u> and produces an Observable<u> for us.<br>The switchMap operator is comparable to flatMap in a way. Both operators automatically subscribe to the Observable that the function produces and flatten the result for us. The difference is that the switchMap operator automatically unsubscribes from previous subscriptions as soon as the outer Observable emits new values.</u></u></string></p>
+<hr>
+<p>Reactive Extensions for JavaScript (RxJS) </p>
+<ul>
+<li><p>reactive streams library that allows you to work with asynchronous data streams. RxJS can be used both in the browser or in the server-side using Node.js.</p>
+<p>In RxJS, you represent asynchronous data streams using observable sequences or also just called observables. </p>
+</li>
+</ul>
+<p>Observable<br> An Observable is a collection that arrives over time. Observables can be used to model events, asynchronous requests, and animations. Observables can also be transformed, combined, and consumed using the Array methods<br> Observables = Promises + Events (in a way!)</p>
+<p> <a href="https://egghead.io/lessons/javascript-introducing-the-observable" target="_blank" rel="noopener">https://egghead.io/lessons/javascript-introducing-the-observable</a></p>
+<p>A voir : </p>
+<ul>
+<li>Form, ngFormControl, Control from angular2/common</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-10-21T12:01:40.000Z"><a href="/2015/10/21/Angularjs-directive/">2015-10-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/10/21/Angularjs-directive/">Angularjs directive</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="Directive"><a href="#Directive" class="headerlink" title="Directive"></a>Directive</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line">angular.module(<span class="string">'myModule'</span>).directive(<span class="string">'formGroup'</span>,  <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    restrict: <span class="string">'E'</span>,</span><br><span class="line">    transclude: <span class="literal">true</span>,</span><br><span class="line">    templateUrl: <span class="string">'core/views/directives/form-group.html'</span>,</span><br><span class="line">    replace: <span class="literal">true</span>,</span><br><span class="line">    scope: &#123;</span><br><span class="line">      label: <span class="string">'@'</span>,</span><br><span class="line">      <span class="keyword">for</span>: <span class="string">'@'</span>,</span><br><span class="line">      labelClass: <span class="string">'@'</span>,</span><br><span class="line">      inputClass: <span class="string">'@'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    controller: [<span class="string">'$scope'</span>, <span class="string">'$element'</span>, <span class="string">'$attrs'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+<h3 id="Template"><a href="#Template" class="headerlink" title="Template"></a>Template</h3><pre><code>&lt;div class=&quot;form-group&quot;&gt;
+    &lt;label ng-if=&quot;label&quot; for=&quot;{{for}}&quot; class=&quot;control-label {{ labelClass }}&quot;&gt;{{ label }}&lt;/label&gt;
+
+    &lt;div ng-transclude=&quot;ng-transclude&quot; class=&quot;ef-control {{ inputClass }}&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre><h3 id="Utilisation"><a href="#Utilisation" class="headerlink" title="Utilisation"></a>Utilisation</h3><pre><code>&lt;form-group for=&quot;name&quot; label=&quot;{{ 'medias.form.name'}}&quot; label-class=&quot;col-md-2&quot; input-class=&quot;col-md-10&quot;&gt;
+    &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; data-ng-model=&quot;media.name&quot; id=&quot;name&quot; required ng-maxlength=&quot;50&quot;&gt;
+&lt;/form-group&gt;
+</code></pre>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-10-07T00:53:07.000Z"><a href="/2015/10/06/git-branch-strategy/">2015-10-06</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/10/06/git-branch-strategy/">git-branch-strategy</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Plusieurs articles sur la strategie des branches avec git</p>
+<ul>
+<li><a href="http://scottchacon.com/2011/08/31/github-flow.html" target="_blank" rel="noopener">GitHub Flow</a></li>
+<li><a href="http://nvie.com/posts/a-successful-git-branching-model/" target="_blank" rel="noopener">A successful Git branching model</a></li>
+<li><a href="http://drewfradette.ca/a-simpler-successful-git-branching-model/" target="_blank" rel="noopener">A (Simpler) Successful Git Branching Model</a></li>
+<li><a href="http://blog.endpoint.com/2014/05/git-workflows-that-work.html" target="_blank" rel="noopener">Git Workflows That Work</a></li>
+<li><a href="https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow" target="_blank" rel="noopener">Feature Branch Workflow</a></li>
+<li><a href="http://git-scm.com/book/fr/v2" target="_blank" rel="noopener">ProGit</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-10-07T00:48:05.000Z"><a href="/2015/10/06/eslint-hareable-configs/">2015-10-06</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/10/06/eslint-hareable-configs/">Eslint Shareable Configs</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p> Il est possible de partager la configuration eslint dans plusieurs projets :</p>
+<ul>
+<li><a href="http://eslint.org/docs/developer-guide/shareable-configs.html" target="_blank" rel="noopener">Shareable Configs</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-10-03T12:23:04.000Z"><a href="/2015/10/03/test/">2015-10-03</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/10/03/test/">Npm configuration</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="Travailler-avec-une-autre-registry-NPM"><a href="#Travailler-avec-une-autre-registry-NPM" class="headerlink" title="Travailler avec une autre registry NPM"></a>Travailler avec une autre registry NPM</h3><ul>
+<li>Configurer une autre registry</li>
+</ul>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span> npm config <span class="keyword">set</span> registry <span class="comment">http:</span>//<span class="comment">server.example.com</span>/registry-name/</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Supprimer la registry</li>
+</ul>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm<span class="built_in"> config </span>delete registry</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Publier sur une autre registry</li>
+</ul>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm publish --<span class="keyword">registry</span> <span class="keyword">registry</span> <span class="keyword">http</span>://server.example.com/<span class="keyword">registry</span>-name/</span><br></pre></td></tr></table></figure>
+<h3 id="Configurer-un-proxy"><a href="#Configurer-un-proxy" class="headerlink" title="Configurer un proxy"></a>Configurer un proxy</h3><ul>
+<li><p>Ajouter un proxy</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span> npm config <span class="keyword">set</span> proxy <span class="comment">http:</span>//<span class="comment">monproxy.example.com:port</span></span><br><span class="line">$ npm <span class="comment">config set https-proxy http:</span>//<span class="comment">username:password@monproxy.example.com:port</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Supprimer les proxy</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm<span class="built_in"> config </span>delete proxy</span><br><span class="line">$ npm<span class="built_in"> config </span>delete https-proxy</span><br></pre></td></tr></table></figure>
+<p>Il est egalement possible d’utiliser les variables d’environnement <strong>HTTP_PROXY, HTTPS_PROXY et NO_PROXY</strong>. npm va se baser sur celles-ci, si elles sont définies</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/page/5/" class="alignleft prev">Précédent</a>
+  
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Rechercher">
+    <input type="hidden" name="q" value="site:cyrgue.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/java/">java</a><small>4</small></li>
+  
+    <li><a href="/categories/java/java-8/java-9/java-10/">java 10</a><small>1</small></li>
+  
+    <li><a href="/categories/java/java-8/">java 8</a><small>1</small></li>
+  
+    <li><a href="/categories/java/java-8/java-9/">java 9</a><small>1</small></li>
+  
+    <li><a href="/categories/java/oca-javase8-1/">oca-javase8-1</a><small>2</small></li>
+  
+    <li><a href="/categories/spring/">spring</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Polymorphisme/">Polymorphisme</a><small>1</small></li>
+  
+    <li><a href="/tags/angular/">angular</a><small>4</small></li>
+  
+    <li><a href="/tags/angular2/">angular2</a><small>2</small></li>
+  
+    <li><a href="/tags/angularjs/">angularjs</a><small>1</small></li>
+  
+    <li><a href="/tags/angularjs2/">angularjs2</a><small>1</small></li>
+  
+    <li><a href="/tags/architecture/">architecture</a><small>4</small></li>
+  
+    <li><a href="/tags/array/">array</a><small>1</small></li>
+  
+    <li><a href="/tags/aws/">aws</a><small>1</small></li>
+  
+    <li><a href="/tags/branch/">branch</a><small>1</small></li>
+  
+    <li><a href="/tags/collections/">collections</a><small>1</small></li>
+  
+    <li><a href="/tags/componant/">componant</a><small>1</small></li>
+  
+    <li><a href="/tags/composant/">composant</a><small>1</small></li>
+  
+    <li><a href="/tags/configuration/">configuration</a><small>3</small></li>
+  
+    <li><a href="/tags/database/">database</a><small>1</small></li>
+  
+    <li><a href="/tags/design-patterns/">design patterns</a><small>1</small></li>
+  
+    <li><a href="/tags/directive/">directive</a><small>1</small></li>
+  
+    <li><a href="/tags/docker/">docker</a><small>1</small></li>
+  
+    <li><a href="/tags/domain-driven-design/">domain driven design</a><small>1</small></li>
+  
+    <li><a href="/tags/ecmascript-2015/">ecmascript 2015</a><small>1</small></li>
+  
+    <li><a href="/tags/environment/">environment</a><small>1</small></li>
+  
+    <li><a href="/tags/eslint/">eslint</a><small>1</small></li>
+  
+    <li><a href="/tags/evaluation/">evaluation</a><small>1</small></li>
+  
+    <li><a href="/tags/exception/">exception</a><small>1</small></li>
+  
+    <li><a href="/tags/file-I-O/">file I/O</a><small>1</small></li>
+  
+    <li><a href="/tags/functional-programming/">functional programming</a><small>1</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>2</small></li>
+  
+    <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>17</small></li>
+  
+    <li><a href="/tags/java-definition/">java definition</a><small>1</small></li>
+  
+    <li><a href="/tags/java-index/">java index</a><small>1</small></li>
+  
+    <li><a href="/tags/java8/">java8</a><small>5</small></li>
+  
+    <li><a href="/tags/java9/">java9</a><small>1</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>13</small></li>
+  
+    <li><a href="/tags/jsbin/">jsbin</a><small>1</small></li>
+  
+    <li><a href="/tags/lambda/">lambda</a><small>2</small></li>
+  
+    <li><a href="/tags/library/">library</a><small>1</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>1</small></li>
+  
+    <li><a href="/tags/microservices/">microservices</a><small>1</small></li>
+  
+    <li><a href="/tags/ngrx/">ngrx</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>1</small></li>
+  
+    <li><a href="/tags/npm/">npm</a><small>1</small></li>
+  
+    <li><a href="/tags/observable/">observable</a><small>1</small></li>
+  
+    <li><a href="/tags/programmation-fonctionnelle/">programmation fonctionnelle</a><small>1</small></li>
+  
+    <li><a href="/tags/rxjs/">rxjs</a><small>1</small></li>
+  
+    <li><a href="/tags/select/">select</a><small>1</small></li>
+  
+    <li><a href="/tags/serverless/">serverless</a><small>2</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>1</small></li>
+  
+    <li><a href="/tags/stream/">stream</a><small>1</small></li>
+  
+    <li><a href="/tags/strean/">strean</a><small>1</small></li>
+  
+    <li><a href="/tags/tests/">tests</a><small>1</small></li>
+  
+    <li><a href="/tags/thread/">thread</a><small>1</small></li>
+  
+    <li><a href="/tags/time/">time</a><small>1</small></li>
+  
+    <li><a href="/tags/tools/">tools</a><small>1</small></li>
+  
+    <li><a href="/tags/web/">web</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+    <div>test</div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2018 cyrgue
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

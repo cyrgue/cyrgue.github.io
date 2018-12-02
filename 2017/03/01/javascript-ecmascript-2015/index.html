@@ -1,0 +1,306 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>javascript-ecmascript-2015 | cyrgue</title>
+  <meta name="author" content="cyrgue">
+  
+  <meta name="description" content="ES6 (ECMAScript 2015)Arrow Function =&amp;gt;1var helloMessage = (message, name) =&amp;gt; message + name
+With one parameter1var helloMessage = name =&amp;gt; &#39;He">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="javascript-ecmascript-2015"/>
+  <meta property="og:site_name" content="cyrgue"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="cyrgue" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">cyrgue</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-03-01T10:54:08.000Z"><a href="/2017/03/01/javascript-ecmascript-2015/">2017-03-01</a></time>
+      
+      
+  
+    <h1 class="title">javascript-ecmascript-2015</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="ES6-ECMAScript-2015"><a href="#ES6-ECMAScript-2015" class="headerlink" title="ES6 (ECMAScript 2015)"></a>ES6 (ECMAScript 2015)</h1><h2 id="Arrow-Function-gt"><a href="#Arrow-Function-gt" class="headerlink" title="Arrow Function =&gt;"></a>Arrow Function =&gt;</h2><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> helloMessage = (<span class="keyword">message</span>, <span class="keyword">name</span>) =&gt; <span class="keyword">message</span> + <span class="keyword">name</span></span><br></pre></td></tr></table></figure>
+<p>With one parameter<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> helloMessage = <span class="keyword">name</span> =&gt; <span class="string">'Hello '</span> + <span class="keyword">name</span>;</span><br></pre></td></tr></table></figure></p>
+<p>Rq : <em>this</em> is available in the arrow function - <em>this</em> is no longer referring to the scope inside of the function. It’s referring to the scope that’s outside of the function.</p>
+<h2 id="Let-Keyword"><a href="#Let-Keyword" class="headerlink" title="Let Keyword"></a>Let Keyword</h2><ul>
+<li>var is not scoped. So can be reassigned in a block</li>
+<li>but ES5 does have function scoping, so var can not be reassigned in a function, but in a loop (or a block), it can be reassigned</li>
+<li>now, let in ES6 allow  to use block scoping.</li>
+</ul>
+<h2 id="Default-Values-for-Function-Parameters"><a href="#Default-Values-for-Function-Parameters" class="headerlink" title="Default Values for Function Parameters"></a>Default Values for Function Parameters</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">greeting, name = <span class="string">"John"</span></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(greeting + <span class="string">", "</span> + name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">greet(<span class="string">"Hello"</span>);</span><br></pre></td></tr></table></figure>
+<p>allow you to assign some defaults values or function</p>
+<h2 id="const-declaration"><a href="#const-declaration" class="headerlink" title="const declaration"></a>const declaration</h2><p>a const declaration allows to declare a variable that is read only. (is not actually a constant variable, but a constant reference.)<br>can assign and reassign properties of a const object without breaking my const rules, but can not reassign object const because I have changed the reference of this const declaration.</p>
+<p>Also const declarations adhere to block scope. Block scope can simply be understood as anything between two curly brackets. (same behahvior as let)</p>
+<h2 id="Shortalnd-Properties"><a href="#Shortalnd-Properties" class="headerlink" title="Shortalnd Properties"></a>Shortalnd Properties</h2><h2 id="Object-Enhancements"><a href="#Object-Enhancements" class="headerlink" title="Object Enhancements"></a>Object Enhancements</h2><h2 id="Spread-Operator"><a href="#Spread-Operator" class="headerlink" title="Spread Operator"></a>Spread Operator</h2><p>…</p>
+<h2 id="Template-literals"><a href="#Template-literals" class="headerlink" title="Template literals"></a>Template literals</h2><h2 id="Destructuring-Assignements"><a href="#Destructuring-Assignements" class="headerlink" title="Destructuring Assignements"></a>Destructuring Assignements</h2><h2 id="ES6-Modules"><a href="#ES6-Modules" class="headerlink" title="ES6 Modules"></a>ES6 Modules</h2><h2 id="Array-from"><a href="#Array-from" class="headerlink" title="Array.from"></a>Array.from</h2><h2 id="Promises"><a href="#Promises" class="headerlink" title="Promises"></a>Promises</h2><h2 id="Generators"><a href="#Generators" class="headerlink" title="Generators"></a>Generators</h2><h2 id="Map-and-WeakMaps"><a href="#Map-and-WeakMaps" class="headerlink" title="Map and WeakMaps"></a>Map and WeakMaps</h2><h2 id="Parameter-Object-Destructuring-with-Required-Values"><a href="#Parameter-Object-Destructuring-with-Required-Values" class="headerlink" title="Parameter Object Destructuring with Required Values"></a>Parameter Object Destructuring with Required Values</h2><h2 id="ES6-Rest-Parameters"><a href="#ES6-Rest-Parameters" class="headerlink" title="ES6 Rest Parameters"></a>ES6 Rest Parameters</h2>
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/javascript/">javascript</a>, <a href="/tags/ecmascript-2015/">ecmascript 2015</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Commentaires</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://cyrgue.github.io/2017/03/01/javascript-ecmascript-2015/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Rechercher">
+    <input type="hidden" name="q" value="site:cyrgue.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/java/">java</a><small>4</small></li>
+  
+    <li><a href="/categories/java/java-8/java-9/java-10/">java 10</a><small>1</small></li>
+  
+    <li><a href="/categories/java/java-8/">java 8</a><small>1</small></li>
+  
+    <li><a href="/categories/java/java-8/java-9/">java 9</a><small>1</small></li>
+  
+    <li><a href="/categories/java/oca-javase8-1/">oca-javase8-1</a><small>2</small></li>
+  
+    <li><a href="/categories/spring/">spring</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Polymorphisme/">Polymorphisme</a><small>1</small></li>
+  
+    <li><a href="/tags/angular/">angular</a><small>4</small></li>
+  
+    <li><a href="/tags/angular2/">angular2</a><small>2</small></li>
+  
+    <li><a href="/tags/angularjs/">angularjs</a><small>1</small></li>
+  
+    <li><a href="/tags/angularjs2/">angularjs2</a><small>1</small></li>
+  
+    <li><a href="/tags/architecture/">architecture</a><small>4</small></li>
+  
+    <li><a href="/tags/array/">array</a><small>1</small></li>
+  
+    <li><a href="/tags/aws/">aws</a><small>1</small></li>
+  
+    <li><a href="/tags/branch/">branch</a><small>1</small></li>
+  
+    <li><a href="/tags/collections/">collections</a><small>1</small></li>
+  
+    <li><a href="/tags/componant/">componant</a><small>1</small></li>
+  
+    <li><a href="/tags/composant/">composant</a><small>1</small></li>
+  
+    <li><a href="/tags/configuration/">configuration</a><small>3</small></li>
+  
+    <li><a href="/tags/database/">database</a><small>1</small></li>
+  
+    <li><a href="/tags/design-patterns/">design patterns</a><small>1</small></li>
+  
+    <li><a href="/tags/directive/">directive</a><small>1</small></li>
+  
+    <li><a href="/tags/docker/">docker</a><small>1</small></li>
+  
+    <li><a href="/tags/domain-driven-design/">domain driven design</a><small>1</small></li>
+  
+    <li><a href="/tags/ecmascript-2015/">ecmascript 2015</a><small>1</small></li>
+  
+    <li><a href="/tags/environment/">environment</a><small>1</small></li>
+  
+    <li><a href="/tags/eslint/">eslint</a><small>1</small></li>
+  
+    <li><a href="/tags/evaluation/">evaluation</a><small>1</small></li>
+  
+    <li><a href="/tags/exception/">exception</a><small>1</small></li>
+  
+    <li><a href="/tags/file-I-O/">file I/O</a><small>1</small></li>
+  
+    <li><a href="/tags/functional-programming/">functional programming</a><small>1</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>2</small></li>
+  
+    <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>17</small></li>
+  
+    <li><a href="/tags/java-definition/">java definition</a><small>1</small></li>
+  
+    <li><a href="/tags/java-index/">java index</a><small>1</small></li>
+  
+    <li><a href="/tags/java8/">java8</a><small>5</small></li>
+  
+    <li><a href="/tags/java9/">java9</a><small>1</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>13</small></li>
+  
+    <li><a href="/tags/jsbin/">jsbin</a><small>1</small></li>
+  
+    <li><a href="/tags/lambda/">lambda</a><small>2</small></li>
+  
+    <li><a href="/tags/library/">library</a><small>1</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>1</small></li>
+  
+    <li><a href="/tags/microservices/">microservices</a><small>1</small></li>
+  
+    <li><a href="/tags/ngrx/">ngrx</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>1</small></li>
+  
+    <li><a href="/tags/npm/">npm</a><small>1</small></li>
+  
+    <li><a href="/tags/observable/">observable</a><small>1</small></li>
+  
+    <li><a href="/tags/programmation-fonctionnelle/">programmation fonctionnelle</a><small>1</small></li>
+  
+    <li><a href="/tags/rxjs/">rxjs</a><small>1</small></li>
+  
+    <li><a href="/tags/select/">select</a><small>1</small></li>
+  
+    <li><a href="/tags/serverless/">serverless</a><small>2</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>1</small></li>
+  
+    <li><a href="/tags/stream/">stream</a><small>1</small></li>
+  
+    <li><a href="/tags/strean/">strean</a><small>1</small></li>
+  
+    <li><a href="/tags/tests/">tests</a><small>1</small></li>
+  
+    <li><a href="/tags/thread/">thread</a><small>1</small></li>
+  
+    <li><a href="/tags/time/">time</a><small>1</small></li>
+  
+    <li><a href="/tags/tools/">tools</a><small>1</small></li>
+  
+    <li><a href="/tags/web/">web</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+    <div>test</div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2018 cyrgue
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

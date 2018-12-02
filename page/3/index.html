@@ -1,0 +1,840 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page | cyrgue</title>
+  <meta name="author" content="cyrgue">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="cyrgue"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="cyrgue" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">cyrgue</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-08-31T13:20:17.000Z"><a href="/2018/08/31/java-method-arguments/">2018-08-31</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/08/31/java-method-arguments/">Java Method Arguments</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><strong>Method Argument are passed “by value” “by copy”</strong><br>    Correct but incomplete</p>
+<p><img src="/img/java/oca-javase8/method_arguments1.png?raw=true" alt="Reject Casting" title="Apply Reject"><br><img src="/img/java/oca-javase8/method_arguments2.png?raw=true" alt="Reject Casting" title="Apply Reject"><br><img src="/img/java/oca-javase8/method_arguments3.png?raw=true" alt="Reject Casting" title="Apply Reject">    </p>
+<p>2 Types d’expressions dans une seule JVM </p>
+<ul>
+<li>Primitive : Value is “The Value”</li>
+<li>Object/Reference : Value is the Pointer (the reference) Adresse Memoire qui pointe vers l’objet</li>
+</ul>
+<p>Q??<br>Q?? </p>
+<p>Q16</p>
+<p>Q17</p>
+<h2 id="Classes-Wrapper"><a href="#Classes-Wrapper" class="headerlink" title="Classes Wrapper"></a>Classes Wrapper</h2><p>Ex: </p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Ex</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>&#123;</span><br><span class="line">        Integer x = <span class="number">99</span>;</span><br><span class="line">        Ex.<span class="keyword">add</span>(x); <span class="comment">//copy de la valeur de l'adresse memoire</span></span><br><span class="line">        System.<span class="keyword">out</span>.println(<span class="string">"Valeur de x "</span> + x); -&gt; <span class="number">99</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">add</span>(<span class="params">Integer y</span>) </span>&#123;</span><br><span class="line">        y = y + <span class="number">1</span>; <span class="comment">// y est converti en int pour effectuer le +, puis autobxing en Integer en créant un nouvel objet</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Remarques"><a href="#Remarques" class="headerlink" title="Remarques"></a>Remarques</h2><ul>
+<li>String est IMMUTABLE</li>
+<li>StringBuffer n’est pas IMMUTABLE</li>
+<li>Les classes Wrappers des primitives sont IMMUTABLES </li>
+</ul>
+<h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> class Ex &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">        <span class="built_in">int</span> x = <span class="number">99</span>;</span><br><span class="line">        Ex.<span class="built_in">add</span>(x); <span class="comment">//copy de la valeur</span></span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"Valeur de x "</span> + x);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Wrapper de primitives</span></span><br><span class="line">        Integer a = <span class="number">99</span>;</span><br><span class="line">        <span class="built_in">add</span>(a);</span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"Valeur de a : "</span> + a);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">int</span> [] arr = &#123;<span class="number">99</span>&#125;;</span><br><span class="line">        Ex.<span class="built_in">add</span>(arr); <span class="comment">//copy de l'adresse memoire</span></span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"Valeur de arr[0] "</span> + arr[<span class="number">0</span>] );</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder(<span class="string">"Hello"</span>);</span><br><span class="line">        Ex.<span class="built_in">add</span>(sb); <span class="comment">//copy de l'adresse memoire</span></span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"Valeur de sb "</span> + sb );</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Ex.appender(sb); <span class="comment">//copy de l'adresse memoire</span></span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"Valeur de sb "</span> + sb );</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">String</span> <span class="built_in">str</span> = <span class="string">"Bonjour"</span>;</span><br><span class="line">        Ex.changeStr(<span class="built_in">str</span>);</span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"Valeur de str "</span> + <span class="built_in">str</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> changeStr(<span class="keyword">String</span> <span class="built_in">str</span>) &#123;</span><br><span class="line">        <span class="built_in">str</span> += <span class="string">" Les amis"</span>;  <span class="comment">// autre object créé avec nouvelle adresse mémoire</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="built_in">add</span>(StringBuilder sb) &#123;</span><br><span class="line">        sb = <span class="keyword">new</span> StringBuilder(<span class="string">"GoodBye"</span>); <span class="comment">// autre object créé avec nouvelle adresse mémoire</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> appender(StringBuilder sb) &#123;</span><br><span class="line">        sb.<span class="built_in">append</span>(<span class="string">" World"</span>); <span class="comment">// on travaille sur le meme object</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="built_in">add</span>(<span class="built_in">int</span> y) &#123;</span><br><span class="line">        y = y + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="built_in">add</span>(Integer y) &#123;</span><br><span class="line">        y = y + <span class="number">1</span>; <span class="comment">// y est converti en int pour effectuer le +, puis autobxing en Integer en créant un nouvel objet</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="built_in">add</span>(<span class="built_in">int</span>[] y) &#123;</span><br><span class="line">        y[<span class="number">0</span>] = y[<span class="number">0</span>] + <span class="number">1</span>; <span class="comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-08-31T02:53:51.000Z"><a href="/2018/08/30/java-intellij/">2018-08-30</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/08/30/java-intellij/">java_intellij</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Alt+Insert : New Class<br>Ctrl+Alt+Insert</p>
+<ul>
+<li>Create a test : Ctrl + Shift + T</li>
+<li>View documentation : Press Ctrl+Q.</li>
+<li>surround a code block with if, while, for and other statements :  Ctrl + Alt + T</li>
+<li>add a try catch block : <code>Files.write(path, lines, charset);.try</code><br> <a href="https://blog.jetbrains.com/idea/2014/03/postfix-completion/#sthash.mI1AHa17.dpuf" target="_blank" rel="noopener">Postfix Code Completion in IntelliJ IDEA </a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-08-31T01:07:15.000Z"><a href="/2018/08/30/java-exceptions/">2018-08-30</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/08/30/java-exceptions/">Java Exception</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Exception-handling"><a href="#Exception-handling" class="headerlink" title="Exception handling"></a>Exception handling</h2><h2 id="Checked-exceptions-unchecked-exceptions-Errors"><a href="#Checked-exceptions-unchecked-exceptions-Errors" class="headerlink" title="Checked exceptions, unchecked exceptions, Errors"></a>Checked exceptions, unchecked exceptions, Errors</h2><p><img src="/img/java/oca-javase8/exceptions1.png?raw=true" alt="2 Types of Exceptions" title="Title"></p>
+<p>Some Exception must not arrive (unckecked exception) but other (from external) must be managed (IOException, FileNotFoundExption)</p>
+<p><img src="/img/java/oca-javase8/exceptions2.png?raw=true" alt="Common exception classes" title="Title"></p>
+<h2 id="Common-exception-classes"><a href="#Common-exception-classes" class="headerlink" title="Common exception classes"></a>Common exception classes</h2><ul>
+<li>NullPointerException</li>
+<li>ArithmeticException </li>
+<li>ArrayIndexOutOfBoundsException</li>
+<li>ClassCastException</li>
+<li>….</li>
+</ul>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html" target="_blank" rel="noopener">API java.lang.Throwable</a><br><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Error.html" target="_blank" rel="noopener">API Class java.lang.Error</a><br>An Error is a subclass of Throwable that indicates serious problems that a reasonable application should not try to catch. Most such errors are abnormal conditions.<br><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Exception.html" target="_blank" rel="noopener">API Class java.lang.Exception</a><br>The class Exception and its subclasses are a form of Throwable that indicates conditions that a reasonable application might want to catch.</p>
+<h2 id="Exercice"><a href="#Exercice" class="headerlink" title="Exercice"></a>Exercice</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">doStuff</span><span class="params">()</span> ____________ </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> FileNotFoundException();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Which are correct in place of <strong>_</strong>?</p>
+<pre><code>A) blank
+B) throws Throwable
+C) throws RuntimeException
+D) throws IOException
+E) throws FileNotFoundException
+</code></pre><p>Responses : B, D, E<br> <strong>FileNotFoundException</strong> is a  <strong>IOException</strong> is a <strong>Throwable</strong></p>
+<h2 id="Exercice-1"><a href="#Exercice-1" class="headerlink" title="Exercice"></a>Exercice</h2><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base2</span> </span>&#123;</span><br><span class="line">    void doBaseStuff() &#123;</span><br><span class="line">        <span class="type">System</span>.out.println(<span class="string">"doBaseStuff"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sub2</span> <span class="keyword">extends</span> <span class="title">Base2</span> </span>&#123;</span><br><span class="line">    void doBaseStuff() &#123;</span><br><span class="line">        <span class="type">System</span>.out.println(<span class="string">"doSubStuff"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Which are true?<br>   A) doBaseStuff in Base2 can be marked throws Exception without causing errors<br>   B) doBaseStuff in Base2 can be marked throws RuntimeException without causing errors<br>   C) doBaseStuff in Sub2 can be marked throws Exception without causing errors<br>   D) doBaseStuff in Sub2 can be marked throws RuntimeException without causing errors<br>   E) if doBaseStuff in Base2 were marked throws Exception,<br>       then doBaseStuff in Sub2 can be marked throws IOException without causing errors</p>
+<p>Reponses: A, B, D as RuntimeException is a base Exception, D<br><strong>Etrange a revoir</strong></p>
+<hr>
+<h1 id="Course"><a href="#Course" class="headerlink" title="Course"></a>Course</h1><ul>
+<li><a href="https://github.com/SimonHGR/safari-exceptions" target="_blank" rel="noopener">Git</a></li>
+</ul>
+<p>  Methods must manage restult but also possible failure are <strong>their level</strong> </p>
+<p>Multi Catch Exception from Java 7 </p>
+<h2 id="Checked-Exceptions"><a href="#Checked-Exceptions" class="headerlink" title="Checked Exceptions"></a>Checked Exceptions</h2><ul>
+<li>“I dont’ know what to do”</li>
+<li>“I can’t fix that”</li>
+<li><p>“It’s fatal anyway”</p>
+<p> So it’s waste of typing   </p>
+</li>
+</ul>
+<p>Good desing =&gt; Limit consequences of change</p>
+<p>When implementation changes, the client is affected =&gt; Wrong Design<br>Encapsulation   </p>
+<p>What type of failure are acceptable ?</p>
+<ul>
+<li>Depends on the model /abstraction<ul>
+<li>Payment Method : Failure can be : No Money, Card Stolen , …  or Infrastructure failure</li>
+</ul>
+</li>
+</ul>
+<p>So try to Create New Exception to specify what is the error in design/model point of view (absraction) and regroup exceptions not associated to design   </p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-08-30T15:13:06.000Z"><a href="/2018/08/30/java-casting/">2018-08-30</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/08/30/java-casting/">Java Casting</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Casting"><a href="#Casting" class="headerlink" title="Casting"></a>Casting</h2><p><img src="/img/java/oca-javase8/casting1.png?raw=true" alt="Expressions" title="Expressions"></p>
+<h3 id="Exercice"><a href="#Exercice" class="headerlink" title="Exercice"></a>Exercice</h3><p>Given:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span> &#123;</span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">doStuff</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Y</span> &#123;</span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">doStuff2</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>and:<br><figure class="highlight pony"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">X</span> x = <span class="function"><span class="keyword">new</span> <span class="title">Y</span>();</span></span><br><span class="line"><span class="function">((<span class="type">Y</span>)<span class="title">x</span>).<span class="title">doStuff2</span>();</span></span><br></pre></td></tr></table></figure></p>
+<p>What is the result?<br>    A) Compilation fails<br>    B) Exception at runtime<br>    C) Y.doStuff2 is executed</p>
+<p>Responses : A</p>
+<p><img src="/img/java/oca-javase8/casting2.png?raw=true" alt="Apply Casting" title="Apply Casting"></p>
+<h2 id="When-Casting-is-possible"><a href="#When-Casting-is-possible" class="headerlink" title="When Casting is possible?"></a>When Casting is possible?</h2><p>Le compilateur verifie certaines regles pour auoriser le Casting</p>
+<h3 id="Exercice-1"><a href="#Exercice-1" class="headerlink" title="Exercice"></a>Exercice</h3><p>Given:<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span> </span>&#123;</span><br><span class="line">  void doStuff() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Y</span> <span class="keyword">extends</span> <span class="title">X</span> </span>&#123;</span><br><span class="line">  void doStuff2() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>and:<br><figure class="highlight pony"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">X</span> x = <span class="function"><span class="keyword">new</span> <span class="title">X</span>();</span></span><br><span class="line"><span class="function">((<span class="type">Y</span>)<span class="title">x</span>).<span class="title">doStuff2</span>();</span></span><br></pre></td></tr></table></figure></p>
+<p>What is the result?<br>    A) Compilation fails<br>    B) Exception at runtime<br>    C) Y.doStuff2 is executed<br>    D) Some unpredictable behavior</p>
+<p>Responses : B  //Fails at Runtime : java.lang.ClassCastException</p>
+<p><img src="/img/java/oca-javase8/casting3.png?raw=true" alt="Reject Casting" title="Apply Reject"></p>
+<p><img src="/img/java/oca-javase8/casting4.png?raw=true" alt="Possible Casting" title="Casting"></p>
+<p><img src="/img/java/oca-javase8/casting5.png?raw=true" alt="Possible Casting" title="Casting"></p>
+<p>A voir <strong>Autoboxing</strong><br>    Rappel : Le boxing permet de transformer automatiquement une variable de type primitif en un objet de type Wrapper correspondant<br>    L’unboxing est l’operation inverse</p>
+<p><a href="https://docs.oracle.com/javase/tutorial/java/data/autoboxing.html" target="_blank" rel="noopener">Autoboxing</a></p>
+<h2 id="Remarques"><a href="#Remarques" class="headerlink" title="Remarques"></a>Remarques</h2><ul>
+<li>Le Casting peut-être un signe de mauvais design</li>
+<li>Voir pour une class final</li>
+<li>Casting avec une interface</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-08-30T14:14:16.000Z"><a href="/2018/08/30/java-oca-javase8-2/">2018-08-30</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/08/30/java-oca-javase8-2/">OCA Java SE 8 Programmer Certification Crash Course Java Cert - Day 2</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Exceptions"><a href="#Exceptions" class="headerlink" title="Exceptions"></a>Exceptions</h2><p><a href="/2018/08/30/java-exceptions">Manage Exception</a></p>
+<h2 id="Casting"><a href="#Casting" class="headerlink" title="Casting"></a>Casting</h2><p><a href="/2018/08/30/java-casting">Determine when casting is necessary</a> </p>
+<h2 id="Lambdas"><a href="#Lambdas" class="headerlink" title="Lambdas"></a>Lambdas</h2><p><a href="/2018/08/30/java-lambdas">Write a simple Lambda expression that consumes a Lambda Predicate expression</a></p>
+<p>T:150mn -&gt; </p>
+<h2 id="Value-and-Reference"><a href="#Value-and-Reference" class="headerlink" title="Value and Reference"></a>Value and Reference</h2><p><a href="/2018/08/31/java-method-arguments">Determine the effect upon object references and primitive values when they are passed into methods that change the values</a></p>
+<p>T:275mn -&gt; 320mn</p>
+<h2 id="Equality"><a href="#Equality" class="headerlink" title="Equality"></a>Equality</h2><p>[Test equality between Strings and other objects using == and equals ()] ()</p>
+<p>T:320mn -&gt; 360mn</p>
+<h2 id="Constructor"><a href="#Constructor" class="headerlink" title="Constructor"></a>Constructor</h2><p><a href="">Create and overload constructors; differentiate between default and user-defined constructors</a><br><a href="">Use super and this to access objects and constructors</a></p>
+<p>T:372mn -&gt; end (422mn)</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-08-30T13:51:14.000Z"><a href="/2018/08/30/java-lambdas/">2018-08-30</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/08/30/java-lambdas/">Java Lambda</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Avant Java 8, il n’existait que deux types de références, des valeurs primitives (char c = ‘C’ ;) et des références vers des objets (String s = new String(“Hello”);)<br>Depuis Java 8, il est possible d’avoir des références vers des morceaux de codes anonymes (des closures) : les lambdas</p>
+<p>Une lambda est la redéfinition d’une méthode méthode <strong>abstraite</strong> d’une interface fonctionnelle (elle doit répondre à la signature de la méthode concernée) sans avoir à faire une classe anonyme, donc gain de ligne de code et de visibilité.<br>On utilise le nouvel opérateur  -&gt;</p>
+<p>ex simple:<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="params">()</span> -&gt;</span> <span class="number">137</span>;</span><br></pre></td></tr></table></figure></p>
+<p>ex avec une interface fonctionnelle<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cyrgue.lambdas;</span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">StudentCriterion</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(Student student)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">StudentCriterion criteria = (s) -&gt; s.getGpa() &gt; <span class="number">3.0</span></span><br></pre></td></tr></table></figure></p>
+<p>Donc pour pouvoir utiliser une lambda, on doit avoir</p>
+<ul>
+<li>une interface avec seulement <strong>une seule méthode abstraite</strong> (peux avoir d’autre méthode)à</li>
+<li>et on veut implementer cette methode</li>
+</ul>
+<p>Il existe </p>
+<ul>
+<li><p>des expressions lambda</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">s</span> <span class="selector-tag">-</span>&gt; <span class="selector-tag">s</span><span class="selector-class">.getGpa</span>() &gt; 2<span class="selector-class">.7</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>blocked lambda  </p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s -&gt; &#123; <span class="keyword">return</span> s.getGpa() &gt; <span class="number">2.7</span>;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>return est utilisé seulement dans une blocked lambda (le ; aussi)</p>
+<h2 id="Predicate"><a href="#Predicate" class="headerlink" title="Predicate"></a>Predicate</h2><p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html" target="_blank" rel="noopener">Api Interface Predicate</a></p>
+<p>Represents a predicate (boolean-valued function) of one argument.<br>This is a functional interface whose functional method is test(Object).</p>
+<p>Predicate has multiple method but ONLY ONE is Abstract</p>
+<h2 id="Exemple"><a href="#Exemple" class="headerlink" title="Exemple"></a>Exemple</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> lambdas;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.function.Predicate;</span><br><span class="line"></span><br><span class="line"><span class="comment">//interface StudentCriterion &#123;</span></span><br><span class="line"><span class="comment">//  boolean test(Student s);</span></span><br><span class="line"><span class="comment">//&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SmartStudent</span> <span class="keyword">implements</span> /*<span class="title">StudentCriterion</span>*/ <span class="title">Predicate</span>&lt;<span class="title">Student</span>&gt; </span>&#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(Student s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> s.getGpa() &gt; <span class="number">3.0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LongName</span> <span class="keyword">implements</span>  /*<span class="title">StudentCriterion</span>*/ <span class="title">Predicate</span>&lt;<span class="title">Student</span>&gt; </span>&#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(Student s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> s.getName().length() &gt; <span class="number">4</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> String name;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">double</span> gpa;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> balance;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String name, <span class="keyword">double</span> gpa, <span class="keyword">int</span> balance)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.gpa = gpa;</span><br><span class="line">    <span class="keyword">this</span>.balance = balance;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> name;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getGpa</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> gpa;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getBalance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> balance;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Student&#123;"</span> +</span><br><span class="line">        <span class="string">"name='"</span> + name + <span class="string">'\''</span> +</span><br><span class="line">        <span class="string">", gpa="</span> + gpa +</span><br><span class="line">        <span class="string">", balance="</span> + balance +</span><br><span class="line">        <span class="string">'&#125;'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">School</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">showAllStudents</span><span class="params">(List&lt;Student&gt; ls)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (Student s : ls) &#123;</span><br><span class="line">      System.out.println(s);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">"-------------------------"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;Student&gt; <span class="title">findStudents</span><span class="params">(List&lt;Student&gt; ls,</span></span></span><br><span class="line"><span class="function"><span class="params">                                                Predicate&lt;Student&gt; crit)</span> </span>&#123;</span><br><span class="line"><span class="comment">//                                                StudentCriterion crit) &#123;</span></span><br><span class="line">    List&lt;Student&gt; out = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (Student s : ls) &#123;</span><br><span class="line">      <span class="keyword">if</span> (crit.test(s)) &#123;</span><br><span class="line">        out.add(s);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> out;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//  public static List&lt;Student&gt; findSmartStudents(List&lt;Student&gt; ls,</span></span><br><span class="line"><span class="comment">//                                                double threshold) &#123;</span></span><br><span class="line"><span class="comment">//    List&lt;Student&gt; out = new ArrayList&lt;&gt;();</span></span><br><span class="line"><span class="comment">//    for (Student s : ls) &#123;</span></span><br><span class="line"><span class="comment">//      if (s.getGpa() &gt; threshold) &#123;</span></span><br><span class="line"><span class="comment">//        out.add(s);</span></span><br><span class="line"><span class="comment">//      &#125;</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"><span class="comment">//    return out;</span></span><br><span class="line"><span class="comment">//  &#125;</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  public static List&lt;Student&gt; findLongNameStudents(List&lt;Student&gt; ls,</span></span><br><span class="line"><span class="comment">//                                                int threshold) &#123;</span></span><br><span class="line"><span class="comment">//    List&lt;Student&gt; out = new ArrayList&lt;&gt;();</span></span><br><span class="line"><span class="comment">//    for (Student s : ls) &#123;</span></span><br><span class="line"><span class="comment">//      if (s.getName().length() &gt; threshold) &#123;</span></span><br><span class="line"><span class="comment">//        out.add(s);</span></span><br><span class="line"><span class="comment">//      &#125;</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"><span class="comment">//    return out;</span></span><br><span class="line"><span class="comment">//  &#125;</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  public static void showAllSmartStudents(List&lt;Student&gt; ls) &#123;</span></span><br><span class="line"><span class="comment">//    for (Student s : ls) &#123;</span></span><br><span class="line"><span class="comment">//      if (s.getGpa() &gt; 3.0) &#123;</span></span><br><span class="line"><span class="comment">//        System.out.println(s);</span></span><br><span class="line"><span class="comment">//      &#125;</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"><span class="comment">//    System.out.println("-------------------------");</span></span><br><span class="line"><span class="comment">//  &#125;</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    List&lt;Student&gt; students = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    students.add(<span class="keyword">new</span> Student(<span class="string">"Fred"</span>, <span class="number">3.7</span>, <span class="number">1_000</span>));</span><br><span class="line">    students.add(<span class="keyword">new</span> Student(<span class="string">"Jim"</span>, <span class="number">2.7</span>, <span class="number">20_000</span>));</span><br><span class="line">    students.add(<span class="keyword">new</span> Student(<span class="string">"Sheila"</span>, <span class="number">3.9</span>, <span class="number">5_000</span>));</span><br><span class="line">    students.add(<span class="keyword">new</span> Student(<span class="string">"Alice"</span>, <span class="number">2.9</span>, <span class="number">12_000</span>));</span><br><span class="line">    showAllStudents(students);</span><br><span class="line"><span class="comment">//    showAllStudents(findSmartStudents(students, 2.8));</span></span><br><span class="line"><span class="comment">//    showAllStudents(findLongNameStudents(students, 4));</span></span><br><span class="line">    showAllStudents(findStudents(students, <span class="keyword">new</span> SmartStudent()));</span><br><span class="line">    showAllStudents(findStudents(students, <span class="keyword">new</span> LongName()));</span><br><span class="line"></span><br><span class="line">    showAllStudents(findStudents(students,</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        * MUST be implementation of StudentCriterion</span></span><br><span class="line"><span class="comment">        * MUST be an object :)</span></span><br><span class="line"><span class="comment">        *</span></span><br><span class="line"><span class="comment">        * StudentCriterion has exactly one abstract method</span></span><br><span class="line"><span class="comment">        * and we ONLY want to implement that one method</span></span><br><span class="line"><span class="comment">        * and (language rule) StudentCriterion is an INTERFACE</span></span><br><span class="line"><span class="comment">        * then, we can use a lambda...</span></span><br><span class="line"><span class="comment">        *</span></span><br><span class="line"><span class="comment">        * Just implement the method as a skeleton</span></span><br><span class="line"><span class="comment">        * */</span></span><br><span class="line"><span class="comment">//       (Student s) -&gt; &#123; return s.getGpa() &gt; 2.7; &#125;</span></span><br><span class="line"><span class="comment">//       (s) -&gt; &#123; return s.getGpa() &gt; 2.7; &#125;</span></span><br><span class="line"><span class="comment">//       s -&gt; &#123; return s.getGpa() &gt; 2.7; &#125;</span></span><br><span class="line"><span class="comment">//       s -&gt; /*&#123; return */s.getGpa() &gt; 2.7/*; &#125;*/</span></span><br><span class="line">       s -&gt; s.getGpa() &gt; <span class="number">2.7</span></span><br><span class="line">        ));</span><br><span class="line"></span><br><span class="line">    showAllStudents(findStudents(students, s -&gt; s.getGpa() &lt; <span class="number">3.8</span>));</span><br><span class="line"></span><br><span class="line">    Predicate&lt;Student&gt; firstHalf = s -&gt; s.getName().charAt(<span class="number">0</span>) &lt;= <span class="string">'M'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">boolean</span> b = ((Predicate&lt;Student&gt;)(s -&gt; s.getName().charAt(<span class="number">0</span>) &lt;= <span class="string">'M'</span>))</span><br><span class="line">        .test(<span class="keyword">new</span> Student(<span class="string">"Albert"</span>, <span class="number">2.2</span>, <span class="number">2_000</span>));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// print students with more than 10_000 debt</span></span><br><span class="line"><span class="comment">// print students with less than 15_000 debt and gpa &gt; 3</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//A) I did it! (both)</span></span><br><span class="line"><span class="comment">//B) I did one</span></span><br><span class="line"><span class="comment">//C) Total failure!!!</span></span><br><span class="line"><span class="comment">//D) oops, I made tea!</span></span><br></pre></td></tr></table></figure>
+<h2 id="Importance-du-Context"><a href="#Importance-du-Context" class="headerlink" title="Importance du Context"></a>Importance du Context</h2><p>Il est important de specifier le Type de Predicate utilisé, Object n’est pas suffisant (ici Student)</p>
+<h3 id="Exercice"><a href="#Exercice" class="headerlink" title="Exercice"></a>Exercice</h3><p>Which compile?</p>
+<pre><code>A) Predicate&lt;Student&gt; ps = s =&gt; { return s.getGpa() &gt;3; } 
+B) Predicate&lt;Student&gt; ps = s -&gt; { return s.getGpa() &gt; 3; }
+C) Predicate&lt;Student&gt; ps = -&gt; { return s.getGpa() &gt;3; } // missing argument
+</code></pre><p>Response : B<br>    A : Error  : Operator :JavaScript, Scala use =&gt; Java uses -&gt;<br>    C : Error : missing argument</p>
+<p>Which compile?</p>
+<pre><code>A) Object ps = s -&gt; { return s.getGpa() &gt;3; } 
+B) Predicate&lt;Student&gt; ps = s -&gt; return s.getGpa() &gt;3;
+C) Predicate&lt;Student&gt; ps = s -&gt; { s.getGpa() &gt;3 }
+D) none of the above
+</code></pre><p>Response : D<br>    A : NO CONTEXT<br>    B : Error : no return in expression lambda<br>    C : Error : missing return in blocked lambda</p>
+<h2 id="Anonymous-Inner-Classes"><a href="#Anonymous-Inner-Classes" class="headerlink" title="Anonymous Inner Classes"></a>Anonymous Inner Classes</h2><p>Reason to use it : One time inner code<br>Inner classes have a full access to all methods and instance variables of surrounding class, including private ones</p>
+<h2 id="Separate-Class"><a href="#Separate-Class" class="headerlink" title="Separate Class"></a>Separate Class</h2><ul>
+<li>Advantages : <pre><code>- Flexible : Can pass arguments to constructor
+- More reusable : loosely coupled
+</code></pre></li>
+<li>Disadvantage : <pre><code>- Need extra step to call methods in main app         
+</code></pre></li>
+</ul>
+<h2 id="Lambdas"><a href="#Lambdas" class="headerlink" title="Lambdas"></a>Lambdas</h2><ul>
+<li>Full access to code from surrounding class</li>
+<li>No confusion about meaning of “this”    </li>
+<li>Much more concise, succinct and readable</li>
+<li><p>Encourage a functional programming style</p>
+<p>No instance variables</p>
+</li>
+</ul>
+<h2 id="Review-of-Building-Genericized-Methods-and-Classes"><a href="#Review-of-Building-Genericized-Methods-and-Classes" class="headerlink" title="Review of Building Genericized Methods and Classes"></a>Review of Building Genericized Methods and Classes</h2><h2 id="Motivation-and-Overview"><a href="#Motivation-and-Overview" class="headerlink" title="Motivation and Overview"></a>Motivation and Overview</h2><h3 id="Advantages"><a href="#Advantages" class="headerlink" title="Advantages"></a>Advantages</h3><ul>
+<li>Concise and Expressive (/ a inner class) </li>
+<li>Encourage functional programming</li>
+<li>Support Streams (streams are wrappers around data sources(arrays, collections…) (map/reduce/filter), use lazy evaluation and can be made parrallel automatically by compiler </li>
+</ul>
+<h2 id="Type-inferencing"><a href="#Type-inferencing" class="headerlink" title="Type inferencing"></a>Type inferencing</h2><p>Types in argument list can <strong>usually</strong> be omitted. Java checks at compile time the type in interface (not at runtime), so not slower</p>
+<h2 id="Omitting-parens"><a href="#Omitting-parens" class="headerlink" title="Omitting parens ()"></a>Omitting parens ()</h2><p>If method takes a single argument, then the parens () in the argument list are optional</p>
+<h2 id="The-FunctionalInterface-Annotation"><a href="#The-FunctionalInterface-Annotation" class="headerlink" title="The @FunctionalInterface Annotation"></a>The @FunctionalInterface Annotation</h2><p>-&gt; Catches errors at compile time (to specify the interface must have only one abstract method)<br>-&gt; Expresses design intent<br>-&gt; But not technically required </p>
+<h2 id="Method-references"><a href="#Method-references" class="headerlink" title="Method references"></a>Method references</h2><p>ClassName::staticMethodName<br>variable:instanceMethod<br>Class:instanceMethod<br>ClassOrType::new (constructor)</p>
+<p>The type is defined by the Context</p>
+<p>Supplier<br>Constructor Reference<br>Array Constructor Reference</p>
+<h2 id="Lambda-Variable-Scoping-in-Lambdas"><a href="#Lambda-Variable-Scoping-in-Lambdas" class="headerlink" title="Lambda Variable Scoping in Lambdas"></a>Lambda Variable Scoping in Lambdas</h2><ul>
+<li>this variable refers to the outer class, not to the anonymous inner class that the lambda is turned into</li>
+<li></li>
+</ul>
+<h2 id="4-Lambda-Building-Blocks-in-java-util-function"><a href="#4-Lambda-Building-Blocks-in-java-util-function" class="headerlink" title="4 - Lambda Building Blocks in java.util.function"></a>4 - Lambda Building Blocks in java.util.function</h2><h3 id="4-1-Lambda-Building-Blocks"><a href="#4-1-Lambda-Building-Blocks" class="headerlink" title="4.1 - Lambda Building Blocks"></a>4.1 - Lambda Building Blocks</h3><h3 id="4-2-Simply-Typed-Building-Blocks"><a href="#4-2-Simply-Typed-Building-Blocks" class="headerlink" title="4.2 - Simply-Typed Building Blocks"></a>4.2 - Simply-Typed Building Blocks</h3><ul>
+<li>java.util.function : many reusable interfaces<ul>
+<li>Simply typed interfaces : IntPredicate, LongUnaryOperator</li>
+<li>Generically typed Interfaces : Predicate, Function, Consumer, Supplier, BinaryOperator</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-3-Predicate"><a href="#4-3-Predicate" class="headerlink" title="4.3 - Predicate"></a>4.3 - Predicate</h3><p>  boolean test (T t)</p>
+<p>  Used to filter list, to have a subset of the list (or use the built-in filter method in Stream)       </p>
+<h3 id="4-4-Function"><a href="#4-4-Function" class="headerlink" title="4.4 - Function"></a>4.4 - Function</h3><p>  R apply(T t)</p>
+<p>  Transform a value or collection of values</p>
+<h3 id="4-5-Other-Generic-Building-Blocks"><a href="#4-5-Other-Generic-Building-Blocks" class="headerlink" title="4.5 - Other Generic Building Blocks"></a>4.5 - Other Generic Building Blocks</h3><ul>
+<li>BinaryOperator : T apply (T t1, T t2)</li>
+<li>Consumer : void accept(T t)</li>
+<li>Supplier : T get()</li>
+</ul>
+<hr>
+<h1 id="Programming-with-Java-8-Lambdas-and-Streams-LIVE-ONLINE-TRAINING"><a href="#Programming-with-Java-8-Lambdas-and-Streams-LIVE-ONLINE-TRAINING" class="headerlink" title="Programming with Java 8 Lambdas and Streams -  LIVE ONLINE TRAINING"></a>Programming with Java 8 Lambdas and Streams -  LIVE ONLINE TRAINING</h1><p>Difference between OOP () and functional Programing<br>Java 8 combined :  </p>
+<ul>
+<li>Object-oriented Programing (imperative paradigm, sequential code), hierarchical data abstraction, state is encapsulated by methods thats perform itertive statements</li>
+<li>functinal programming is a declarative paradigm<pre><code>(focus on what instead of how)
+Pure function
+Function composition : the output serves as imput for next one
+Changing State &amp; mutable data ARE DISCOURAGED
+Focus on Immutable objects 
+</code></pre></li>
+</ul>
+<h2 id="Overview-of-Lambda-Expressions"><a href="#Overview-of-Lambda-Expressions" class="headerlink" title="Overview of Lambda Expressions"></a>Overview of Lambda Expressions</h2><p>A Lambda expression is an unnamed block of code (with optional parameters) that ca be stored , passed around and executed later (in another context, another thread…)</p>
+<p>Values of private fieds can be updated but not params</p>
+<p>Make the code more generable </p>
+<h2 id="Method-References"><a href="#Method-References" class="headerlink" title="Method References"></a>Method References</h2><pre><code>:: 
+</code></pre><h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><p><a href="https://github.com/douglascraigschmidt/LiveLessons" target="_blank" rel="noopener">https://github.com/douglascraigschmidt/LiveLessons</a> </p>
+<h2 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h2><p><a href="/2018/10/03/java-functional-programming/">Functional Programming</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-08-29T19:03:43.000Z"><a href="/2018/08/29/java-basis-types/">2018-08-29</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/08/29/java-basis-types/">Les types en Java</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Taille en bits</th>
+<th>Gamme de valeurs</th>
+<th>Wrapper (IMMUTABLE)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>boolean</td>
+<td>dépend du système</td>
+<td>true ou false</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>char</td>
+<td>16 bits</td>
+<td>0 a 65535</td>
+<td>Character</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>8 bits</td>
+<td>-128 à 127</td>
+<td>Byte</td>
+</tr>
+<tr>
+<td>short</td>
+<td>16 bits</td>
+<td>-32768 à 32767</td>
+<td>Short</td>
+</tr>
+<tr>
+<td>int</td>
+<td>32 bits</td>
+<td>-2ˆ31 à 2ˆ31-1</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>long</td>
+<td>64 bits</td>
+<td>-2ˆ63 à 2ˆ63-1</td>
+<td>Long</td>
+</tr>
+<tr>
+<td>float</td>
+<td>32 bits</td>
+<td>-3.40282347E+38 à 3.40282347E+38</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>double</td>
+<td>64 bits</td>
+<td>-1.79769313486231570E+308 à 1.79769313486231570E+308</td>
+<td>Double</td>
+</tr>
+</tbody>
+</table>
+<p>Rq : Il exite des classes Wrapper qui encapsulent chaque type primitif (pas besoin d’être instancié par l’operateur new)</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-08-29T18:43:27.000Z"><a href="/2018/08/29/java-polymorphism/">2018-08-29</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/08/29/java-polymorphism/">Polymorphisme</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Polymorphism"><a href="#Polymorphism" class="headerlink" title="Polymorphism"></a>Polymorphism</h1><p>le polymorphisme est relatif aux méthodes des objets.<br>Le polymorphisme veut dire que le même service (opération ou méthode), peut avoir un comportement différent selon les situations.<br>Le polymorphisme permet alors d’appeler la bonne méthode selon le type d’objet</p>
+<p>On distingue généralement trois types de polymorphisme :</p>
+<p>Le <strong>polymorphisme ad hoc</strong> (également surcharge ou en anglais <strong>overloading</strong>) compile time polymorphism<br>Le <strong>polymorphisme paramétrique</strong> (également généricité ou en anglais <strong>template</strong>)<br>Le <strong>polymorphisme d’héritage</strong> (également redéfinition, spécialisation ou en anglais <strong>overriding</strong>)</p>
+<p>** “one interface, many implementations”. Polymorphism is a characteristic of being able to assign a different meaning or usage to something in different contexts – specifically, to allow an entity such as a variable, a function, or an object to have more than one form. There are two types of polymorphism:</p>
+<p>Compile time polymorphism<br>Run time polymorphism</p>
+<h2 id="Le-polymorphisme-ad-hoc"><a href="#Le-polymorphisme-ad-hoc" class="headerlink" title="Le polymorphisme ad hoc"></a>Le polymorphisme ad hoc</h2><p>Le polymorphisme ad hoc permet d’avoir des fonctions de même nom, avec des<br>fonctionnalités similaires, dans des classes sans aucun rapport entre elles (si ce n’est bien sûr d’être des filles de la classe objet). Par exemple, la classe complexe, la classe image et la classe lien peuvent avoir chacune une fonction “afficher”. Cela permettra de ne pas avoir à se soucier du type de l’objet que l’on a si on souhaite l’afficher à l’écran. </p>
+<h2 id="Polymorphisme-parametrable"><a href="#Polymorphisme-parametrable" class="headerlink" title="Polymorphisme paramétrable"></a>Polymorphisme paramétrable</h2><p>Le polymorphisme paramétrique, appelé généricité, représente la possibilité de définir plusieurs fonctions de même nom mais possédant des paramètres différents (en nombre et/ou en type). Le polymorphisme paramétrique rend ainsi possible le choix automatique de la bonne méthode à adopter en fonction du type de donnée passée en paramètre. </p>
+<p>Ainsi, on peut par exemple définir plusieurs méthodes homonymes addition() effectuant une somme de valeurs.</p>
+<h2 id="Polymorphisme-d’heritage"><a href="#Polymorphisme-d’heritage" class="headerlink" title="Polymorphisme d’héritage"></a>Polymorphisme d’héritage</h2><p>La possibilité de redéfinir une méthode dans des classes héritant d’une classe de base s’appelle la spécialisation. Il est alors possible d’appeler la méthode d’un objet sans se soucier de son type intrinsèque : il s’agit du polymorphisme d’héritage.</p>
+<h2 id="Resume"><a href="#Resume" class="headerlink" title="Resume"></a>Resume</h2><ul>
+<li><strong>The behavior you get depends on the type of the object you send the message not on the type of the variable (reference)</strong></li>
+<li><strong>RETURN TYPE IS NOT CONSIDERED</strong></li>
+<li><strong>IDENTITY IS THE NAME AND THE ARG TYPES</strong></li>
+</ul>
+<p><img src="/img/java/oca-javase8/polymophism1.png?raw=true" alt="Polymorphisme" title="Polymorphisme"><br><img src="/img/java/oca-javase8/polymophism2.png?raw=true" alt="Polymorphisme" title="Polymorphisme"><br><img src="/img/java/oca-javase8/polymophism3.png?raw=true" alt="Polymorphisme" title="Polymorphisme">    </p>
+<p>The type of the varialbe defines what you could do<br>The type of the object define the behavior you get</p>
+<p>You can mix overloading and overriding</p>
+<p><strong>overriding must not cause surprises</strong></p>
+<p>You can add @Override Annotation to validate that you want to do an Override in child class<br>not mandatory but will validate that you don’t have done a typo or missing arguments</p>
+<p><img src="/img/java/oca-javase8/polymophism5.png?raw=true" alt="Polymorphisme" title="Polymorphisme"></p>
+<h2 id="Exemple"><a href="#Exemple" class="headerlink" title="Exemple"></a>Exemple</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> polymorph;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">showMe</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"I'm a Parent!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">showMe</span><span class="params">()</span> </span>&#123; <span class="comment">// Name and arg types are identical</span></span><br><span class="line">        System.out.println(<span class="string">"I'm a Child!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example1</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Parent p = <span class="keyword">new</span> Parent();</span><br><span class="line">        <span class="comment">//  Parent p = new Child();</span></span><br><span class="line">        p.showMe();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Exercice"><a href="#Exercice" class="headerlink" title="Exercice"></a>Exercice</h2><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span> </span>&#123; </span><br><span class="line">    void doStuff() &#123; </span><br><span class="line">        sout(<span class="string">"I'm an X"</span>); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Y</span> <span class="keyword">extends</span> <span class="title">X</span> </span>&#123; </span><br><span class="line">    void doStuff2() &#123; </span><br><span class="line">        sout(<span class="string">"I'm a Y"</span>); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>given:<br><figure class="highlight pony"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">X</span> x = <span class="function"><span class="keyword">new</span> <span class="title">X</span>();</span></span><br><span class="line"><span class="function"><span class="title">x</span>.<span class="title">doStuff2</span>();</span></span><br></pre></td></tr></table></figure></p>
+<p>What happens?<br>    A) I’m an X<br>    B) I’m a Y<br>    C) Fails.</p>
+<p>Response : C<br>    X does not have a method doStuff2()</p>
+<p><img src="/img/java/oca-javase8/polymophism4.png?raw=true" alt="Polymorphisme" title="Polymorphisme"></p>
+<p>given<br><figure class="highlight pony"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">X</span> x = <span class="function"><span class="keyword">new</span> <span class="title">Y</span>();</span></span><br><span class="line"><span class="function"><span class="title">x</span>.<span class="title">doStuff2</span>();</span></span><br></pre></td></tr></table></figure></p>
+<p>What happens?<br>    A) I’m an X<br>    B) I’m a Y<br>    C) Fails.</p>
+<p>Response : C<br>    X does not have a method doStuff2()    </p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-10-24T00:53:58.000Z"><a href="/2017/10/23/angular-select/">2017-10-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/10/23/angular-select/">angular-select</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Plusieurs façon d’utiliser un select avec ngModel</p>
+<p><a href="https://plnkr.co/edit/eX4XqgioBd9x8Uwat68n?p=preview" target="_blank" rel="noopener">https://plnkr.co/edit/eX4XqgioBd9x8Uwat68n?p=preview</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-10-21T13:38:01.000Z"><a href="/2017/10/21/ngrx/">2017-10-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/10/21/ngrx/">ngrx</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><a href="https://blog.nrwl.io/ngrx-patterns-and-techniques-f46126e2b1e5" target="_blank" rel="noopener">https://blog.nrwl.io/ngrx-patterns-and-techniques-f46126e2b1e5</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/page/2/" class="alignleft prev">Précédent</a>
+  
+  
+    <a href="/page/4/" class="alignright next">Suivant</a>
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Rechercher">
+    <input type="hidden" name="q" value="site:cyrgue.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/java/">java</a><small>4</small></li>
+  
+    <li><a href="/categories/java/java-8/java-9/java-10/">java 10</a><small>1</small></li>
+  
+    <li><a href="/categories/java/java-8/">java 8</a><small>1</small></li>
+  
+    <li><a href="/categories/java/java-8/java-9/">java 9</a><small>1</small></li>
+  
+    <li><a href="/categories/java/oca-javase8-1/">oca-javase8-1</a><small>2</small></li>
+  
+    <li><a href="/categories/spring/">spring</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Polymorphisme/">Polymorphisme</a><small>1</small></li>
+  
+    <li><a href="/tags/angular/">angular</a><small>4</small></li>
+  
+    <li><a href="/tags/angular2/">angular2</a><small>2</small></li>
+  
+    <li><a href="/tags/angularjs/">angularjs</a><small>1</small></li>
+  
+    <li><a href="/tags/angularjs2/">angularjs2</a><small>1</small></li>
+  
+    <li><a href="/tags/architecture/">architecture</a><small>4</small></li>
+  
+    <li><a href="/tags/array/">array</a><small>1</small></li>
+  
+    <li><a href="/tags/aws/">aws</a><small>1</small></li>
+  
+    <li><a href="/tags/branch/">branch</a><small>1</small></li>
+  
+    <li><a href="/tags/collections/">collections</a><small>1</small></li>
+  
+    <li><a href="/tags/componant/">componant</a><small>1</small></li>
+  
+    <li><a href="/tags/composant/">composant</a><small>1</small></li>
+  
+    <li><a href="/tags/configuration/">configuration</a><small>3</small></li>
+  
+    <li><a href="/tags/database/">database</a><small>1</small></li>
+  
+    <li><a href="/tags/design-patterns/">design patterns</a><small>1</small></li>
+  
+    <li><a href="/tags/directive/">directive</a><small>1</small></li>
+  
+    <li><a href="/tags/docker/">docker</a><small>1</small></li>
+  
+    <li><a href="/tags/domain-driven-design/">domain driven design</a><small>1</small></li>
+  
+    <li><a href="/tags/ecmascript-2015/">ecmascript 2015</a><small>1</small></li>
+  
+    <li><a href="/tags/environment/">environment</a><small>1</small></li>
+  
+    <li><a href="/tags/eslint/">eslint</a><small>1</small></li>
+  
+    <li><a href="/tags/evaluation/">evaluation</a><small>1</small></li>
+  
+    <li><a href="/tags/exception/">exception</a><small>1</small></li>
+  
+    <li><a href="/tags/file-I-O/">file I/O</a><small>1</small></li>
+  
+    <li><a href="/tags/functional-programming/">functional programming</a><small>1</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>2</small></li>
+  
+    <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>17</small></li>
+  
+    <li><a href="/tags/java-definition/">java definition</a><small>1</small></li>
+  
+    <li><a href="/tags/java-index/">java index</a><small>1</small></li>
+  
+    <li><a href="/tags/java8/">java8</a><small>5</small></li>
+  
+    <li><a href="/tags/java9/">java9</a><small>1</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>13</small></li>
+  
+    <li><a href="/tags/jsbin/">jsbin</a><small>1</small></li>
+  
+    <li><a href="/tags/lambda/">lambda</a><small>2</small></li>
+  
+    <li><a href="/tags/library/">library</a><small>1</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>1</small></li>
+  
+    <li><a href="/tags/microservices/">microservices</a><small>1</small></li>
+  
+    <li><a href="/tags/ngrx/">ngrx</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>1</small></li>
+  
+    <li><a href="/tags/npm/">npm</a><small>1</small></li>
+  
+    <li><a href="/tags/observable/">observable</a><small>1</small></li>
+  
+    <li><a href="/tags/programmation-fonctionnelle/">programmation fonctionnelle</a><small>1</small></li>
+  
+    <li><a href="/tags/rxjs/">rxjs</a><small>1</small></li>
+  
+    <li><a href="/tags/select/">select</a><small>1</small></li>
+  
+    <li><a href="/tags/serverless/">serverless</a><small>2</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>1</small></li>
+  
+    <li><a href="/tags/stream/">stream</a><small>1</small></li>
+  
+    <li><a href="/tags/strean/">strean</a><small>1</small></li>
+  
+    <li><a href="/tags/tests/">tests</a><small>1</small></li>
+  
+    <li><a href="/tags/thread/">thread</a><small>1</small></li>
+  
+    <li><a href="/tags/time/">time</a><small>1</small></li>
+  
+    <li><a href="/tags/tools/">tools</a><small>1</small></li>
+  
+    <li><a href="/tags/web/">web</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+    <div>test</div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2018 cyrgue
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

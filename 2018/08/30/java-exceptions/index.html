@@ -1,0 +1,338 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Java Exception | cyrgue</title>
+  <meta name="author" content="cyrgue">
+  
+  <meta name="description" content="Exception handlingChecked exceptions, unchecked exceptions, Errors
+Some Exception must not arrive (unckecked exception) but other (from external) must">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Java Exception"/>
+  <meta property="og:site_name" content="cyrgue"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="cyrgue" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">cyrgue</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-08-31T01:07:15.000Z"><a href="/2018/08/30/java-exceptions/">2018-08-30</a></time>
+      
+      
+  
+    <h1 class="title">Java Exception</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Exception-handling"><a href="#Exception-handling" class="headerlink" title="Exception handling"></a>Exception handling</h2><h2 id="Checked-exceptions-unchecked-exceptions-Errors"><a href="#Checked-exceptions-unchecked-exceptions-Errors" class="headerlink" title="Checked exceptions, unchecked exceptions, Errors"></a>Checked exceptions, unchecked exceptions, Errors</h2><p><img src="/img/java/oca-javase8/exceptions1.png?raw=true" alt="2 Types of Exceptions" title="Title"></p>
+<p>Some Exception must not arrive (unckecked exception) but other (from external) must be managed (IOException, FileNotFoundExption)</p>
+<p><img src="/img/java/oca-javase8/exceptions2.png?raw=true" alt="Common exception classes" title="Title"></p>
+<h2 id="Common-exception-classes"><a href="#Common-exception-classes" class="headerlink" title="Common exception classes"></a>Common exception classes</h2><ul>
+<li>NullPointerException</li>
+<li>ArithmeticException </li>
+<li>ArrayIndexOutOfBoundsException</li>
+<li>ClassCastException</li>
+<li>….</li>
+</ul>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html" target="_blank" rel="noopener">API java.lang.Throwable</a><br><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Error.html" target="_blank" rel="noopener">API Class java.lang.Error</a><br>An Error is a subclass of Throwable that indicates serious problems that a reasonable application should not try to catch. Most such errors are abnormal conditions.<br><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Exception.html" target="_blank" rel="noopener">API Class java.lang.Exception</a><br>The class Exception and its subclasses are a form of Throwable that indicates conditions that a reasonable application might want to catch.</p>
+<h2 id="Exercice"><a href="#Exercice" class="headerlink" title="Exercice"></a>Exercice</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">doStuff</span><span class="params">()</span> ____________ </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> FileNotFoundException();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Which are correct in place of <strong>_</strong>?</p>
+<pre><code>A) blank
+B) throws Throwable
+C) throws RuntimeException
+D) throws IOException
+E) throws FileNotFoundException
+</code></pre><p>Responses : B, D, E<br> <strong>FileNotFoundException</strong> is a  <strong>IOException</strong> is a <strong>Throwable</strong></p>
+<h2 id="Exercice-1"><a href="#Exercice-1" class="headerlink" title="Exercice"></a>Exercice</h2><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base2</span> </span>&#123;</span><br><span class="line">    void doBaseStuff() &#123;</span><br><span class="line">        <span class="type">System</span>.out.println(<span class="string">"doBaseStuff"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sub2</span> <span class="keyword">extends</span> <span class="title">Base2</span> </span>&#123;</span><br><span class="line">    void doBaseStuff() &#123;</span><br><span class="line">        <span class="type">System</span>.out.println(<span class="string">"doSubStuff"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Which are true?<br>   A) doBaseStuff in Base2 can be marked throws Exception without causing errors<br>   B) doBaseStuff in Base2 can be marked throws RuntimeException without causing errors<br>   C) doBaseStuff in Sub2 can be marked throws Exception without causing errors<br>   D) doBaseStuff in Sub2 can be marked throws RuntimeException without causing errors<br>   E) if doBaseStuff in Base2 were marked throws Exception,<br>       then doBaseStuff in Sub2 can be marked throws IOException without causing errors</p>
+<p>Reponses: A, B, D as RuntimeException is a base Exception, D<br><strong>Etrange a revoir</strong></p>
+<hr>
+<h1 id="Course"><a href="#Course" class="headerlink" title="Course"></a>Course</h1><ul>
+<li><a href="https://github.com/SimonHGR/safari-exceptions" target="_blank" rel="noopener">Git</a></li>
+</ul>
+<p>  Methods must manage restult but also possible failure are <strong>their level</strong> </p>
+<p>Multi Catch Exception from Java 7 </p>
+<h2 id="Checked-Exceptions"><a href="#Checked-Exceptions" class="headerlink" title="Checked Exceptions"></a>Checked Exceptions</h2><ul>
+<li>“I dont’ know what to do”</li>
+<li>“I can’t fix that”</li>
+<li><p>“It’s fatal anyway”</p>
+<p> So it’s waste of typing   </p>
+</li>
+</ul>
+<p>Good desing =&gt; Limit consequences of change</p>
+<p>When implementation changes, the client is affected =&gt; Wrong Design<br>Encapsulation   </p>
+<p>What type of failure are acceptable ?</p>
+<ul>
+<li>Depends on the model /abstraction<ul>
+<li>Payment Method : Failure can be : No Money, Card Stolen , …  or Infrastructure failure</li>
+</ul>
+</li>
+</ul>
+<p>So try to Create New Exception to specify what is the error in design/model point of view (absraction) and regroup exceptions not associated to design   </p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/java/">java</a>, <a href="/tags/java8/">java8</a>, <a href="/tags/exception/">exception</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Commentaires</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://cyrgue.github.io/2018/08/30/java-exceptions/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Rechercher">
+    <input type="hidden" name="q" value="site:cyrgue.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/java/">java</a><small>4</small></li>
+  
+    <li><a href="/categories/java/java-8/java-9/java-10/">java 10</a><small>1</small></li>
+  
+    <li><a href="/categories/java/java-8/">java 8</a><small>1</small></li>
+  
+    <li><a href="/categories/java/java-8/java-9/">java 9</a><small>1</small></li>
+  
+    <li><a href="/categories/java/oca-javase8-1/">oca-javase8-1</a><small>2</small></li>
+  
+    <li><a href="/categories/spring/">spring</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Polymorphisme/">Polymorphisme</a><small>1</small></li>
+  
+    <li><a href="/tags/angular/">angular</a><small>4</small></li>
+  
+    <li><a href="/tags/angular2/">angular2</a><small>2</small></li>
+  
+    <li><a href="/tags/angularjs/">angularjs</a><small>1</small></li>
+  
+    <li><a href="/tags/angularjs2/">angularjs2</a><small>1</small></li>
+  
+    <li><a href="/tags/architecture/">architecture</a><small>4</small></li>
+  
+    <li><a href="/tags/array/">array</a><small>1</small></li>
+  
+    <li><a href="/tags/aws/">aws</a><small>1</small></li>
+  
+    <li><a href="/tags/branch/">branch</a><small>1</small></li>
+  
+    <li><a href="/tags/collections/">collections</a><small>1</small></li>
+  
+    <li><a href="/tags/componant/">componant</a><small>1</small></li>
+  
+    <li><a href="/tags/composant/">composant</a><small>1</small></li>
+  
+    <li><a href="/tags/configuration/">configuration</a><small>3</small></li>
+  
+    <li><a href="/tags/database/">database</a><small>1</small></li>
+  
+    <li><a href="/tags/design-patterns/">design patterns</a><small>1</small></li>
+  
+    <li><a href="/tags/directive/">directive</a><small>1</small></li>
+  
+    <li><a href="/tags/docker/">docker</a><small>1</small></li>
+  
+    <li><a href="/tags/domain-driven-design/">domain driven design</a><small>1</small></li>
+  
+    <li><a href="/tags/ecmascript-2015/">ecmascript 2015</a><small>1</small></li>
+  
+    <li><a href="/tags/environment/">environment</a><small>1</small></li>
+  
+    <li><a href="/tags/eslint/">eslint</a><small>1</small></li>
+  
+    <li><a href="/tags/evaluation/">evaluation</a><small>1</small></li>
+  
+    <li><a href="/tags/exception/">exception</a><small>1</small></li>
+  
+    <li><a href="/tags/file-I-O/">file I/O</a><small>1</small></li>
+  
+    <li><a href="/tags/functional-programming/">functional programming</a><small>1</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>2</small></li>
+  
+    <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>17</small></li>
+  
+    <li><a href="/tags/java-definition/">java definition</a><small>1</small></li>
+  
+    <li><a href="/tags/java-index/">java index</a><small>1</small></li>
+  
+    <li><a href="/tags/java8/">java8</a><small>5</small></li>
+  
+    <li><a href="/tags/java9/">java9</a><small>1</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>13</small></li>
+  
+    <li><a href="/tags/jsbin/">jsbin</a><small>1</small></li>
+  
+    <li><a href="/tags/lambda/">lambda</a><small>2</small></li>
+  
+    <li><a href="/tags/library/">library</a><small>1</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>1</small></li>
+  
+    <li><a href="/tags/microservices/">microservices</a><small>1</small></li>
+  
+    <li><a href="/tags/ngrx/">ngrx</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>1</small></li>
+  
+    <li><a href="/tags/npm/">npm</a><small>1</small></li>
+  
+    <li><a href="/tags/observable/">observable</a><small>1</small></li>
+  
+    <li><a href="/tags/programmation-fonctionnelle/">programmation fonctionnelle</a><small>1</small></li>
+  
+    <li><a href="/tags/rxjs/">rxjs</a><small>1</small></li>
+  
+    <li><a href="/tags/select/">select</a><small>1</small></li>
+  
+    <li><a href="/tags/serverless/">serverless</a><small>2</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>1</small></li>
+  
+    <li><a href="/tags/stream/">stream</a><small>1</small></li>
+  
+    <li><a href="/tags/strean/">strean</a><small>1</small></li>
+  
+    <li><a href="/tags/tests/">tests</a><small>1</small></li>
+  
+    <li><a href="/tags/thread/">thread</a><small>1</small></li>
+  
+    <li><a href="/tags/time/">time</a><small>1</small></li>
+  
+    <li><a href="/tags/tools/">tools</a><small>1</small></li>
+  
+    <li><a href="/tags/web/">web</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+    <div>test</div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2018 cyrgue
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Java Functional Programming | cyrgue</title>
+  <meta name="author" content="cyrgue">
+  
+  <meta name="description" content="Online Training References
+Working with streams, lambda expressions, and method references in Java SE8 and beyond
+
+Course Description
+Course Documents">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Java Functional Programming"/>
+  <meta property="og:site_name" content="cyrgue"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="cyrgue" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">cyrgue</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-10-03T12:03:37.000Z"><a href="/2018/10/03/java-functional-programming/">2018-10-03</a></time>
+      
+      
+  
+    <h1 class="title">Java Functional Programming</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Online-Training-References"><a href="#Online-Training-References" class="headerlink" title="Online Training References"></a>Online Training References</h1><hr>
+<p>Working with streams, lambda expressions, and method references in Java SE8 and beyond</p>
+<ul>
+<li><a href="https://www.safaribooksonline.com/live-training/courses/functional-programming-in-java/0636920212447/" target="_blank" rel="noopener">Course Description</a></li>
+<li><a href="http://bit.ly/2los3Lp" target="_blank" rel="noopener">Course Documents</a></li>
+<li>Book : <a href="https://www.safaribooksonline.com/library/view/modern-java-recipes/9781491973165/" target="_blank" rel="noopener">Modern Java Recipes</a></li>
+<li>Blog  : <a href="https://kousenit.org/" target="_blank" rel="noopener">https://kousenit.org/</a></li>
+<li>Video : <a href="https://www.safaribooksonline.com/videos/java-8-and/9780133489354" target="_blank" rel="noopener">Java 8 and 9 Fundamentals: Modern Java Development with Lambdas, Streams, and Introducing Java 9’s JShell and the Java Platform Module System (JPMS)</a></li>
+<li>Video : <a href="https://www.safaribooksonline.com/videos/advanced-java-development/9781491960400" target="_blank" rel="noopener">Advanced Java Development </a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/11/" target="_blank" rel="noopener">Java Doc 11</a> </li>
+</ul>
+<h1 id="Lambda-Expression"><a href="#Lambda-Expression" class="headerlink" title="Lambda Expression"></a>Lambda Expression</h1><ul>
+<li>Assigned to Single Abstract Method (SAM) interface (functional interface) (ex: Runnable, file)</li>
+<li>Parameter types inferred from context </li>
+<li>Method Reference</li>
+</ul>
+<h1 id="Functional-Interface"><a href="#Functional-Interface" class="headerlink" title="Functional Interface"></a>Functional Interface</h1><p><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/function/package-summary.html" target="_blank" rel="noopener">JavaDoc</a></p>
+<ul>
+<li>see java.util.function package</li>
+<li>Functional Interfaces (Not Required but useful)</li>
+<li>Use Pure Function</li>
+</ul>
+<ul>
+<li><strong>Consumer</strong> -&gt; single arg, no result (not a Pure function)<br> <code>void accept(T t)</code><br> Ex : print or log<br> Also IntConsumer, LongConsumer, BiConsumer&lt;T, U&gt;</li>
+</ul>
+<p>Ex :<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.function.Consumer;</span><br><span class="line"><span class="keyword">import</span> java.util.logging.Logger;</span><br><span class="line"><span class="keyword">import</span> java.util.stream.Stream;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConsumerCompositionDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Consumer&lt;String&gt; cPrinter = System.out::println;</span><br><span class="line">        Logger logger = Logger.getLogger(ConsumerCompositionDemo.class.getName());</span><br><span class="line"></span><br><span class="line">        Consumer&lt;String&gt; cLogger = logger::info;</span><br><span class="line"></span><br><span class="line">        Consumer&lt;String&gt; composed = cPrinter.andThen(cLogger);</span><br><span class="line"></span><br><span class="line">        Stream.of(<span class="string">"This"</span>, <span class="string">"is"</span>, <span class="string">"a"</span>, <span class="string">"string"</span>).forEach(composed);</span><br><span class="line"></span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p><strong>Predicate</strong> -&gt; returns boolean<br> <code>boolean test(T t)</code></p>
+</li>
+<li><p><strong>Supplier</strong> -&gt; no arg, returns single result<br> <code>T get()</code></p>
+<p> Also BooleanSupplier…</p>
+</li>
+<li><p><strong>Function</strong> -&gt; single arg, returns result<br> <code>R apply(T t)</code></p>
+</li>
+</ul>
+<p>Also IntFunction, LongFunction, ToDoubleFunction, ToDoubleBiFunction&lt;T,​U&gt;, ToDoubleFunction<t>, ToIntBiFunction&lt;T,​U&gt;, ToIntFunction<t>, ToLongBiFunction&lt;T,​U&gt;                                  Represents a function that accepts two arguments and produces a long-valued result.<br>                                                   ToLongFunction<t>… </t></t></t></p>
+<h1 id="Method-Reference"><a href="#Method-Reference" class="headerlink" title="Method Reference"></a>Method Reference</h1><p>Method references uses <strong>::</strong> notation</p>
+<p><code>System.out::println</code> equivalent to <code>x -&gt; System.out.println(x)</code><br><code>Math::max</code> equivalent to <code>(x, y) -&gt; Math.max(x, y)</code><br><code>String::compareToIgnoreCase</code> equivalent to <code>(x, y) -&gt; x.compareToIgnoreCase(y)</code></p>
+<h1 id="Constructor-Reference"><a href="#Constructor-Reference" class="headerlink" title="Constructor Reference"></a>Constructor Reference</h1><p>Constructor references uses <strong>::</strong> notation</p>
+<p>Ex: </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.stream.Collectors;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UsePerson</span> </span>&#123;</span><br><span class="line">    <span class="meta">@SuppressWarnings</span>(&#123;<span class="string">"UnusedAssignment"</span>, <span class="string">"Convert2MethodRef"</span>&#125;)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; names = Arrays.asList(<span class="string">"John"</span>, <span class="string">"Paul"</span>, <span class="string">"George"</span>, <span class="string">"Ringo"</span>);</span><br><span class="line"></span><br><span class="line">        List&lt;Person&gt; people = names.stream()    <span class="comment">// Stream&lt;String&gt;</span></span><br><span class="line">                .map(name -&gt; <span class="keyword">new</span> Person(name))  <span class="comment">// Stream&lt;Person&gt;</span></span><br><span class="line">                .collect(Collectors.toList());  <span class="comment">// Converts Stream&lt;Person&gt; to List&lt;Person&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        people = names.stream()</span><br><span class="line">                .map(Person::<span class="keyword">new</span>)</span><br><span class="line">                .collect(Collectors.toList());</span><br><span class="line"></span><br><span class="line">        System.out.println(people);</span><br><span class="line"></span><br><span class="line">        Person[] peopleArray = names.stream()</span><br><span class="line">                .map(Person::<span class="keyword">new</span>)</span><br><span class="line">                .toArray(Person[]::<span class="keyword">new</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(Arrays.toString(peopleArray));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Interface"><a href="#Interface" class="headerlink" title="Interface"></a>Interface</h1><h2 id="Default-methods"><a href="#Default-methods" class="headerlink" title="Default methods"></a>Default methods</h2><p>Use keyword <strong>default</strong></p>
+<p>If conflict : </p>
+<ul>
+<li>Class vs Interface =&gt; Class always wins</li>
+<li>Interface vs Interface =&gt; Child overrides parent, otherwise compilation error</li>
+</ul>
+<p>If class implements multiple Interface with same method</p>
+<ul>
+<li>Must call <strong>InterfaceName.super.method</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Pegasus</span> <span class="keyword">implements</span> <span class="title">Horse</span>, <span class="title">Bird</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">speak</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Horse.<span class="keyword">super</span>.speak() + <span class="string">" "</span> + Bird.<span class="keyword">super</span>.speak();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Streams"><a href="#Streams" class="headerlink" title="Streams"></a>Streams</h1><h2 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h2><p>A sequence of elements</p>
+<ul>
+<li>Does not store the elements</li>
+<li>Does not change the source</li>
+<li>Operations are lazy when possible</li>
+<li>Closed when terminal expression reached</li>
+</ul>
+<p>A stream carries values</p>
+<ul>
+<li>from a source</li>
+<li>through a pipeline </li>
+</ul>
+<p><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/stream/Stream.html" target="_blank" rel="noopener">Java Doc</a></p>
+<h2 id="Pipeline"><a href="#Pipeline" class="headerlink" title="Pipeline"></a>Pipeline</h2><p>A pipeline is</p>
+<ul>
+<li>a source</li>
+<li>zero or more intermediate operations</li>
+<li>a terminal operation</li>
+</ul>
+<h2 id="Reduction-Operations"><a href="#Reduction-Operations" class="headerlink" title="Reduction Operations"></a>Reduction Operations</h2><p>Terminal operation that produce one value for a stream<br>Ex: <code>average, sum, max, min, count, ....</code></p>
+<h1 id="The-java-time-Package"><a href="#The-java-time-Package" class="headerlink" title="The java.time Package"></a>The java.time Package</h1>
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/java/">java</a>, <a href="/categories/java/java-8/">java 8</a>, <a href="/categories/java/java-8/java-9/">java 9</a>, <a href="/categories/java/java-8/java-9/java-10/">java 10</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/java/">java</a>, <a href="/tags/functional-programming/">functional programming</a>, <a href="/tags/stream/">stream</a>, <a href="/tags/lambda/">lambda</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Commentaires</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://cyrgue.github.io/2018/10/03/java-functional-programming/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Rechercher">
+    <input type="hidden" name="q" value="site:cyrgue.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/java/">java</a><small>4</small></li>
+  
+    <li><a href="/categories/java/java-8/java-9/java-10/">java 10</a><small>1</small></li>
+  
+    <li><a href="/categories/java/java-8/">java 8</a><small>1</small></li>
+  
+    <li><a href="/categories/java/java-8/java-9/">java 9</a><small>1</small></li>
+  
+    <li><a href="/categories/java/oca-javase8-1/">oca-javase8-1</a><small>2</small></li>
+  
+    <li><a href="/categories/spring/">spring</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Polymorphisme/">Polymorphisme</a><small>1</small></li>
+  
+    <li><a href="/tags/angular/">angular</a><small>4</small></li>
+  
+    <li><a href="/tags/angular2/">angular2</a><small>2</small></li>
+  
+    <li><a href="/tags/angularjs/">angularjs</a><small>1</small></li>
+  
+    <li><a href="/tags/angularjs2/">angularjs2</a><small>1</small></li>
+  
+    <li><a href="/tags/architecture/">architecture</a><small>4</small></li>
+  
+    <li><a href="/tags/array/">array</a><small>1</small></li>
+  
+    <li><a href="/tags/aws/">aws</a><small>1</small></li>
+  
+    <li><a href="/tags/branch/">branch</a><small>1</small></li>
+  
+    <li><a href="/tags/collections/">collections</a><small>1</small></li>
+  
+    <li><a href="/tags/componant/">componant</a><small>1</small></li>
+  
+    <li><a href="/tags/composant/">composant</a><small>1</small></li>
+  
+    <li><a href="/tags/configuration/">configuration</a><small>3</small></li>
+  
+    <li><a href="/tags/database/">database</a><small>1</small></li>
+  
+    <li><a href="/tags/design-patterns/">design patterns</a><small>1</small></li>
+  
+    <li><a href="/tags/directive/">directive</a><small>1</small></li>
+  
+    <li><a href="/tags/docker/">docker</a><small>1</small></li>
+  
+    <li><a href="/tags/domain-driven-design/">domain driven design</a><small>1</small></li>
+  
+    <li><a href="/tags/ecmascript-2015/">ecmascript 2015</a><small>1</small></li>
+  
+    <li><a href="/tags/environment/">environment</a><small>1</small></li>
+  
+    <li><a href="/tags/eslint/">eslint</a><small>1</small></li>
+  
+    <li><a href="/tags/evaluation/">evaluation</a><small>1</small></li>
+  
+    <li><a href="/tags/exception/">exception</a><small>1</small></li>
+  
+    <li><a href="/tags/file-I-O/">file I/O</a><small>1</small></li>
+  
+    <li><a href="/tags/functional-programming/">functional programming</a><small>1</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>2</small></li>
+  
+    <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>17</small></li>
+  
+    <li><a href="/tags/java-definition/">java definition</a><small>1</small></li>
+  
+    <li><a href="/tags/java-index/">java index</a><small>1</small></li>
+  
+    <li><a href="/tags/java8/">java8</a><small>5</small></li>
+  
+    <li><a href="/tags/java9/">java9</a><small>1</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>13</small></li>
+  
+    <li><a href="/tags/jsbin/">jsbin</a><small>1</small></li>
+  
+    <li><a href="/tags/lambda/">lambda</a><small>2</small></li>
+  
+    <li><a href="/tags/library/">library</a><small>1</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>1</small></li>
+  
+    <li><a href="/tags/microservices/">microservices</a><small>1</small></li>
+  
+    <li><a href="/tags/ngrx/">ngrx</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>1</small></li>
+  
+    <li><a href="/tags/npm/">npm</a><small>1</small></li>
+  
+    <li><a href="/tags/observable/">observable</a><small>1</small></li>
+  
+    <li><a href="/tags/programmation-fonctionnelle/">programmation fonctionnelle</a><small>1</small></li>
+  
+    <li><a href="/tags/rxjs/">rxjs</a><small>1</small></li>
+  
+    <li><a href="/tags/select/">select</a><small>1</small></li>
+  
+    <li><a href="/tags/serverless/">serverless</a><small>2</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>1</small></li>
+  
+    <li><a href="/tags/stream/">stream</a><small>1</small></li>
+  
+    <li><a href="/tags/strean/">strean</a><small>1</small></li>
+  
+    <li><a href="/tags/tests/">tests</a><small>1</small></li>
+  
+    <li><a href="/tags/thread/">thread</a><small>1</small></li>
+  
+    <li><a href="/tags/time/">time</a><small>1</small></li>
+  
+    <li><a href="/tags/tools/">tools</a><small>1</small></li>
+  
+    <li><a href="/tags/web/">web</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+    <div>test</div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2018 cyrgue
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

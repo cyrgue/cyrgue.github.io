@@ -1,0 +1,391 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Java Lambda | cyrgue</title>
+  <meta name="author" content="cyrgue">
+  
+  <meta name="description" content="Avant Java 8, il n’existait que deux types de références, des valeurs primitives (char c = ‘C’ ;) et des références vers des objets (String s = new St">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Java Lambda"/>
+  <meta property="og:site_name" content="cyrgue"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="cyrgue" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">cyrgue</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-08-30T13:51:14.000Z"><a href="/2018/08/30/java-lambdas/">2018-08-30</a></time>
+      
+      
+  
+    <h1 class="title">Java Lambda</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Avant Java 8, il n’existait que deux types de références, des valeurs primitives (char c = ‘C’ ;) et des références vers des objets (String s = new String(“Hello”);)<br>Depuis Java 8, il est possible d’avoir des références vers des morceaux de codes anonymes (des closures) : les lambdas</p>
+<p>Une lambda est la redéfinition d’une méthode méthode <strong>abstraite</strong> d’une interface fonctionnelle (elle doit répondre à la signature de la méthode concernée) sans avoir à faire une classe anonyme, donc gain de ligne de code et de visibilité.<br>On utilise le nouvel opérateur  -&gt;</p>
+<p>ex simple:<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="params">()</span> -&gt;</span> <span class="number">137</span>;</span><br></pre></td></tr></table></figure></p>
+<p>ex avec une interface fonctionnelle<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cyrgue.lambdas;</span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">StudentCriterion</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(Student student)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">StudentCriterion criteria = (s) -&gt; s.getGpa() &gt; <span class="number">3.0</span></span><br></pre></td></tr></table></figure></p>
+<p>Donc pour pouvoir utiliser une lambda, on doit avoir</p>
+<ul>
+<li>une interface avec seulement <strong>une seule méthode abstraite</strong> (peux avoir d’autre méthode)à</li>
+<li>et on veut implementer cette methode</li>
+</ul>
+<p>Il existe </p>
+<ul>
+<li><p>des expressions lambda</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">s</span> <span class="selector-tag">-</span>&gt; <span class="selector-tag">s</span><span class="selector-class">.getGpa</span>() &gt; 2<span class="selector-class">.7</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>blocked lambda  </p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s -&gt; &#123; <span class="keyword">return</span> s.getGpa() &gt; <span class="number">2.7</span>;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>return est utilisé seulement dans une blocked lambda (le ; aussi)</p>
+<h2 id="Predicate"><a href="#Predicate" class="headerlink" title="Predicate"></a>Predicate</h2><p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html" target="_blank" rel="noopener">Api Interface Predicate</a></p>
+<p>Represents a predicate (boolean-valued function) of one argument.<br>This is a functional interface whose functional method is test(Object).</p>
+<p>Predicate has multiple method but ONLY ONE is Abstract</p>
+<h2 id="Exemple"><a href="#Exemple" class="headerlink" title="Exemple"></a>Exemple</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> lambdas;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.function.Predicate;</span><br><span class="line"></span><br><span class="line"><span class="comment">//interface StudentCriterion &#123;</span></span><br><span class="line"><span class="comment">//  boolean test(Student s);</span></span><br><span class="line"><span class="comment">//&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SmartStudent</span> <span class="keyword">implements</span> /*<span class="title">StudentCriterion</span>*/ <span class="title">Predicate</span>&lt;<span class="title">Student</span>&gt; </span>&#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(Student s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> s.getGpa() &gt; <span class="number">3.0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LongName</span> <span class="keyword">implements</span>  /*<span class="title">StudentCriterion</span>*/ <span class="title">Predicate</span>&lt;<span class="title">Student</span>&gt; </span>&#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(Student s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> s.getName().length() &gt; <span class="number">4</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> String name;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">double</span> gpa;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> balance;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String name, <span class="keyword">double</span> gpa, <span class="keyword">int</span> balance)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.gpa = gpa;</span><br><span class="line">    <span class="keyword">this</span>.balance = balance;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> name;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getGpa</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> gpa;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getBalance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> balance;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Student&#123;"</span> +</span><br><span class="line">        <span class="string">"name='"</span> + name + <span class="string">'\''</span> +</span><br><span class="line">        <span class="string">", gpa="</span> + gpa +</span><br><span class="line">        <span class="string">", balance="</span> + balance +</span><br><span class="line">        <span class="string">'&#125;'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">School</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">showAllStudents</span><span class="params">(List&lt;Student&gt; ls)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (Student s : ls) &#123;</span><br><span class="line">      System.out.println(s);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">"-------------------------"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;Student&gt; <span class="title">findStudents</span><span class="params">(List&lt;Student&gt; ls,</span></span></span><br><span class="line"><span class="function"><span class="params">                                                Predicate&lt;Student&gt; crit)</span> </span>&#123;</span><br><span class="line"><span class="comment">//                                                StudentCriterion crit) &#123;</span></span><br><span class="line">    List&lt;Student&gt; out = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (Student s : ls) &#123;</span><br><span class="line">      <span class="keyword">if</span> (crit.test(s)) &#123;</span><br><span class="line">        out.add(s);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> out;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//  public static List&lt;Student&gt; findSmartStudents(List&lt;Student&gt; ls,</span></span><br><span class="line"><span class="comment">//                                                double threshold) &#123;</span></span><br><span class="line"><span class="comment">//    List&lt;Student&gt; out = new ArrayList&lt;&gt;();</span></span><br><span class="line"><span class="comment">//    for (Student s : ls) &#123;</span></span><br><span class="line"><span class="comment">//      if (s.getGpa() &gt; threshold) &#123;</span></span><br><span class="line"><span class="comment">//        out.add(s);</span></span><br><span class="line"><span class="comment">//      &#125;</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"><span class="comment">//    return out;</span></span><br><span class="line"><span class="comment">//  &#125;</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  public static List&lt;Student&gt; findLongNameStudents(List&lt;Student&gt; ls,</span></span><br><span class="line"><span class="comment">//                                                int threshold) &#123;</span></span><br><span class="line"><span class="comment">//    List&lt;Student&gt; out = new ArrayList&lt;&gt;();</span></span><br><span class="line"><span class="comment">//    for (Student s : ls) &#123;</span></span><br><span class="line"><span class="comment">//      if (s.getName().length() &gt; threshold) &#123;</span></span><br><span class="line"><span class="comment">//        out.add(s);</span></span><br><span class="line"><span class="comment">//      &#125;</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"><span class="comment">//    return out;</span></span><br><span class="line"><span class="comment">//  &#125;</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  public static void showAllSmartStudents(List&lt;Student&gt; ls) &#123;</span></span><br><span class="line"><span class="comment">//    for (Student s : ls) &#123;</span></span><br><span class="line"><span class="comment">//      if (s.getGpa() &gt; 3.0) &#123;</span></span><br><span class="line"><span class="comment">//        System.out.println(s);</span></span><br><span class="line"><span class="comment">//      &#125;</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"><span class="comment">//    System.out.println("-------------------------");</span></span><br><span class="line"><span class="comment">//  &#125;</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    List&lt;Student&gt; students = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    students.add(<span class="keyword">new</span> Student(<span class="string">"Fred"</span>, <span class="number">3.7</span>, <span class="number">1_000</span>));</span><br><span class="line">    students.add(<span class="keyword">new</span> Student(<span class="string">"Jim"</span>, <span class="number">2.7</span>, <span class="number">20_000</span>));</span><br><span class="line">    students.add(<span class="keyword">new</span> Student(<span class="string">"Sheila"</span>, <span class="number">3.9</span>, <span class="number">5_000</span>));</span><br><span class="line">    students.add(<span class="keyword">new</span> Student(<span class="string">"Alice"</span>, <span class="number">2.9</span>, <span class="number">12_000</span>));</span><br><span class="line">    showAllStudents(students);</span><br><span class="line"><span class="comment">//    showAllStudents(findSmartStudents(students, 2.8));</span></span><br><span class="line"><span class="comment">//    showAllStudents(findLongNameStudents(students, 4));</span></span><br><span class="line">    showAllStudents(findStudents(students, <span class="keyword">new</span> SmartStudent()));</span><br><span class="line">    showAllStudents(findStudents(students, <span class="keyword">new</span> LongName()));</span><br><span class="line"></span><br><span class="line">    showAllStudents(findStudents(students,</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        * MUST be implementation of StudentCriterion</span></span><br><span class="line"><span class="comment">        * MUST be an object :)</span></span><br><span class="line"><span class="comment">        *</span></span><br><span class="line"><span class="comment">        * StudentCriterion has exactly one abstract method</span></span><br><span class="line"><span class="comment">        * and we ONLY want to implement that one method</span></span><br><span class="line"><span class="comment">        * and (language rule) StudentCriterion is an INTERFACE</span></span><br><span class="line"><span class="comment">        * then, we can use a lambda...</span></span><br><span class="line"><span class="comment">        *</span></span><br><span class="line"><span class="comment">        * Just implement the method as a skeleton</span></span><br><span class="line"><span class="comment">        * */</span></span><br><span class="line"><span class="comment">//       (Student s) -&gt; &#123; return s.getGpa() &gt; 2.7; &#125;</span></span><br><span class="line"><span class="comment">//       (s) -&gt; &#123; return s.getGpa() &gt; 2.7; &#125;</span></span><br><span class="line"><span class="comment">//       s -&gt; &#123; return s.getGpa() &gt; 2.7; &#125;</span></span><br><span class="line"><span class="comment">//       s -&gt; /*&#123; return */s.getGpa() &gt; 2.7/*; &#125;*/</span></span><br><span class="line">       s -&gt; s.getGpa() &gt; <span class="number">2.7</span></span><br><span class="line">        ));</span><br><span class="line"></span><br><span class="line">    showAllStudents(findStudents(students, s -&gt; s.getGpa() &lt; <span class="number">3.8</span>));</span><br><span class="line"></span><br><span class="line">    Predicate&lt;Student&gt; firstHalf = s -&gt; s.getName().charAt(<span class="number">0</span>) &lt;= <span class="string">'M'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">boolean</span> b = ((Predicate&lt;Student&gt;)(s -&gt; s.getName().charAt(<span class="number">0</span>) &lt;= <span class="string">'M'</span>))</span><br><span class="line">        .test(<span class="keyword">new</span> Student(<span class="string">"Albert"</span>, <span class="number">2.2</span>, <span class="number">2_000</span>));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// print students with more than 10_000 debt</span></span><br><span class="line"><span class="comment">// print students with less than 15_000 debt and gpa &gt; 3</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//A) I did it! (both)</span></span><br><span class="line"><span class="comment">//B) I did one</span></span><br><span class="line"><span class="comment">//C) Total failure!!!</span></span><br><span class="line"><span class="comment">//D) oops, I made tea!</span></span><br></pre></td></tr></table></figure>
+<h2 id="Importance-du-Context"><a href="#Importance-du-Context" class="headerlink" title="Importance du Context"></a>Importance du Context</h2><p>Il est important de specifier le Type de Predicate utilisé, Object n’est pas suffisant (ici Student)</p>
+<h3 id="Exercice"><a href="#Exercice" class="headerlink" title="Exercice"></a>Exercice</h3><p>Which compile?</p>
+<pre><code>A) Predicate&lt;Student&gt; ps = s =&gt; { return s.getGpa() &gt;3; } 
+B) Predicate&lt;Student&gt; ps = s -&gt; { return s.getGpa() &gt; 3; }
+C) Predicate&lt;Student&gt; ps = -&gt; { return s.getGpa() &gt;3; } // missing argument
+</code></pre><p>Response : B<br>    A : Error  : Operator :JavaScript, Scala use =&gt; Java uses -&gt;<br>    C : Error : missing argument</p>
+<p>Which compile?</p>
+<pre><code>A) Object ps = s -&gt; { return s.getGpa() &gt;3; } 
+B) Predicate&lt;Student&gt; ps = s -&gt; return s.getGpa() &gt;3;
+C) Predicate&lt;Student&gt; ps = s -&gt; { s.getGpa() &gt;3 }
+D) none of the above
+</code></pre><p>Response : D<br>    A : NO CONTEXT<br>    B : Error : no return in expression lambda<br>    C : Error : missing return in blocked lambda</p>
+<h2 id="Anonymous-Inner-Classes"><a href="#Anonymous-Inner-Classes" class="headerlink" title="Anonymous Inner Classes"></a>Anonymous Inner Classes</h2><p>Reason to use it : One time inner code<br>Inner classes have a full access to all methods and instance variables of surrounding class, including private ones</p>
+<h2 id="Separate-Class"><a href="#Separate-Class" class="headerlink" title="Separate Class"></a>Separate Class</h2><ul>
+<li>Advantages : <pre><code>- Flexible : Can pass arguments to constructor
+- More reusable : loosely coupled
+</code></pre></li>
+<li>Disadvantage : <pre><code>- Need extra step to call methods in main app         
+</code></pre></li>
+</ul>
+<h2 id="Lambdas"><a href="#Lambdas" class="headerlink" title="Lambdas"></a>Lambdas</h2><ul>
+<li>Full access to code from surrounding class</li>
+<li>No confusion about meaning of “this”    </li>
+<li>Much more concise, succinct and readable</li>
+<li><p>Encourage a functional programming style</p>
+<p>No instance variables</p>
+</li>
+</ul>
+<h2 id="Review-of-Building-Genericized-Methods-and-Classes"><a href="#Review-of-Building-Genericized-Methods-and-Classes" class="headerlink" title="Review of Building Genericized Methods and Classes"></a>Review of Building Genericized Methods and Classes</h2><h2 id="Motivation-and-Overview"><a href="#Motivation-and-Overview" class="headerlink" title="Motivation and Overview"></a>Motivation and Overview</h2><h3 id="Advantages"><a href="#Advantages" class="headerlink" title="Advantages"></a>Advantages</h3><ul>
+<li>Concise and Expressive (/ a inner class) </li>
+<li>Encourage functional programming</li>
+<li>Support Streams (streams are wrappers around data sources(arrays, collections…) (map/reduce/filter), use lazy evaluation and can be made parrallel automatically by compiler </li>
+</ul>
+<h2 id="Type-inferencing"><a href="#Type-inferencing" class="headerlink" title="Type inferencing"></a>Type inferencing</h2><p>Types in argument list can <strong>usually</strong> be omitted. Java checks at compile time the type in interface (not at runtime), so not slower</p>
+<h2 id="Omitting-parens"><a href="#Omitting-parens" class="headerlink" title="Omitting parens ()"></a>Omitting parens ()</h2><p>If method takes a single argument, then the parens () in the argument list are optional</p>
+<h2 id="The-FunctionalInterface-Annotation"><a href="#The-FunctionalInterface-Annotation" class="headerlink" title="The @FunctionalInterface Annotation"></a>The @FunctionalInterface Annotation</h2><p>-&gt; Catches errors at compile time (to specify the interface must have only one abstract method)<br>-&gt; Expresses design intent<br>-&gt; But not technically required </p>
+<h2 id="Method-references"><a href="#Method-references" class="headerlink" title="Method references"></a>Method references</h2><p>ClassName::staticMethodName<br>variable:instanceMethod<br>Class:instanceMethod<br>ClassOrType::new (constructor)</p>
+<p>The type is defined by the Context</p>
+<p>Supplier<br>Constructor Reference<br>Array Constructor Reference</p>
+<h2 id="Lambda-Variable-Scoping-in-Lambdas"><a href="#Lambda-Variable-Scoping-in-Lambdas" class="headerlink" title="Lambda Variable Scoping in Lambdas"></a>Lambda Variable Scoping in Lambdas</h2><ul>
+<li>this variable refers to the outer class, not to the anonymous inner class that the lambda is turned into</li>
+<li></li>
+</ul>
+<h2 id="4-Lambda-Building-Blocks-in-java-util-function"><a href="#4-Lambda-Building-Blocks-in-java-util-function" class="headerlink" title="4 - Lambda Building Blocks in java.util.function"></a>4 - Lambda Building Blocks in java.util.function</h2><h3 id="4-1-Lambda-Building-Blocks"><a href="#4-1-Lambda-Building-Blocks" class="headerlink" title="4.1 - Lambda Building Blocks"></a>4.1 - Lambda Building Blocks</h3><h3 id="4-2-Simply-Typed-Building-Blocks"><a href="#4-2-Simply-Typed-Building-Blocks" class="headerlink" title="4.2 - Simply-Typed Building Blocks"></a>4.2 - Simply-Typed Building Blocks</h3><ul>
+<li>java.util.function : many reusable interfaces<ul>
+<li>Simply typed interfaces : IntPredicate, LongUnaryOperator</li>
+<li>Generically typed Interfaces : Predicate, Function, Consumer, Supplier, BinaryOperator</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-3-Predicate"><a href="#4-3-Predicate" class="headerlink" title="4.3 - Predicate"></a>4.3 - Predicate</h3><p>  boolean test (T t)</p>
+<p>  Used to filter list, to have a subset of the list (or use the built-in filter method in Stream)       </p>
+<h3 id="4-4-Function"><a href="#4-4-Function" class="headerlink" title="4.4 - Function"></a>4.4 - Function</h3><p>  R apply(T t)</p>
+<p>  Transform a value or collection of values</p>
+<h3 id="4-5-Other-Generic-Building-Blocks"><a href="#4-5-Other-Generic-Building-Blocks" class="headerlink" title="4.5 - Other Generic Building Blocks"></a>4.5 - Other Generic Building Blocks</h3><ul>
+<li>BinaryOperator : T apply (T t1, T t2)</li>
+<li>Consumer : void accept(T t)</li>
+<li>Supplier : T get()</li>
+</ul>
+<hr>
+<h1 id="Programming-with-Java-8-Lambdas-and-Streams-LIVE-ONLINE-TRAINING"><a href="#Programming-with-Java-8-Lambdas-and-Streams-LIVE-ONLINE-TRAINING" class="headerlink" title="Programming with Java 8 Lambdas and Streams -  LIVE ONLINE TRAINING"></a>Programming with Java 8 Lambdas and Streams -  LIVE ONLINE TRAINING</h1><p>Difference between OOP () and functional Programing<br>Java 8 combined :  </p>
+<ul>
+<li>Object-oriented Programing (imperative paradigm, sequential code), hierarchical data abstraction, state is encapsulated by methods thats perform itertive statements</li>
+<li>functinal programming is a declarative paradigm<pre><code>(focus on what instead of how)
+Pure function
+Function composition : the output serves as imput for next one
+Changing State &amp; mutable data ARE DISCOURAGED
+Focus on Immutable objects 
+</code></pre></li>
+</ul>
+<h2 id="Overview-of-Lambda-Expressions"><a href="#Overview-of-Lambda-Expressions" class="headerlink" title="Overview of Lambda Expressions"></a>Overview of Lambda Expressions</h2><p>A Lambda expression is an unnamed block of code (with optional parameters) that ca be stored , passed around and executed later (in another context, another thread…)</p>
+<p>Values of private fieds can be updated but not params</p>
+<p>Make the code more generable </p>
+<h2 id="Method-References"><a href="#Method-References" class="headerlink" title="Method References"></a>Method References</h2><pre><code>:: 
+</code></pre><h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><p><a href="https://github.com/douglascraigschmidt/LiveLessons" target="_blank" rel="noopener">https://github.com/douglascraigschmidt/LiveLessons</a> </p>
+<h2 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h2><p><a href="/2018/10/03/java-functional-programming/">Functional Programming</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/java/">java</a>, <a href="/tags/java8/">java8</a>, <a href="/tags/lambda/">lambda</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Commentaires</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://cyrgue.github.io/2018/08/30/java-lambdas/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Rechercher">
+    <input type="hidden" name="q" value="site:cyrgue.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/java/">java</a><small>4</small></li>
+  
+    <li><a href="/categories/java/java-8/java-9/java-10/">java 10</a><small>1</small></li>
+  
+    <li><a href="/categories/java/java-8/">java 8</a><small>1</small></li>
+  
+    <li><a href="/categories/java/java-8/java-9/">java 9</a><small>1</small></li>
+  
+    <li><a href="/categories/java/oca-javase8-1/">oca-javase8-1</a><small>2</small></li>
+  
+    <li><a href="/categories/spring/">spring</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Polymorphisme/">Polymorphisme</a><small>1</small></li>
+  
+    <li><a href="/tags/angular/">angular</a><small>4</small></li>
+  
+    <li><a href="/tags/angular2/">angular2</a><small>2</small></li>
+  
+    <li><a href="/tags/angularjs/">angularjs</a><small>1</small></li>
+  
+    <li><a href="/tags/angularjs2/">angularjs2</a><small>1</small></li>
+  
+    <li><a href="/tags/architecture/">architecture</a><small>4</small></li>
+  
+    <li><a href="/tags/array/">array</a><small>1</small></li>
+  
+    <li><a href="/tags/aws/">aws</a><small>1</small></li>
+  
+    <li><a href="/tags/branch/">branch</a><small>1</small></li>
+  
+    <li><a href="/tags/collections/">collections</a><small>1</small></li>
+  
+    <li><a href="/tags/componant/">componant</a><small>1</small></li>
+  
+    <li><a href="/tags/composant/">composant</a><small>1</small></li>
+  
+    <li><a href="/tags/configuration/">configuration</a><small>3</small></li>
+  
+    <li><a href="/tags/database/">database</a><small>1</small></li>
+  
+    <li><a href="/tags/design-patterns/">design patterns</a><small>1</small></li>
+  
+    <li><a href="/tags/directive/">directive</a><small>1</small></li>
+  
+    <li><a href="/tags/docker/">docker</a><small>1</small></li>
+  
+    <li><a href="/tags/domain-driven-design/">domain driven design</a><small>1</small></li>
+  
+    <li><a href="/tags/ecmascript-2015/">ecmascript 2015</a><small>1</small></li>
+  
+    <li><a href="/tags/environment/">environment</a><small>1</small></li>
+  
+    <li><a href="/tags/eslint/">eslint</a><small>1</small></li>
+  
+    <li><a href="/tags/evaluation/">evaluation</a><small>1</small></li>
+  
+    <li><a href="/tags/exception/">exception</a><small>1</small></li>
+  
+    <li><a href="/tags/file-I-O/">file I/O</a><small>1</small></li>
+  
+    <li><a href="/tags/functional-programming/">functional programming</a><small>1</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>2</small></li>
+  
+    <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>17</small></li>
+  
+    <li><a href="/tags/java-definition/">java definition</a><small>1</small></li>
+  
+    <li><a href="/tags/java-index/">java index</a><small>1</small></li>
+  
+    <li><a href="/tags/java8/">java8</a><small>5</small></li>
+  
+    <li><a href="/tags/java9/">java9</a><small>1</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>13</small></li>
+  
+    <li><a href="/tags/jsbin/">jsbin</a><small>1</small></li>
+  
+    <li><a href="/tags/lambda/">lambda</a><small>2</small></li>
+  
+    <li><a href="/tags/library/">library</a><small>1</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>1</small></li>
+  
+    <li><a href="/tags/microservices/">microservices</a><small>1</small></li>
+  
+    <li><a href="/tags/ngrx/">ngrx</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>1</small></li>
+  
+    <li><a href="/tags/npm/">npm</a><small>1</small></li>
+  
+    <li><a href="/tags/observable/">observable</a><small>1</small></li>
+  
+    <li><a href="/tags/programmation-fonctionnelle/">programmation fonctionnelle</a><small>1</small></li>
+  
+    <li><a href="/tags/rxjs/">rxjs</a><small>1</small></li>
+  
+    <li><a href="/tags/select/">select</a><small>1</small></li>
+  
+    <li><a href="/tags/serverless/">serverless</a><small>2</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>1</small></li>
+  
+    <li><a href="/tags/stream/">stream</a><small>1</small></li>
+  
+    <li><a href="/tags/strean/">strean</a><small>1</small></li>
+  
+    <li><a href="/tags/tests/">tests</a><small>1</small></li>
+  
+    <li><a href="/tags/thread/">thread</a><small>1</small></li>
+  
+    <li><a href="/tags/time/">time</a><small>1</small></li>
+  
+    <li><a href="/tags/tools/">tools</a><small>1</small></li>
+  
+    <li><a href="/tags/web/">web</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+    <div>test</div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2018 cyrgue
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

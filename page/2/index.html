@@ -1,0 +1,799 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page | cyrgue</title>
+  <meta name="author" content="cyrgue">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="cyrgue"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="cyrgue" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">cyrgue</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-10-10T10:57:31.000Z"><a href="/2018/10/10/spring-reactive/">2018-10-10</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/10/10/spring-reactive/">Spring</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Presentation"><a href="#Presentation" class="headerlink" title="Presentation"></a>Presentation</h1><p>Le nouveau module WebFlux ajoute la simplicité d’utilisation de Spring et la facilité de configuration de Spring Boot à la conception et au développement d’applications réactives, tandis que Reactive Streams permet aux applications d’utiliser plus efficacement des ressources limitées en ajoutant des fonctionnalités non bloquantes.</p>
+<h1 id="Training-Course"><a href="#Training-Course" class="headerlink" title="Training Course"></a>Training Course</h1><ul>
+<li><a href="https://www.safaribooksonline.com/live-training/courses/reactive-spring-and-spring-boot/0636920212584/" target="_blank" rel="noopener">Course Presentation</a></li>
+<li><a href="https://github.com/kousen/reactive-spring/wiki" target="_blank" rel="noopener">Wiki</a></li>
+<li><a href="http://www.kousenit.com/reactivespring/" target="_blank" rel="noopener">Exercices</a></li>
+<li><a href="https://www.safaribooksonline.com/videos/reactive-spring/9781492025733" target="_blank" rel="noopener">Video</a></li>
+<li>[Spring Framework Documentation] (<a href="https://docs.spring.io/spring/docs/5.1.0.RELEASE/spring-framework-reference/" target="_blank" rel="noopener">https://docs.spring.io/spring/docs/5.1.0.RELEASE/spring-framework-reference/</a>)</li>
+</ul>
+<h1 id="Composants"><a href="#Composants" class="headerlink" title="Composants"></a>Composants</h1><p>Reactor (used internaly in spring)<br>Reactive Streams Adapters (to convert other libraries (RxJs, Akka) into reactor format )</p>
+<p>The webflux module in Spring 5 allows you to use the Project Reactor types Flux and Mono.Methods that work synchronously can be converted to asynchronous by changing the return type to one of those types. The WebClient class then knows how produce those types, and is now the preferred asynchronous rest client (the class AsyncRestTemplate is now deprecated).</p>
+<p>[Reactive, non-blocking WebClient for HTTP requests] (<a href="https://docs.spring.io/spring/docs/5.1.0.RELEASE/spring-framework-reference/web-reactive.html#webflux-client" target="_blank" rel="noopener">https://docs.spring.io/spring/docs/5.1.0.RELEASE/spring-framework-reference/web-reactive.html#webflux-client</a>)</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-10-08T12:02:08.000Z"><a href="/2018/10/08/java-stream-file-io/">2018-10-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/10/08/java-stream-file-io/">Stream and File I/O</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Try-catch-blocks"><a href="#Try-catch-blocks" class="headerlink" title="Try/catch blocks"></a>Try/catch blocks</h1><ul>
+<li>finally blocks</li>
+<li><p><strong>Multi-catch</strong> : using | (also consider catching a parent type)</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String input = getSomeString();</span><br><span class="line"><span class="keyword">int</span> num;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">   num = Integer.parseInt(input)</span><br><span class="line">&#125; <span class="keyword">catch</span> (NumberFormatException | NullPointerException e) &#123;</span><br><span class="line">   num = defaultValue;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>try-with-resources</strong> (Java7) : Can declare variables that <strong>implements AutoCloseable</strong> in parents after try</p>
+<ul>
+<li>Scope of variable is scope of try/catch block</li>
+<li>The close method of each variable is called at the end (like a finally block)</li>
+<li>Can declare multiple variables, separated by semicolon</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (BufferedReader reader = ....)&#123;</span><br><span class="line">   </span><br><span class="line">&#125; <span class="keyword">catch</span> (SomeExceptionType e) &#123;</span><br><span class="line">   ...</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Path"><a href="#Path" class="headerlink" title="Path"></a>Path</h1><ul>
+<li><strong>Path</strong> is a simpler and more flexibable replacement for File class </li>
+<li>Get a Path with <strong>Paths.get</strong></li>
+<li>Paths have convenients methods : toAbsoluteParth, startWith, getParent…</li>
+</ul>
+<h1 id="File-Reading"><a href="#File-Reading" class="headerlink" title="File Reading"></a>File Reading</h1><p>Read lines<br> <code>Stream&lt;String&gt; lines = Files.lines(somePath)</code></p>
+<ul>
+<li>Charset Option : Default is UTF-8, but you can uses Files.lines(path, someCharset)</li>
+<li>Throws IOException : use a try/catch block or throw and exception</li>
+<li>Stream should be closed </li>
+<li>Stream implements AutoCloseable</li>
+</ul>
+<h1 id="File-writing"><a href="#File-writing" class="headerlink" title="File writing"></a>File writing</h1><h2 id="Base-version"><a href="#Base-version" class="headerlink" title="Base version"></a>Base version</h2><p>Write all entries of a List into a file in one method call</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cyrgue.fileio;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.Charset;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Files;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Path;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Paths;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileWrintingPrg</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        Charset charset = Charset.defaultCharset();</span><br><span class="line">        Path path = Paths.get(<span class="string">"output-file-1.txt"</span>);</span><br><span class="line">        List&lt;String&gt; lines = Arrays.asList(<span class="string">"Line One"</span>, <span class="string">"Line Two"</span>);</span><br><span class="line"></span><br><span class="line">        Files.write(path, lines, charset);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>OpenOption<br><code>Files.write(somePath, lines, someCharset, someOption)</code><br>used to create, override a file…</p>
+<p><code>Files.write</code> is not flexible, not very efficient</p>
+<h2 id="Faster-and-more-flexible-File-Writing"><a href="#Faster-and-more-flexible-File-Writing" class="headerlink" title="Faster and more flexible File Writing"></a>Faster and more flexible File Writing</h2><ul>
+<li>to be able to format String as you insert them into the file</li>
+<li>to be able not to store everything in memory</li>
+<li><p>to be able to buffered writing in blocks (faster for very large files)</p>
+<p>Use <code>Files.newBufferedWriter(path, charset)</code> and <code>PrintWriter out = new PrintWriter(Files.newBufferedWriter(path, charset))</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cyrgue.fileio;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.PrintWriter;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.Charset;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Files;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Path;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Paths;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BetterFileWritingPrg</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        Charset charset = Charset.defaultCharset();</span><br><span class="line">        <span class="keyword">int</span> numLines = <span class="number">10</span>;</span><br><span class="line">        Path path = Paths.get(<span class="string">"output-file-2.txt"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> (PrintWriter out = <span class="keyword">new</span> PrintWriter(Files.newBufferedWriter(path, charset))) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numLines; i++) &#123;</span><br><span class="line">                out.printf(<span class="string">"Number is %5.2f%n"</span>, <span class="number">100</span>*Math.random());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException ex) &#123;</span><br><span class="line">            System.err.printf(<span class="string">"IOException %s%n"</span>, ex);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="Exploring-Folders"><a href="#Exploring-Folders" class="headerlink" title="Exploring Folders"></a>Exploring Folders</h1><ul>
+<li>Get all files in a folder <code>Files.list</code></li>
+<li>Get all files in and below a folder <code>Files.walk</code></li>
+<li>GEt matching files in and below a folder <code>Files.find</code> (with a BiPredicate (Path and BasicFileAttributes)) </li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-10-07T13:12:51.000Z"><a href="/2018/10/07/java-inner-class/">2018-10-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/10/07/java-inner-class/">java-inner-class</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Inner Class could not have static field</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-10-07T13:08:20.000Z"><a href="/2018/10/07/java-static/">2018-10-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/10/07/java-static/">java-static</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Static field: Field is shared in all the object of the class</p>
+<p>Inner Class Could not have static field</p>
+<p>In Java8, Static field has to be declared in Interface</p>
+<p>Exercice :<br>Q1)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cyrgue.staticKeyword;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> MAX_VAL = <span class="number">100</span>;</span><br><span class="line">    <span class="keyword">int</span> value = <span class="number">99</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setValue</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (x &lt;= MAX_VAL) &#123;</span><br><span class="line">            value = x;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticPrg</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        X a = <span class="keyword">new</span> X();</span><br><span class="line">        X b = <span class="keyword">new</span> X();</span><br><span class="line"></span><br><span class="line">        a.setValue(<span class="number">120</span>);</span><br><span class="line">        System.out.print(a.value + <span class="string">","</span>);</span><br><span class="line"></span><br><span class="line">        b.MAX_VAL = <span class="number">150</span>; <span class="comment">// better is X.MAX_VAL = 150</span></span><br><span class="line">        a.setValue(<span class="number">140</span>);</span><br><span class="line">        System.out.println(a.value);;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>What happens?<br>    A) I’m an X<br>    B)<br>    C) 99, 140<br>    D) </p>
+<p>Response : C<br>    X does not have a method doStuff2()</p>
+<h2 id="Static-Methods-and-heritance"><a href="#Static-Methods-and-heritance" class="headerlink" title="Static Methods and heritance"></a>Static Methods and heritance</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cyrgue.staticKeyword;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Y</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> String <span class="title">sayHi</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Y - Hello"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">sayHi2</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Y - Hello2"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Z</span> <span class="keyword">extends</span> <span class="title">Y</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> String <span class="title">sayHi</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Z - Hello"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">sayHi2</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Z - Hello2"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticMethodPrg</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Y y = <span class="keyword">new</span> Z();</span><br><span class="line">        System.out.println(y.sayHi() + <span class="string">", "</span> + y.sayHi2());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>What is the result?<br>A) Y-Hello, Y-Hello2<br>B) Y-Hello, Z-Hello2<br>C) Z-Hello, Z-Hello2<br>D) Y-Hello, Y-Hello2<br>E) Compilation Fails</p>
+<p>Response :<br>B : </p>
+<p>Y y = new Z();</p>
+<p>y.sayHi2() is an INSTANCE METHOD<br>so means send a message from the OBJECT (instance)(of type Z) - NOT the type of the POINTER</p>
+<p><strong>static method is treated differently</strong><br>the compiler replaces the y.sayHi() with Y.sayHi() as it’s static so this is the POINTER TYPE</p>
+<p>If you invoke static method, the behavior is determined statically by the compiler, so it uses the type of the variable (the POINTER) so Y<br>For instance method, dynamic method invocation(object (not pointer)of y, send a message), </p>
+<p><strong>Type of referee (Z) must be “assignment compatible” with type of reference (Y)</strong></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-10-07T12:05:31.000Z"><a href="/2018/10/07/java-time-api/">2018-10-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/10/07/java-time-api/">Java Time API</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><ul>
+<li>java.time Package</li>
+<li>java.time.LocalDate (*), </li>
+<li>java.time.LocalTime (*)</li>
+<li>java.time.LocalDateTime (*),</li>
+<li>java.time.Period(*),</li>
+<li>java.time.format.DateTimeFormatter (*), </li>
+<li><p>java.time.Duration, </p>
+<p>(*) subject for exams<br><a href="https://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html" target="_blank" rel="noopener">Java Time API</a></p>
+</li>
+</ul>
+<h1 id="Create"><a href="#Create" class="headerlink" title="Create"></a>Create</h1><p>No Constructors (only private), but factory method : LocalDate.of…</p>
+<p><strong>DateTime API is IMMUTABLE</strong></p>
+<p>Methods : </p>
+<ul>
+<li><code>aLocalDate.plusDays(2);</code></li>
+<li><code>aLocalDate.minusDays(10);</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">LocalDate today = LocalDate.now(); <span class="comment">// No public constructor BUT factory methods</span></span><br><span class="line">System.out.println(today);</span><br><span class="line">LocalDate anoherDate = today.plusDays(<span class="number">2</span>); <span class="comment">// Does not change the current instance;</span></span><br><span class="line">System.out.println(<span class="string">"----------------------------"</span>);</span><br><span class="line">System.out.println(today);  <span class="comment">// Time API is IMMUTABLE</span></span><br><span class="line">System.out.println(anoherDate);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">today = today.minusDays(<span class="number">10</span>);</span><br><span class="line">System.out.println(today);</span><br><span class="line"></span><br><span class="line">LocalDate aDate = LocalDate.of(<span class="number">2018</span>, <span class="number">6</span>, <span class="number">15</span>);</span><br><span class="line">System.out.println(aDate);</span><br></pre></td></tr></table></figure>
+<h1 id="Duration-vs-Period"><a href="#Duration-vs-Period" class="headerlink" title="Duration vs Period"></a>Duration vs Period</h1><ul>
+<li>Period : Only interest in Year, Month, Day (more restriction)<br>  Human Calendar Period (1 month, 3 days or 2 years, 4 days..)</li>
+<li>Duration : interest in Year, Month, Day, hour, minutes, seconds : <em>nanoseconds</em><br>  Physical Duration in nanoseconds</li>
+</ul>
+<p>Period has a specific print format : P1Y5M10D for a Period of 1 year, 5 month, 10 days    </p>
+<p>Normalized can change month to year but not days to month or year</p>
+<ul>
+<li><code>aLocalDate.plus(aPeriod);</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">LocalDate today = LocalDate.now();</span><br><span class="line">Period p = Period.of(<span class="number">1</span>, <span class="number">5</span>, <span class="number">10</span>);</span><br><span class="line">System.out.println(p); <span class="comment">// Specific Format</span></span><br><span class="line">Period normalized = p.normalized();</span><br><span class="line">System.out.println(normalized);</span><br><span class="line"></span><br><span class="line">Period p2 = Period.of(<span class="number">1</span>, <span class="number">25</span>, <span class="number">10</span>);</span><br><span class="line">System.out.println(p2); <span class="comment">// Specific Format</span></span><br><span class="line">Period normalized2 = p2.normalized();</span><br><span class="line">System.out.println(normalized2);</span><br></pre></td></tr></table></figure>
+<h1 id="Temporal-Units"><a href="#Temporal-Units" class="headerlink" title="Temporal Units"></a>Temporal Units</h1><p><img src="/img/java/oca-javase8/local-time1.png?raw=true" alt="Temporal Units" title="Temporal Units">  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LocalTime nineThirtheen = LocalTime.of(<span class="number">9</span>, <span class="number">13</span>);</span><br><span class="line">System.out.println(nineThirtheen);</span><br><span class="line"><span class="comment">//LocalTime muchLater = nineThirtheen.plus(period); // java.time.temporal.UnsupportedTemporalTypeException: Unsupported unit: Months</span></span><br></pre></td></tr></table></figure>
+<p>BE CAREFULL : Of adding period (y/m/d) to Time (LocalTime) : Error !!!! </p>
+<h1 id="Time-Formatter"><a href="#Time-Formatter" class="headerlink" title="Time Formatter"></a>Time Formatter</h1><p>java.time.format</p>
+<ul>
+<li>DateTimeFormatter</li>
+</ul>
+<p>ex : <code>LocalDate parsedDate = LocalDate.parse(text, formatter);</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LocalDate today = LocalDate.now();</span><br><span class="line">DateTimeFormatter fmt = DateTimeFormatter.ofPattern(<span class="string">"d MM yy"</span>);</span><br><span class="line">System.out.println(fmt.format(today));</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Cannot interact whith “Temporal Units” that are not supported by the “thing” you give it (LocalDate etc…)</li>
+<li>Number of chars in a format specify String changes the results representation</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-10-07T11:21:09.000Z"><a href="/2018/10/07/java-table-of-contents/">2018-10-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/10/07/java-table-of-contents/">java-table-of-contents</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <ul>
+<li>Les types en Java</li>
+<li>Methods Arguments</li>
+<li>Arrays</li>
+<li><a href="/2018/08/29/java-polymorphism/">Polymorphisme</a> (overloading, overriding)</li>
+<li>Composition</li>
+<li>Design Patterns</li>
+<li>UML</li>
+<li><a href="/2018/10/07/java-time-api">Time API</a></li>
+<li>Casting</li>
+<li>JVM</li>
+<li>String Manipulation</li>
+<li>Exceptions</li>
+<li><a href="/2018/10/17/java-equals/">Equals/Hashcode</a></li>
+<li>Constructor</li>
+<li>Collections</li>
+<li>Sort/Compare</li>
+<li>Generics</li>
+<li><a href="/2018/10/08/java-stream-file-io">I/O Streams</a> {Lundi}</li>
+<li>Serialization</li>
+<li>Synchronized</li>
+<li>final</li>
+<li><a href="/2018/08/30/java-lambdas/">Lambdas</a> - <a href="2018/10/03/java-functional-programming/">Functional Programming</a></li>
+<li>Stream</li>
+<li>Inner Class</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-10-03T12:03:37.000Z"><a href="/2018/10/03/java-functional-programming/">2018-10-03</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/10/03/java-functional-programming/">Java Functional Programming</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Online-Training-References"><a href="#Online-Training-References" class="headerlink" title="Online Training References"></a>Online Training References</h1><hr>
+<p>Working with streams, lambda expressions, and method references in Java SE8 and beyond</p>
+<ul>
+<li><a href="https://www.safaribooksonline.com/live-training/courses/functional-programming-in-java/0636920212447/" target="_blank" rel="noopener">Course Description</a></li>
+<li><a href="http://bit.ly/2los3Lp" target="_blank" rel="noopener">Course Documents</a></li>
+<li>Book : <a href="https://www.safaribooksonline.com/library/view/modern-java-recipes/9781491973165/" target="_blank" rel="noopener">Modern Java Recipes</a></li>
+<li>Blog  : <a href="https://kousenit.org/" target="_blank" rel="noopener">https://kousenit.org/</a></li>
+<li>Video : <a href="https://www.safaribooksonline.com/videos/java-8-and/9780133489354" target="_blank" rel="noopener">Java 8 and 9 Fundamentals: Modern Java Development with Lambdas, Streams, and Introducing Java 9’s JShell and the Java Platform Module System (JPMS)</a></li>
+<li>Video : <a href="https://www.safaribooksonline.com/videos/advanced-java-development/9781491960400" target="_blank" rel="noopener">Advanced Java Development </a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/11/" target="_blank" rel="noopener">Java Doc 11</a> </li>
+</ul>
+<h1 id="Lambda-Expression"><a href="#Lambda-Expression" class="headerlink" title="Lambda Expression"></a>Lambda Expression</h1><ul>
+<li>Assigned to Single Abstract Method (SAM) interface (functional interface) (ex: Runnable, file)</li>
+<li>Parameter types inferred from context </li>
+<li>Method Reference</li>
+</ul>
+<h1 id="Functional-Interface"><a href="#Functional-Interface" class="headerlink" title="Functional Interface"></a>Functional Interface</h1><p><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/function/package-summary.html" target="_blank" rel="noopener">JavaDoc</a></p>
+<ul>
+<li>see java.util.function package</li>
+<li>Functional Interfaces (Not Required but useful)</li>
+<li>Use Pure Function</li>
+</ul>
+<ul>
+<li><strong>Consumer</strong> -&gt; single arg, no result (not a Pure function)<br> <code>void accept(T t)</code><br> Ex : print or log<br> Also IntConsumer, LongConsumer, BiConsumer&lt;T, U&gt;</li>
+</ul>
+<p>Ex :<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.function.Consumer;</span><br><span class="line"><span class="keyword">import</span> java.util.logging.Logger;</span><br><span class="line"><span class="keyword">import</span> java.util.stream.Stream;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConsumerCompositionDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Consumer&lt;String&gt; cPrinter = System.out::println;</span><br><span class="line">        Logger logger = Logger.getLogger(ConsumerCompositionDemo.class.getName());</span><br><span class="line"></span><br><span class="line">        Consumer&lt;String&gt; cLogger = logger::info;</span><br><span class="line"></span><br><span class="line">        Consumer&lt;String&gt; composed = cPrinter.andThen(cLogger);</span><br><span class="line"></span><br><span class="line">        Stream.of(<span class="string">"This"</span>, <span class="string">"is"</span>, <span class="string">"a"</span>, <span class="string">"string"</span>).forEach(composed);</span><br><span class="line"></span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p><strong>Predicate</strong> -&gt; returns boolean<br> <code>boolean test(T t)</code></p>
+</li>
+<li><p><strong>Supplier</strong> -&gt; no arg, returns single result<br> <code>T get()</code></p>
+<p> Also BooleanSupplier…</p>
+</li>
+<li><p><strong>Function</strong> -&gt; single arg, returns result<br> <code>R apply(T t)</code></p>
+</li>
+</ul>
+<p>Also IntFunction, LongFunction, ToDoubleFunction, ToDoubleBiFunction&lt;T,​U&gt;, ToDoubleFunction<t>, ToIntBiFunction&lt;T,​U&gt;, ToIntFunction<t>, ToLongBiFunction&lt;T,​U&gt;                                  Represents a function that accepts two arguments and produces a long-valued result.<br>                                                   ToLongFunction<t>… </t></t></t></p>
+<h1 id="Method-Reference"><a href="#Method-Reference" class="headerlink" title="Method Reference"></a>Method Reference</h1><p>Method references uses <strong>::</strong> notation</p>
+<p><code>System.out::println</code> equivalent to <code>x -&gt; System.out.println(x)</code><br><code>Math::max</code> equivalent to <code>(x, y) -&gt; Math.max(x, y)</code><br><code>String::compareToIgnoreCase</code> equivalent to <code>(x, y) -&gt; x.compareToIgnoreCase(y)</code></p>
+<h1 id="Constructor-Reference"><a href="#Constructor-Reference" class="headerlink" title="Constructor Reference"></a>Constructor Reference</h1><p>Constructor references uses <strong>::</strong> notation</p>
+<p>Ex: </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.stream.Collectors;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UsePerson</span> </span>&#123;</span><br><span class="line">    <span class="meta">@SuppressWarnings</span>(&#123;<span class="string">"UnusedAssignment"</span>, <span class="string">"Convert2MethodRef"</span>&#125;)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; names = Arrays.asList(<span class="string">"John"</span>, <span class="string">"Paul"</span>, <span class="string">"George"</span>, <span class="string">"Ringo"</span>);</span><br><span class="line"></span><br><span class="line">        List&lt;Person&gt; people = names.stream()    <span class="comment">// Stream&lt;String&gt;</span></span><br><span class="line">                .map(name -&gt; <span class="keyword">new</span> Person(name))  <span class="comment">// Stream&lt;Person&gt;</span></span><br><span class="line">                .collect(Collectors.toList());  <span class="comment">// Converts Stream&lt;Person&gt; to List&lt;Person&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        people = names.stream()</span><br><span class="line">                .map(Person::<span class="keyword">new</span>)</span><br><span class="line">                .collect(Collectors.toList());</span><br><span class="line"></span><br><span class="line">        System.out.println(people);</span><br><span class="line"></span><br><span class="line">        Person[] peopleArray = names.stream()</span><br><span class="line">                .map(Person::<span class="keyword">new</span>)</span><br><span class="line">                .toArray(Person[]::<span class="keyword">new</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(Arrays.toString(peopleArray));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Interface"><a href="#Interface" class="headerlink" title="Interface"></a>Interface</h1><h2 id="Default-methods"><a href="#Default-methods" class="headerlink" title="Default methods"></a>Default methods</h2><p>Use keyword <strong>default</strong></p>
+<p>If conflict : </p>
+<ul>
+<li>Class vs Interface =&gt; Class always wins</li>
+<li>Interface vs Interface =&gt; Child overrides parent, otherwise compilation error</li>
+</ul>
+<p>If class implements multiple Interface with same method</p>
+<ul>
+<li>Must call <strong>InterfaceName.super.method</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Pegasus</span> <span class="keyword">implements</span> <span class="title">Horse</span>, <span class="title">Bird</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">speak</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Horse.<span class="keyword">super</span>.speak() + <span class="string">" "</span> + Bird.<span class="keyword">super</span>.speak();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Streams"><a href="#Streams" class="headerlink" title="Streams"></a>Streams</h1><h2 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h2><p>A sequence of elements</p>
+<ul>
+<li>Does not store the elements</li>
+<li>Does not change the source</li>
+<li>Operations are lazy when possible</li>
+<li>Closed when terminal expression reached</li>
+</ul>
+<p>A stream carries values</p>
+<ul>
+<li>from a source</li>
+<li>through a pipeline </li>
+</ul>
+<p><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/stream/Stream.html" target="_blank" rel="noopener">Java Doc</a></p>
+<h2 id="Pipeline"><a href="#Pipeline" class="headerlink" title="Pipeline"></a>Pipeline</h2><p>A pipeline is</p>
+<ul>
+<li>a source</li>
+<li>zero or more intermediate operations</li>
+<li>a terminal operation</li>
+</ul>
+<h2 id="Reduction-Operations"><a href="#Reduction-Operations" class="headerlink" title="Reduction Operations"></a>Reduction Operations</h2><p>Terminal operation that produce one value for a stream<br>Ex: <code>average, sum, max, min, count, ....</code></p>
+<h1 id="The-java-time-Package"><a href="#The-java-time-Package" class="headerlink" title="The java.time Package"></a>The java.time Package</h1>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-09-28T12:19:00.000Z"><a href="/2018/09/28/java-9/">2018-09-28</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/09/28/java-9/">What&#39;s New In Java (9, 10, 11)</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Online-Training-References"><a href="#Online-Training-References" class="headerlink" title="Online Training References"></a>Online Training References</h1><ul>
+<li><a href="https://www.safaribooksonline.com/live-training/courses/whats-new-in-java/0636920219484/" target="_blank" rel="noopener">Training Page</a></li>
+<li><a href="https://docs.google.com/document/d/1RDclyK0UmQBuxWxU1d-vM0mtZo76QyKYRFBBxHz6GcA/edit" target="_blank" rel="noopener">Reference</a></li>
+<li><a href="http://click.e.safaribooksonline.com/?qs=9458e9b104bfaaaca3bb83c84f80a38548833b7b656021738bed5366b143ae245b868d370b2bdfa4fa5a86544f319b96566c761865a3ee0b71bbaf2d2754acfd" target="_blank" rel="noopener">Course Video</a></li>
+<li>Livre : <a href="https://www.safaribooksonline.com/library/view/modern-java-recipes/9781491973165/" target="_blank" rel="noopener">Modern Java Recipes</a></li>
+<li>Blog  : <a href="https://kousenit.org/" target="_blank" rel="noopener">https://kousenit.org/</a></li>
+<li>Video : <a href="https://www.safaribooksonline.com/videos/java-8-and/9780133489354" target="_blank" rel="noopener">Java 8 and 9 Fundamentals: Modern Java Development with Lambdas, Streams, and Introducing Java 9’s JShell and the Java Platform Module System (JPMS)</a></li>
+<li>Video : <a href="https://www.safaribooksonline.com/videos/advanced-java-development/9781491960400" target="_blank" rel="noopener">Advanced Java Development </a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/11/" target="_blank" rel="noopener">Java Doc 11</a> </li>
+</ul>
+<p>Java 8 is a major version but 9, 10, and 11 are not. Not a big jump to move from 8 to 11<br>Java 11 is a Long Term Support (LTS) release for the Java standard edition, meaning bug fixes and security patches will be available for at least the next three years (see the extensive Java Is Still Free post at for details about the future licensing arrangements)</p>
+<h1 id="Collection-factory-methods"><a href="#Collection-factory-methods" class="headerlink" title="Collection factory methods"></a>Collection factory methods</h1><ul>
+<li>List.of(a, b, b, c, …)</li>
+<li>Set.of(a, b, b, c, …)</li>
+<li>Map.of(k1, v1, k2, v2, k3, v3, …)</li>
+<li>Map.ofEntries(</li>
+<li>Map.entry(k1, v1),</li>
+<li>Map.entry(k2, v2),</li>
+<li>Map.entry(k3, v3), …)</li>
+</ul>
+<h1 id="Private-Methods-in-Interfaces"><a href="#Private-Methods-in-Interfaces" class="headerlink" title="Private Methods in Interfaces"></a>Private Methods in Interfaces</h1><p>Both <strong>default</strong> and <strong>static</strong> methods in interfaces can call <strong>private</strong> methods</p>
+<p>#<br>License</p>
+<ul>
+<li><a href="https://www.aspera.com/fr/blog/oracle-ne-proposera-plus-java-gratuitement-en-2019/" target="_blank" rel="noopener">https://www.aspera.com/fr/blog/oracle-ne-proposera-plus-java-gratuitement-en-2019/</a></li>
+<li><a href="http://blog.invivoo.com/java-va-t-il-devenir-payant/" target="_blank" rel="noopener">http://blog.invivoo.com/java-va-t-il-devenir-payant/</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-09-03T08:19:03.000Z"><a href="/2018/09/03/java-collections/">2018-09-03</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/09/03/java-collections/">java_collections</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Convert-Array-to-ArrayList"><a href="#Convert-Array-to-ArrayList" class="headerlink" title="Convert Array to ArrayList"></a>Convert Array to ArrayList</h2><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// With string </span></span><br><span class="line"><span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;(Arrays.asList(<span class="string">"a"</span>, <span class="string">"b"</span>)); </span><br><span class="line"></span><br><span class="line"><span class="comment">// With object</span></span><br><span class="line"><span class="built_in">Element</span>[] array = &#123;<span class="keyword">new</span> <span class="built_in">Element</span>(<span class="number">1</span>),<span class="keyword">new</span> <span class="built_in">Element</span>(<span class="number">2</span>),<span class="keyword">new</span> <span class="built_in">Element</span>(<span class="number">3</span>)&#125;;</span><br><span class="line">ArrayList&lt;<span class="built_in">Element</span>&gt; arrayList = <span class="keyword">new</span> ArrayList&lt;&gt;(Arrays.asList(array));</span><br></pre></td></tr></table></figure>
+<p>Attention avec<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">List</span>&lt;Element&gt; <span class="built_in">list</span> = Arrays.asList(<span class="built_in">array</span>);</span><br></pre></td></tr></table></figure></p>
+<p><strong>the size of the list returned from asList() is fixed.</strong>  the list returned is not java.util.ArrayList, but a private static class defined inside java.util.Arrays. We know ArrayList is essentially implemented as an array, and the list returned from asList() is a fixed-size list backed by the original array. In this way, if add or remove elements from the returned list, an UnsupportedOperationException will be thrown.</p>
+<p>Autre solution<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Element[]<span class="built_in"> array </span>= &#123;new Element(1),<span class="built_in"> new </span>Element(2)&#125;;</span><br><span class="line">List&lt;Element&gt; list =<span class="built_in"> new </span>ArrayList&lt;&gt;(array.length);</span><br><span class="line">Collections.addAll(list, array);</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-08-31T19:10:46.000Z"><a href="/2018/08/31/java-oca-javase8-1/">2018-08-31</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/08/31/java-oca-javase8-1/">OCA Java SE 8 Programmer Certification Crash Course Java Cert - Day 1</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Online-Training-References"><a href="#Online-Training-References" class="headerlink" title="Online Training References"></a>Online Training References</h1><ul>
+<li><a href="https://www.safaribooksonline.com/live-training/courses/oca-java-se-8-programmer-certification-crash-course-java-cert/0636920200321/" target="_blank" rel="noopener">Course description</a></li>
+<li><a href="https://event.on24.com/eventRegistration/console/EventConsoleApollo.jsp?&amp;eventid=1774253&amp;sessionid=1&amp;username=&amp;partnerref=&amp;format=fhvideo1&amp;mobile=false&amp;flashsupportedmobiledevice=false&amp;helpcenter=false&amp;key=1BBD027F184A1CBABEEE7F2A93940047&amp;text_language_id=en&amp;playerwidth=1000&amp;playerheight=650&amp;overwritelobby=y&amp;eventuserid=212193030&amp;contenttype=A&amp;mediametricsessionid=177138352&amp;mediametricid=2500821&amp;usercd=212193030&amp;mode=launch" target="_blank" rel="noopener">Course Video</a></li>
+</ul>
+<h1 id="Time-API"><a href="#Time-API" class="headerlink" title="Time API"></a>Time API</h1><ul>
+<li><a href="/2018/10/07/java-time-api">Time API</a></li>
+</ul>
+<p>TV1:38mn -&gt; 118mn</p>
+<h1 id="Static-keyword"><a href="#Static-keyword" class="headerlink" title="Static keyword"></a>Static keyword</h1><ul>
+<li><a href="(/2018/10/07/java-static">Apply the static keyword to methods and fields</a></li>
+</ul>
+<p>TV1:118mn -&gt; 240mn</p>
+<h2 id="Polymorphism"><a href="#Polymorphism" class="headerlink" title="Polymorphism"></a>Polymorphism</h2><p><a href="/2018/08/29/java-polymorphism">Polymorphism; develop code that overrides methods; differentiate between the type of a reference and the type of an object</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/" class="alignleft prev">Précédent</a>
+  
+  
+    <a href="/page/3/" class="alignright next">Suivant</a>
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Rechercher">
+    <input type="hidden" name="q" value="site:cyrgue.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/java/">java</a><small>4</small></li>
+  
+    <li><a href="/categories/java/java-8/java-9/java-10/">java 10</a><small>1</small></li>
+  
+    <li><a href="/categories/java/java-8/">java 8</a><small>1</small></li>
+  
+    <li><a href="/categories/java/java-8/java-9/">java 9</a><small>1</small></li>
+  
+    <li><a href="/categories/java/oca-javase8-1/">oca-javase8-1</a><small>2</small></li>
+  
+    <li><a href="/categories/spring/">spring</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Polymorphisme/">Polymorphisme</a><small>1</small></li>
+  
+    <li><a href="/tags/angular/">angular</a><small>4</small></li>
+  
+    <li><a href="/tags/angular2/">angular2</a><small>2</small></li>
+  
+    <li><a href="/tags/angularjs/">angularjs</a><small>1</small></li>
+  
+    <li><a href="/tags/angularjs2/">angularjs2</a><small>1</small></li>
+  
+    <li><a href="/tags/architecture/">architecture</a><small>4</small></li>
+  
+    <li><a href="/tags/array/">array</a><small>1</small></li>
+  
+    <li><a href="/tags/aws/">aws</a><small>1</small></li>
+  
+    <li><a href="/tags/branch/">branch</a><small>1</small></li>
+  
+    <li><a href="/tags/collections/">collections</a><small>1</small></li>
+  
+    <li><a href="/tags/componant/">componant</a><small>1</small></li>
+  
+    <li><a href="/tags/composant/">composant</a><small>1</small></li>
+  
+    <li><a href="/tags/configuration/">configuration</a><small>3</small></li>
+  
+    <li><a href="/tags/database/">database</a><small>1</small></li>
+  
+    <li><a href="/tags/design-patterns/">design patterns</a><small>1</small></li>
+  
+    <li><a href="/tags/directive/">directive</a><small>1</small></li>
+  
+    <li><a href="/tags/docker/">docker</a><small>1</small></li>
+  
+    <li><a href="/tags/domain-driven-design/">domain driven design</a><small>1</small></li>
+  
+    <li><a href="/tags/ecmascript-2015/">ecmascript 2015</a><small>1</small></li>
+  
+    <li><a href="/tags/environment/">environment</a><small>1</small></li>
+  
+    <li><a href="/tags/eslint/">eslint</a><small>1</small></li>
+  
+    <li><a href="/tags/evaluation/">evaluation</a><small>1</small></li>
+  
+    <li><a href="/tags/exception/">exception</a><small>1</small></li>
+  
+    <li><a href="/tags/file-I-O/">file I/O</a><small>1</small></li>
+  
+    <li><a href="/tags/functional-programming/">functional programming</a><small>1</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>2</small></li>
+  
+    <li><a href="/tags/iframe/">iframe</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>17</small></li>
+  
+    <li><a href="/tags/java-definition/">java definition</a><small>1</small></li>
+  
+    <li><a href="/tags/java-index/">java index</a><small>1</small></li>
+  
+    <li><a href="/tags/java8/">java8</a><small>5</small></li>
+  
+    <li><a href="/tags/java9/">java9</a><small>1</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>13</small></li>
+  
+    <li><a href="/tags/jsbin/">jsbin</a><small>1</small></li>
+  
+    <li><a href="/tags/lambda/">lambda</a><small>2</small></li>
+  
+    <li><a href="/tags/library/">library</a><small>1</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>1</small></li>
+  
+    <li><a href="/tags/microservices/">microservices</a><small>1</small></li>
+  
+    <li><a href="/tags/ngrx/">ngrx</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>1</small></li>
+  
+    <li><a href="/tags/npm/">npm</a><small>1</small></li>
+  
+    <li><a href="/tags/observable/">observable</a><small>1</small></li>
+  
+    <li><a href="/tags/programmation-fonctionnelle/">programmation fonctionnelle</a><small>1</small></li>
+  
+    <li><a href="/tags/rxjs/">rxjs</a><small>1</small></li>
+  
+    <li><a href="/tags/select/">select</a><small>1</small></li>
+  
+    <li><a href="/tags/serverless/">serverless</a><small>2</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>1</small></li>
+  
+    <li><a href="/tags/stream/">stream</a><small>1</small></li>
+  
+    <li><a href="/tags/strean/">strean</a><small>1</small></li>
+  
+    <li><a href="/tags/tests/">tests</a><small>1</small></li>
+  
+    <li><a href="/tags/thread/">thread</a><small>1</small></li>
+  
+    <li><a href="/tags/time/">time</a><small>1</small></li>
+  
+    <li><a href="/tags/tools/">tools</a><small>1</small></li>
+  
+    <li><a href="/tags/web/">web</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+    <div>test</div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2018 cyrgue
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
